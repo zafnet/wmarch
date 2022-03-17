@@ -47,6 +47,7 @@ alias inst='sudo pacman -S'
 alias  actu='sudo pacman -Syu' 
 alias mirror="sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist"
 alias grep='grep --color=auto'
+alias docu='pcmanfm /run/media/newvash/Discoalmacen/LINUX/DOCULINUX/ & disown'
 #alias =' --group-dirs=first'
 
 #------
@@ -58,7 +59,7 @@ alias checkout='git checkout'
 alias cl='git clone'
 alias gc='git commit -m'
 alias pull='git pull origin'
-alias gp='git push origin master'
+alias gp='git push origin main'
 alias gs='git status'
 #alias fetch='git fetch'
 #alias tag='git tag'
@@ -124,8 +125,8 @@ setopt PATH_DIRS                                            # BUSCA EN EL PATH P
 #setopt APPEND_HISTORY                                      # AGREGA HISTORIAL
 #setopt EXTENDED_HISTORY                                    # AGREGA TIMESTAMPS(MARCA DE TIEMPO) AL HISTORIAL DE CUANDO SE ESCRIBIO MODIFICO ETC UN ARCHIVO
 #setopt INC_APPEND_HISTORY                                  # HISTORIAL INCREMENTAL
-setopt HIST_EXPIRE_DUPS_FIRST                               # SE ELIMINAN PRIMERO LOS DUPLICADOS MÁS VIEJOS PRIMERO
-setopt HIST_IGNORE_ALL_DUPS                                 # NO ALMACENAR DUPLICADOS
+#setopt HIST_EXPIRE_DUPS_FIRST                               # SE ELIMINAN PRIMERO LOS DUPLICADOS MÁS VIEJOS PRIMERO
+#setopt HIST_IGNORE_ALL_DUPS                                 # NO ALMACENAR DUPLICADOS
 setopt HIST_IGNORE_SPACE                                    # ELIMINA DEL HISTORIAL LOS COMANDOS QUE EMPIECEN CON UN ESPACIO
 setopt HIST_FIND_NO_DUPS                                    # NO MUESTRA LOS COMANDOS DUPLICADOS
 setopt HIST_REDUCE_BLANKS                                   # ELIMINA LOS ESPACIOS EN BLANCO EN LOS COMANDOS GUARDADOS
