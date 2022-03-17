@@ -1,0 +1,237 @@
+#   ███████╗██╗  ██╗██╗  ██╗██╗  ██╗██████╗ 
+#   ██╔════╝╚██╗██╔╝██║  ██║██║ ██╔╝██╔══██╗
+#   ███████╗ ╚███╔╝ ███████║█████╔╝ ██║  ██║
+#   ╚════██║ ██╔██╗ ██╔══██║██╔═██╗ ██║  ██║
+#   ███████║██╔╝ ██╗██║  ██║██║  ██╗██████╔╝
+#   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝
+
+#ATAJOS DE TECLADO#
+
+super + Return
+	 tilix
+
+#LANZADOR DE PROGRAMAS ROFI#
+alt + d
+	rofi -show drun
+
+ctrl + shift +  d
+        rofi -show filebrowser
+
+alt + w
+	google-chrome-stable
+
+alt + i
+
+       google-chrome-stable --incognito
+
+ctrl + shift + f
+
+        firefox
+
+shift + alt + p 
+
+          firefox -private-window
+
+super + g
+	pcmanfm
+
+
+alt + m
+	telegram-desktop
+
+
+ctrl + super + d
+
+              discord
+
+# Ranger
+
+ctrl + shift + r
+
+	tilix -e ranger
+
+super + ctrl + p 
+	polybar-msg cmd toggle
+
+
+#PARA CAPTURAS DE PANTALLA FLAMESHOT#
+
+Print
+	flameshot full -c -p ~/screenshoot
+
+super + Print
+	flameshot gui
+
+super + alt + Print
+	flameshot full -c -d 5000 -p ~/screenshoot
+
+super + alt + m
+	notify-send "Now Playing ♫" "$(mpc current)"
+
+
+#HACER QUE SXHKD VUELVA A CARGAR SUS ARCHIVOS DE CONFIGURACIÓN#
+super + Escape
+	pkill -USR1 -x sxhkd
+
+#ATAJO DE TECLAS DE BSPWM# 
+
+#SALIR/RESTAURAR BSPWM#
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+#CERRAR Y TERMINAR#
+super + {_,shift + }q
+	bspc node -{c,k}
+
+#BLOQUEAR LA PANTALLA#
+
+super + Delete
+
+     exec i3lock -i ~/i3block/logo.png
+          
+#ALTERNAR ENTRE EL DISEÑO DE MOSAICO Y MONÓCULO#
+
+super + w
+ bspc desktop -l next
+
+#OCULTAR EL NODO ACTUAL O RESTAURAR UN NODO OCULTO CONSULTADO#
+
+super + shift + minus
+	bspc node {,$(bspc query -N -d -n .hidden | head -n 1)} -g hidden
+
+#ESPACIO DE VENTANA DE ESCRITORIO ENFOCADO#
+super + alt + {Up,Down}
+	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
+
+#DESPLAZAMIENTO DE ESPACIOS DE VENTANA DE ESCRITORIO ENFOCADO#
+
+super + button{4,5}
+	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
+
+#DESPLAZAMIENTO DE ESPACIOS DE VENTANA GLOBAL#
+
+super + alt + button{4,5}
+	bspc config window_gap $(( $(bspc config window_gap) {-,+} 5 ))
+
+#ENVIAR EL NODO MARCADO MÁS NUEVO AL NODO PRESELECCIONADO MÁS NUEVO#
+
+# super + y
+	# bspc node newest.marked.local -n newest.!automatic.local
+
+#INTERCAMBIAR EL NODO ACTUAL Y EL NODO MÁS GRANDE#
+#super + alt + n
+#	bspc node -s biggest
+
+#MANEJOS DE VENTANAS#
+
+#ROTAR VENTANAS 90°/VENTANA FLOTANTE/FIJAR VENTANA/#
+super + shift  o
+		{bspc node @focused:/ -R 90,bspc node focused -t \~floating,bspc node -g sticky}
+
+
+#ESTABLECER EL ESTADO DE LA VENTANA#
+super + {a,s,d,f}
+	bspc node -t {pseudo_tiled,floating,tiled,fullscreen,}
+
+alt + space
+	bspc node -t "~"{floating,tiled}
+
+#super + g
+#	bspc node -g sticky
+
+#ESTABLECER LAS BANDERAS DEL NODO#
+
+super + alt + {m,x,z}
+	bspc node -g {marked,locked,private}
+
+#ENFOQUE / INTERCAMBIO#
+
+#ENFOCA EL NODO EN LA DIRECCIÓN DADA#
+
+#super + {_,shift + }{Left,Down,Up,Right}
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+#ENFOCA EL NODO PARA EL SALTO DE RUTA DADO#
+
+# super + {p,b,comma,period}
+# 	bspc node -f @{parent,brother,first,second}
+
+#ENFOCA EL NODO SIGUIENTE / ANTERIOR EN EL ESCRITORIO ACTUAL#
+
+alt + {_,shift + }Tab
+	bspc node -f {next,prev}.local
+
+super + alt + {Left,Right}
+	bspc desktop -f {prev,next}.local
+
+#ENFOCA EL NODO MÁS ANTIGUO O MÁS NUEVO EN EL HISTORIAL DE ENFOQUE#
+
+#super + shift + {Left,Right}
+#	bspc wm -h off; \
+#	bspc node {older,newer} -f; \
+#	bspc wm -h on
+
+#super + {q,w,e,r,t,y,u,i,o,0}
+#	bspc desktop -f '^{1-9,10}'
+
+#ENFOCAR O ENVIAR AL ESCRITORIO DADO#
+
+super + {_,alt + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+super + ctrl + {Right,Left}
+	bspc node -d {next,prev} -f
+
+#ENFOCA EL ÚLTIMO NODO / ESCRITORIO#
+
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+#SUBIR Y BAJAR EL VOLUMEN CON PACTL#
+
+alt + @F12
+  pactl set-sink-volume @DEFAULT_SINK@ +1000
+
+alt + @F11
+  pactl set-sink-volume @DEFAULT_SINK@ -1000
+
+alt + @F10
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+
+#PRESELECCIONAR LA DIRECCIÓN DEL NODO#
+
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+#PRESELECCIONAR LA PROPORCIÓN DEL NODO#
+
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+#CANCELAR LA PRESELECCIÓN DEL NODO ENFOCADO#
+
+ctrl + alt + space
+	bspc node -p cancel
+
+#CANCELAR LA PRESELECCIÓN PARA EL ESCRITORIO ENFOCADO#
+
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+
+#EXPANDA UNA VENTANA MOVIENDO UNO DE SUS LADOS HACIA AFUERA#
+
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+#CONTRAER UNA VENTANA MOVIENDO UNO DE SUS LADOS HACIA ADENTRO#
+
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+#MOVER UNA VENTANA FLOTANTE#
+
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}

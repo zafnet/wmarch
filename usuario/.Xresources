@@ -1,0 +1,73 @@
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: true
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcdfilter
+
+!!VT Font Menu: Unreadable
+!xterm*faceSize1: 8
+!!VT font menu: Tiny
+!!xterm*faceSize2: 10
+!!VT font menu: Medium
+!!xterm*faceSize3: 12
+!!VT font menu: Large
+!!xterm*faceSize4: 16
+!!VT font menu: Huge
+!xterm*faceSize5: 22
+!!---------------------------------------------------------------------------
+!!TERMINAL XTERM Y SUS VALORES
+XTerm.termName: xterm-256color
+XTerm*Background: #272828
+XTerm*Foreground: #7FFECE
+XTerm*font: 9X15 Hack Nerd Font
+XTerm*saveLines: 1000
+XTerm*HiForeColor: #1e35c9
+XTerm*HiBackColor: #e76cf5
+XTerm*geometry: +50+100
+Xterm*scrollBar: True
+XTerm*renderFont: true
+XTerm.vt100.faceName: Hack Nerd Font: size = 10: antialias = false
+XTerm.vt100.font: 7x13
+XTerm*utf8: 2
+XTerm*locale: true
+XTerm.vt100.faceSize: 11
+XTerm*cursorUnderLine: true
+XTerm*cursorBlink:true
+XTerm*metaSendsEscape : true
+!!-----------------------------------------------------------------------------
+!!SELECCIONAR TEXTO 
+!!SELECCIONAR SOLO TEXTO
+!XTerm*highlightSelection: true
+!!ELIMINAR ESPACIOS FINALES
+!XTerm*trimSelection: true
+!! DESPLAZARSE
+!! USE: Shift-Pageup / Shift-Pagedown PARA DESPLAZARSE O LA RUEDA DEL MOUSE 
+!! LÍNEAS DE SALIDA SOBRE LAS QUE PUEDE DESPLAZARSE HACIA ATRÁS
+!XTerm*saveLines: 16384
+    
+!! ENCIENDA LA BARRA DE DESPLAZAMIENTO Y COLÓQUELA A LA DERECHA
+! XTerm.vt100.scrollBar: true
+! XTerm.vt100.scrollbar.width: 8
+! xterm*scrollBar: true
+! xterm*rightScrollBar: true
+    
+!! NO SE DESPLACE CUANDO HAYA UNA NUEVA ENTRADA, EJ. tail -f /var/syslog
+!XTerm*scrollTtyOutput: false
+
+!! COMBINACION DE TECLAS
+!! - CAMBIAR EL TAMAÑO DE FUENTE SOBRE LA MARCHA (ctrl+plus = increase ; ctrl+minus = decrease, ctrl+0 = default)
+!! - COPIAR/PEGAR TECLA DE ACCESO RÁPIDO (ctrl+shift+c = COPIAR ; ctrl+shift+v = PEGAR)
+!! - ABRIR URL (ENLACES EN LOS QUE SE PUEDE HACER CLIC )
+!!   1) HAGA DOBLE CLIC PARA RESALTAR LA URL COMPLETA
+!!   2) Shift + click ES PARA ABRIRLO 
+XTerm.vt100.translations: #override \n\
+      Ctrl <Key> minus: smaller-vt-font() \n\
+      Ctrl <Key> plus: larger-vt-font() \n\
+      Ctrl <Key> 0: set-vt-font(d) \n\
+      Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+      Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+      Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY) \n\
+      !<Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\
+      !<Btn2Up>: insert-selection(PRIMARY)

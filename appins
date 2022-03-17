@@ -1,0 +1,311 @@
+# ! /bin/bash/
+##################################################################################
+# PARA ACTUALIZAR ARCH LINUX CON BSPWM E INSTALAR LOS PROGRAMAS A CONTINUACION INDICADOS
+if [ "$(id -u)" -eq "0" ]; then
+
+pacman -Syu -y --noconfirm
+
+clear
+
+else 
+
+echo  ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
+echo  "> ███╗░░██╗░█████╗░  ██████╗░░█████╗░░█████╗░████████╗  < " 
+echo  "> ████╗░██║██╔══██╗  ██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝  < "
+echo  "> ██╔██╗██║██║░░██║  ██████╔╝██║░░██║██║░░██║░░░██║░░░  < "
+echo  "> ██║╚████║██║░░██║  ██╔══██╗██║░░██║██║░░██║░░░██║░░░  < "
+echo  "> ██║░╚███║╚█████╔╝  ██║░░██║╚█████╔╝╚█████╔╝░░░██║░░░  < "
+echo  "> ╚═╝░░╚══╝░╚════╝░  ╚═╝░░╚═╝░╚════╝░░╚════╝░░░░╚═╝░░░  < "
+echo  ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
+
+sleep 1
+
+clear
+
+exit
+
+fi
+
+#echo -e '\033[1;92m' "\n\t\t\t\t              ....INSTALANDO REFLECTOR......"
+
+#pacman -S reflector -y --noconfirm
+
+#clear
+
+echo -e '\033[1;92m' "\n\t\t\t\t            ....BUSCANDO MIRRORS MAS RAPIDOS...."
+
+reflector --verbose --latest 5 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+clear
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                 ....INSTALANDO GOOGLE CHROME...." 
+#pacman -S google-chrome-stable
+#echo -e '\033[1;92m' "\n\t\t\t\t                 ....INSTALANDO CHROMIUM...."
+#pacman -S chromium -y --noconfirm
+#echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO XORG...." 
+#pacman -S xorg -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                  ....INSTALANDO FIREFOX...." 
+#pacman -S firefox -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                 ....INSTALANDO TELEGRAM...." 
+#pacman -S telegram-desktop -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                 ....INSTALANDO DISCORD...." 
+#pacman -S discord -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                 ....INSTALANDO ARK...."
+#pacman -S ark -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t               ....INSTALANDO PACMAN-CONTRIB...."
+#pacman -S pacman-contrib -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                  ....INSTALANDO XCLIP...."
+#pacman -S xclip -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO GVFS...."
+#pacman -S gvfs  -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                    ....INSTALANDO TILIX...." 
+#pacman -S tilix -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO NEOVIM...."
+#pacman -S neovim -y --noconfirm 
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO TMUX...."
+#pacman -S tmux -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                 ....INSTALANDO PULSEAUDIO...."
+#pacman -S pulseaudio -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                    ....INSTALANDO XTERM...." 
+#pacman -S xterm -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                ....INSTALANDO XDG-USER-DIRS...."
+#pacman -S xdg-user-dirs -y --noconfirm
+
+#xdg-user-dirs-update
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                    ....INSTALANDO ZSH...." 
+#pacman -S zsh -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                    ....INSTALANDO LSD...." 
+#pacman -S lsd -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                    ....INSTALANDO ROFI...." 
+#pacman -S rofi -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                    ....INSTALANDO BSPWM...." 
+#pacman -S bspwm -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO SXHKD...." 
+#pacman -S sxhkd -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO LIGHTDM...." 
+#pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings accountsservice -y --noconfirm
+#systemctl enable lightdm.service
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO FLAMESHOT...."
+#pacman -S flameshot --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                     ....INSTALANDO PICOM...." 
+#pacman -S picom -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                    ....INSTALANDO PCMANFM...." 
+#pacman -S pcmanfm -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO LXAPPEARANCE...." 
+#pacman -S lxappearance  -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                  ....INSTALANDO BASH-COMPLETION...." 
+#pacman -S bash-completion  -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                     ....INSTALANDO NEOFETCH...." 
+#pacman -S neofetch -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                      ....INSTALANDO OS-PROBER...."
+#pacman -S os-prober -y --noconfirm 
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                         ....INSTALANDO ZATHURA...."
+#pacman -S zathura -y --noconfirm
+
+#pacman -S zathura-pdf-poppler -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                  ....INSTALANDO ZSH-AUTOSUGGESTIONS ...." 
+#pacman -S zsh-autosuggestions -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                  ....INSTALANDO ZSH-SYNTAX-HIGHLIGHTING...." 
+#pacman -S zsh-syntax-highlighting -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                            ....INSTALANDO FEH...." 
+#pacman -S feh  -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                            ....INSTALANDO I3LOCK...." 
+#pacman -S i3lock  -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                            ....INSTALANDO XED...." 
+#pacman -S xed -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                           ....INSTALANDO RANGER...." 
+#pacman -S ranger -y --noconfirm
+ 
+#echo -e '\033[1;92m' "\n\t\t\t\t                           ....INSTALANDO HTOP...."
+#pacman -S htop -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                           ....INSTALANDO RSYNC...."
+#pacman -S rsync -y --noconfirm
+#--------------------------------------------------------------------------------------------------------------------------------#
+echo -e '\033[1;92m' "\n\t\t\t\t                                    ...COMPROBANDO PLUGINS DE ZSH..."
+    if  [[ -d /usr/share/zsh-syntax-highlighting/ && /usr/share/zsh-autosuggestions/ ]]; then
+             echo -e "\n\t\t\t\t                            ...YA EXISTEN LAS CARPETAS DE PLUGINS DE ZSH..."
+    else
+echo -e "\n\t\t\t\t                                                  ...COPIANDO PLUGINS DE ZSH..."
+    cp -r /usr/share/zsh/plugins/zsh-syntax-highlighting/ /usr/share/
+ 
+    cp -r /usr/share/zsh/plugins/zsh-autosuggestions/ /usr/share/
+    fi
+#---------------------------------------------------------------------------------------------------------------------------------#
+echo
+echo
+echo -e '\033[1;92m' "\n\t\t\t\t                                       ...COPIANDO FONTS..."
+
+cp -r /home/$USER/bspwmarch/fonts/ /usr/share/
+
+#----------------------------------------------------------------------------------------------------------------------------------#
+echo
+echo
+
+echo -e '\033[1;92m' "\n\t\t\t\t\t\                                   ...AGREGANDO DOTFILES..."
+
+rsync -a /home/$USER/bspwmarch/usuario/ /home/$USER/
+rsync -a --delete /home/$USER/bspwmarch/.config/  /home/$USER/.config/
+cp -r /home/$USER/bspwmarch/tilix/ /usr/share/
+#-----------------------------------------------------------------------------------------------------------------------------------#
+echo
+echo
+
+echo -e '\033[1;92m' "\n\t\t\t\t                      ....PERMISOS DE EJECUCIÓN PARA BSPWMRC PICOM ROFI POLYBAR NVIM SXHKDRC...."
+  
+chmod +x /home/$USER/.config/bspwm/bspwmrc
+chmod +x /home/$USER/.config/sxhkd/sxhkdrc
+chmod +x /home/$USER/.config/picom/picom.conf
+chmod +x /home/$USER/.config/polybar/config.ini
+chmod +x /home/$USER/.config/polybar/launch.sh
+chmod +x /home/$USER/.config/rofi/config.rasi
+chmod +x /home/$USER/.config/nvim/init.vim
+#-----------------------------------------------------------------------------------------------------------------------------------#
+echo
+echo
+
+echo -e '\033[1;92m' "\n\t\t\t\t                              ....CREANDO ENLACES SIMBOLICOS PARA ROOT....."
+
+cd 
+ 
+ln -s -f /home/$USER/.zshrc .zshrc
+ 
+ln -s -f /home/$USER/.tmux.conf.local .tmux.conf.local
+ 
+ln -s -f /home/$USER/.tmux.conf .tmux.conf
+ 
+cp /home/$USER/bspwmarch/.p10k.zsh .
+ 
+ln -s -f /home/$USER/.nanorc .nanorc
+ 
+cp -r /home/$USER/bspwmarch/usuario/powerlevel10k/ . 
+
+cp -r /home/$USER/bspwmarch/.config/nvim/ .
+ 
+ln -s -f /home/$USER/.bashrc .bashrc
+#-------------------------------------------------------------------------------------------------------------#
+echo
+echo
+echo -e '\033[1;92m' "                                       *************************"
+echo -e '\033[1;92m' "                                       *** REINICIANDO EL PC ***"
+echo -e '\033[1;92m' "                                       *************************"
+sleep 2
+
+reboot
+
+                                       #INSTALAR VIRTUALBOX 2021#
+
+#---------------------------------------------------------------------------------------------------
+# INSTALO EL PAQUETE VIRTUALBOX. Y ELIJO UN PAQUETE PARA PROPORCIONAR MÓDULOS AL SISTEMA ANFITRIÓN |
+#---------------------------------------------------------------------------------------------------
+#--------------------------------------------------
+# PARA EL KERNEL LINUX NORMAL INSTALO ESTE MODULO | 
+#--------------------------------------------------
+#echo -e '\033[1;92m' "\n\t\t\t\t\t               ....INSTALANDO VIRTUALBOX Y MODULO VIRTUALBOX-HOST-MODULES-ARCH...."
+#pacman -S virtualbox virtualbox-host-modules-arch -y --noconfirm
+
+#-----------------------------------------
+# PARA OTROS KERNELS INSTALO ESTE MODULO |
+#-----------------------------------------
+#echo -e '\033[1;92m' "\n\t\t\t\t\t                          ....INSTALANDO VIRTUALBOX-HOST-DKMS...."
+#pacman -S  virtualbox-host-dkms -y --noconfirm
+
+#----------------------------------------------------------
+# CARGAR LOS MÓDULOS DEL KERNEL DE VIRTUALBOX MANUALMENTE |
+#----------------------------------------------------------
+#YA SEA QUE UTILICES EL MÓDULO virtualbox-host-modules-arch O virtualbox-host-dkms EL KERNEL USA systemd-modules-load.service PARA CARGAR LOS MÓDULOS DE VIRTUALBOX EN EL MOMENTO DEL ARRANQUE
+
+#PARA CARGARLOS DE FORMA MANUAL UTILIZAMOS EL COMANDO MODPROBE Y EL MODULO VBOXDRV, LA EJECUCIÓN DE ESTA LINEA REQUIERE DE PRIVILEGIOS DE ADMINISTRADOR. VEAMOS…
+
+#echo -e '\033[1;92m' "\n\t\t\t\t\t                                 ....CARGANDO MODULOS...."
+#sudo modprobe vboxdrv
+
+#ESTE MODULO (vboxdrv) ES OBLIGATORIO, AUNQUE PARA UN USO AVANZADO DE VIRTUALBOX PUEDE QUE LOS SIGUIENTES MÓDULOS TE SEAN DE UTILIDAD TAMBIÉN:
+
+#– vboxnetadp y vboxnetflt SON NECESARIOS SI USAS LA CARACTERÍSTICA BRIDGED O CONEXIÓN DE RED SOLO PARA EL SISTEMA ANFITRIÓN.
+#– vboxpci ES NECESARIO CUANDO SU MÁQUINA VIRTUAL NECESITA PASAR A TRAVÉS DE UN DISPOSITIVO PCI DEL SISTEMA ANFITRIÓN.
+
+#SI DESEAMOS, ES POSIBLE CARGAR TODOS EN UNA SOLA LINEA DE COMANDO. SERÍA:
+
+#sudo modprobe vboxdrv vboxnetadp vboxnetflt vboxpci
+
+#echo -e '\033[1;92m' "\n\t\t\t\t\t                   ....AÑADIR A EL O LOS USUARIOS AL GRUPO VBOXUSERS...."
+
+#PARA USAR LOS PUERTOS USB DEL EQUIPO ANFITRIÓN EN LAS MÁQUINAS VIRTUALES, ES NECESARIO AGREGAR A EL O LOS USUARIOS DEL SISTEMA AL GRUPO vboxusers. BASTARA CON EJECUTAR LA SIGUIENTE LINEA DE COMANDO.
+
+#sudo gpasswd -a $USER vboxusers
+
+#echo -e '\033[1;92m' "\n\t\t\t\t\t                     ....DESCARGANDO DISCO DE GUEST ADDITIONS...."
+
+#TAMBIÉN SE RECOMIENDA INSTALAR EL PAQUETE VIRTUALBOX-GUEST-ISO EN EL EQUIPO QUE EJECUTA VIRTUALBOX. ESTE PAQUETE ACTUARÁ COMO UNA IMAGEN DE DISCO QUE SE PUEDE USAR PARA INSTALAR LOS COMPLEMENTOS («GUEST ADDITIONS») EN SISTEMAS INVITADO QUE NO SEAN ARCHLINUX.
+
+#sudo pacman -S virtualbox-guest-iso
+
+
+#-------------------------------------------
+# SI NO ME DEJA INICIAR UNA MAQUINA VIRTUAL| 
+#-------------------------------------------
+#DECIA EN EL CUADRO DE ERROR QUE TENIA QUE PONER EL COMANDO [/sbin/vboxconfig] CON SUDO O SIENDO ROOT PERO ES PORQUE NO ESTABAN FIRMADOS O CARGADOS LOS MODULOS PARA VIRTUALBOX 
+
+#ENTONCES ANTES TUVE QUE ESCRIBIR ESTO [sudo rcvboxdrv setup] Y ME DEJO
+#echo -e '\033[1;92m' "\n\t\t\t\t\t             ....FIRMANDO O CARGANDO LOS MODULOS PARA VIRTUALBOX AUTOMATICAMENTE...."
+#rcvboxdrv setup
+ 
+                                       #INSTALAR QEMU 2021#
+#--------------------------------------------------------------------------------------------------------------------
+# INSTALAR EL PAQUETE QEMU (Ó QEMU-HEADLESS PARA LA VERSIÓN SIN GUI) Y LOS PAQUETES OPCIONALES PARA TUS NECESIDADES |
+#--------------------------------------------------------------------------------------------------------------------
+#    qemu-arch-extra - Soporte extra para arquitecturas
+#    qemu-block-gluster - Soporte para bloque glusterfs
+#    qemu-block-iscsi - Soporte para bloque iSCSI
+#    qemu-block-rbd - Soporte para bloque RBD
+#    samba - SMB/ Soporte para servidor CIFS
+#-------------------------------
+# PAQUETES PARA INSTALAR QEMU  |
+#-------------------------------
+#echo -e '\033[1;92m' "\n\t\t\t\t                               ....INSTALANDO QEMU....."
+#pacman -S qemu qemu-arch-extra edk2-ovmf libvirt ebtables dnsmasq bridge-utils virt-manager openbsd-netcat
+
+#usermod -a -G kvm $USER
+
+#usermod -a -G libvirt $USER
+#---------------------------------------------------------------------------------------------------------------------------------------------
+# CUANDO ES NUEVA INSTALACION PARECE A MI NO ME FUNCIONABA CON SOLO PONER "sudo systemctl enable libvirt" tuve que poner libvirtd COMO ABAJO |
+#----------------------------------------------------------------------------------------------------------------------------------------------
+#echo -e '\033[1;92m' "\n\t\t\t\t\t                     ....HABILITANDO E INICIANDO LIBVIRTD...."
+#systemctl enable libvirtd
+
+#systemctl start libvirtd
