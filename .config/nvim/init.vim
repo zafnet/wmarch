@@ -18,11 +18,11 @@ call plug#end()
 let g:plug_url_format = 'git@github.com:%s.git' "SUSTITUCION DE git@github.com POR .git CUANDO DESCARGA PLUGINS
 
 syntax on                     
-colorscheme molokai           
+"colorscheme molokai           
 set t_Co=256                  "CANTIDAD DE COLORES QUE ADMITE EL TERMINAL
 "set guioptions=egmrti        
-set gfn=Monospace\ 10         "CONFIGURAR EL TAMAÑO DE FUENTE PREDETERMINADO EN NVIM SI HAY ESPACIOS EN LA FUENTE, AGREGUE UN \PARA ESCAPAR DEL ESPACIO
-set autoread                  "VERIFICA SI UN ARCHIVO ABIERTO SE MODIFICA EN CIERTOS EVENTOS Y LO RECARGAR AUTOMÁTICAMENTE SI ES CAPAZ.                    
+set gfn=Monospace\ 10         "TAMAÑO DE FUENTE PREDETERMINADO EN NVIM SI HAY ESPACIOS EN LA FUENTE,AGREGUE UN \ PARA ESCAPAR DEL ESPACIO
+set autoread                "VERIFICA SI UN ARCHIVO ABIERTO SE MODIFICA EN CIERTOS EVENTOS Y LO RECARGAR AUTOMÁTICAMENTE                    
 set noswapfile                "NO GUARDA UN ARCHIVO DE COPIA CUANDO LO QUEREMOS ABRIR DE NUEVO
 set fileencoding=utf-8
 set fileencodings=utf-8
@@ -32,7 +32,7 @@ set ttyfast
 "set title                    "MUESTRA EL NOMBRE DEL ARCHIVO, LA RUTA DEL ARCHIVO QUE SE ESTÁ EDITANDO SI LA TERMINAL NO TIENE BORDES NO SE PUEDE VER
 "set titleold="Terminal"      "ESTE DEJA EL TITULO DE LA VENTANA COMO ESTABA SUPUESTAMENTE
 "set titlestring=%F           "MUESTRA LA RUTA DEL ARCHIVO SI LA TERMINAL NO TIENE BORDES NO LO MUESTRA
-set number                    "MUESTRA EL NUMERO EN LA VENTANA DE LA TERMINAL
+set number                    "MUESTRA NUMEROS DE LINEA EN EL EDITOR
 set relativenumber            "MUESTRA NUMERO RELATIVO
 set mouse=a                   "PERMITE LA INTEGRACIÓN DEL MOUSE (SELECCIONAR TEXTO, MOVER EL CURSOR)
 set clipboard=unnamedplus     "DEJA COPIAR EL CLIPBOARD
@@ -52,7 +52,7 @@ set softtabstop=0
 set shiftwidth=4              
 set expandtab                  
 set showmatch                 "PARA QUE BUSQUE LA PAREJA DE [] () {} 
-set hidden                    "PARA RESALTAR LA PALABRA CLAVE DE BÚSQUEDA
+set hidden                    "PARA QUE CUANDO QUIERA ABRIR OTRO ARCHIVO NO ME OBLIGUE A GUARDAR EL ANTERIOR
 set hlsearch                  "PARA RESALTAR LA PALABRA CLAVE DE BÚSQUEDA
 set incsearch                 "PARA RESALTAR BÚSQUEDA INCREMENTAL
 set ignorecase                "IGNORAR MAYUSCULA Y MINISCULA
@@ -62,6 +62,7 @@ set fileformats=unix,dos,mac
 "set nowrap                   "NO DIVIDIR LA LÍNEA SI ES MUY LARGA
 "set termguicolors            "ACTIVA TRUE COLORS EN LA TERMINAL
 "set background=dark          "FONDO DEL TEMA: LIGHT O DARK
+"set cursorcolumn             "MUESTRA UNA COLUMNA EN DONDE ESTA EL CURSOR
 set cursorline                "RESALTA LA LINEA EN LA POSICION ACTUAL 
 set completeopt=menuone,longest "CON ESTA OPCION MUESTRA UN MENÚ PARA AUTOCOMPLETAR LAS PALABRAS
 set complete+=kspell          "LO QUE ES KSPELL ES UN DICCIONARIO PARECE

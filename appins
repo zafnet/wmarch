@@ -169,7 +169,7 @@ echo
 echo
 echo -e '\033[1;92m' "\n\t\t\t\t                                       ...COPIANDO FONTS..."
 
-cp -r /home/$USER/bspwmarch/fonts/ /usr/share/
+cp -r /home/$USER/wmarch/fonts/ /usr/share/
 
 #----------------------------------------------------------------------------------------------------------------------------------#
 echo
@@ -177,9 +177,11 @@ echo
 
 echo -e '\033[1;92m' "\n\t\t\t\t\t\                                   ...AGREGANDO DOTFILES..."
 
-rsync -a /home/$USER/bspwmarch/usuario/ /home/$USER/
-rsync -a --delete /home/$USER/bspwmarch/.config/  /home/$USER/.config/
-cp -r /home/$USER/bspwmarch/tilix/ /usr/share/
+rsync -a /home/$USER/wmarch/usuario/ /home/$USER/
+rsync -a --delete /home/$USER/wmarch/.config/  /home/$USER/.config/
+cp -r /home/$USER/wmarch/tilix/ /usr/share/
+cp -r /home/$USER/wmarch/Lavender-Breeze-GTK/ /usr/share/themes/
+cp -r /home/$USER/wmarch/Infinity-Lavender-Dark-Icons/ /usr/share/icons/
 #-----------------------------------------------------------------------------------------------------------------------------------#
 echo
 echo
@@ -207,13 +209,13 @@ ln -s -f /home/$USER/.tmux.conf.local .tmux.conf.local
  
 ln -s -f /home/$USER/.tmux.conf .tmux.conf
  
-cp /home/$USER/bspwmarch/.p10k.zsh .
+cp /home/$USER/wmarch/.p10k.zsh .
  
 ln -s -f /home/$USER/.nanorc .nanorc
  
-cp -r /home/$USER/bspwmarch/usuario/powerlevel10k/ . 
+cp -r /home/$USER/wmarch/usuario/powerlevel10k/ . 
 
-cp -r /home/$USER/bspwmarch/.config/nvim/ .
+cp -r /home/$USER/wmarch/.config/nvim/ .
  
 ln -s -f /home/$USER/.bashrc .bashrc
 #-------------------------------------------------------------------------------------------------------------#

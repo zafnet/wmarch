@@ -40,14 +40,13 @@ alias smk='sudo mkdir'
 alias rd='rmdir'
 alias nzs='nvim /home/$USER/.zshrc'
 alias nba='nvim /home/$USER/.bashrc'
-alias xzs='xed /home/$USER/.zshrc'
-alias xba='xed /home/$USER/.bashrc'
+alias xzs='xed /home/$USER/.zshrc & disown'
+alias xba='xed /home/$USER/.bashrc & disown'
 alias history='history 0'
 alias inst='sudo pacman -S'   
 alias  actu='sudo pacman -Syu' 
 alias mirror="sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist"
 alias grep='grep --color=auto'
-alias docu='pcmanfm /run/media/newvash/Discoalmacen/LINUX/DOCULINUX/ & disown'
 #alias =' --group-dirs=first'
 
 #------
