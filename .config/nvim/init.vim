@@ -63,7 +63,7 @@ set fileformats=unix,dos,mac
 "set termguicolors            "ACTIVA TRUE COLORS EN LA TERMINAL
 "set background=dark          "FONDO DEL TEMA: LIGHT O DARK
 "set cursorcolumn             "MUESTRA UNA COLUMNA EN DONDE ESTA EL CURSOR
-set cursorline                "RESALTA LA LINEA EN LA POSICION ACTUAL 
+set cursorline                "RESALTA LA LINEA EN LA POSICION ACTUAL
 set completeopt=menuone,longest "CON ESTA OPCION MUESTRA UN MENÚ PARA AUTOCOMPLETAR LAS PALABRAS
 set complete+=kspell          "LO QUE ES KSPELL ES UN DICCIONARIO PARECE
 set shortmess+=c              "NO MUESTRA UN CARTEL MOLESTO EN LA PARTE INFERIOR DERECHA
@@ -144,7 +144,7 @@ nnoremap <Leader>bp :bp<Cr>    "BUFFER ANTERIOR
 nnoremap <Leader>h <C-w>s      "LA MISMA VENTANA DIVIDIDA HORIZONTAL
 nnoremap <Leader>v <C-w>v      "LA MISMA VENTANA DIVIDIDA VERTICAL
 nnoremap <Leader>w <C-w>       "CAMBIA A LA VENTANA DIVIDIDA PRESIONANDO LIDER W Y LA LETRA DE LA DIRECCION HJKL
-nnoremap <Leader>d :bd<CR>     ;BORRAR BUFFER ACTUAL
+nnoremap <Leader>d :bd<CR>     "BORRAR BUFFER ACTUAL
 nnoremap <Leader>c :e $MYVIMRC<CR>
 nnoremap <A-S-h> <C-w><        "VENTANAS EN VERTICAL U HORIZONTAL <A-S-l> ESTO EQUIVALE A <ALT-SHIFT-l> 
 nnoremap <A-S-l> <C-w>>

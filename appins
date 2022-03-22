@@ -174,7 +174,6 @@ cp -r /home/$USER/wmarch/fonts/ /usr/share/
 #----------------------------------------------------------------------------------------------------------------------------------#
 echo
 echo
-
 echo -e '\033[1;92m' "\n\t\t\t\t\t\                                   ...AGREGANDO DOTFILES..."
 
 rsync -a /home/$USER/wmarch/usuario/ /home/$USER/
@@ -182,6 +181,13 @@ rsync -a --delete /home/$USER/wmarch/.config/  /home/$USER/.config/
 cp -r /home/$USER/wmarch/tilix/ /usr/share/
 cp -r /home/$USER/wmarch/Lavender-Breeze-GTK/ /usr/share/themes/
 cp -r /home/$USER/wmarch/Infinity-Lavender-Dark-Icons/ /usr/share/icons/
+#-----------------------------------------------------------------------------------------------------------------------------------#
+echo
+echo
+echo -e '\033[1;92m' "\n\t\t\t\t\t\                                   ...CREANDO CARPETAS COMUNES..."
+
+mkdir -v /home/$USER/{vid,desc,pub,plant,screenshot,mus,ima,doc}
+
 #-----------------------------------------------------------------------------------------------------------------------------------#
 echo
 echo
@@ -215,18 +221,18 @@ ln -s -f /home/$USER/.nanorc .nanorc
  
 cp -r /home/$USER/wmarch/usuario/powerlevel10k/ . 
 
-cp -r /home/$USER/wmarch/.config/nvim/ .
+cp -r /home/$USER/wmarch/.config/nvim/ .config/
  
 ln -s -f /home/$USER/.bashrc .bashrc
 #-------------------------------------------------------------------------------------------------------------#
-echo
-echo
-echo -e '\033[1;92m' "                                       *************************"
-echo -e '\033[1;92m' "                                       *** REINICIANDO EL PC ***"
-echo -e '\033[1;92m' "                                       *************************"
-sleep 2
+#echo
+#echo
+#echo -e '\033[1;92m' "                                       *************************"
+#echo -e '\033[1;92m' "                                       *** REINICIANDO EL PC ***"
+#echo -e '\033[1;92m' "                                       *************************"
+#sleep 2
 
-reboot
+#reboot
 
                                        #INSTALAR VIRTUALBOX 2021#
 

@@ -345,9 +345,11 @@ clear
 echo ""
 echo -e '\033[1;92m' "\n\tINSTALANDO SISTEMA BASE EN NUESTRO DISCO"
 echo ""
-pacstrap /mnt base base-devel nano reflector python rsync xdg-user-dirs
+pacstrap /mnt base base-devel nano reflector python rsync 
 
-xdg-user-dirs-update
+#xdg-user-dirs
+
+#xdg-user-dirs-update
 
 clear
 

@@ -1,21 +1,32 @@
 #HABILITA EL PROMPT CON POWERLEVEL10K Y .P10K.ZSH DEBE PERMANECER CERCA DE LA PARTE SUPERIOR DE ~/.ZSHRC#
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+#FUENTE DE DONDE CARGA EL POWERLEVEL10K EL TEMA
+#source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 #PARA PERSONALIZAR EL PROMPT, CORRER `p10k configure` O EDITAR ~/.p10k.zsh#
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+#VARIABLE GLOBAL PARA POWERLEVEL10K
+#export ZSH=$HOME/powerlevel10k
+
+#FUENTE DE DONDE CARGA LOS PLUGINS ZSH
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-export ZSH=$HOME/powerlevel10k
+#rem=$(ls -la $HOME | grep -E '.zcompdump|.xsession-errors*|.fehbg|.lesshst' | awk '{print $11}' | xargs rm)
 
-#-----------------------------------------
-# PROMPT PERSONALIZADO SIN POWERLEVEL10K |
-#-----------------------------------------
+# if [[ -n $rem ]] && [[ -e $rem ]]; then 
+
+# eval $rem
+
+# fi
+
+#-----------------------------------------------------------------------------------
+#                   PROMPT PERSONALIZADO SIN POWERLEVEL10K                         |  
+#-----------------------------------------------------------------------------------
 #if [[ $(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)) == "tilix" ]]; then
 #export PS1="%F{blue}%n%f%F{white}%m%f: %F{blue}%3~%f  "
 
@@ -23,10 +34,20 @@ export ZSH=$HOME/powerlevel10k
 #export PS1="%F{gren}%n%f%F{blue}%m%f: %F{yellow}%3~%f %F{green}%f "  
 
 #fi
+
+git-b() {
+   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/{ \1 }/'
+
+}
+
+setopt PROMPT_SUBST
+PROMPT='%F{gren}%n%f%F{blue}%m%f: %F{yellow}%~%f %F{green}%F{red}$(git-b)%f %f '
+
 #           
 
 #LS_COLORS='di=32:fi=35:ln=93:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=37:*.rpm=90'
 #export LS_COLORS
+#--------------------------------------------------------------------------------------
 
 #---------
 #  ALIAS |
@@ -40,8 +61,8 @@ alias smk='sudo mkdir'
 alias rd='rmdir'
 alias nzs='nvim /home/$USER/.zshrc'
 alias nba='nvim /home/$USER/.bashrc'
-alias xzs='xed /home/$USER/.zshrc & disown'
-alias xba='xed /home/$USER/.bashrc & disown'
+alias xzs='xed /home/$USER/.zshrc'
+alias xba='xed /home/$USER/.bashrc'
 alias history='history 0'
 alias inst='sudo pacman -S'   
 alias  actu='sudo pacman -Syu' 
@@ -49,9 +70,6 @@ alias mirror="sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirror
 alias grep='grep --color=auto'
 #alias =' --group-dirs=first'
 
-#------
-# GIT |
-#------
 alias ga='git add .'
 alias branch='git branch'
 alias checkout='git checkout'
@@ -70,6 +88,31 @@ alias gs='git status'
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
+
+#------------------------------
+#     FUNCIONES PARA FZF      |
+#------------------------------
+
+fz() { cd "$(find -type d | fzf)"}
+
+fz() { xdg-open "$(find -type f | fzf)"}
+
+cr() {find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c}
+
+#------------------------------
+# ESTABLECER COLORES DE 'MAN' |
+#------------------------------
+function man() {
+    env \
+    LESS_TERMCAP_mb=$'\e[01;31m' \
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    man "$@"
+}
 
 #-------------------------------------------
 # SISTEMA DE AUTOCOMPLETADO MODERNO DE ZSH |
@@ -132,26 +175,15 @@ setopt HIST_REDUCE_BLANKS                                   # ELIMINA LOS ESPACI
 setopt HIST_VERIFY                                          # NO EJECUTA EL COMANDO, SÓLO LO MUESTRA
 setopt SHARE_HISTORY                                        # HISTORIAL COMPARTIDO ENTRE SESIONES
 
-#------------------------------
-# ESTABLECER COLORES DE 'MAN' |
-#------------------------------
-function man() {
-    env \
-    LESS_TERMCAP_mb=$'\e[01;31m' \
-    LESS_TERMCAP_md=$'\e[01;31m' \
-    LESS_TERMCAP_me=$'\e[0m' \
-    LESS_TERMCAP_se=$'\e[0m' \
-    LESS_TERMCAP_so=$'\e[01;44;33m' \
-    LESS_TERMCAP_ue=$'\e[0m' \
-    LESS_TERMCAP_us=$'\e[01;32m' \
-    man "$@"
-}
+#-----------------------
+#    OPCIONES NVIM    #
+#-----------------------
 
-#ACTIVAR NVIM EN LA TERMINAL#
+# ACTIVAR NVIM EN LA TERMINAL
 #bindkey -v
 #export KEYTIMEOUT=1
 
-#ESTOS PARA PODER USAR NVIM EN TERMINAL#
+# ESTOS PARA PODER USAR NVIM EN TERMINAL
 #autoload -Uz edit-command-line
 #zle -N edit-command-line
 
@@ -159,11 +191,14 @@ function man() {
 #bindkey -M viins '^i' vi-cmd-mode
 #bindkey -M '^j' vi-cmd-mode
 
-#PARA PODER USAR LAS TECLAS DE DIRECCION COMO EN NVIM PERO EN LA TERMINAL#
+# PARA PODER USAR LAS TECLAS DE DIRECCION COMO EN NVIM PERO EN LA TERMINAL
 #bindkey -M '^h' vi-backward-char
 #bindkey -M '^k' vi-up-line-or-history
 #bindkey -M '^l' vi-forward-char
 #bindkey -M '^j' vi-down-line-or-history
+
+# PARA QUE AL SALIR DE NVIM NO QUEDE EL CURSOR EN MODO BLOCK 
+# CAMBIE LA FORMA DEL CURSOR EN FORMA DE HAZ PARA DIFERENTES MODOS DE NVIM   
 
 #--------------------------------------------------------------------------------------------------------------------------------------
 # PARA QUE AL SALIR DE NVIM NO QUEDE EL CURSOR EN MODO BLOCK CAMBIE LA FORMA DEL CURSOR EN FORMA DE HAZ PARA DIFERENTES MODOS DE NVIM |                            
@@ -178,12 +213,3 @@ function zle-line-init zle-keymap-select {
 
 zle -N zle-line-init
 zle -N zle-keymap-select
-
-
-rem=$(ls -la $HOME | grep -E '.zcompdump|.xsession-errors*|.fehbg|.lesshst' | awk '{print $11}' | xargs rm)
-
- if [[ -n $rem ]] && [[ -e $rem ]]; then 
-
- eval $rem
-
- fi
