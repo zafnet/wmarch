@@ -600,6 +600,8 @@ case $escritorio in
    #arch-chroot /mnt /bin/bash -c "pacman -S discord -y --noconfirm
    echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO NEOVIM...."
    arch-chroot /mnt /bin/bash -c "pacman -S neovim --noconfirm"
+   echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO FZF...."
+   arch-chroot /mnt /bin/bash -c "pacman -S fzf --noconfirm"
 	echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO TMUX...."
    arch-chroot /mnt /bin/bash -c "pacman -S tmux --noconfirm"
 	echo -e '\033[1;92m' "\n\t\t\t\t                  ....INSTALANDO XCLIP...."

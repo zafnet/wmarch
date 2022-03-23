@@ -154,6 +154,10 @@ clear
 
 #echo -e '\033[1;92m' "\n\t\t\t\t                           ....INSTALANDO RSYNC...."
 #pacman -S rsync -y --noconfirm
+
+#echo -e '\033[1;92m' "\n\t\t\t\t                           ....INSTALANDO FZF...."
+#pacman -S fzf -y --noconfirm
+
 #--------------------------------------------------------------------------------------------------------------------------------#
 echo -e '\033[1;92m' "\n\t\t\t\t                                    ...COMPROBANDO PLUGINS DE ZSH..."
     if  [[ -d /usr/share/zsh-syntax-highlighting/ && /usr/share/zsh-autosuggestions/ ]]; then
