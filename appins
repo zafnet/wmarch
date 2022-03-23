@@ -188,6 +188,8 @@ echo -e '\033[1;92m' "\n\t\t\t\t\t\                                   ...CREANDO
 
 mkdir -v /home/$USER/{vid,desc,pub,plant,screenshot,mus,ima,doc}
 
+chown -R $USER /home/$USER/*
+chgrp -R users /home/$USER/*
 #-----------------------------------------------------------------------------------------------------------------------------------#
 echo
 echo
