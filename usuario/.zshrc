@@ -16,14 +16,6 @@
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-#rem=$(ls -la $HOME | grep -E '.zcompdump|.xsession-errors*|.fehbg|.lesshst' | awk '{print $11}' | xargs rm)
-
-# if [[ -n $rem ]] && [[ -e $rem ]]; then 
-
-# eval $rem
-
-# fi
-
 #-----------------------------------------------------------------------------------
 #                   PROMPT PERSONALIZADO SIN POWERLEVEL10K                         |  
 #-----------------------------------------------------------------------------------
@@ -95,7 +87,7 @@ SAVEHIST=1000
 
 fz() { cd "$(find -type d | fzf)"}
 
-fz() { xdg-open "$(find -type f | fzf)"}
+op() { xdg-open "$(find -type f | fzf)"}
 
 cr() {find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c}
 
@@ -213,3 +205,11 @@ function zle-line-init zle-keymap-select {
 
 zle -N zle-line-init
 zle -N zle-keymap-select
+
+#rem=$(ls -la $HOME | grep -E '.zcompdump|.xsession-errors*|.fehbg|.lesshst' | awk '{print $11}' | xargs rm)
+
+# if [[ -n $rem ]] && [[ -e $rem ]]; then 
+
+# eval $rem
+
+# fi
