@@ -235,7 +235,7 @@ ln -s -f /home/$USER/.nanorc .nanorc
  
 cp -r /home/$USER/wmarch/usuario/powerlevel10k/ . 
 
-cp -r /home/$USER/wmarch/.config/nvim/ .config/
+cp -r /home/$USER/wmarch/.config/nvim/ /root/.config/
  
 ln -s -f /home/$USER/.bashrc .bashrc
 sleep2
