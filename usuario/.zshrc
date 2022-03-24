@@ -48,9 +48,14 @@ alias ll='ls -lha --group-dirs=first'
 alias ls='lsd --group-dirs=first'
 alias nv='nvim'
 alias can='bat'
-alias mk='mkdir'
+alias mk='mkdir -v'
+alias hi='xed ~/.zsh_history >/dev/null 2>&1  & disown' 
+alias tree='lsd --tree'
 alias smk='sudo mkdir'
-alias rd='rmdir'
+alias cp='cp -v'
+alias rm='rm -v'
+alias mv='mv -v'
+alias rd='rmdir -v'
 alias nzs='nvim /home/$USER/.zshrc'
 alias nba='nvim /home/$USER/.bashrc'
 alias xzs='xed /home/$USER/.zshrc'
@@ -61,7 +66,6 @@ alias  actu='sudo pacman -Syu'
 alias mirror="sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist"
 alias grep='grep --color=auto'
 #alias =' --group-dirs=first'
-
 alias ga='git add .'
 alias branch='git branch'
 alias checkout='git checkout'
@@ -88,6 +92,9 @@ SAVEHIST=1000
 fz() { cd "$(find -type d | fzf)"}
 
 op() { xdg-open "$(find -type f | fzf)"}
+
+#re() { rm -rf "$(find -type f | fzf -m)"}
+#re() { rm -rf "$(find -type d | fzf -m)"} 
 
 cr() {find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c}
 
@@ -206,10 +213,10 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-#rem=$(ls -la $HOME | grep -E '.zcompdump|.xsession-errors*|.fehbg|.lesshst' | awk '{print $11}' | xargs rm)
+rem=$(ls -la $HOME | grep -E '.zcompdump|.xsession-errors*|.fehbg|.lesshst' | awk '{print $11}' | xargs rm )
 
-# if [[ -n $rem ]] && [[ -e $rem ]]; then 
+if [[ -n $rem ]] && [[ -e $rem ]]; then 
 
-# eval $rem
+eval $rem
 
-# fi
+fi
