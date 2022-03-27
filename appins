@@ -219,22 +219,20 @@ clear
 #-----------------------------------------------------------------------------------------------------------------------------------#
 echo
 echo
-echo -e '\033[1;92m' "\n\t\t\t\t         ***CREANDO ENLACES SIMBOLICOS PARA ROOT***"
+echo -e '\033[1;92m' "\n\t\t\t\t         ***CREANDO ENLACES SIMBOLICOS***"
 
 cd 
  
 ln -s -f /home/$USER/.zshrc .zshrc
- 
+
+ln -s -f /home/$USER/.bashrc .bashrc
+
 ln -s -f /home/$USER/.tmux.conf.local .tmux.conf.local
  
 ln -s -f /home/$USER/.tmux.conf .tmux.conf
  
-cp /home/$USER/wmarch/.p10k.zsh .
- 
 ln -s -f /home/$USER/.nanorc .nanorc
  
-cp -r /home/$USER/wmarch/usuario/powerlevel10k/ . 
-
 cp -r /home/$USER/wmarch/.config/nvim/ /root/.config/
  
 ln -s -f /home/$USER/.bashrc .bashrc

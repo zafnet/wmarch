@@ -6,7 +6,7 @@
 #FUENTE DE DONDE CARGA EL POWERLEVEL10K EL TEMA
 #source ~/powerlevel10k/powerlevel10k.zsh-theme
 
-#PARA PERSONALIZAR EL PROMPT, CORRER `p10k configure` O EDITAR ~/.p10k.zsh#
+#PARA CUSTOMIZAR EL PROMPT, CORRER `p10k configure` O EDITAR ~/.p10k.zsh#
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #VARIABLE GLOBAL PARA POWERLEVEL10K
@@ -16,24 +16,35 @@
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-#-----------------------------------------------------------------------------------
-#                   PROMPT PERSONALIZADO SIN POWERLEVEL10K                         |  
-#-----------------------------------------------------------------------------------
+#--------------------------------------------#
+# TAMAÑO GUARDADO Y UBICACION DEL HISTORIAL  #
+#--------------------------------------------#
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+
+#-----------------------------------------------------------------------------------#
+#                   PROMPT PERSONALIZADO SIN POWERLEVEL10K                          # 
+#-----------------------------------------------------------------------------------#
 #if [[ $(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)) == "tilix" ]]; then
-#export PS1="%F{blue}%n%f%F{white}%m%f: %F{blue}%3~%f  "
+#export PS1='%F{#91fe36}%n%f%F{#ffe647}%f%F{#58d68d}%m%f%F{#0087ff}:%f %F{#fe820e}%~%f %F{red}$(git_b)%f %F{green}%f '
 
 #elif [[ $(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)) == "xterm" ]]; then
-#export PS1="%F{gren}%n%f%F{blue}%m%f: %F{yellow}%3~%f %F{green}%f "  
+#export PS1='%F{#91fe36}%n%f%F{#ffe647}%f%F{#58d68d}%m%f%F{#0087ff}:%f %F{#fe820e}%~%f %F{red}$(git_b)%f %F{green}%f ' 
 
 #fi
 
-git-b() {
-   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/{ \1 }/'
-
-}
+git_b() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/{ \1 }/' }
 
 setopt PROMPT_SUBST
-PROMPT='%F{gren}%n%f%F{blue}%m%f: %F{yellow}%~%f %F{green}%F{red}$(git-b)%f %f '
+
+if [[ "$(id -u)" -eq "0" ]]; then
+PROMPT='%F{red}%n%f%F{#ffe647}%f%F{#ffffff}%m%f%F{#0087ff}:%f %F{#fe820e}%~%f %F{red}$(git_b)%f %F{green}%f ' 
+
+elif [[ "$(id -u)" -eq "1000" ]]; then
+PROMPT='%F{#91fe36}%n%f%F{#ffe647}%f%F{#58d68d}%m%f%F{#0087ff}:%f %F{#fe820e}%~%f %F{red}$(git_b)%f %F{green}%f '
+
+fi
 
 #           
 
@@ -41,9 +52,9 @@ PROMPT='%F{gren}%n%f%F{blue}%m%f: %F{yellow}%~%f %F{green}%F{red}$(git-b)%f �
 #export LS_COLORS
 #--------------------------------------------------------------------------------------
 
-#---------
-#  ALIAS |
-#---------
+#---------#
+#  ALIAS  #
+#---------#
 alias ll='ls -lha --group-dirs=first'
 alias ls='lsd --group-dirs=first'
 alias nv='nvim'
@@ -53,16 +64,18 @@ alias hi='xed ~/.zsh_history >/dev/null 2>&1  & disown'
 alias tree='lsd --tree'
 alias smk='sudo mkdir'
 alias cp='cp -v'
-alias rm='rm -v'
+alias rm='rm -rv'
 alias mv='mv -v'
-alias rd='rmdir -v'
+#alias ..='cd ..'
+#alias rd='rmdir -v'
 alias nzs='nvim /home/$USER/.zshrc'
 alias nba='nvim /home/$USER/.bashrc'
-alias xzs='xed /home/$USER/.zshrc'
-alias xba='xed /home/$USER/.bashrc'
+alias xzs='xed /home/$USER/.zshrc >/dev/null 2>&1  & disown'
+alias xba='xed /home/$USER/.bashrc >/dev/null 2>&1  & disown'
 alias history='history 0'
 alias inst='sudo pacman -S'   
-alias  actu='sudo pacman -Syu' 
+alias actu='sudo pacman -Syu'
+alias remo='sudo pacman -Rs' 
 alias mirror="sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist"
 alias grep='grep --color=auto'
 #alias =' --group-dirs=first'
@@ -78,29 +91,31 @@ alias gs='git status'
 #alias tag='git tag'
 #alias newtag='git tag -a'
 
-#--------------------------------------------
-# TAMAÑO GUARDADO Y UBICACION DEL HISTORIAL #
-#--------------------------------------------
-HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
+#------------#
+# FUNCIONES  #
+#------------#
 
-#------------------------------
-#     FUNCIONES PARA FZF      |
-#------------------------------
+#-----#
+# FZF #
+#-----#
+#OPCION CON BORDE '--height 60% --border'
+export FZF_DEFAULT_OPTS='--height 60%'
 
-fz() { cd "$(find -type d | fzf)"}
+ci() { cd $(find / -type d 2> /dev/null | fzf) }
 
-op() { xdg-open "$(find -type f | fzf)"}
+op() { xdg-open $(find / -type f 2> /dev/null | fzf) }
 
-#re() { rm -rf "$(find -type f | fzf -m)"}
-#re() { rm -rf "$(find -type d | fzf -m)"} 
+rf() { rm -rf $(find / -type f 2> /dev/null | fzf -m) }
+
+rd() { rm -rf $(find / -type d 2> /dev/null | fzf -m)} 
+
+nvf() { nvim $(find / -type f 2> /dev/null | fzf -m)}
 
 cr() {find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c}
 
-#------------------------------
-# ESTABLECER COLORES DE 'MAN' |
-#------------------------------
+#------------------#
+# COLORES DE 'MAN' #
+#------------------#
 function man() {
     env \
     LESS_TERMCAP_mb=$'\e[01;31m' \
@@ -113,9 +128,9 @@ function man() {
     man "$@"
 }
 
-#-------------------------------------------
-# SISTEMA DE AUTOCOMPLETADO MODERNO DE ZSH |
-#-------------------------------------------
+#-------------------------------------------#
+# SISTEMA DE AUTOCOMPLETADO MODERNO DE ZSH  #
+#-------------------------------------------#
 autoload -Uz compinit
 compinit
 
@@ -137,18 +152,9 @@ zstyle ':completion:*' verbose true
 #zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 eval "$(dircolors -b)"
 
-#-------------------------------------
-# MOD DE TECLAS PARA LA TERMINAL ZSH #
-#-------------------------------------
-
-bindkey ";5D" backward-word   # TECLAS PARA QUE FUNCIONE [CTRL + (<- FLECHA)]
-bindkey ";5C" forward-word    # TECLAS PARA QUE FUNCIONE [CTRL + (FLECHA ->)]
-bindkey ";5"  delete-word     # [CTRL + DELETE] BORRA LA PALABRA COMPLETA DESDE EL COMIENZO HASTA EL FINAL DE LA MISMA
-bindkey "\e[3~"   delete-char     # EL SUPRIMIR BORRE LA LETRA
-
-#------------------
+#-----------------#
 # OPCIONES DE ZSH #
-#------------------
+#-----------------#
 unsetopt MENU_COMPLETE                                      # NO AUTOSELECCIONAR LA PRIMERA AUTOCOMPLETACIÓN
 unsetopt FLOW_CONTROL                                       # DESACTIVAR INICIO/PARADA DE CARACTERES EN EL EDITOR DEL SHELL
 unsetopt NO_BEEP                                            # SE ESCUCHAN LOS BEEPS DE ERROR
@@ -174,9 +180,18 @@ setopt HIST_REDUCE_BLANKS                                   # ELIMINA LOS ESPACI
 setopt HIST_VERIFY                                          # NO EJECUTA EL COMANDO, SÓLO LO MUESTRA
 setopt SHARE_HISTORY                                        # HISTORIAL COMPARTIDO ENTRE SESIONES
 
-#-----------------------
-#    OPCIONES NVIM    #
-#-----------------------
+#-------------------------------------#
+# MOD DE TECLAS PARA LA TERMINAL ZSH  #
+#-------------------------------------#
+
+bindkey ";5D" backward-word   # TECLAS PARA QUE FUNCIONE [CTRL + (<- FLECHA)]
+bindkey ";5C" forward-word    # TECLAS PARA QUE FUNCIONE [CTRL + (FLECHA ->)]
+bindkey ";5"  delete-word     # [CTRL + DELETE] BORRA LA PALABRA COMPLETA DESDE EL COMIENZO HASTA EL FINAL DE LA MISMA
+bindkey "\e[3~"   delete-char     # EL SUPRIMIR BORRE LA LETRA
+
+#---------------#
+# OPCIONES NVIM #
+#---------------#
 
 # ACTIVAR NVIM EN LA TERMINAL
 #bindkey -v
@@ -199,9 +214,9 @@ setopt SHARE_HISTORY                                        # HISTORIAL COMPARTI
 # PARA QUE AL SALIR DE NVIM NO QUEDE EL CURSOR EN MODO BLOCK 
 # CAMBIE LA FORMA DEL CURSOR EN FORMA DE HAZ PARA DIFERENTES MODOS DE NVIM   
 
-#--------------------------------------------------------------------------------------------------------------------------------------
-# PARA QUE AL SALIR DE NVIM NO QUEDE EL CURSOR EN MODO BLOCK CAMBIE LA FORMA DEL CURSOR EN FORMA DE HAZ PARA DIFERENTES MODOS DE NVIM |                            
-#--------------------------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------------#
+# NVIM CURSOR EN FORMA DE HAZ PARA DIFERENTES MODOS DE NVIM  #                           
+#------------------------------------------------------------#
 function zle-line-init zle-keymap-select {
   if [ $KEYMAP = vicmd ]; then
     echo -ne '\e[1 q'
