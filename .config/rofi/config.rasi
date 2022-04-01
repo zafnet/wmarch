@@ -158,7 +158,7 @@
 configuration {
     /*display-drun: "APLICACIONES";
     display-window: "VENTANAS";*/
-    modi: "window,run,ssh,filebrowser,keys";
+    modi: "window,run,ssh,filebrowser,keys,drun";
     width: 100;
     /*lines: 10;*/
     /*columns: 4;*/

@@ -28,11 +28,11 @@ XTerm*HiBackColor: #e76cf5
 XTerm*geometry: +50+100
 Xterm*scrollBar: True
 XTerm*renderFont: true
-XTerm.vt100.faceName: Hack Nerd Font: size = 10: antialias = false
+XTerm.vt100.faceName: Hack Nerd Font: size = 14: antialias = false
 XTerm.vt100.font: 7x13
 XTerm*utf8: 2
 XTerm*locale: true
-XTerm.vt100.faceSize: 11
+XTerm.vt100.faceSize: 17
 XTerm*cursorUnderLine: true
 XTerm*cursorBlink:true
 XTerm*metaSendsEscape : true

@@ -50,6 +50,9 @@ shopt -s histverify
 # PERMITIRÁ QUE EL COMANDO ECHO INTERPRETE LOS CARACTERES DE ESCAPE, COMO LAS OPCIONES "\n" Y "\t
 shopt -s xpg_echo
 
+# IGNORAR MAYÚSCULAS Y MINÚSCULAS AL COMPLETAR CON TAB
+bind "set completion-ignore-case on"
+
 #-------------------------------------------------------#
 # VERIFICAR SI EL  AUTOCOMPLETADO DE BASH ESTA ACTIVADO #
 #-------------------------------------------------------#
