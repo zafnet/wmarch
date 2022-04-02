@@ -103,6 +103,8 @@ nnoremap <A-S-h> <C-w><
 nnoremap <A-S-l> <C-w>>
 nnoremap <A-S-j> <C-w>-
 nnoremap <A-S-k> <C-w>+
+nnoremap º :
+nnoremap <S-z> :e 
 inoremap ( ()<left>
 inoremap { {}<left>
 inoremap [ []<left>

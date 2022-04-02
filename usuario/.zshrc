@@ -204,11 +204,11 @@ bindkey "\e[3~"   delete-char     # EL SUPRIMIR BORRE LA LETRA
 # OPCIONES NVIM #
 #---------------#
 
-# ACTIVAR NVIM EN LA TERMINAL #
+# ACTIVAR NVIM EN LA TERMINAL
 #bindkey -v
 #export KEYTIMEOUT=1
 
-# ESTOS PARA PODER USAR NVIM EN TERMINAL #
+# ESTOS PARA PODER USAR NVIM EN TERMINAL
 #autoload -Uz edit-command-line
 #zle -N edit-command-line
 
@@ -216,12 +216,14 @@ bindkey "\e[3~"   delete-char     # EL SUPRIMIR BORRE LA LETRA
 #bindkey -M viins '^i' vi-cmd-mode
 #bindkey -M '^j' vi-cmd-mode
 
-# PARA PODER USAR LAS TECLAS DE DIRECCION COMO EN NVIM PERO EN LA TERMINAL #
+# PARA PODER USAR LAS TECLAS DE DIRECCION COMO EN NVIM PERO EN LA TERMINAL
 
 #bindkey -M '^h' vi-backward-char
 #bindkey -M '^k' vi-up-line-or-history
 #bindkey -M '^l' vi-forward-char
 #bindkey -M '^j' vi-down-line-or-history
+
+# PARA QUE AL SALIR DE NVIM NO QUEDE EL CURSOR EN MODO BLOCK #
 
 #------------------------------------------------------------#
 # NVIM CURSOR EN FORMA DE HAZ PARA DIFERENTES MODOS DE NVIM  #                           
@@ -239,16 +241,8 @@ bindkey "\e[3~"   delete-char     # EL SUPRIMIR BORRE LA LETRA
 #zle -N zle-keymap-select
 
 
-#declare -a remo
-
 #remo=(.zcompdump .xsession-errors .lesshst)
 
-#if [[ {$remo[@]} == "false" ]]; then 
-
-#break
-
-#else
-
-#rm "{$remo[@]}"
-
-#fi
+#for x in ${remo[@]}; do
+#   [ -f ${x} ] && rm -f ${x} 
+#done
