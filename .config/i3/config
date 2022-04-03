@@ -20,7 +20,7 @@ bindsym $mod+Return exec tilix
 
 bindsym mod1+Return exec xterm
 
-bindsym mod1+g exec pcmanfm
+bindsym $mod+g exec pcmanfm
 
 bindsym shift+mod1+p exec /usr/bin/firefox
 
@@ -88,6 +88,13 @@ exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
 ###############################
 # OPCIONES EXTRA PARA VENTANA #
 ###############################
+
+# HACER HUECOS EN LAS VENTANAS PARA ESTO HAY QUE INSTALAR I3-GAPS EN ARCH Y SE VA A ELIMINAR I3-WM #
+gaps inner 6
+gaps outer 6
+
+# PARA QUE NO TENGA BORDE CON UN TITULO LA VENTANA #
+for_window [class = "^.*"] border pixel 3
 
 # thin borders (BORDES DELGADOS)
 # OPCIONES PARA QUE NO SE VEA EL BORDE DE LA VENTANA #
@@ -260,7 +267,7 @@ bindsym $mod+d layout toggle split
 
 # ALTERNA ENTRE MOSAICO A FLOTANTE #
 bindsym $mod+s floating toggle
-bindsym $mod+g sticky toggle
+bindsym $mod+t sticky toggle
 
 # CAMBIAR EL ENFOQUE ENTRE MOSAICOS Y VENTANAS FLOTANTES #
 bindsym $mod+space focus mode_toggle
@@ -436,8 +443,7 @@ client.urgent		         $urgentred	$urgentred	$white		$purple		$yellowbrown
 # CONFIGURACIÓN DE LA BARRA (LA ENTRADA PROVIENE DE I3BLOCKS) #
 ###############################################################
 
-# INICIE I3BAR PARA MOSTRAR UNA BARRA DE ESPACIO DE TRABAJO
-# (MÁS LA INFORMACIÓN DEL SISTEMA QUE ENCUENTRA I3STATUS, SI ESTÁ DISPONIBLE)
+# INICIE I3BAR PARA MOSTRAR UNA BARRA DE ESPACIO DE TRABAJO HAY QUE INSTALAR I3BLOCKS SI DICE ERROR 127 #
 
 bar {
 		font pango: Hack Nerd Fonts 10
