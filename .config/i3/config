@@ -16,7 +16,7 @@ font pango: Hack Nerd Fonts 10
 # TECLA PRINCIPAL #
 set $mod Mod4
 
-bindsym $mod+Return exec tilix
+bindsym $mod+Return exec kitty
 
 bindsym mod1+Return exec xterm
 
@@ -31,17 +31,16 @@ exec_always feh --bg-fill --randomize --no-fehbg /home/$USER/.wall/*
 bindsym ctrl+space exec rofi -modi drun -show drun \
 		-config ~/.config/rofi/config.rasi
 
+bindsym $mod+mod1+q exec --no-startup-id i3-msg exit # SALIR DE I3
 
-bindsym $mod+mod1+q exec --no-startup-id i3msg exit # SALIR DE I3
-
-bindsym $mod+Shift+c reload # RECARGAR ARCHIVO DE CONFIGURACION
+bindsym $mod+Shift+c reload  # RECARGAR ARCHIVO DE CONFIGURACION
 
 bindsym $mod+mod1+r restart # REINICIE I3 EN SU LUGAR (CONSERVA SU DISEÑO Y SESIÓN, PUEDE USARSE PARA ACTUALIZAR I3)
 
-#xrandr --output Virtual-1 --mode 1440x900 # RESOLUCION DE PANTALLA EN VIRTUALBOX
+#exec_always xrandr --output Virtual-1 --mode 1440x900 # RESOLUCION DE PANTALLA EN VIRTUALBOX
 
 # RESOLUCION DE PANTALLA EN MONITOR REAL
-#xrandr --output HDMI-1 --mode 1600x900
+#exec_always xrandr --output HDMI-1 --mode 1600x900
 
 ###########################
 # TRANSPARENCIA CON PICOM #
@@ -281,21 +280,11 @@ bindsym $mod+z focus child
 # ABRIR UN NUEVO ESPACIO DE TRABAJO VACÍO #
 #bindsym $mod+Shift+n exec ~/.config/i3/scripts/empty_workspace
 
-# TECLAS MULTIMEDIA #
-
 # VOLUMEN #
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
 
-# CONTROL DE VOLUMEN GRADUAL #
-bindsym $mod+XF86AudioRaiseVolume exec amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
-bindsym $mod+XF86AudioLowerVolume exec amixer -D pulse sset Master 1%- && pkill -RTMIN+1 i3blocks
-
-# CONTROL DE AUDIO #
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym $mod+F10 exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym $mod+F11 exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym $mod+F12 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 
 # CAPTURA DE PANTALLA EL PRIMERO CON SCROT Y CON NOTIFICACION DE DUNST #
 
@@ -313,11 +302,11 @@ set $ws2 "2:"
 set $ws3 "3:"
 set $ws4 "4:"
 set $ws5 "5:"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
+set $ws10 "10:"
 
 # USAR ESPACIOS DE TRABAJO EN DIFERENTES PANTALLAS #
 # DONDE DEBE REEMPLAZAR VGA-0/HDMI-0 CON LOS NOMBRES DE SUS PANTALLAS #
@@ -389,6 +378,7 @@ exec --no-startup-id setxkbmap -layout 'es'
 ##########################################
 # REGLAS FLOTANTES PARA LAS APLICACIONES #
 ##########################################
+
 #CREO QUE SE PUEDE PONER STACKED O TABBED TAMBIEN ADEMAS DE FLOTANTE
 
 # CONFIGURAR FLOTANTE (SIN MOSAICO) PARA LAS APLICACIONES QUE LO NECESITAN #
@@ -445,10 +435,6 @@ client.urgent		         $urgentred	$urgentred	$white		$purple		$yellowbrown
 
 # INICIE I3BAR PARA MOSTRAR UNA BARRA DE ESPACIO DE TRABAJO HAY QUE INSTALAR I3BLOCKS SI DICE ERROR 127 #
 
-bar {
-		font pango: Hack Nerd Fonts 10
-		status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	    	position top
 #	    	i3bar_command i3bar --transparency
 # PODRÍA SER QUE NO TENGA CONFIGURADA LA PANTALLA PRINCIPAL: set one (xrandr --output <output> --primary)
 # REFERENCIA: https://i3wm.org/docs/userguide.html#_tray_output ESTE ES PARA BANDEJA DE ENTRADA
@@ -458,8 +444,14 @@ bar {
 # CUANDO STRIP_WORKSPACE_NUMBERS SE ESTABLECE EN SÍ,
 # CUALQUIER ESPACIO DE TRABAJO QUE TENGA EL NOMBRE DEL FORMULARIO
 # “[n][:][NAME]” MOSTRARÁ SÓLO EL NOMBRE
+
+bar {
+		font pango: Hack Nerd Fonts 10
+		status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	    	position top
+
 strip_workspace_numbers yes
-##strip_workspace_name no
+#strip_workspace_name no
 
 		    colors {
 		    separator          $purple
@@ -506,6 +498,11 @@ strip_workspace_numbers yes
 
 # ESCONDER BARRA DE ESTADO #
 bindsym $mod+b bar mode toggle
+
+# Lanzador de Polybar
+# Para usar polybar se tiene que comentar arriba donde esta toda la bar de I3blocks
+
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh 
 
 # CONTROL DE VENTANAS POPUPS MIENTRAS ESTAMOS EN PANTALLA COMPLETA #
 #popup_during_fullscreen smart

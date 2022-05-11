@@ -62,29 +62,32 @@ fi
 #---------#
 #  ALIAS  #
 #---------#
-alias ll='ls -lha --group-dirs=first'
+alias ll='ls -lha --total-size --group-dirs=first'
 alias ls='lsd --group-dirs=first'
 alias to='touch'
+alias pe='du -h | fzf'
 alias nv='nvim'
 alias ba='bat'
 alias mk='mkdir -v'
 alias hi='xed ~/.zsh_history >/dev/null 2>&1  & disown' 
 alias tree='lsd --tree'
 alias smk='sudo mkdir'
-alias cp='cp -v'
-alias rm='rm -rv'
-alias mv='mv -v'
-alias nzs='nvim /home/$USER/.zshrc'
-alias nba='nvim /home/$USER/.bashrc'
+alias cp='cp -ur'
+alias ct='cp -urv'
+alias rm='rm -r'
+alias rt='rm -rv'
+alias mv='mv -u'
+alias mt='mv -uv'
+alias nz='nvim /home/$USER/.zshrc'
+alias nb='nvim /home/$USER/.bashrc'
 alias xzs='xed /home/$USER/.zshrc >/dev/null 2>&1  & disown'
-alias xba='xed /home/$USER/.bashrc >/dev/null 2>&1  & disown'
-alias history='history 0'
+alias xb='xed /home/$USER/.bashrc >/dev/null 2>&1  & disown'
+alias his='history 0'
 alias ins='sudo pacman -S'   
 alias ac='sudo pacman -Syu'
 alias rem='sudo pacman -Rs' 
 alias mir="sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist"
 alias grep='grep --color=auto'
-#alias =' --group-dirs=first'
 alias ga='git add .'
 alias bra='git branch'
 alias che='git checkout'
@@ -100,6 +103,32 @@ alias gs='git status'
 #------------#
 # FUNCIONES  #
 #------------#
+
+#---------------------------------------------#
+# EXTRAER CUALQUIER COMPRIMIDO EN LA TERMINAL #
+#---------------------------------------------#
+extra () {
+	for archive in $*; do
+		if [ -f $archive ] ; then
+			case $archive in
+				*.tar.bz2)   tar xvjf $archive    ;;
+				*.tar.gz)    tar xvzf $archive    ;;
+				*.bz2)       bunzip2 $archive     ;;
+				*.rar)       rar x $archive       ;;
+				*.gz)        gunzip $archive      ;;
+				*.tar)       tar xvf $archive     ;;
+				*.tbz2)      tar xvjf $archive    ;;
+				*.tgz)       tar xvzf $archive    ;;
+				*.zip)       unzip $archive       ;;
+				*.Z)         uncompress $archive  ;;
+				*.7z)        7z x $archive        ;;
+				*)           echo "NO SE COMO EXTRAER '$archive'..." ;;
+			esac
+		else
+			echo "'$archive' NO ES UN ARCHIVO VALIDO!"
+		fi
+	done
+}
 
 #-----#
 # FZF #
@@ -119,10 +148,9 @@ nvf() { nvim $(find / -type f 2> /dev/null | fzf -m)}
 
 cr() {find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c}
 
-his() { print -z  $(([ -n "$ZSH_NAME" ] && fc -ln) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')}
+tor() { print -z  $(([ -n "$ZSH_NAME" ] && fc -ln) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')}
 
 xr(){exec xrdb merge ~/.Xresources}
-
 
 #------------------#
 # COLORES DE 'MAN' #
@@ -149,7 +177,7 @@ compinit
 #zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'autocompletado %d'
 zstyle ':completion:*' group-name ''
-#zstyle ':completion:*' menu select=2
+zstyle ':completion:*' menu select=2
 #zstyle ':completion:*' file-list all #COMPLETADO INTELIGENTE "TAB" MUESTRA TODAS LAS COINCIDENCIAS DE LO ESCRITO PARA IR AL DIRECTORIO
 #zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} #PARA TOMAR LOS COLORES DE LS_COLORS ACTUALES
 #zstyle ':completion:*' list-colors ''
@@ -171,7 +199,6 @@ unsetopt FLOW_CONTROL                                       # DESACTIVAR INICIO/
 unsetopt NO_BEEP                                            # SE ESCUCHAN LOS BEEPS DE ERROR
 setopt AUTO_CD                                              # DIRECTORIO SIGUIENTE O ANTERIOR SIN "CD" /home/user/$ documentos Y ENTRA EN  --> /home/user/documentos/
 setopt ALWAYS_TO_END                                        # MOVER EL CURSOR AL FINAL DE LA PALABRA
-setopt AUTO_MENU                                            # MUESTRA EL MENÚ DE COMPLETACIÓN EN SUCESIVOS TABS
 #setopt AUTO_NAME_DIRS                                      # LOS PARÁMETROS QUE SE ESTABLECEN CON EL NOMBRE ABSOLUTO DE UN DIRECTORIO SE CONVIERTEN INMEDIATAMENTE EN UN NOMBRE PARA ESE DIRECTORIO
 setopt AUTO_LIST                                            # AUTOMÁTICAMENTE MUESTRAS LAS OPCIONES EN COMPLETACIONES AMBIGUAS
 setopt AUTO_PARAM_SLASH                                     # AGREGA UN SLASH SI EL PARÁMETRO COMPLETO ES UN DIRECTORIO
@@ -223,11 +250,9 @@ bindkey "\e[3~"   delete-char     # EL SUPRIMIR BORRE LA LETRA
 #bindkey -M '^l' vi-forward-char
 #bindkey -M '^j' vi-down-line-or-history
 
-# PARA QUE AL SALIR DE NVIM NO QUEDE EL CURSOR EN MODO BLOCK #
-
-#------------------------------------------------------------#
-# NVIM CURSOR EN FORMA DE HAZ PARA DIFERENTES MODOS DE NVIM  #                           
-#------------------------------------------------------------#
+#------------------------------------------------------#
+# CURSOR EN FORMA DE HAZ PARA DIFERENTES MODOS DE NVIM #                           
+#------------------------------------------------------#
 
 #function zle-line-init zle-keymap-select {
 #  if [ $KEYMAP = vicmd ]; then
@@ -239,7 +264,6 @@ bindkey "\e[3~"   delete-char     # EL SUPRIMIR BORRE LA LETRA
 
 #zle -N zle-line-init
 #zle -N zle-keymap-select
-
 
 #remo=(.zcompdump .xsession-errors .lesshst)
 

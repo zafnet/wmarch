@@ -32,24 +32,6 @@ fi
 #LS_COLORS='di=32:fi=35:ln=93:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=37:*.rpm=90'
 #export LS_COLORS
 
-#-----------------------------------#
-# OPCIONES DE CONFIGURACION DE BASH #
-#-----------------------------------#
-
-# GLOBAL INSENSIBLE A MAYÚSCULAS Y MINÚSCULAS (UTILIZADO EN LA EXPANSIÓN DE NOMBRE DE RUTA)
-shopt -s nocaseglob
-# CUANDO SE EJECUTE UN COMANDO QUE COINCIDA CON EL NOMBRE DE UN DIRECTORIO, SE EJECUTARÁ UN CD A ESE DIRECTORIO. ESTA OPCIÓN SOLO SE USA EN LOS SHELLS INTERACTIVOS
-shopt -s autocd
-# EL SHELL BASH INCLUYE, EN EL RESULTADO DE LA EXPANSIÓN FICHEROS, LOS NOMBRES DE ARCHIVO QUE COMIENZAN CON UN PUNTO
-shopt -s dotglob
-# SI ESTÁ ESTABLECIDA, SE ACTIVAN LAS CARACTERÍSTICAS DE CONCORDANCIA DE PATRONES EXTENDIDOS
-shopt -s extglob
-# SI ESTÁ ESTABLECIDA, SE PRODUCIRÁ UN ERROR DE EXPANSIÓN CUANDO UN PATRÓN NO TENGA CONCORDANCIA CON NINGÚN FICHERO
-# PARA QUE TE MUESTRE PRIMERO EL COMANDO EN VEZ DE EJECUTARLO CUANDO USAMOS !789  EN EL HISTORIAL
-shopt -s histverify
-# PERMITIRÁ QUE EL COMANDO ECHO INTERPRETE LOS CARACTERES DE ESCAPE, COMO LAS OPCIONES "\n" Y "\t
-shopt -s xpg_echo
-
 # IGNORAR MAYÚSCULAS Y MINÚSCULAS AL COMPLETAR CON TAB
 bind "set completion-ignore-case on"
 
@@ -68,49 +50,51 @@ fi
 #---------#
 #  ALIAS  #
 #---------#
-alias ll='ls -lha --group-dirs=first'
+alias ll='ls -lha --total-size --group-dirs=first'
 alias ls='lsd --group-dirs=first'
+alias to='touch'
+alias pe='du -h | fzf'
 alias nv='nvim'
-alias can='bat'
+alias ba='bat'
 alias mk='mkdir -v'
 alias hi='xed ~/.zsh_history >/dev/null 2>&1  & disown' 
 alias tree='lsd --tree'
 alias smk='sudo mkdir'
-alias cp='cp -v'
-alias ..='cd ..'
-alias rm='rm -rv'
-alias mv='mv -v'
-alias ..='cd ..'
-#alias rd='rmdir -v'
-alias nzs='nvim /home/$USER/.zshrc'
-alias nba='nvim /home/$USER/.bashrc'
+alias cp='cp -ur'
+alias ct='cp -urv'
+alias rm='rm -r'
+alias rt='rm -rv'
+alias mv='mv -u'
+alias mt='mv -uv'
+alias nz='nvim /home/$USER/.zshrc'
+alias nb='nvim /home/$USER/.bashrc'
 alias xzs='xed /home/$USER/.zshrc >/dev/null 2>&1  & disown'
-alias xba='xed /home/$USER/.bashrc >/dev/null 2>&1  & disown'
-alias history='history 0'
-alias inst='sudo pacman -S'   
-alias actu='sudo pacman -Syu'
-alias remo='sudo pacman -Rs'
+alias xb='xed /home/$USER/.bashrc >/dev/null 2>&1  & disown'
+alias his='history 0'
+alias ins='sudo pacman -S'   
+alias ac='sudo pacman -Syu'
+alias rem='sudo pacman -Rs' 
+alias mir="sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist"
 alias grep='grep --color=auto'
-#alias =' --group-dirs=first'
 alias ga='git add .'
-alias branch='git branch'
-alias checkout='git checkout'
+alias bra='git branch'
+alias che='git checkout'
 alias cl='git clone'
 alias gc='git commit -m'
-alias pull='git pull origin'
+alias pul='git pull origin'
 alias gp='git push origin main'
 alias gs='git status'
-#alias fetch='git fetch'
+#alias fet='git fetch'
 #alias tag='git tag'
-#alias newtag='git tag -a'
+#alias nt='git tag -a'
 
 #------------#
 # FUNCIONES  #
 #------------#
 
-#--------------------------------------------------#
-# PARA EXTRAER CUALQUIER COMPRIMIDO EN LA TERMINAL #
-#--------------------------------------------------#
+#---------------------------------------------#
+# EXTRAER CUALQUIER COMPRIMIDO EN LA TERMINAL #
+#---------------------------------------------#
 extra () {
 	for archive in $*; do
 		if [ -f $archive ] ; then
@@ -134,6 +118,28 @@ extra () {
 	done
 }
 
+#-----#
+# FZF #
+#-----#
+#OPCION CON BORDE '--height 60% --border'
+export FZF_DEFAULT_OPTS='--height 60%'
+
+ir() { cd $(find / -type d 2> /dev/null | fzf) }
+
+op() { xdg-open $(find / -type f 2> /dev/null | fzf) }
+
+rf() { rm -rf $(find / -type f 2> /dev/null | fzf -m) }
+
+rd() { rm -rf $(find / -type d 2> /dev/null | fzf -m)} 
+
+nvf() { nvim $(find / -type f 2> /dev/null | fzf -m)}
+
+cr() {find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c}
+
+tor() { print -z  $(([ -n "$ZSH_NAME" ] && fc -ln) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')}
+
+xr(){exec xrdb merge ~/.Xresources}
+
 #------------------#
 # COLORES DE 'MAN' #
 #------------------#
@@ -148,3 +154,28 @@ function man() {
     LESS_TERMCAP_us=$'\e[01;32m' \
     man "$@"
 }
+
+
+#-----------------------------------#
+# OPCIONES DE CONFIGURACION DE BASH #
+#-----------------------------------#
+
+# GLOBAL INSENSIBLE A MAYÚSCULAS Y MINÚSCULAS (UTILIZADO EN LA EXPANSIÓN DE NOMBRE DE RUTA)
+shopt -s nocaseglob
+# CUANDO SE EJECUTE UN COMANDO QUE COINCIDA CON EL NOMBRE DE UN DIRECTORIO, SE EJECUTARÁ UN CD A ESE DIRECTORIO. ESTA OPCIÓN SOLO SE USA EN LOS SHELLS INTERACTIVOS
+shopt -s autocd
+# EL SHELL BASH INCLUYE, EN EL RESULTADO DE LA EXPANSIÓN FICHEROS, LOS NOMBRES DE ARCHIVO QUE COMIENZAN CON UN PUNTO
+shopt -s dotglob
+# SI ESTÁ ESTABLECIDA, SE ACTIVAN LAS CARACTERÍSTICAS DE CONCORDANCIA DE PATRONES EXTENDIDOS
+shopt -s extglob
+# SI ESTÁ ESTABLECIDA, SE PRODUCIRÁ UN ERROR DE EXPANSIÓN CUANDO UN PATRÓN NO TENGA CONCORDANCIA CON NINGÚN FICHERO
+# PARA QUE TE MUESTRE PRIMERO EL COMANDO EN VEZ DE EJECUTARLO CUANDO USAMOS !789  EN EL HISTORIAL
+shopt -s histverify
+# PERMITIRÁ QUE EL COMANDO ECHO INTERPRETE LOS CARACTERES DE ESCAPE, COMO LAS OPCIONES "\n" Y "\t
+shopt -s xpg_echo
+
+#remo=(.zcompdump .xsession-errors .lesshst)
+
+#for x in ${remo[@]}; do
+#   [ -f ${x} ] && rm -f ${x} 
+#done

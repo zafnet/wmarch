@@ -1,21 +1,24 @@
-#   ███████╗██╗  ██╗██╗  ██╗██╗  ██╗██████╗ 
-#   ██╔════╝╚██╗██╔╝██║  ██║██║ ██╔╝██╔══██╗
-#   ███████╗ ╚███╔╝ ███████║█████╔╝ ██║  ██║
-#   ╚════██║ ██╔██╗ ██╔══██║██╔═██╗ ██║  ██║
-#   ███████║██╔╝ ██╗██║  ██║██║  ██╗██████╔╝
-#   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝
+# ███████╗██╗  ██╗██╗  ██╗██╗  ██╗██████╗ ██████╗  ██████╗
+# ██╔════╝╚██╗██╔╝██║  ██║██║ ██╔╝██╔══██╗██╔══██╗██╔════╝
+# ███████╗ ╚███╔╝ ███████║█████╔╝ ██║  ██║██████╔╝██║     
+# ╚════██║ ██╔██╗ ██╔══██║██╔═██╗ ██║  ██║██╔══██╗██║     
+# ███████║██╔╝ ██╗██║  ██║██║  ██╗██████╔╝██║  ██║╚██████╗
+# ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝ ╚════
 
-#-------------------#
 # ATAJOS DE TECLADO #
 #-------------------#
+
 super + Return
-        tilix	 
+        kitty	 
+
 
 alt + Return
       xterm
 
-shift + space
+
+super + m
 	rofi -show drun
+
 
 ctrl + shift +  d
         rofi -show filebrowser
@@ -23,23 +26,27 @@ ctrl + shift +  d
 alt + w
 	google-chrome-stable
 
-alt + i
 
-       google-chrome-stable --incognito
+alt + i
+   google-chrome-stable --incognito
+
 
 ctrl + shift + f
 
         firefox
 
+
 shift + alt + p 
 
           firefox -private-window
 
-super + g
+alt + g
 	pcmanfm
+
 
 alt + m
 	telegram-desktop
+
 
 ctrl + super + d
 
@@ -49,22 +56,24 @@ ctrl + super + d
 
 ctrl + shift + r
 
-	tilix -e ranger
+	kitty -e ranger
+
 
 super + ctrl + p 
 	polybar-msg cmd toggle
 
+
 Print
 	flameshot full -c -p ~/screenshoot
+
 
 super + Print
 	flameshot gui
 
-super + alt + Print
-	flameshot full -c -d 5000 -p ~/screenshoot
 
 #super + alt + m
 #	notify-send "Now Playing ♫" "$(mpc current)"
+
 
 #----------------------------------#
 # CARGAR ARCHIVOS DE CONFIGURACIÓN #
@@ -98,7 +107,7 @@ super + w
 
 #-OCULTAR EL NODO ACTUAL O RESTAURAR UN NODO OCULTO CONSULTADO-#
 
-super + shift + minus
+super + minus
 	bspc node {,$(bspc query -N -d -n .hidden | head -n 1)} -g hidden
 
 #-ESPACIO DE VENTANA DE ESCRITORIO ENFOCADO-#
@@ -121,8 +130,8 @@ super + alt + button{4,5}
 	# bspc node newest.marked.local -n newest.!automatic.local
 
 #-INTERCAMBIAR EL NODO ACTUAL Y EL NODO MÁS GRANDE-#
-#super + alt + n
-#	bspc node -s biggest
+super + alt + n
+	bspc node -s biggest
 
 #---------------------#
 # MANEJOS DE VENTANAS #
@@ -219,7 +228,7 @@ super + ctrl + {1-9}
 
 #-CANCELAR LA PRESELECCIÓN DEL NODO ENFOCADO-#
 
-ctrl + alt + space
+ctrl + space
 	bspc node -p cancel
 
 #-CANCELAR LA PRESELECCIÓN PARA EL ESCRITORIO ENFOCADO-#
