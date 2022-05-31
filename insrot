@@ -53,12 +53,12 @@ echo "╚═╝     ╚═╝  ╚═╝╚══════╝╚════�
 echo "                                         ";
 echo ""
 echo ""
-fi 
+fi
 
-else 
+else
 
 echo  ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
-echo  "> ███╗░░██╗░█████╗░  ██████╗░░█████╗░░█████╗░████████╗  < " 
+echo  "> ███╗░░██╗░█████╗░  ██████╗░░█████╗░░█████╗░████████╗  < "
 echo  "> ████╗░██║██╔══██╗  ██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝  < "
 echo  "> ██╔██╗██║██║░░██║  ██████╔╝██║░░██║██║░░██║░░░██║░░░  < "
 echo  "> ██║╚████║██║░░██║  ██╔══██╗██║░░██║██║░░██║░░░██║░░░  < "
@@ -132,7 +132,7 @@ echo "Selección de Disco: $disco"
 echo ''
 echo "Tu usuario: $user"
 
-# VEMOS QUE OPCIÓN ELIGE EL USUARIO Y REALIZA TAL ACCIÓN EN ESTE CASO MOSTRAR MENSAJE
+# Vemos Que Opción Elige El Usuario Y Realiza Tal Acción En Este Caso Mostrar Mensaje
 
 case $escritorio in
   1)
@@ -191,7 +191,7 @@ then
     sgdisk ${disco} -n=2:0:0:8304
 #-------->	sgdisk ${disco} -n=3:0:0:8304
     # poner 8304 es  el de root
-    #sgdisk ${disco} -n=2:0:0:8304 este para tener root y efi hay que comentar o borrar el de home que es este sgdisk ${disco} -n=2:0:+20G -t=2:8302 
+    #sgdisk ${disco} -n=2:0:0:8304 este para tener root y efi hay que comentar o borrar el de home que es este sgdisk ${disco} -n=2:0:+20G -t=2:8302
 	fdisk -l ${disco} > /tmp/partition
 	echo ""
 	cat /tmp/partition
@@ -203,12 +203,12 @@ then
 	#echo $partition | awk -F ' ' '{print $2}' >  home-efi
 	echo $partition | awk -F ' ' '{print $2}' >  root-efi
 
-#aca arriba hay que cambiar el {print$3} por {print$2} root-efi  por que arriba puse -n=2:0:0:8304 
+#aca arriba hay que cambiar el {print$3} por {print$2} root-efi  por que arriba puse -n=2:0:0:8304
 
 	clear
 	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
 	echo ""
-	echo "Partición EFI es:" 
+	echo "Partición EFI es:"
 	cat boot-efi
 	echo ""
 	#echo "Partición home es:"
@@ -222,16 +222,16 @@ then
 	echo ""
 	echo "Formateando Particiones"
 	echo ""
-	 
-    mkfs.ext4 $(cat root-efi) 
-	mount $(cat root-efi) /mnt 
 
-	mkdir -p /mnt/efi 
-	mkfs.fat -F 32 $(cat boot-efi) 
-	mount $(cat boot-efi) /mnt/efi 
-    
+    mkfs.ext4 $(cat root-efi)
+	mount $(cat root-efi) /mnt
+
+	mkdir -p /mnt/efi
+	mkfs.fat -F 32 $(cat boot-efi)
+	mount $(cat boot-efi) /mnt/efi
+
     #mkdir -p /mnt/home
-	#mkfs.ext4 $(cat home-efi) 
+	#mkfs.ext4 $(cat home-efi)
 	#mount $(cat home-efi) /mnt/home
 
 
@@ -262,10 +262,10 @@ else
 	#               particion home
     #+100%			particion root
 	#				Cambien valores si desean
-	
+
 	sgdisk --zap-all ${disco}
 	(echo o; echo n; echo p; echo 1; echo ""; echo +512M; echo n; echo p; echo 2; echo ""; echo +20G; echo n; echo p; echo 3; echo ""; echo ""; echo t; echo 2; echo 82; echo a; echo 1; echo w; echo q) | fdisk ${disco}
-	fdisk -l ${disco} > /tmp/partition 
+	fdisk -l ${disco} > /tmp/partition
 	cat /tmp/partition
 	sleep 3
 
@@ -278,7 +278,7 @@ else
 	clear
 	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
 	echo ""
-	echo "Partición BOOT es:" 
+	echo "Partición BOOT es:"
 	cat boot-bios
 	echo ""
 	echo "Partición HOME es:"
@@ -292,43 +292,43 @@ else
 	echo ""
 	echo "Formateando Particiones"
 	echo ""
-	mkfs.ext4 $(cat root-bios) 
-	mount $(cat root-bios) /mnt 
+	mkfs.ext4 $(cat root-bios)
+	mount $(cat root-bios) /mnt
 
 	mkdir -p /mnt/home
-	mkfs.ext4 $(cat home-bios) 
+	mkfs.ext4 $(cat home-bios)
 	mount $(cat home-bios) /mnt/home
 
     mkdir -p /mnt/boot
-	mkfs.ext4 $(cat boot-bios) 
+	mkfs.ext4 $(cat boot-bios)
 	mount $(cat boot-bios) /mnt/boot
-	
+
 	clear
 	echo ""
-echo -e '\033[1;92m' "\n\tREVISE EN PUNTO DE MONTAJE EN MOUNTPOINT"
+echo -e '\033[1;92m' "\n\t\t\t REVISE EN PUNTO DE MONTAJE EN MOUNTPOINT"
 	echo ""
 	lsblk -l
 	sleep 4
 	clear
-	
+
 fi
 
-echo -e '\033[1;92m' "\n\tACTUALIZACIÓN DE LLAVES Y MIRROSLIST DEL LIVE CD"
+echo -e '\033[1;92m' "\n\t\t\t ACTUALIZACIÓN DE LLAVES Y MIRROSLIST DEL LIVE CD"
 
 clear
 
 pacman -Syy
-pacman -Sy archlinux-keyring --noconfirm 
+pacman -Sy archlinux-keyring --noconfirm
 clear
 
-pacman -Sy reflector python rsync glibc curl wget  --noconfirm 
+pacman -Sy reflector python rsync glibc curl wget  --noconfirm
 
 sleep 3
 clear
 
 echo ""
 
-echo -e '\033[1;92m' "\n\tBUSCANDO MIRRORLIST MAS RAPIDOS PARA EL ISO"
+echo -e '\033[1;92m' "\n\t\t\t BUSCANDO MIRRORLIST MAS RAPIDOS PARA EL ISO"
 
 echo ""
 reflector --verbose --latest 5 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
@@ -343,9 +343,9 @@ clear
 
 # Instalando Sistema base en nuestro Disco
 echo ""
-echo -e '\033[1;92m' "\n\tINSTALANDO SISTEMA BASE EN NUESTRO DISCO"
+echo -e '\033[1;92m' "\n\t\t\t INSTALANDO SISTEMA BASE EN NUESTRO DISCO"
 echo ""
-pacstrap /mnt base base-devel nano reflector python rsync 
+pacstrap /mnt base base-devel nano reflector python rsync
 
 #xdg-user-dirs
 
@@ -353,7 +353,7 @@ pacstrap /mnt base base-devel nano reflector python rsync
 
 clear
 
-echo -e '\033[1;92m' "\n\tCREANDO ARCHIVO FSTAB PARA DETECTAR AL INICIAR EL SISTEMA"
+echo -e '\033[1;92m' "\n\t\t\t CREANDO ARCHIVO FSTAB PARA DETECTAR AL INICIAR EL SISTEMA"
 echo ""
 echo "Archivo FSTAB"
 echo ""
@@ -364,7 +364,7 @@ cat /mnt/etc/fstab
 sleep 4
 clear
 
-echo -e '\033[1;92m' "\n\tCONFIGURANDO PACMAN PARA QUE TENGA COLORES CON EL REPO DE MULTILIB"
+echo -e '\033[1;92m' "\n\t\t\t CONFIGURANDO PACMAN PARA QUE TENGA COLORES CON EL REPO DE MULTILIB"
 sed -i 's/#Color/Color/g' /mnt/etc/pacman.conf
 sed -i 's/#TotalDownload/TotalDownload/g' /mnt/etc/pacman.conf
 sed -i 's/#VerbosePkgLists/VerbosePkgLists/g' /mnt/etc/pacman.conf
@@ -373,7 +373,7 @@ sed -i 's/#[multilib]/[multilib]/g' /mnt/etc/pacman.conf
 sed -i "s/#Include = /etc/pacman.d/mirrorlist/Include = /etc/pacman.d/mirrorlist/g" /mnt/etc/pacman.conf
 clear
 
-echo -e '\033[1;92m' "\n\tHOSTS Y NOMBRE DE COMPUTADOR"
+echo -e '\033[1;92m' "\n\t\t\t HOSTS Y NOMBRE DE COMPUTADOR"
 clear
 hostname=Arch
 echo "$hostname" > /mnt/etc/hostname
@@ -385,7 +385,7 @@ echo "Hosts: $(cat /mnt/etc/hosts)"
 echo ""
 clear
 
-echo -e '\033[1;92m' "\n\tAGREGANDO USUARIO Y CLAVES CON ADMINISTRADOR"
+echo -e '\033[1;92m' "\n\t\t\t AGREGANDO USUARIO Y CLAVES CON ADMINISTRADOR"
 
 arch-chroot /mnt /bin/bash -c "(echo $rootpasswd ; echo $rootpasswd) | passwd root"
 arch-chroot /mnt /bin/bash -c "useradd -m -g users -s /bin/bash $user"
@@ -393,22 +393,22 @@ arch-chroot /mnt /bin/bash -c "(echo $userpasswd ; echo $userpasswd) | passwd $u
 sed -i "80i $user ALL=(ALL) ALL"  /mnt/etc/sudoers
 clear
 
-echo -e '\033[1;92m' "\n\tIDIOMA DEL SISTEMA"
+echo -e '\033[1;92m' "\n\t\t\t IDIOMA DEL SISTEMA"
 
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
 echo -e ""
 echo -e "\t\t\t| Idioma del Sistema |"
 echo -e ""
 echo "$idioma UTF-8" > /mnt/etc/locale.gen
-arch-chroot /mnt /bin/bash -c "locale-gen" 
+arch-chroot /mnt /bin/bash -c "locale-gen"
 echo "LANG=$idioma" > /mnt/etc/locale.conf
 echo ""
-cat /mnt/etc/locale.conf 
+cat /mnt/etc/locale.conf
 echo ""
 cat /mnt/etc/locale.gen
 sleep 4
 echo ""
-arch-chroot /mnt /bin/bash -c "export $(cat /mnt/etc/locale.conf)" 
+arch-chroot /mnt /bin/bash -c "export $(cat /mnt/etc/locale.conf)"
 export $(cat /mnt/etc/locale.conf)
 arch-chroot /mnt /bin/bash -c "sudo -u $user export $(cat /etc/locale.conf)"
 export $(cat /etc/locale.conf)
@@ -417,11 +417,11 @@ exportlang=$(echo "LANG=$idioma")
 export $exportlang
 export LANG=$idioma
 locale-gen
-arch-chroot /mnt /bin/bash -c "locale-gen" 
+arch-chroot /mnt /bin/bash -c "locale-gen"
 clear
 sleep 3
 
-echo -e '\033[1;92m' "\n\tZONA HORARIA AUTOMATICA"
+echo -e '\033[1;92m' "\n\t\t\t ZONA HORARIA AUTOMATICA"
 arch-chroot /mnt /bin/bash -c "pacman -Sy curl --noconfirm"
 curl https://ipapi.co/timezone > zonahoraria
 zonahoraria=$(cat zonahoraria)
@@ -434,15 +434,15 @@ sleep 3
 rm zonahoraria
 clear
 
-echo -e '\033[1;92m' "\n\tESTABLECER UN MAPA DE TECLADO PARA LA TERMINAL VIRTUAL"
+echo -e '\033[1;92m' "\n\t\t\t ESTABLECER UN MAPA DE TECLADO PARA LA TERMINAL VIRTUAL"
 
 curl https://ipapi.co/languages | awk -F "," '{print $1}' | sed -e's/.$//' | sed -e's/.$//' | sed -e's/.$//' > keymap
 keymap=$(cat keymap)
-echo "KEYMAP=$keymap" > /mnt/etc/vconsole.conf 
-cat /mnt/etc/vconsole.conf 
+echo "KEYMAP=$keymap" > /mnt/etc/vconsole.conf
+cat /mnt/etc/vconsole.conf
 clear
 
-echo -e '\033[1;92m' "\n\tACTUALIZA LISTA DE MIRRORS EN TU DISCO"
+echo -e '\033[1;92m' "\n\t\t\t ACTUALIZA LISTA DE MIRRORS EN TU DISCO"
 
 echo ""
 echo "Actualizando lista de MirrorList"
@@ -453,7 +453,7 @@ cat /mnt/etc/pacman.d/mirrorlist
 sleep 3
 clear
 
-echo -e '\033[1;92m' "\n\tINSTALACIÓN DEL KERNEL ESTABLE"
+echo -e '\033[1;92m' "\n\t\t\t INSTALACIÓN DEL KERNEL ESTABLE"
 
 arch-chroot /mnt /bin/bash -c "pacman -S linux-firmware linux linux-headers mkinitcpio --noconfirm"
 clear
@@ -461,15 +461,15 @@ clear
 if [ $uefi == 1 ]
 then
 
-echo -e '\033[1;92m' "\n\tINSTALACIÓN DE GRUB - ARRANQUE"
+echo -e '\033[1;92m' "\n\t\t\t INSTALACIÓN DE GRUB - ARRANQUE"
 
 clear
 arch-chroot /mnt /bin/bash -c "pacman -S grub efibootmgr os-prober dosfstools --noconfirm"
-echo '' 
-echo -e '\033[1;92m' 'INSTALANDO EFI SYSTEM >> bootx64.efi' 
-arch-chroot /mnt /bin/bash -c 'grub-install --target=x86_64-efi --efi-directory=/efi --removable' 
-echo '' 
-echo -e '\033[1;92m' 'INSTALANDO UEFI SYSTEM >> grubx64.efi' 
+echo ''
+echo -e '\033[1;92m' 'INSTALANDO EFI SYSTEM >> bootx64.efi'
+arch-chroot /mnt /bin/bash -c 'grub-install --target=x86_64-efi --efi-directory=/efi --removable'
+echo ''
+echo -e '\033[1;92m' 'INSTALANDO UEFI SYSTEM >> grubx64.efi'
 arch-chroot /mnt /bin/bash -c 'grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=Arch'
 ######
 sed -i "6iGRUB_CMDLINE_LINUX_DEFAULT="loglevel=3"" /mnt/etc/default/grub
@@ -477,20 +477,20 @@ sed -i '7d' /mnt/etc/default/grub
 ######
 echo ''
 arch-chroot /mnt /bin/bash -c "grub-mkconfig -o /boot/grub/grub.cfg"
-echo '' 
-echo 'ls -l /mnt/efi' 
-ls -l /mnt/efi 
-echo '' 
-echo -e '\033[1;92m' >> "\n\tLEA BIEN QUE NO TENGA NINGÚN ERROR MARCADO" 
-echo -e '\033[1;92m' >> "\n\tCONFIRME TENER LAS IMG DE LINUX PARA EL ARRANQUE" 
-echo -e '\033[1;92m' >> "\n\tCONFIRME TENER LA CARPETA DE GRUB PARA EL ARRANQUE" 
+echo ''
+echo 'ls -l /mnt/efi'
+ls -l /mnt/efi
+echo ''
+echo -e '\033[1;92m' >> "\n\t\t\t LEA BIEN QUE NO TENGA NINGÚN ERROR MARCADO"
+echo -e '\033[1;92m' >> "\n\t\t\t CONFIRME TENER LAS IMG DE LINUX PARA EL ARRANQUE"
+echo -e '\033[1;92m' >> "\n\t\t\t CONFIRME TENER LA CARPETA DE GRUB PARA EL ARRANQUE"
 sleep 4
 
 else
 
 clear
 arch-chroot /mnt /bin/bash -c "pacman -S grub os-prober --noconfirm"
-echo '' 
+echo ''
 arch-chroot /mnt /bin/bash -c "grub-install --target=i386-pc $disco"
 ######
 sed -i "6iGRUB_CMDLINE_LINUX_DEFAULT="loglevel=3"" /mnt/etc/default/grub
@@ -498,19 +498,19 @@ sed -i '7d' /mnt/etc/default/grub
 ######
 echo ''
 arch-chroot /mnt /bin/bash -c "grub-mkconfig -o /boot/grub/grub.cfg"
-echo '' 
-echo 'ls -l /mnt/boot' 
-ls -l /mnt/boot 
-echo '' 
-echo -e '\033[1;92m' >> "\n\tLEA BIEN QUE NO TENGA NINGÚN ERROR MARCADO" 
-echo -e '\033[1;92m' >> "\n\tCONFIRME TENER LAS IMG DE LINUX PARA EL ARRANQUE" 
-echo -e '\033[1;92m' >> "\n\tCONFIRME TENER LA CARPETA DE GRUB PARA EL ARRANQUE" 
+echo ''
+echo 'ls -l /mnt/boot'
+ls -l /mnt/boot
+echo ''
+echo -e '\033[1;92m' >> "\n\t\t\t LEA BIEN QUE NO TENGA NINGÚN ERROR MARCADO"
+echo -e '\033[1;92m' >> "\n\t\t\t CONFIRME TENER LAS IMG DE LINUX PARA EL ARRANQUE"
+echo -e '\033[1;92m' >> "\n\t\t\t CONFIRME TENER LA CARPETA DE GRUB PARA EL ARRANQUE"
 
 fi
 
 clear
 
-echo -e '\033[1;92m' "\n\tINSTALANDO PROGRAMAS PARA ETHERNET"
+echo -e '\033[1;92m' "\n\t\t\t INSTALANDO PROGRAMAS PARA ETHERNET"
 
 arch-chroot /mnt /bin/bash -c "pacman -S dhcpcd networkmanager iwd net-tools ifplugd --noconfirm"
 arch-chroot /mnt /bin/bash -c "systemctl enable dhcpcd NetworkManager"
@@ -524,7 +524,7 @@ clear
 # BLUUTUUU
 #arch-chroot /mnt /bin/bash -c "pacman -S bluez bluez-utils pulseaudio-bluetooth"
 
-echo -e '\033[1;92m' "\n\tCAMBIANDO BASH POR NUESTRA SHELL PREFERIDA"
+echo -e '\033[1;92m' "\n\t\t\t CAMBIANDO BASH POR NUESTRA SHELL PREFERIDA"
 
 arch-chroot /mnt /bin/bash -c "pacman -S zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions --noconfirm"
 SH=zsh
@@ -533,7 +533,7 @@ arch-chroot /mnt /bin/bash -c "chsh -s /usr/bin/$SH $user"
 arch-chroot /mnt /bin/bash -c "chsh -s /bin/$SH $user"
 clear
 
-echo -e '\033[1;92m' "\\n\tINSTALANDO GIT WGET NEOFETCH LSB-RELEASE"
+echo -e '\033[1;92m' "\\n\t\t\t INSTALANDO GIT WGET NEOFETCH LSB-RELEASE"
 
 arch-chroot /mnt /bin/bash -c "pacman -S git wget neofetch lsb-release --noconfirm"
 echo ""
@@ -541,7 +541,7 @@ arch-chroot /mnt /bin/bash -c "ls /home/$user"
 sleep 5
 clear
 
-echo -e '\033[1;92m' "\n\tDRIVER DE VÍDEO AUTOMATICO SOLO DRIVER LIBRES"
+echo -e '\033[1;92m' "\n\t\t\t DRIVER DE VÍDEO AUTOMATICO SOLO DRIVER LIBRES"
 
 if (lspci | grep VGA | grep "NVIDIA\|nVidia" &>/dev/null); then
 
@@ -550,22 +550,22 @@ arch-chroot /mnt /bin/bash -c "pacman -S xf86-video-nouveau mesa lib32-mesa mesa
 
 elif (lspci | grep VGA | grep "Radeon R\|R2/R3/R4/R5" &>/dev/null); then
 
-# RADEON  
+# RADEON
 arch-chroot /mnt /bin/bash -c "pacman -S xf86-video-amdgpu mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau libva-mesa-driver lib32-mesa-vdpau lib32-libva-mesa-driver libva-vdpau-driver libvdpau-va-gl libva-utils vdpauinfo opencl-mesa clinfo ocl-icd lib32-ocl-icd opencl-headers --noconfirm"
 
 elif (lspci | grep VGA | grep "ATI\|AMD/ATI" &>/dev/null); then
 
-# ATI             
+# ATI
 arch-chroot /mnt /bin/bash -c "pacman -S xf86-video-ati mesa lib32-mesa mesa-vdpau libva-mesa-driver lib32-mesa-vdpau lib32-libva-mesa-driver libva-vdpau-driver libvdpau-va-gl libva-utils vdpauinfo opencl-mesa clinfo ocl-icd lib32-ocl-icd opencl-headers --noconfirm"
 
 elif (lspci | grep VGA | grep "Intel" &>/dev/null); then
 
-# INTEL       
+# INTEL
 arch-chroot /mnt /bin/bash -c "pacman -S xf86-video-intel vulkan-intel mesa lib32-mesa intel-media-driver libva-intel-driver libva-vdpau-driver libvdpau-va-gl libva-utils vdpauinfo intel-compute-runtime beignet clinfo ocl-icd lib32-ocl-icd opencl-headers --noconfirm"
-    
+
 else
 
-# GENERICO   
+# GENERICO
 arch-chroot /mnt /bin/bash -c "pacman -S xf86-video-vesa xf86-video-fbdev mesa mesa-libgl lib32-mesa --noconfirm"
 
 fi
@@ -573,92 +573,98 @@ fi
 clear
 
 
-echo -e '\033[1;92m' "\n\tESCRITORIO SELECCIONADO"
+echo -e '\033[1;92m' "\n\t\t\t ESCRITORIO SELECCIONADO"
 
 case $escritorio in
   1)
     echo "Escritorio : Terminal Virtual (TTY)"
     sleep 3
-   echo -e '\033[1;92m' "\n\t\t\t\t            ....BUSCANDO MIRRORS MAS RAPIDOS...."
+   echo -e '\033[1;92m' "\n\t\t\t\t ....BUSCANDO MIRRORS MAS RAPIDOS...."
    arch-chroot /mnt /bin/bash -c "reflector --verbose --latest 5 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
-	echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO LIGHTDM...." 
+	echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO LIGHTDM...."
    arch-chroot /mnt /bin/bash -c "pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings accountsservice --noconfirm"
 	arch-chroot /mnt /bin/bash -c "systemctl enable lightdm"
-   echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO FLAMESHOT...."
+   echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO FLAMESHOT...."
    arch-chroot /mnt /bin/bash -c "pacman -S flameshot --noconfirm"
-	echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO XORG...." 
+	echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO XORG...."
    arch-chroot /mnt /bin/bash -c "pacman -S xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock --noconfirm"
-	echo -e '\033[1;92m' "\n\t\t\t\t                 ....INSTALANDO PULSEAUDIO...."
+	echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO PULSEAUDIO...."
    arch-chroot /mnt /bin/bash -c "pacman -S pulseaudio --noconfirm"
-	echo -e '\033[1;92m' "\n\t\t\t\t                  ....INSTALANDO FIREFOX...." 
+	echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO FIREFOX...."
    arch-chroot /mnt /bin/bash -c "pacman -S firefox --noconfirm"
-   echo -e '\033[1;92m' "\n\t\t\t\t                 ....INSTALANDO BAT...."
+   echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO BAT...."
    arch-chroot /mnt /bin/bash -c "pacman -S bat --noconfirm"
-	#echo -e '\033[1;92m' "\n\t\t\t\t                 ....INSTALANDO TELEGRAM...." 
-   #arch-chroot /mnt /bin/bash -c "pacman -S telegram-desktop -y --noconfirm
-   #echo -e '\033[1;92m' "\n\t\t\t\t                 ....INSTALANDO DISCORD...." 
-   #arch-chroot /mnt /bin/bash -c "pacman -S discord -y --noconfirm
-   echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO NEOVIM...."
+	echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO NEOVIM...."
    arch-chroot /mnt /bin/bash -c "pacman -S neovim --noconfirm"
-   echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO FZF...."
+   echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO FZF...."
    arch-chroot /mnt /bin/bash -c "pacman -S fzf --noconfirm"
-	echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO TMUX...."
+	echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO TMUX...."
    arch-chroot /mnt /bin/bash -c "pacman -S tmux --noconfirm"
-	echo -e '\033[1;92m' "\n\t\t\t\t                  ....INSTALANDO XCLIP...."
+	echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO XCLIP...."
    arch-chroot /mnt /bin/bash -c "pacman -S xclip  --noconfirm"
-	echo -e '\033[1;92m' "\n\t\t\t\t                 ....INSTALANDO ARK...."
+	echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO ARK...."
    arch-chroot /mnt /bin/bash -c "pacman -S ark --noconfirm"
-	echo -e '\033[1;92m' "\n\t\t\t\t                    ....INSTALANDO LSD...." 
+	echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO LSD...."
    arch-chroot /mnt /bin/bash -c "pacman -S lsd --noconfirm"
-	echo -e '\033[1;92m' "\n\t\t\t\t                    ....INSTALANDO ROFI...." 
+	echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO ROFI...."
    arch-chroot /mnt /bin/bash -c "pacman -S rofi --noconfirm"
-	echo -e '\033[1;92m' "\n\t\t\t\t                    ....INSTALANDO BSPWM...." 
+	echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO BSPWM...."
    arch-chroot /mnt /bin/bash -c "pacman -S bspwm --noconfirm"
-	echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO SXHKD...." 
+	echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO SXHKD...."
    arch-chroot /mnt /bin/bash -c "pacman -S sxhkd --noconfirm"
-	echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO GVFS...."
+	echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO GVFS...."
    arch-chroot /mnt /bin/bash -c "pacman -S gvfs --noconfirm"
-   echo -e '\033[1;92m' "\n\t\t\t\t                     ....INSTALANDO PICOM...." 
+   echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO PICOM...."
    arch-chroot /mnt /bin/bash -c "pacman -S picom --noconfirm"
-   echo -e '\033[1;92m' "\n\t\t\t\t                    ....INSTALANDO PCMANFM...." 
+   echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO PCMANFM...."
    arch-chroot /mnt /bin/bash -c "pacman -S pcmanfm --noconfirm"
-   echo -e '\033[1;92m' "\n\t\t\t\t                  ....INSTALANDO BASH-COMPLETION...." 
+   echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO BASH-COMPLETION...."
    arch-chroot /mnt /bin/bash -c "pacman -S bash-completion  --noconfirm"
-   echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO LXAPPEARANCE...." 
+   echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO LXAPPEARANCE...."
    arch-chroot /mnt /bin/bash -c "pacman -S lxappearance --noconfirm"
-   echo -e '\033[1;92m' "\n\t\t\t\t                         ....INSTALANDO ZATHURA...."
+   echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO ZATHURA...."
    arch-chroot /mnt /bin/bash -c "pacman -S zathura --noconfirm"
    arch-chroot /mnt /bin/bash -c "pacman -S zathura-pdf-poppler  --noconfirm"
-   echo -e '\033[1;92m' "\n\t\t\t\t                            ....INSTALANDO I3LOCK...." 
+   echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO I3LOCK...."
    arch-chroot /mnt /bin/bash -c "pacman -S i3lock  --noconfirm"
-   echo -e '\033[1;92m' "\n\t\t\t\t                            ....INSTALANDO XED...."  
+   echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO XED...."
    arch-chroot /mnt /bin/bash -c "pacman -S xed  --noconfirm"
-   echo -e '\033[1;92m' "\n\t\t\t\t                           ....INSTALANDO RANGER...." 
+   echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO RANGER...."
    arch-chroot /mnt /bin/bash -c "pacman -S ranger --noconfirm"
-   echo -e '\033[1;92m' "\n\t\t\t\t                            ....INSTALANDO FEH...." 
+   echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO FEH...."
    arch-chroot /mnt /bin/bash -c "pacman -S feh  --noconfirm"
-   echo -e '\033[1;92m' "\n\t\t\t\t               ....INSTALANDO PACMAN-CONTRIB...."
+   echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO PACMAN-CONTRIB...."
    arch-chroot /mnt /bin/bash -c "pacman -S pacman-contrib --noconfirm"
-   echo -e '\033[1;92m' "\n\t\t\t\t                    ....INSTALANDO TILIX...." 
-   arch-chroot /mnt /bin/bash -c "pacman -S tilix --noconfirm"
-   #echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO i3-WM I3GAPS I3BLOCKS I3LOCK...." 
+   echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO KITTY...."
+   arch-chroot /mnt /bin/bash -c "pacman -S kitty --noconfirm"
+   echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO IMAGEMAGICK...."
+   arch-chroot /mnt /bin/bash -c "pacman -S imagemagick --noconfirm"
+   echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO DUNST...."
+   arch-chroot /mnt /bin/bash -c "pacman -S dunst --noconfirm"
+   #echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO TELEGRAM...."
+   #arch-chroot /mnt /bin/bash -c "pacman -S telegram-desktop -y --noconfirm
+   #echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO DISCORD...."
+   #arch-chroot /mnt /bin/bash -c "pacman -S discord -y --noconfirm
+   #echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO TILIX...."
+   #arch-chroot /mnt /bin/bash -c "pacman -S tilix --noconfirm"
+   #echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO i3-WM I3GAPS I3BLOCKS I3LOCK...."
    #arch-chroot /mnt /bin/bash -c "pacman -S i3lock i3-gaps i3-wm i3blocks --noconfirm"
-   #echo -e '\033[1;92m' "\n\t\t\t\t                   ....INSTALANDO ARC-GTK-THEME(ARC-DARK)...."
+   #echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO ARC-GTK-THEME(ARC-DARK)...."
    #arch-chroot /mnt /bin/bash -c "pacman -S arc-gtk-theme --noconfirm"
-   #echo -e '\033[1;92m' "\n\t\t\t\t                    ....INSTALANDO ZSH...." 
-   #arch-chroot /mnt /bin/bash -c "pacman -S zsh  --noconfirm" 
-   #echo -e '\033[1;92m' "\n\t\t\t\t                ....INSTALANDO XDG-USER-DIRS...."
+   #echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO ZSH...."
+   #arch-chroot /mnt /bin/bash -c "pacman -S zsh  --noconfirm"
+   #echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO XDG-USER-DIRS...."
    #arch-chroot /mnt /bin/bash -c "pacman -S xdg-user-dirs --noconfirm"
    #xdg-user-dirs-update
-   #echo -e '\033[1;92m' "\n\t\t\t\t                     ....INSTALANDO NEOFETCH...." 
+   #echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO NEOFETCH...."
    #arch-chroot /mnt /bin/bash -c "pacman -S neofetch  --noconfirm"
-   #echo -e '\033[1;92m' "\n\t\t\t\t                      ....INSTALANDO OS-PROBER...."
+   #echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO OS-PROBER...."
    #arch-chroot /mnt /bin/bash -c "pacman -S os-prober --noconfirm"
-   #echo -e '\033[1;92m' "\n\t\t\t\t                  ....INSTALANDO ZSH-AUTOSUGGESTIONS ...." 
+   #echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO ZSH-AUTOSUGGESTIONS ...."
    #arch-chroot /mnt /bin/bash -c "pacman -S zsh-autosuggestions --noconfirm"
-   #echo -e '\033[1;92m' "\n\t\t\t\t                  ....INSTALANDO ZSH-SYNTAX-HIGHLIGHTING...." 
+   #echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO ZSH-SYNTAX-HIGHLIGHTING...."
    #arch-chroot /mnt /bin/bash -c "pacman -S zsh-syntax-highlighting --noconfirm"
-   #echo -e '\033[1;92m' "\n\t\t\t\t                      ....INSTALANDO GOOGLE...."
+   #echo -e '\033[1;92m' "\n\t\t\t\t ....INSTALANDO GOOGLE...."
    #arch-chroot /mnt /bin/bash -c "pacman -S google-chrome-stable"
 
     clear
@@ -673,14 +679,14 @@ case $escritorio in
 
     # PROGRAMAS DE XFCE4
     arch-chroot /mnt /bin/bash -c "pacman -S xfce4 xfce4-goodies network-manager-applet ffmpegthumbs ffmpegthumbnailer --noconfirm"
-	
+
 	# PROGRAMAS PARA LOGIN
 	arch-chroot /mnt /bin/bash -c "pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings light-locker accountsservice --noconfirm"
 	arch-chroot /mnt /bin/bash -c "systemctl enable lightdm"
 
 	# ESTABLECER FORMATO DE TECLADO DENTRO DE XORG
 	keymap="latam"
-	# AQUI PODEMOS PONERLO EN " latam - es - us " 
+	# AQUI PODEMOS PONERLO EN " latam - es - us "
 	# ALGÚN OTRO IDIOMA QUE QUEREMOS PARA NUESTRO TECLADO MI CASO ES : latam
 
 	touch /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
@@ -723,7 +729,7 @@ case $escritorio in
 
     # ESTABLECER FORMATO DE TECLADO DENTRO DE XORG
 	keymap="latam"
-	# AQUI PODEMOS PONERLO EN " latam - es - us " 
+	# AQUI PODEMOS PONERLO EN " latam - es - us "
 	# ALGÚN OTRO IDIOMA QUE QUEREMOS PARA NUESTRO TECLADO MI CASO ES : latam
 
 	touch /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
@@ -766,7 +772,7 @@ case $escritorio in
 
     # ESTABLECER FORMATO DE TECLADO DENTRO DE XORG
 	keymap="latam"
-	# AQUI PODEMOS PONERLO EN " latam - es - us " 
+	# AQUI PODEMOS PONERLO EN " latam - es - us "
 	# ALGÚN OTRO IDIOMA QUE QUEREMOS PARA NUESTRO TECLADO MI CASO ES : latam
 
 	touch /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
@@ -804,7 +810,7 @@ case $escritorio in
   ;;
 esac
 
-echo -e '\033[1;92m' "\n\tDESMONTANDO PARTICIONES Y REINICIANDO EL SISTEMA....."
+echo -e '\033[1;92m' "\n\t\t\t DESMONTANDO PARTICIONES Y REINICIANDO EL SISTEMA....."
 
 sleep 2
 
@@ -813,7 +819,7 @@ umount -R /mnt
 reboot
 
 #
-# METODO DE DISCO PARA UEFI - BOOT - ROOT - HOME - SWAP 
+#-- METODO DE DISCO PARA UEFI - BOOT - ROOT - HOME - SWAP
 #
 	#+100M 			tamaño particion boot
 	#+${swapsize}G  tamaño particion swap
@@ -845,7 +851,7 @@ reboot
 #	clear
 #	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
 #	echo ""
-#	echo "Partición EFI es:" 
+#	echo "Partición EFI es:"
 #	cat boot-efi
 #	echo ""
 #	echo "Partición SWAP es:"
@@ -862,18 +868,18 @@ reboot
 #	echo ""
 #	echo "Formateando Particiones"
 #	echo ""
-#	mkfs.ext4 $(cat root-efi) 
-#	mount $(cat root-efi) /mnt 
+#	mkfs.ext4 $(cat root-efi)
+#	mount $(cat root-efi) /mnt
 #
 #	mkdir -p /mnt/home
-#	mkfs.ext4 $(cat home-efi) 
+#	mkfs.ext4 $(cat home-efi)
 #	mount $(cat home-efi) /mnt/home
 #
-#	mkdir -p /mnt/efi 
-#	mkfs.fat -F 32 $(cat boot-efi) 
-#	mount $(cat boot-efi) /mnt/efi 
+#	mkdir -p /mnt/efi
+#	mkfs.fat -F 32 $(cat boot-efi)
+#	mount $(cat boot-efi) /mnt/efi
 #
-#	mkswap $(cat swap-efi) 
+#	mkswap $(cat swap-efi)
 #	swapon $(cat swap-efi)
 #
 #	clear
@@ -884,8 +890,8 @@ reboot
 #	sleep 3
 #	clear
 
-#########################################################
-# METODO DE DISCO PARA BIOS - BOOT - ROOT - HOME - SWAP 
+#
+#-- METODO DE DISCO PARA BIOS - BOOT - ROOT - HOME - SWAP
 #
 	#+100M 			particion boot
 	#+${swapsize}G	particion swap
@@ -897,7 +903,7 @@ reboot
 #
 #	dd if=/dev/zero of="${disco}" bs=100M count=10 status=progress
 #	(echo o; echo n; echo p; echo 1; echo ""; echo +100M; echo n; echo p; echo 2; echo ""; echo +${swapsize}G; echo n; echo p; echo 3; echo ""; echo +20G; echo n; echo p; echo 4; echo ""; echo ""; echo t; echo 2; echo 82; echo a; echo 1; echo w; echo q) | fdisk ${disco}
-#	fdisk -l ${disco} > /tmp/partition 
+#	fdisk -l ${disco} > /tmp/partition
 #	cat /tmp/partition
 #	sleep 3
 #
@@ -911,7 +917,7 @@ reboot
 #	clear
 #	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
 #	echo ""
-#	echo "Partición BOOT es:" 
+#	echo "Partición BOOT es:"
 #	cat boot-bios
 #	echo ""
 #	echo "Partición SWAP es:"
@@ -928,18 +934,18 @@ reboot
 #	echo ""
 #	echo "Formateando Particiones"
 #	echo ""
-#	mkfs.ext4 $(cat root-bios) 
-#	mount $(cat root-bios) /mnt 
+#	mkfs.ext4 $(cat root-bios)
+#	mount $(cat root-bios) /mnt
 #
 #	mkdir -p /mnt/boot
-#	mkfs.ext4 $(cat boot-bios) 
+#	mkfs.ext4 $(cat boot-bios)
 #	mount $(cat boot-bios) /mnt/boot
 #
 #	mkdir -p /mnt/home
-#	mkfs.ext4 $(cat home-bios) 
+#	mkfs.ext4 $(cat home-bios)
 #	mount $(cat home-bios) /mnt/home
 #
-#	mkswap $(cat swap-bios) 
+#	mkswap $(cat swap-bios)
 #	swapon $(cat swap-bios)
 #
 #	clear

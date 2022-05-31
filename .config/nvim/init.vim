@@ -1,113 +1,134 @@
-"   o8o               o8o      .                    o8o                    
-"   `"'               `"'    .o8                    `"'                    
-"  oooo  ooo. .oo.   oooo  .o888oo      oooo    ooo oooo  ooo. .oo.  .oo.   
-"  `888  `888P"Y88b  `888    888         `88.  .8'  `888  `888P"Y88bP"Y88b  
-"   888   888   888   888    888          `88..8'    888   888   888   888  
-"   888   888   888   888    888 .   .o.   `888'     888   888   888   888  
-"  o888o o888o o888o o888o   '888i'  Y8P    `8'     o888o o888o o888o o888o 
+"   o8o               o8o      .                    o8o
+"   `"'               `"'    .o8                    `"'
+"  oooo  ooo. .oo.   oooo  .o888oo      oooo    ooo oooo  ooo. .oo.  .oo.
+"  `888  `888P"Y88b  `888    888         `88.  .8'  `888  `888P"Y88bP"Y88b
+"   888   888   888   888    888          `88..8'    888   888   888   888
+"   888   888   888   888    888 .   .o.   `888'     888   888   888   888
+"  o888o o888o o888o o888o   '888i'  Y8P    `8'     o888o o888o o888o o888o
 "
+
+" Instala Vim-Plug Si No Esta Instalado
+
+if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
+    echo "Descargando Vim-Plug..."
+    silent !mkdir -p ~/.config/nvim/autoload/
+    silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
+    autocmd VimEnter * PlugInstall
+endif
+
+
+" Plugins
+
 call plug#begin('~/.config/nvim/plugged')
 
  Plug 'vim-airline/vim-airline'
  Plug 'vim-airline/vim-airline-themes'
- Plug 'tomasr/molokai'
+ Plug 'morhetz/gruvbox'
  Plug 'lilydjwg/colorizer'
 
 call plug#end()
 
-let g:plug_url_format = 'git@github.com:%s.git' "SUSTITUCION DE git@github.com POR .git CUANDO DESCARGA PLUGINS
+let g:plug_url_format = 'git@github.com:%s.git'
 
-let mapleader=' '             
-let g:airline_powerline_fonts = 1
+let mapleader=' '
 
-syntax on                     
-colorscheme molokai
-set t_Co=256                  
-"set guioptions=egmrti        
-set gfn=Monospace\ 10         
-set autoread                                       
-set noswapfile                
+
+" Configuraciones Base
+
+syntax on
+colorscheme gruvbox
+set t_Co=256
+"set guioptions=egmrti
+set gfn=Monospace\ 10
+set autoread
+set noswapfile
 set fileencoding=utf-8
 set fileencodings=utf-8
 set ttyfast
-"set laststatus=1             
-"set ruler                    
-"set title                    
-"set titleold="Terminal"      
-"set titlestring=%F           
-set number                    
-set relativenumber            
-set mouse=a                   
-set clipboard=unnamedplus     
+"set ruler
+"set title
+"set titleold="Terminal"
+"set titlestring=%F
+set number
+set relativenumber
+set mouse=a
+set clipboard=unnamedplus
 set encoding=utf-8
-set tabstop=4                 
-"set noshowmode               
-set spelllang=en,es           
-set splitbelow                
-set buftype=                  
-set backspace=indent,eol,start 
-set gcr=a:blinkon0            
-"set scrolloff=12             
-set nomodeline                
-"set modelines=10             
-"set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
-set softtabstop=0              
-set shiftwidth=4              
-set expandtab                  
-set showmatch                 
-set hidden                    
-set hlsearch                  
-set incsearch                 
-set ignorecase                
-"set smartcase                
+set tabstop=4
+"set noshowmode
+set spelllang=en,es
+set splitbelow
+set buftype=
+set backspace=indent,eol,start
+set gcr=a:blinkon0
+"set scrolloff=12
+"set nomodeline
+"set modelines=10
+set softtabstop=0
+set shiftwidth=4
+set expandtab
+set showmatch
+set hidden
+set hlsearch
+set incsearch
+set ignorecase
+"set smartcase
 set fileformats=unix,dos,mac
-"set colorcolumn=120          
-"set nowrap                   
-"set termguicolors            
-set background=dark          
-"set cursorcolumn             
-set cursorline                
-set completeopt=menuone,longest 
-set complete+=kspell          
-set shortmess+=c              
-
-"PARA QUE EL CURSOR ESTE EN BARRA EN MODO INSERT Y NORMAL
-
+"set colorcolumn=120
+"set nowrap
+"set termguicolors
+set background=dark
+"set cursorcolumn
+set cursorline
+set completeopt=menuone,longest
+set complete+=kspell
+set shortmess+=c
+set wildignorecase
 set guicursor=n-i:ver100n-iCursor
+set undofile
+set undodir=~/.config/nvim/undodir
 
-"EXPLORADOR DE ARCHIVOS"
-map ñ :Vexplore<Return>
-let g:netrw_banner = 0         
-let g:netrw_liststyle = 3      
-let g:netrw_browse_split = 0   
-let g:netrw_winsize = 20       
+" Explorador De Archivos NETRW
+
+map <leader>ñ :Vexplore<Return>
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 0
+let g:netrw_winsize = 20
 let g:netrw_keepdir = 0
 let g:netrw_localcopydircmd = 'cp -r'
 hi! link netrwMarkFile search
 
-"MAPEOS"
-map QQ :wq<Return>
-map LL :w<Return>
+" Mapeos
+
+map ÑÑ :w<Return>
 map XX :q!<Return>
 map TT :q<Return>
-inoremap <leader>w <Esc>
+inoremap <leader>p <C-p>
+nnoremap <leader>o o<Esc>
+nnoremap <leader>p O<Esc>
 vnoremap <c-t> :split<CR>:term<CR>:resize 15<CR>
 nnoremap <c-t> :split<CR>:term<CR>:resize 15<CR>
 nnoremap <leader>t :tabnew<CR>
 nnoremap <leader>q :tabclose<CR>
-nnoremap <Leader>bn :bn<Cr>    
-nnoremap <Leader>bp :bp<Cr>    
-nnoremap <Leader>h <C-w>s      
-nnoremap <Leader>v <C-w>v      
-nnoremap <Leader>w <C-w>       
-nnoremap <Leader>d :bd<CR>     
+nnoremap <Leader>bn :bn<Cr>
+nnoremap <Leader>bp :bp<Cr>
+nnoremap <Leader>h <C-w>s
+nnoremap <Leader>v <C-w>v
+nnoremap <Leader>w <C-w>
+nnoremap <Leader>d :bd<CR>
 nnoremap <Leader>c :e $MYVIMRC<CR>
-nnoremap <A-S-h> <C-w><         
+nnoremap <A-S-h> <C-w><
 nnoremap <A-S-l> <C-w>>
-nnoremap <A-S-j> <C-w>-
-nnoremap <A-S-k> <C-w>+
+nnoremap <C-h>   <C-w>h
+nnoremap <C-l>   <C-w>l
+nnoremap <C-j>   <C-w>j
+nnoremap <C-k>   <C-w>k
+map <Leader>vv <C-w>t<C-w>H
+map <Leader>vh <C-w>t<C-w>K
+nnoremap <silent> <Leader>s :so %<CR>
 nnoremap º :
-nnoremap <S-z> :e 
+nnoremap <leader>e :e
 inoremap ( ()<left>
 inoremap { {}<left>
 inoremap [ []<left>
@@ -116,15 +137,50 @@ inoremap " ""<left>
 "inoremap bibas #!/bin/bash<CR>
 tnoremap <Esc><Esc> <C-\><C-n>
 
-"hi CursorLine ctermfg=NONE ctermbg=red 
+" Tamaño De Ventana Vertical
+nnoremap <silent> <A-S-j> :vertical resize +10<CR>
+nnoremap <silent> <A-S-k> :vertical resize -10<CR>
 
-hi CursorLineNr ctermbg=blue ctermfg=11
+" Tamaño De Ventana Hacia Arriba Y Abajo
+nnoremap <silent> <A-S-d> :resize +10<CR>
+nnoremap <silent> <A-S-u> :resize -10<CR>
 
-hi LineNr ctermbg=NONE ctermfg=red
+" Cursor
 
-"VIM-AIRLINE"
+"hi CursorLine ctermfg=NONE ctermbg=red
 
-let g:airline_theme = 'powerlineish'
+"hi CursorLineNr ctermbg=blue ctermfg=11
+
+"hi LineNr ctermbg=NONE ctermfg=red
+
+" Barra De Estado Personalizada De Nvim
+
+" Barra 1
+"set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
+set laststatus=2
+
+" Barra 2
+"set statusline+=\ %{mode()}
+"set statusline+=\ %l
+"set statusline+=\
+"set statusline+=\ %F\ %*
+"set statusline+=\
+"set statusline+=\ %2*\ %F
+"set statusline+=\ %1*\ %{getbufvar(bufnr('%'),'&mod')?'Modified':'Saved'}
+"set statusline+=\ %m
+"set statusline+=%=
+"set statusline+=\ %1*\
+"set statusline+=\ Line:\ %l
+"set statusline+=\ Col:\ %c
+"set statusline+=\ ::
+"set statusline+=\ %n
+"set statusline+=\
+
+" Vim-Airline
+
+let g:airline_powerline_fonts = 1
+
+let g:airline_theme = 'gruvbox'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -157,7 +213,8 @@ else
   let g:airline#extensions#tabline#left_sep = ''
   let g:airline#extensions#tabline#left_alt_sep = ''
 
-  " powerline symbols
+" Powerline Symbols
+
   let g:airline_left_sep = ''
   let g:airline_left_alt_sep = ''
   let g:airline_right_sep = ''

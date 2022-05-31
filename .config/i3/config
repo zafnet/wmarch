@@ -3,125 +3,154 @@
 # ██║░█████╔╝██║░░╚═╝██║░░██║██╔██╗██║█████╗░░██║██║░░██╗░
 # ██║░╚═══██╗██║░░██╗██║░░██║██║╚████║██╔══╝░░██║██║░░╚██╗
 # ██║██████╔╝╚█████╔╝╚█████╔╝██║░╚███║██║░░░░░██║╚██████╔╝
-# ╚═╝╚═════╝░░╚════╝░░╚════╝░╚═╝░░╚══╝╚═╝░░░░░╚═╝░╚═════╝░          
+# ╚═╝╚═════╝░░╚════╝░░╚════╝░╚═╝░░╚══╝╚═╝░░░░░╚═╝░╚═════╝░
 
-# FUENTE PANGO SE USA PARA VENTANAS Y BARRAS PROVEE DE GLIFOS UNICODE
-# EJEMPLO font pango: Nerd Fonts 10
+#-- Fuente Pango Se Usa Para Ventanas Y Barras Provee De Glifos Unicode
+#-- Ejemplo font pango: Nerd Fonts 10
 font pango: Hack Nerd Fonts 10
 
-#########################
-# TECLAS PERSONALIZADAS #
-#########################
+#-- Tecla Mod
 
-# TECLA PRINCIPAL #
 set $mod Mod4
+
+#-- AutoStart
+
+exec_always feh --bg-fill --randomize --no-fehbg /home/$USER/.wall/*
+
+exec_always picom
+# exec_always --no-startup-id picom -b
+# exec_always --no-startup-id killall picom && picom -b
+# exec_always --no-startup-id picom --config ~/.config/picom.conf
+
+#-- Lanzador De Polybar Para usar polybar se tiene que comentar arriba donde esta toda la bar de I3blocks
+
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+
+#-- Notificaciones De Escritorio Con DUNST
+
+exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
+
+#-- Alternativa  De Notificaciones Si Instaló Aparte Con XFCE4
+
+# exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
+
+#-- Resolucion
+
+#-- Monitor Real
+
+# exec_always xrandr --output HDMI-1 --mode 1600x900
+
+#-- Resolucion En Virtualbox
+
+# exec_always xrandr --output Virtual-1 --mode 1440x900
+
+#-- Cerrar Ventanas
+
+bindsym $mod+q kill
+
+#-- Recargar Archivo De Configuracion
+
+bindsym $mod+Shift+c reload
+
+#-- Reinicie I3 En Su Lugar (Conserva Su Diseño Y Sesión,Puede Usarse Para Actualizar I3)
+
+bindsym $mod+mod1+r restart
+
+#-- Salir De I3
+
+bindsym $mod+mod1+q exec --no-startup-id i3-msg exit
+
+#-- Terminales
 
 bindsym $mod+Return exec kitty
 
 bindsym mod1+Return exec xterm
 
-bindsym $mod+g exec pcmanfm
+#-- Navegadores
 
-bindsym shift+mod1+p exec /usr/bin/firefox
+bindsym super+i exec /usr/bin/firefox -private-window
+bindsym super+m exec /usr/bin/firefox
+bindsym super+n exec /usr/bin/google-chrome-stable
+bindsym super+c exec /usr/bin/google-chrome-stable --incognito
 
-bindsym $mod+q kill
+#-- Aplicaiones
 
-exec_always feh --bg-fill --randomize --no-fehbg /home/$USER/.wall/*
-
-bindsym ctrl+space exec rofi -modi drun -show drun \
+bindsym super+d exec rofi -modi drun -show drun \
 		-config ~/.config/rofi/config.rasi
 
-bindsym $mod+mod1+q exec --no-startup-id i3-msg exit # SALIR DE I3
+bindsym $mod+g exec pcmanfm
 
-bindsym $mod+Shift+c reload  # RECARGAR ARCHIVO DE CONFIGURACION
+#-- 1.Bloquear Pantalla Con Una Imagen 2.Bloquear Con  Desenfoque 3.Bloquear La Pantalla Con LIGHTDM
 
-bindsym $mod+mod1+r restart # REINICIE I3 EN SU LUGAR (CONSERVA SU DISEÑO Y SESIÓN, PUEDE USARSE PARA ACTUALIZAR I3)
+# bindsym $mod+l exec i3lock -i  ~/.config/i3/i3-lock-screen.png -p default|win -t
 
-#exec_always xrandr --output Virtual-1 --mode 1440x900 # RESOLUCION DE PANTALLA EN VIRTUALBOX
+# bindsym $mod+l exec ~/.config/i3/scripts/blur-lock
 
-# RESOLUCION DE PANTALLA EN MONITOR REAL
-#exec_always xrandr --output HDMI-1 --mode 1600x900
+# bindsym $mod+print exec dm-tool lock
 
-###########################
-# TRANSPARENCIA CON PICOM #
-###########################
-#exec_always --no-startup-id picom -b
-#exec_always --no-startup-id killall picom && picom -b
-#exec_always --no-startup-id picom --config ~/.config/picom.conf
-exec_always picom
 
-#######################
-# BLOQUEO DE PANTALLA # 
-#######################
+#-- Forma De Las Ventana En El Escritorio Apiladas En Pestañas O Flotantes En Todos Los Espacio De Trabajo
+#-- 1.Eliminando El Comentario Nos Deja En Modo De Mosaico I3 Predeterminado En Todos Los Espacio De Trabajo
+#-- 2.Modo Apilado En Todos Los Espacios De Trabajo
+#-- 3.Modo Con Pestañas En Todos Los Espacio De Trabajo
 
-# BLOQUEAR CON UNA IMAGEN #
-#bindsym $mod+l exec i3lock -i  ~/.config/i3/i3-lock-screen.png -p default|win -t
+# workspace_layout default
 
-# BLOQUEAR LA PANTALLA DESENFOCADA #
-#bindsym $mod+l exec ~/.config/i3/scripts/blur-lock
+# workspace_layout stacking
 
-# BLOQUEAR LA PANTALLA CON LIGHTDM #
-#bindsym $mod+print exec dm-tool lock
+# workspace_layout tabbed
 
-# NOTIFICACIONES DE ESCRITORIO #
-exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
-# ALTERNATIVA SI INSTALÓ APARTE CON XFCE4
-# exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
+#-- Diseño De Las Ventanas Individualmente En Cada Espacio De Trabajo
+#-- Pero Hay Que Desactivar La Otra Tecla Asociada Abajo En "Cambiar Espacio De Trabajo"
 
-##########################################################################
-# FORMA DE LAS VENTANA EN EL ESCRITORIO APILADAS EN PESTAÑAS O FLOTANTES #
-##########################################################################
+# bindsym $mod+7 workspace 7; layout stacking
 
-# EN TODOS LOS ESPACION DE TRABAJO SE VAN A ABRIR LAS VENTANAS COMO LA HAYAMOS CONFIGURADO EN APILADO O EN PESTAÑAS ETC #
+#-- Huecos Entre Ventanas Para Esto Hay Que Instalar I3-GAPS En ARCH Y Se Va A Eliminar I3-WM
 
-#workspace_layout default # ELIMINANDO EL COMENTARIO NOS DEJA EN MODO DE MOSAICO I3 PREDETERMINADO EN TODOS LOS ESPACION DE TRABAJO
-
-#workspace_layout stacking # MODO APILADO I3  CADA VENTANA SERÁ DE PANTALLA COMPLETA Y CON PESTAÑAS DE ARRIBA A ABAJO EN TODOS LOS ESPACION DE TRABAJO 
-
-#workspace_layout tabbed # MODO CON PESTAÑAS I3 EN TODOS LOS ESPACION DE TRABAJO CADA NUEVA VENTANA SE ABRIRÁ A PANTALLA COMPLETA COMO UNA PESTAÑA (DE IZQUIERDA A DERECHA)
-
-#ESTE ES UN EJEMPLO DE COMO SE PUEDE PONER EN UN ESCRITORIO QUE LAS VENTANAS SEAN APILADAS O CON PESTAÑAS
-#bindsym $mod+7 workspace 7; layout stacking
-#PERO HAY QUE DESACTIVAR LA OTRA TECLA ASOCIADA ABAJO EN "CAMBIAR ESPACIO DE TRABAJO"
-
-###############################
-# OPCIONES EXTRA PARA VENTANA #
-###############################
-
-# HACER HUECOS EN LAS VENTANAS PARA ESTO HAY QUE INSTALAR I3-GAPS EN ARCH Y SE VA A ELIMINAR I3-WM #
 gaps inner 6
 gaps outer 6
 
-# PARA QUE NO TENGA BORDE CON UN TITULO LA VENTANA #
+#-- Para Que No Tenga Borde Con Un Titulo La Ventana
+
 for_window [class = "^.*"] border pixel 3
 
-# thin borders (BORDES DELGADOS)
-# OPCIONES PARA QUE NO SE VEA EL BORDE DE LA VENTANA #
+#-- Bordes Delgados
 
-#hide_edge_borders both
-#hide_edge_borders none
-#hide_edge_borders vertical
-#hide_edge_borders horizontal
+# thin borders
+
+#-- Opciones Para Esconder El Borde De La Ventana
+
+# hide_edge_borders both
+# hide_edge_borders none
+# hide_edge_borders vertical
+# hide_edge_borders horizontal
 hide_edge_borders smart
 
-# MOSTRAR LAS BARRAS DE TÍTULO DE LA VENTANA (NO COMPATIBLE OFICIALMENTE CON I3GAPS) #
-#default_border normal
+#-- Mostrar Las Barras De Título De La Ventana (NO COMPATIBLE OFICIALMENTE CON I3GAPS)
 
-# ALINEACIÓN DEL TÍTULO DE LA VENTANA #
-#title_align center
+# default_border normal
 
-# USAR Mouse+$mod PARA ARRASTRAR LA VENTANA EN MODO FLOTANTE # 
+#-- Alineación Del Título De La Ventana
+
+# title_align center
+
+#-- Usar Mouse+$mod Para Arrastrar La Ventana En Modo Flotantes
+
 floating_modifier $mod
 
-# NAVEGAR A LOS ESPACIOS DE TRABAJO #
+#-- Navegar A Los Espacios De Trabajo
+
 bindsym $mod+mod1+Right workspace next
 bindsym $mod+mod1+Left workspace prev
 
-# MOVER VENTANA A OTRO ESPACIO DE TRABAJO SI EXISTE EL ESPACIO DE TRABAJO ANTERIOR O PREVIO #
+#-- Mover Ventana A Otro Espacio De Trabajo Si Existe El Espacio De Trabajo Anterior O Previo
+
 bindsym ctrl+$mod+Left move container to workspace prev
 bindsym ctrl+$mod+Right move container to workspace next
 
-# CAMBIAR EL ESPACIO DE TRABAJO #
+#-- Cambiar El Espacio De Trabajo
+
 bindsym $mod+1    workspace  $ws1
 bindsym $mod+2    workspace  $ws2
 bindsym $mod+3    workspace  $ws3
@@ -133,31 +162,34 @@ bindsym $mod+8    workspace  $ws8
 bindsym $mod+9    workspace  $ws9
 bindsym $mod+0    workspace  $ws10
 
-# CAMBIAR EL ESPACIO DE TRABAJO CON EL TECLADO NUMERICO #
-#bindcode $mod+87 workspace 1
-#bindcode $mod+88 workspace 2
-#bindcode $mod+89 workspace 3
-#bindcode $mod+83 workspace 4
-#bindcode $mod+84 workspace 5
-#bindcode $mod+85 workspace 6
-#bindcode $mod+79 workspace 7
-#bindcode $mod+80 workspace 8
-#bindcode $mod+81 workspace 9
-#bindcode $mod+90 workspace 10
+#-- Cambiar El Espacio De Trabajo Con El Teclado Numerico
 
-# CAMBIAR AL ESPACIO DE TRABAJO CON LAS TECLAS DEL TECLADO NUMÉRICO BLOQ NUM #
-#bindcode $mod+Mod2+87 workspace $ws1
-#bindcode $mod+Mod2+88 workspace $ws2
-#bindcode $mod+Mod2+89 workspace $ws3
-#bindcode $mod+Mod2+83 workspace $ws4
-#bindcode $mod+Mod2+84 workspace $ws5
-#bindcode $mod+Mod2+85 workspace $ws6
-#bindcode $mod+Mod2+79 workspace $ws7
-#bindcode $mod+Mod2+80 workspace $ws8
-#bindcode $mod+Mod2+81 workspace $ws9
-#bindcode $mod+Mod2+90 workspace $ws10
+# bindcode $mod+87 workspace 1
+# bindcode $mod+88 workspace 2
+# bindcode $mod+89 workspace 3
+# bindcode $mod+83 workspace 4
+# bindcode $mod+84 workspace 5
+# bindcode $mod+85 workspace 6
+# bindcode $mod+79 workspace 7
+# bindcode $mod+80 workspace 8
+# bindcode $mod+81 workspace 9
+# bindcode $mod+90 workspace 10
 
-# MOVER LA VENTANA ENFOCADA AL ESCRITORIO DESEADO #
+#-- Cambiar Al Espacio De Trabajo Con Las Teclas Del Teclado Numérico BLOQ NUM
+
+# bindcode $mod+Mod2+87 workspace $ws1
+# bindcode $mod+Mod2+88 workspace $ws2
+# bindcode $mod+Mod2+89 workspace $ws3
+# bindcode $mod+Mod2+83 workspace $ws4
+# bindcode $mod+Mod2+84 workspace $ws5
+# bindcode $mod+Mod2+85 workspace $ws6
+# bindcode $mod+Mod2+79 workspace $ws7
+# bindcode $mod+Mod2+80 workspace $ws8
+# bindcode $mod+Mod2+81 workspace $ws9
+# bindcode $mod+Mod2+90 workspace $ws10
+
+#-- Mover La Ventana Enfocada Al Escritorio Deseado
+
 bindsym $mod+Mod1+1    move container to workspace  $ws1
 bindsym $mod+Mod1+2    move container to workspace  $ws2
 bindsym $mod+Mod1+3    move container to workspace  $ws3
@@ -169,133 +201,146 @@ bindsym $mod+Mod1+8    move container to workspace  $ws8
 bindsym $mod+Mod1+9    move container to workspace  $ws9
 bindsym $mod+Mod1+0    move container to workspace  $ws10
 
-# MOVER EL CONTENEDOR ENFOCADO AL ESPACIO DE TRABAJO CON LAS TECLAS DEL TECLADO NUMÉRICO #
-#bindcode $mod+Shift+Mod2+87 	move container to workspace  $ws1
-#bindcode $mod+Shift+Mod2+88 	move container to workspace  $ws2
-#bindcode $mod+Shift+Mod2+89 	move container to workspace  $ws3
-#bindcode $mod+Shift+Mod2+83 	move container to workspace  $ws4
-#bindcode $mod+Shift+Mod2+84 	move container to workspace  $ws5
-#bindcode $mod+Shift+Mod2+85 	move container to workspace  $ws6
-#bindcode $mod+Shift+Mod2+79 	move container to workspace  $ws7
-#bindcode $mod+Shift+Mod2+80 	move container to workspace  $ws8
-#bindcode $mod+Shift+Mod2+81 	move container to workspace  $ws9
-#bindcode $mod+Shift+Mod2+90 	move container to workspace  $ws10
+#-- Mover El Contenedor Enfocado Al Espacio De Trabajo Con Las Teclas Del Teclado Numérico
 
-# MOVER EL CONTENEDOR ENFOCADO AL ESPACIO DE TRABAJO CON LAS TECLAS DEL TECLADO NUMÉRICO #
-#bindcode $mod+Shift+87 	 move container to workspace  $ws1
-#bindcode $mod+Shift+88 	 move container to workspace  $ws2
-#bindcode $mod+Shift+89 	 move container to workspace  $ws3
-#bindcode $mod+Shift+83 	 move container to workspace  $ws4
-#bindcode $mod+Shift+84 	 move container to workspace  $ws5
-#bindcode $mod+Shift+85 	 move container to workspace  $ws6
-#bindcode $mod+Shift+79 	 move container to workspace  $ws7
-#bindcode $mod+Shift+80 	 move container to workspace  $ws8
-#bindcode $mod+Shift+81 	 move container to workspace  $ws9
-#bindcode $mod+Shift+90 	 move container to workspace  $ws10
+# bindcode $mod+Shift+Mod2+87 	move container to workspace  $ws1
+# bindcode $mod+Shift+Mod2+88 	move container to workspace  $ws2
+# bindcode $mod+Shift+Mod2+89 	move container to workspace  $ws3
+# bindcode $mod+Shift+Mod2+83 	move container to workspace  $ws4
+# bindcode $mod+Shift+Mod2+84 	move container to workspace  $ws5
+# bindcode $mod+Shift+Mod2+85 	move container to workspace  $ws6
+# bindcode $mod+Shift+Mod2+79 	move container to workspace  $ws7
+# bindcode $mod+Shift+Mod2+80 	move container to workspace  $ws8
+# bindcode $mod+Shift+Mod2+81 	move container to workspace  $ws9
+# bindcode $mod+Shift+Mod2+90 	move container to workspace  $ws10
 
-# CAMBIAR EL TAMAÑO DE LA VENTANA TAMBIEN PUEDE USAR EL MOUSE PARA ESO #
+#-- Mover El Contenedor Enfocado Al Espacio De Trabajo Con Las Teclas Del Teclado Numérico
+
+# bindcode $mod+Shift+87 	 move container to workspace  $ws1
+# bindcode $mod+Shift+88 	 move container to workspace  $ws2
+# bindcode $mod+Shift+89 	 move container to workspace  $ws3
+# bindcode $mod+Shift+83 	 move container to workspace  $ws4
+# bindcode $mod+Shift+84 	 move container to workspace  $ws5
+# bindcode $mod+Shift+85 	 move container to workspace  $ws6
+# bindcode $mod+Shift+79 	 move container to workspace  $ws7
+# bindcode $mod+Shift+80 	 move container to workspace  $ws8
+# bindcode $mod+Shift+81 	 move container to workspace  $ws9
+# bindcode $mod+Shift+90 	 move container to workspace  $ws10
+
+#-- Cambiar El Tamaño De La Ventana Tambien Puede Usar El Mouse Para Eso
+
 mode "R" {
-#ESTOS ENLACES SE ACTIVAN TAN PRONTO COMO INGRESA AL MODO DE CAMBIO DE TAMAÑO
-# PRESIONAR HACIA LA IZQUIERDA REDUCIRÁ EL ANCHO DE LA VENTANA
-# PRESIONANDO A LA DERECHA AUMENTARÁ EL ANCHO DE LA VENTANA
-# PRESIONAR HACIA ARRIBA REDUCIRÁ LA ALTURA DE LA VENTANA
-# PRESIONANDO HACIA ABAJO CRECERÁ LA ALTURA DE LA VENTANA
+
+#- Estos Enlaces Se Activan Tan Pronto Como Ingresa Al Modo De Cambio De Tamaño
         bindsym j resize shrink width 3 px or 3 ppt
         bindsym k resize grow height 3 px or 3 ppt
         bindsym l resize shrink height 3 px or 3 ppt
         bindsym ntilde resize grow width 3 px or 3 ppt
 
-# LOS MISMO ATAJOS PERO PARA LAS FLECHAS #
-	bindsym Left resize shrink width 3 px or 3 ppt
+#-- Los Mismo Atajos Pero Para Las Flechas
+
+	     bindsym Left resize shrink width 3 px or 3 ppt
         bindsym Down resize grow height 3 px or 3 ppt
         bindsym Up resize shrink height 3 px or 3 ppt
         bindsym Right resize grow width 3 px or 3 ppt
 
-# VOLVER ESTADO NORMAL ENTER O ESC
+#-- Volver Estado Normal Enter O ESC
+
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "R"
 
-####################################################
-# COMBINACIONES DE TECLAS PARA DIFERENTES ACCIONES #
-####################################################
+#-- Control De Retroiluminacion
 
-# CONTROL DE RETROILUMINACION #
-#bindsym XF86MonBrightnessUp exec xbacklight +5 && notify-send "Brightness - ${$(xbacklight -get)%.*}%" 
-#bindsym XF86MonBrightnessDown exec xbacklight -5 && notify-send "Brightness - ${$(xbacklight -get)%.*}%" 
+# bindsym XF86MonBrightnessUp exec xbacklight +5 && notify-send "Brightness - ${$(xbacklight -get)%.*}%"
+# bindsym XF86MonBrightnessDown exec xbacklight -5 && notify-send "Brightness - ${$(xbacklight -get)%.*}%"
 
-# CAMBIAR EL FOCO #
+#-- Cambiar El Foco
+
 bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+i focus up
 bindsym $mod+l focus right
 
-# CAMBIAR EL FOCO CON LAS FLECHAS DEL CURSOR #
+#-- Cambiar El Foco Con Las Flechas Del Cursor
+
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# MOVER VENTANA ENFOCADA #
+#-- Mover Ventana Enfocada
+
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+i move up
 bindsym $mod+Shift+l move right
 
-# MOVER VENTANA ENFOCADA CON LAS FLECHAS #
+#-- Mover Ventana Enfocada Con Las Flechas
+
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# VENTANA EN HORIZONTAL #
+#-- Ventana En Horizontal
+
 bindsym $mod+h split h
 
-# VENTANA EN VERTICAL #
+#-- Ventana En Vertical
+
 bindsym $mod+v split v
 
-# VENTANA EN PANTALLA COMPLETA #
+#-- Ventana En Pantalla Completa
+
 bindsym $mod+f fullscreen toggle
 
-# CAMBIAR VENTANA A MODO stacked(APILADO), tabbed(PESTAÑA), toggle(ALTERNANDO) split(DIVIR) MANUALMENTE #
+#-- Cambiar Ventana A Modo stacked(APILADO),tabbed(PESTAÑA),toggle(ALTERNANDO),split(DIVIR) Manualmente
+
 bindsym $mod+a layout stacking
 bindsym $mod+e layout tabbed
 bindsym $mod+d layout toggle split
 
-# ALTERNA ENTRE MOSAICO A FLOTANTE #
+#-- Alterna Entre Mosaico A Flotantes
+
 bindsym $mod+s floating toggle
 bindsym $mod+t sticky toggle
 
-# CAMBIAR EL ENFOQUE ENTRE MOSAICOS Y VENTANAS FLOTANTES #
+#-- Cambiar El Enfoque Entre Mosaicos Y Ventanas Flotantes
+
 bindsym $mod+space focus mode_toggle
 
-# MARCAR LA VENTANA PRINCIPAL Y LA SIGUIENTE #
+#-- Marcar La Ventana Principal Y La Siguiente
+
 bindsym $mod+c focus parent
 
-# DESMARCAR LA VENTANA #
+#-- Desmarcar La Ventana
+
 bindsym $mod+z focus child
 
-# ABRIR UN NUEVO ESPACIO DE TRABAJO VACÍO #
-#bindsym $mod+Shift+n exec ~/.config/i3/scripts/empty_workspace
+#-- Abrir Un Nuevo Espacio De Trabajo Vacío
 
-# VOLUMEN #
+# bindsym $mod+Shift+n exec ~/.config/i3/scripts/empty_workspace
+
+#-- Volumen
 
 bindsym $mod+F10 exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym $mod+F11 exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym $mod+F12 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 
-# CAPTURA DE PANTALLA EL PRIMERO CON SCROT Y CON NOTIFICACION DE DUNST #
+#-- Captura De Pantalla El Primero Con SCROT Y Con Notificacion De DUNST
 
-#bindsym Print exec scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
+#-- Con scrot
+
+# bindsym Print exec scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
+
+#-- Con flameshot
+
 bindsym $mod+Print exec --no-startup-id flameshot full -p ~/screenshot
 
-###############################################################
-# CONFIGURACIÓN PARA EL COMPORTAMIENTO DEL ESPACIO DE TRABAJO #
-###############################################################
-
-# DEFINA LOS NOMBRES DE LOS ESPACIOS DE TRABAJO PREDETERMINADOS PARA LOS QUE CONFIGURAREMOS LOS ENLACES DE TECLAS MÁS ADELANTE #
+#-- Defina Los Nombres De Los Espacios De Trabajo Predeterminados Para Los Que Configuraremos Los Enlaces De Teclas Más Adelante
 
 set $ws1 "1:"
 set $ws2 "2:"
@@ -308,106 +353,110 @@ set $ws8 "8:"
 set $ws9 "9:"
 set $ws10 "10:"
 
-# USAR ESPACIOS DE TRABAJO EN DIFERENTES PANTALLAS #
-# DONDE DEBE REEMPLAZAR VGA-0/HDMI-0 CON LOS NOMBRES DE SUS PANTALLAS #
-# SE PUEDE OBTENER DEL COMANDO XRANDR #
-#workspace $ws1 output VGA-0
-#workspace $ws2 output VGA-0
-#workspace $ws3 output HDMI-0
-#workspace $ws4 output HDMI-0
-#workspace $ws5 output HDMI-0
+#-- Usar Espacios De Trabajo En Diferentes Pantallas
+#-- Donde Debe Reemplazar VGA-0/HDMI-0 Con Los Nombres De Sus Pantallas
+#-- Se Puede Obtener Del Comando XRANDR
 
-# VINCULAR EL PROGRAMA AL ESCRITORIO Y CENTRARSE EN ELLAS EN EL INICIO #
-#assign [class="tilix"] $ws1
-#assign [class="(?i)firefox"] $ws2
-#assign [class="pcmanfm"] $ws3
-#assign [class="TelegramDesktop"] $ws5
+# workspace $ws1 output VGA-0
+# workspace $ws2 output VGA-0
+# workspace $ws3 output HDMI-0
+# workspace $ws4 output HDMI-0
+# workspace $ws5 output HDMI-0
 
-# TE LLEVA DONDE SE ABRIO LA NUEVA VENTANA SI SE ABRE EN OTRO ESPACIO DE TRABAJO, ENTONCES TE LLEVA AHI #
-#for_window [class=tilix] focus
-#for_window [class=(?i)firefox] focus
-#for_window [class=pcmanfm] focus
-#for_window [class=Thunderbird] focus
-#for_window [class=TelegramDesktop] focus
+#-- Vincular El Programa Al Escritorio Y Centrarse En Ellas En El Inicio
 
+# assign [class="tilix"] $ws1
+# assign [class="(?i)firefox"] $ws2
+# assign [class="pcmanfm"] $ws3
+# assign [class="TelegramDesktop"] $ws5
 
-#################################################################
-# APLICACIONES/SERVICIOS DE INICIO AUTOMÁTICO AL INICIAR SESIÓN #
-#################################################################
+#-- Te Lleva Donde Se Abrio La Nueva VENTANA SI SE ABRE EN OTRO ESPACIO DE TRABAJO, ENTONCES TE LLEVA AHI
 
-# HACER QUE LA AUTENTICACIÓN FUNCIONE CON POLKIT-GNOME
-#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# for_window [class=tilix] focus
+# for_window [class=(?i)firefox] focus
+# for_window [class=pcmanfm] focus
+# for_window [class=Thunderbird] focus
+# for_window [class=TelegramDesktop] focus
 
-# BLOQUEO NUMERICO ACTIVADO #
-#exec --no-startup-id numlockx on
+#-- Hacer Que La Autenticación Funcione Con POLKIT-GNOME
 
-# CONFIGURAR VARIOS IDIOMAS DE TECLADO Y TECLA DE ACCESO RÁPIDO PARA CAMBIAR (ALT+BLOQ MAYÚS EN ESTE EJEMPLO) #
-#exec --no-startup-id setxkbmap -layout 'us,sk' -variant altgr-intl,qwerty -option 'grp:alt_caps_toggle'
+# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+#-- Bloqueo Numerico Activado
+
+# exec --no-startup-id numlockx on
+
+#-- Configurar Varios Idiomas De Teclado Y Tecla De Acceso Rápido Para Cambiar (ALT+BLOQ MAYÚS En Este Ejemplo)
+
+# exec --no-startup-id setxkbmap -layout 'us,sk' -variant altgr-intl,qwerty -option 'grp:alt_caps_toggle'
+
 exec --no-startup-id setxkbmap -layout 'es'
 
-# EMPEZAR CONKY #
-#exec_always --no-startup-id conky
+#-- Empezar Conky
 
-# SETEAR WALLPAPER CON NITROGEN #
-#exec --no-startup-id sleep 2 && nitrogen --restore
-#exec --no-startup-id feh --bg-fill /usr/share/backgrounds/lightblue.png
+# exec_always --no-startup-id conky
 
-# CONFIGURAR EL AHORRO DE ENERGÍA PARA LA PANTALLA #
-#exec --no-startup-id xset s 480 dpms 600 600 600
+#-- Setear Wallpaper Con Nitrogen Y Feh
 
-# APLICACIONES DE INICIO AUTOMÁTICO CON UNOS SEGUNDOS DE ESPERA CON EL COMANDO SLEEP #
-#exec --no-startup-id sleep 2 && tilix
-#exec --no-startup-id sleep 7 && firefox https://www.LAPAGINAQUEQUIERA.com/
-#exec --no-startup-id sleep 3 && pcmanfm
+# exec --no-startup-id sleep 2 && nitrogen --restore
+# exec --no-startup-id feh --bg-fill /usr/share/backgrounds/lightblue.png
 
-#######################
-# BANDEJA DEL SISTEMA #
-#######################
-# SI NO USAS DEX exec --no-startup-id dex --autostart --environment i3
-# NECESITA TENER APLICACIONES DE BANDEJA INICIADAS AQUÍ
+#-- Configurar El Ahorro De Energía Para La Pantallas
 
-# INICIE LA APLICACIÓN BLUEBERRY PARA ADMINISTRAR DISPOSITIVOS BLUETOOTH DESDE LA BANDEJA #
-#exec --no-startup-id blueberry-tray
+# exec --no-startup-id xset s 480 dpms 600 600 600
 
-# networkmanager-applet
-#exec --no-startup-id nm-applet
+#-- Aplicaciones De Inicio Automático Con Unos Segundos De Espera Con El Comando Sleep
 
-# clipman-applet
-#exec --no-startup-id xfce4-clipman
+# exec --no-startup-id sleep 2 && tilix
+# exec --no-startup-id sleep 7 && firefox https://www.LAPAGINAQUEQUIERA.com/
+# exec --no-startup-id sleep 3 && pcmanfm
 
-##########################################
-# REGLAS FLOTANTES PARA LAS APLICACIONES #
-##########################################
+#-- Bandeja Del Sistema
 
-#CREO QUE SE PUEDE PONER STACKED O TABBED TAMBIEN ADEMAS DE FLOTANTE
+#-- Si No Usas DEX
+exec --no-startup-id dex --autostart --environment i3
 
-# CONFIGURAR FLOTANTE (SIN MOSAICO) PARA LAS APLICACIONES QUE LO NECESITAN #
-#for_window [class="Yad" instance="yad"] floating enable
-#for_window [class="Galculator" instance="galculator"] floating enable
-#for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+#-- Necesita Tener Aplicaciones De Bandeja Iniciadas Aquí
 
-# ESTABLECER FLOTANTE (SIN MOSAICO) PARA APLICACIONES ESPECIALES #
-#for_window [class="Xsane" instance="xsane"] floating enable
-#for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
-#for_window [class="qt5ct" instance="qt5ct"] floating enable
-#for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
-#for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
-#for_window [class="Pamac-manager"] floating enable
-#for_window [window_role="About"] floating enable
+#-- 1.Inicie La Aplicación Blueberry Para Administrar Dispositivos Bluetooth Desde La Bandeja 2.networkmanager-applet 3.clipman-applet
 
-# ESTABLECER EL BORDE DE LA VENTANA FLOTANTE #
-#for_window [class="urxvt"] border pixel 1
+# exec --no-startup-id blueberry-tray
 
-# ESTABLECER EL TAMAÑO DE LA VENTANA FLOTANTE #
-#for_window [window_role="(?i)GtkFileChooserDialog"] resize set 640 480 #PARA ESTABLECER EL TAMAÑO DEL ARCHIVO, ELIJA EL CUADRO DE DIÁLOGO
-#for_window [class=".*"] resize set 640 480 #PARA CAMBIAR EL TAMAÑO DE TODAS LAS VENTANAS FLOTANTES
+# exec --no-startup-id nm-applet
 
-# ESTABLECER LA POSICIÓN DE LA VENTANA FLOTANTE #
-#for_window [class=".*"] move position center
+# exec --no-startup-id xfce4-clipman
 
-##########################################
-# AJUSTES DE COLOR PARA BARRA Y VENTANAS #
-##########################################
+#-- Reglas Flotantes Configuracion (SIN MOSAICO) Para Las Aplicaciones Que Lo Necesitan
+
+# for_window [class="Yad" instance="yad"] floating enable
+# for_window [class="Galculator" instance="galculator"] floating enable
+# for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+
+#-- Establecer Flotante (SIN MOSAICO) Para Aplicaciones Especiales
+
+# for_window [class="Xsane" instance="xsane"] floating enable
+# for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+# for_window [class="qt5ct" instance="qt5ct"] floating enable
+# for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+# for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
+# for_window [class="Pamac-manager"] floating enable
+# for_window [window_role="About"] floating enable
+
+#-- Establecer El Borde De La Ventana Flotantes
+
+# for_window [class="urxvt"] border pixel 1
+
+#-- Establecer El Tamaño De La Ventana Flotantes
+
+#- 1.Para Establecer El Tamaño Del Archivo, Elija El Cuadro De Diálogo
+#- 2.Para Cambiar El Tamaño De Todas Las Ventanas Flotantes
+#- 3.Establecer La Posición De La Ventana Flotantes
+
+# for_window [window_role="(?i)GtkFileChooserDialog"] resize set 640 480
+# for_window [class=".*"] resize set 640 480
+# for_window [class=".*"] move position center
+
+#-- Ajustes De Color Para Barra Y Ventanas
 
 set $darkbluetrans	#08052be6
 set $darkblue		   #08052b
@@ -423,27 +472,27 @@ set $yellowbrown	   #e1b700
 set $m1              #05a533
 set $m2              #ff0000
 
-#class		            	border		bground		text		indicator	child_border
+#-- Class
+                         	border		bground		text		indicator	child_border
 client.focused		         $darkblue	$darkblue	$white		$purple		$m1
 client.unfocused	         $darkblue	$darkblue	$grey		  $purple		$m2
 client.focused_inactive	   $darkblue	$darkblue	$grey		  $purple		$black
 client.urgent		         $urgentred	$urgentred	$white		$purple		$yellowbrown
 
-###############################################################
-# CONFIGURACIÓN DE LA BARRA (LA ENTRADA PROVIENE DE I3BLOCKS) #
-###############################################################
+#-- Barra
 
-# INICIE I3BAR PARA MOSTRAR UNA BARRA DE ESPACIO DE TRABAJO HAY QUE INSTALAR I3BLOCKS SI DICE ERROR 127 #
+#-- Inicie I3BAR Para Mostrar Una Barra De Espacio De Trabajo *Si Dice ERROR 127 Hay Que Instalar I3BLOCKS*
 
-#	    	i3bar_command i3bar --transparency
-# PODRÍA SER QUE NO TENGA CONFIGURADA LA PANTALLA PRINCIPAL: set one (xrandr --output <output> --primary)
-# REFERENCIA: https://i3wm.org/docs/userguide.html#_tray_output ESTE ES PARA BANDEJA DE ENTRADA
-#		    tray_output primary
-#		    tray_padding 0
+# i3bar_command i3bar --transparency
+#-- Podría Ser Que No Tenga Configurada La Pantalla Principal: set one (xrandr --output <output> --primary)
+# Referencia: https://i3wm.org/docs/userguide.html#_tray_output Este Es Para Bandeja De Entrada
 
-# CUANDO STRIP_WORKSPACE_NUMBERS SE ESTABLECE EN SÍ,
-# CUALQUIER ESPACIO DE TRABAJO QUE TENGA EL NOMBRE DEL FORMULARIO
-# “[n][:][NAME]” MOSTRARÁ SÓLO EL NOMBRE
+# tray_output primary
+# tray_padding 0
+
+#-- Cuando strip_workspace_numbers Se Establece En Sí,
+#-- Cualquier Espacio De Trabajo Que Tenga El Nombre Del Formulario
+#-- “[n][:][NAME]” Mostrará Sólo El Nombre
 
 bar {
 		font pango: Hack Nerd Fonts 10
@@ -451,13 +500,14 @@ bar {
 	    	position top
 
 strip_workspace_numbers yes
-#strip_workspace_name no
+
+# strip_workspace_name no
 
 		    colors {
 		    separator          $purple
 		    background         $darkgrey
 		    statusline         $white
-#                          		 		border        bg		        txt	        indicator
+#--                        		 		border        bg		        txt	        indicator
 		focused_workspace	            $mediumgrey	   $grey	         $darkgrey    	$purple
 		active_workspace	      	   $lightblue     $mediumgrey	   $darkgrey   	$purple
 		inactive_workspace	   		 $darkgrey      $darkgrey	   $grey	         $purple
@@ -465,44 +515,16 @@ strip_workspace_numbers yes
 	}
 }
 
-# 
 
-# PUEDE AGREGAR DIFERENTES BARRAS PARA CONFIGURACIONES DE MÚLTIPLES PANTALLAS EN CADA PANTALLA
-# set output HDMI-0 A LA PANTALLA QUE DESEA LA BARRA, --transparency SE PUEDE AJUSTAR
-# LA TRANSPARENCIA NECESITA QUE SE USEN CÓDIGOS DE COLOR RGBA DONDE LAS DOS ÚLTIMAS LETRAS SON EL FACTOR DE TRANSPARENCIA, CONSULTE AQUÍ
-# https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4
-# #08052be6 --> e6=90%
+#-- Puede Agregar Diferentes Barras Para Configuraciones De Múltiples Pantallas En Cada Pantalla
+#-- set output HDMI-0 A La Pantalla Que Desea La Barra, --transparency Se Puede Ajustar
+#-- La Transparencia Necesita Que Se Usen Códigos De Color RGBA Donde Las Dos Últimas Letras Son El Factor De Transparencia,
+#-- Consulte Aquí https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4#08052be6 --> e6=90%
 
-# bar {
-#	font pango: Noto Sans Regular 10
-#	status_command i3blocks -c ~/.config/i3/i3blocks-2.conf
-#	i3bar_command i3bar --transparency
-#	output HDMI-0
-#	position bottom
+#-- Esconder Barra De Estado
 
-#strip_workspace_numbers yes
-##strip_workspace_name no
+bindsym $mod+p bar mode toggle
 
-#	colors {
-#		separator          $purple
-#		background         $darkbluetrans
-#     statusline         $white
+#-- Control De Ventanas Popups Mientras Estamos En Pantalla Completa
 
-#		                       			 border	       bg	        txt		      indicator
-#		focused_workspace	           $lighterblue	 $lighterblue	$darkblue	    $purple
-#		active_workspace				   $lightdblue   $lightdblue  $darkblue       $purple
-#		inactive_workspace				$darkblue     $darkblue    $lightdblue     $purple
-#		urgent_workspace					 $urgentred    $urgentred  $white          $purple
-#	}
-#}
-
-# ESCONDER BARRA DE ESTADO #
-bindsym $mod+b bar mode toggle
-
-# Lanzador de Polybar
-# Para usar polybar se tiene que comentar arriba donde esta toda la bar de I3blocks
-
-#exec_always --no-startup-id $HOME/.config/polybar/launch.sh 
-
-# CONTROL DE VENTANAS POPUPS MIENTRAS ESTAMOS EN PANTALLA COMPLETA #
-#popup_during_fullscreen smart
+# popup_during_fullscreen smart

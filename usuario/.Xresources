@@ -1,3 +1,12 @@
+! ██╗  ██╗██████╗ ███████╗███████╗ ██████╗ ██╗   ██╗██████╗  ██████╗███████╗███████╗
+! ╚██╗██╔╝██╔══██╗██╔════╝██╔════╝██╔═══██╗██║   ██║██╔══██╗██╔════╝██╔════╝██╔════╝
+!  ╚███╔╝ ██████╔╝█████╗  ███████╗██║   ██║██║   ██║██████╔╝██║     █████╗  ███████╗
+!  ██╔██╗ ██╔══██╗██╔══╝  ╚════██║██║   ██║██║   ██║██╔══██╗██║     ██╔══╝  ╚════██║
+! ██╔╝ ██╗██║  ██║███████╗███████║╚██████╔╝╚██████╔╝██║  ██║╚██████╗███████╗███████║
+! ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚══════╝╚══════╝
+
+!-- General
+
 Xft.dpi: 96
 Xft.antialias: true
 Xft.hinting: true
@@ -6,24 +15,26 @@ Xft.autohint: true
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcdfilter
 
-!!VT Font Menu: Unreadable
-!xterm*faceSize1: 8
-!!VT font menu: Tiny
-!!xterm*faceSize2: 10
-!!VT font menu: Medium
-!!xterm*faceSize3: 12
-!!VT font menu: Large
-!!xterm*faceSize4: 16
-!!VT font menu: Huge
-!xterm*faceSize5: 22
+!-- VT Font Menu: Unreadable
 
-!Paleta Color
+!  xterm*faceSize1: 8
+!  VT font menu: Tiny
+!  xterm*faceSize2: 10
+!  VT font menu: Medium
+!  xterm*faceSize3: 12
+!  VT font menu: Large
+!  xterm*faceSize4: 16
+!  VT font menu: Huge
+!  xterm*faceSize5: 22
+
+!-- Paleta Color
 
 XTerm*Foreground: #bbc5ff
 XTerm*Background: #080505
 XTerm*cursorColor: #bbc5ff
 
-!!TERMINAL XTERM Y SUS VALORES
+!-- Terminal Xterm Y Sus Valores
+
 XTerm.termName: xterm-256color
 XTerm*font: 9X15 Hack Nerd Font
 XTerm*saveLines: 1000
@@ -40,32 +51,40 @@ XTerm.vt100.faceSize: 17
 XTerm*cursorUnderLine: false
 XTerm*cursorBlink:true
 XTerm*metaSendsEscape : true
-!!-----------------------------------------------------------------------------
-!!SELECCIONAR TEXTO 
-!!SELECCIONAR SOLO TEXTO
-!XTerm*highlightSelection: true
-!!ELIMINAR ESPACIOS FINALES
-!XTerm*trimSelection: true
-!! DESPLAZARSE
-!! USE: Shift-Pageup / Shift-Pagedown PARA DESPLAZARSE O LA RUEDA DEL MOUSE 
-!! LÍNEAS DE SALIDA SOBRE LAS QUE PUEDE DESPLAZARSE HACIA ATRÁS
-!XTerm*saveLines: 16384
-    
-!! ENCIENDA LA BARRA DE DESPLAZAMIENTO Y COLÓQUELA A LA DERECHA
+
+!-- Seleccionar Solo Texto
+
+! XTerm*highlightSelection: true
+
+!-- Eliminar Espacios Finales
+
+! XTerm*trimSelection: true
+
+!-- Desplazarse
+!-- Use: Shift-Pageup / Shift-Pagedown Para Desplazarse O La Rueda Del Mouse
+!-- Líneas De Salida Sobre Las Que Puede Desplazarse Hacia Atrás
+
+! XTerm*saveLines: 16384
+
+!-- Encienda La Barra De Desplazamiento Y Colóquela A La Derecha
+
 ! XTerm.vt100.scrollBar: true
 ! XTerm.vt100.scrollbar.width: 8
 ! xterm*scrollBar: true
 ! xterm*rightScrollBar: true
-    
-!! NO SE DESPLACE CUANDO HAYA UNA NUEVA ENTRADA, EJ. tail -f /var/syslog
-!XTerm*scrollTtyOutput: false
 
-!! COMBINACION DE TECLAS
-!! - CAMBIAR EL TAMAÑO DE FUENTE SOBRE LA MARCHA (ctrl+plus = increase ; ctrl+minus = decrease, ctrl+0 = default)
-!! - COPIAR/PEGAR TECLA DE ACCESO RÁPIDO (ctrl+shift+c = COPIAR ; ctrl+shift+v = PEGAR)
-!! - ABRIR URL (ENLACES EN LOS QUE SE PUEDE HACER CLIC )
-!!   1) HAGA DOBLE CLIC PARA RESALTAR LA URL COMPLETA
-!!   2) Shift + click ES PARA ABRIRLO 
+!-- No Se Desplace Cuando Haya Una Nueva Entrada, EJ. tail -f /var/syslog
+
+! XTerm*scrollTtyOutput: false
+
+!-- Combinacion De Teclas
+
+!-- Cambiar El Tamaño De Fuente Sobre La Marcha (ctrl+plus = increase ; ctrl+minus = decrease, ctrl+0 = default)
+!-- Copiar/Pegar Tecla De Acceso Rápido (ctrl+shift+c = COPIAR ; ctrl+shift+v = PEGAR)
+!-- Abrir URL (Enlaces En Los Que Se Puede Hacer Clic)
+!-- 1) Haga Doble Clic Para Resaltar La URL Completa
+!-- 2) Shift + click ES PARA ABRIRLO
+
 XTerm.vt100.translations: #override \n\
       Ctrl <Key> minus: smaller-vt-font() \n\
       Ctrl <Key> plus: larger-vt-font() \n\
