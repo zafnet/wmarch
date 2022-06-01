@@ -21,10 +21,10 @@ gen_list() {
 
 main() {
   # Pass the list to rofi
-  platform=$( (gen_list) | rofi  -dmenu -theme personal.rasi -matching fuzzy -no-custom -location 0 -p "Buscador > " )
+  platform=$( (gen_list) | rofi  -dmenu -theme ~/.config/rofi/menuweb/menu-web.rasi -matching fuzzy -no-custom -location 0 -p "Buscador > " )
 
   if [[ -n "$platform" ]]; then
-    query=$( (echo ) | rofi -dmenu -theme personal.rasi -matching fuzzy -location 0 -p "Pagina > " )
+    query=$( (echo ) | rofi -dmenu -theme ~/.config/rofi/menuweb/menu-web.rasi -matching fuzzy -location 0 -p "Pagina > " )
 
     if [[ -n "$query" ]]; then
       url=${URLS[$platform]}$query
@@ -41,4 +41,3 @@ main() {
 main
 
 exit 0
-
