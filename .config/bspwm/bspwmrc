@@ -13,7 +13,7 @@
 setxkbmap -option "caps:swapescape"
 sxhkd &
 setxkbmap -v es
-#dunst &
+dunst &
 picom &
 exec /home/$USER/.config/polybar/launch.sh  &
 feh --bg-fill --randomize --no-fehbg /home/$USER/.wall/*
