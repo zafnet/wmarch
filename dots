@@ -196,6 +196,9 @@ mkdir -pv /home/$USER/{desc,plant,screenshot,doc,/.local/share/}
 
 chown -R $USER /home/$USER/*
 chgrp -R users /home/$USER/*
+chown -R $USER /home/$USER/.local/*
+chgrp -R users /home/$USER/.local/*
+
 sleep2
 clear
 
@@ -219,13 +222,18 @@ echo
 echo
 echo -e '\033[1;92m' "\n\t\t\t\t ***PERMISOS PARA BSPWMRC PICOM ROFI POLYBAR NVIM SXHKDRC***"
 
+
 chmod +x /home/$USER/.config/bspwm/bspwmrc
 chmod +x /home/$USER/.config/sxhkd/sxhkdrc
+chmod +x /home/$USER/.xinitrc
 chmod +x /home/$USER/.config/picom/picom.conf
 chmod +x /home/$USER/.config/polybar/config.ini
+chmod +x /home/$USER/.config/polybar/scripts/fecha
 chmod +x /home/$USER/.config/polybar/launch.sh
 chmod +x /home/$USER/.config/rofi/config.rasi
+chmod +x /home/$USER/.config/rofi/menuweb/web-search.sh
 chmod +x /home/$USER/.config/nvim/init.vim
+
 sleep2
 clear
 
@@ -255,9 +263,7 @@ clear
 
 cd /home/$USER/wmarch/polybar/
 
-tar xvf polybar-git-3.6.3.r45.g1ee11f7c-1-x86_64.pkg.tar.zst
-
-makepkg -si
+pacman -U polybar-git-3.6.3.r45.g1ee11f7c-1-x86_64.pkg.tar.zst
 
 #--------------REINICIANDO EL PC
 #echo

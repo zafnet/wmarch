@@ -1,0 +1,159 @@
+/*TEMA PERSONAL WEB SERCH*/
+
+configuration {
+    modi: "drun";
+   /*show-icons: true;*/
+    sort: true;
+    case-sensitive: false;
+   combi-modi: "drun,run";
+    line-margin: 2;
+    line-padding: 1;
+    /*separator-style: "none";*/
+    /*hide-scrollbar: true;*/
+    /*fullscreen: false;*/
+   fake-transparency: true;
+}
+
+window {
+    transparency: true;
+    border-radius: 10px;
+    background-color: #0b0000;
+    border: 1;
+    padding: 2%;
+    x-offset: 0;
+    y-offset: -50%;
+    width:      30%;
+    padding:    0%;
+    separator-style: "none";
+}
+
+prompt normal.normal {
+    background-color: #000000;
+    color:#f7a12d;
+    padding: 0px;
+}
+
+
+* {
+ 
+    background-color:#1c2833;
+    border-color:#000000;
+    anchor: south;
+    location: south;
+    lines: 2;
+    columns: 1;
+    font: "IBM 3270 Bold 13";
+    sort: true;
+    hide-scrollbar: true;
+    fullscreen: false;
+    
+}
+
+inputbar {
+    spacing: 0;
+    background-color: #0b0000;
+    padding: 1px 1px 1px 1px;
+    spacing: 1;
+    border: 0px 0px 0px 0px;
+    border-radius: 0px;
+    padding: 5px 10px 5px 5px;
+}
+
+entry normal.normal {
+    background-color: #000000;
+    color: #00ff36;
+    padding: 0px;
+}
+
+
+listview {
+    // Looks.
+    border-radius: 0px;
+    border: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    background-color: #0b0000;
+    // Enable scrollbar
+    scrollbar: false;
+    scrollbar-width: 15px;
+    fixed-height: true;
+    reverse: false;
+    color: #fff100;
+    spacing: 0.3em;
+}
+
+element normal.normal {
+    text-color: #e12ef9;
+    background-color: #02ff52;
+}
+
+
+element alternate.normal {
+    text-color:#02ff52;
+   background-color: #02ff52;
+}
+
+
+/*-------------------------------*/
+/*textbox-prompt-colon {
+	padding: 						8px 15px 10px 15px;
+	font:							"IBM 3270 Bold 13";
+	background-color: 				@al;
+	expand: false;
+   str: "Buscador";
+   text-color:#ff2100;	
+    
+}*/
+
+/*element {
+    border: 0;
+    padding: 0px;
+    highlight: bold ;
+    background-color:#fffe00;
+    text-color: #00FF36;
+}*/
+
+/*element normal.normal {
+    text-color: #ff009b;
+    background-color: #0b0000;
+}*/
+
+/*element selected.normal {
+    text-color: #ff009b;
+    background-color:#ffdb8e;
+}*/
+
+/*element alternate.normal {
+    text-color:#ff009b;
+   background-color: #0b0000;
+}*/
+
+/*element normal.urgent {
+    text-color: #ff009b;
+    background-color: #0b0000;
+}
+
+/*element normal.active {
+    text-color: #ff009b;
+    background-color: #71f28c;
+}*/
+
+/*element selected.urgent {
+    text-color: #deff00;
+    background-color: #deff00;
+}*/
+
+/*element selected.active {
+    text-color: #ff009b;
+    background-color: #0b0000;
+}*/
+
+/*element alternate.urgent {
+    text-color: #D75F00FF;
+    background-color: #71f28c;
+}*/
+
+/*element alternate.active {
+    text-color: #005F87FF;
+    background-color: #0b0000;
+}*/
