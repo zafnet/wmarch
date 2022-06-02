@@ -120,7 +120,7 @@ rf() { rm -rf $(find / -type f 2> /dev/null | fzf -m) }
 
 rd() { rm -rf $(find / -type d 2> /dev/null | fzf -m)}
 
-nvf () { sh -c 'find / -type f 2> /dev/null | fzf -m | xargs -r nvim'}
+nf () { sh -c 'find / -type f 2> /dev/null | fzf -m | xargs -r nvim'}
 
 ve () {find / -type f 2> /dev/null | fzf -m | bat }
 

@@ -38,32 +38,23 @@ let mapleader=' '
 syntax on
 colorscheme gruvbox
 set t_Co=256
-"set guioptions=egmrti
 set gfn=Monospace\ 10
 set autoread
 set noswapfile
 set fileencoding=utf-8
 set fileencodings=utf-8
 set ttyfast
-"set ruler
-"set title
-"set titleold="Terminal"
-"set titlestring=%F
 set number
 set relativenumber
 set mouse=a
 set clipboard=unnamedplus
 set encoding=utf-8
 set tabstop=4
-"set noshowmode
 set spelllang=en,es
 set splitbelow
 set buftype=
 set backspace=indent,eol,start
 set gcr=a:blinkon0
-"set scrolloff=12
-"set nomodeline
-"set modelines=10
 set softtabstop=0
 set shiftwidth=4
 set expandtab
@@ -72,13 +63,8 @@ set hidden
 set hlsearch
 set incsearch
 set ignorecase
-"set smartcase
 set fileformats=unix,dos,mac
-"set colorcolumn=120
-"set nowrap
-"set termguicolors
 set background=dark
-"set cursorcolumn
 set cursorline
 set completeopt=menuone,longest
 set complete+=kspell
@@ -87,6 +73,20 @@ set wildignorecase
 set guicursor=n-i:ver100n-iCursor
 set undofile
 set undodir=~/.config/nvim/undodir
+"set ruler
+"set title
+"set titleold="Terminal"
+"set titlestring=%F
+"set noshowmode
+"set scrolloff=12
+"set nomodeline
+"set modelines=10
+"set smartcase
+"set cursorcolumn
+"set colorcolumn=120
+"set nowrap
+"set termguicolors
+"set guioptions=egmrti
 
 " Explorador De Archivos NETRW
 
@@ -136,6 +136,10 @@ inoremap ' ''<left>
 inoremap " ""<left>
 "inoremap bibas #!/bin/bash<CR>
 tnoremap <Esc><Esc> <C-\><C-n>
+
+" +Zoom y -Zoom a La Ventana Actual
+nnoremap <leader>z <C-w>_ \|<C-w>\|
+nnoremap <leader>x <C-w>=
 
 " Tamaño De Ventana Vertical
 nnoremap <silent> <A-S-j> :vertical resize +10<CR>
