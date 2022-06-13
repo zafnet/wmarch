@@ -68,7 +68,7 @@ ctrl + shift + d
 
 alt + a
 
-   exec  ~/.config/rofi/alias/alias.sh
+   exec  ~/.config/rofi/allias/allias.sh
 
 
 

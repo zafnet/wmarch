@@ -47,9 +47,9 @@ window {
     text-color: @bordercolor;
     border: 1;
     padding: 2%;
-    x-offset: 27%;
+    x-offset: 10%;
     y-offset: 3%;
-    width:    35%;
+    width:    60%;
     height:   90%;
     padding:  0%;
     separator-style: "none";
