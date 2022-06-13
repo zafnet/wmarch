@@ -6,9 +6,9 @@ Copia En El Buffer   "b" -> kitty_mod f10
 
 Pega Desde El Buffer "b" -> kitty_mod f11
 
-Copia Al Clipboard       -> kitty_mod+c
+Copia Al Clipboard       -> ctrl+y
 
-Pegar Desde El Clipboard -> kitty_mod+v
+Pegar Desde El Clipboard -> ctrl+v
 
 Pegar Desde La Selección -> shift+insert
 
@@ -22,11 +22,11 @@ Ver La Salida De Último Comando Pager -> kitty_mod+g
 
 Crear Nueva Ventana -> kitty_mod+enter
 
-Cerrar Ventana -> kitty_mod+w
+Cerrar Ventana -> kitty_mod+c
 
-Ir a La Siguiente Ventana -> kitty_mod+n
+Ir a La Siguiente Ventana -> ctrl+n
 
-Ir a La Ventana Previa -> kitty_mod+p
+Ir a La Ventana Previa -> ctrl+p
 
 Mover Ventana Hacia Adelante -> kitty_mod+f
 

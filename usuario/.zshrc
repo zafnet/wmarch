@@ -77,17 +77,17 @@ alias ns='nvim /home/$USER/.config/sxhkd/sxhkdrc'
 
 #-- Git
 
-alias ga='git add .'
-alias bra='git branch'
-alias che='git checkout'
-alias cl='git clone'
-alias gc='git commit -m'
-alias pul='git pull origin'
-alias gp='git push origin main'
 alias gs='git status'
-#alias fet='git fetch'
-#alias tag='git tag'
-#alias nt='git tag -a'
+alias ga='git add .'
+alias gc='git clone'
+alias gm='git commit -m'
+alias gp='git push origin main'
+alias gb='git branch'
+alias gk='git checkout'
+alias gu='git pull origin'
+alias gt='git tag -a'
+alias gf='git fetch'
+alias gl='git log'
 
 #-- Funciones
 

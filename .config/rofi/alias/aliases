@@ -42,17 +42,17 @@ xb= Abre .bashrc Con XED
 xh= Abre .zshrc_history Con XED
 
 Git
-ga=  git add .
-bra= git branch
-che= git checkout
-cl=  git clone
-gc=  git commit
-pul= git pull
-gp=  git push
-gs=  git status
-fet= git fetch
-tag= git tag
-nt=  git tag -a
+gs= git status
+ga= git add .
+gc= git clone
+gm= git commit -m
+gp= git push origin main
+gb= git branch
+gk= git checkout
+gu= git pull origin
+gt= git tag -a
+gf= git fetch
+gl= git log
 
 Funciones
 
