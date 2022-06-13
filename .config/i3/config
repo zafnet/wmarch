@@ -473,11 +473,11 @@ set $m1              #05a533
 set $m2              #ff0000
 
 #-- Class
-                         	border		bground		text		indicator	child_border
-client.focused		         $darkblue	$darkblue	$white		$purple		$m1
+#                        	border		bground		text		indicator	child_border
+client.focused		         $darkblue	$darkblue	$white	  $purple		$m1
 client.unfocused	         $darkblue	$darkblue	$grey		  $purple		$m2
 client.focused_inactive	   $darkblue	$darkblue	$grey		  $purple		$black
-client.urgent		         $urgentred	$urgentred	$white		$purple		$yellowbrown
+client.urgent		         $urgentred	$urgentred	$white	  $purple		$yellowbrown
 
 #-- Barra
 
