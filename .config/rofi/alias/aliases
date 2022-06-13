@@ -1,0 +1,75 @@
+ll= Lista Todos Los Archivos y Carpetas Con Sus Permisos
+l=  Lista Directorios Comunes
+lo= Lista Directorio De Punto
+tree= Lista En Forma De La Herramienta Tree
+to= Crea Archivo touch
+ins= Instala Un Programa
+ac= Actualiza El Sistema
+al= Lista Paquetes Instalados En El Sistema
+re= Elimina Paquetes Instalados En El Sistema
+rep= Lista Paquetes En Los Repositorios De Arch
+cp= Copia Actualiza Cada Archivo o Carpeta
+ct= Copia Actualiza y Verbose Cada Archivo o Carpeta
+rm= Elimina Archivo o Carpeta
+rt= Elimina Archivo o Carpeta y Verbose
+mv= Mueve o Renombra Archivo o Carpeta Actualizando
+mt= Mueve o Renombra Archivo o Carpeta Actualizando y Verbose
+mk= Crea Carpeta y Verbose
+smk= Crea Carpeta Como Root
+pe= Muestra Peso De Las Carpetas
+ic= Muestra Las Fotos En La Terminal
+ba= Comando bat
+his= Muestra El Historial Comun
+mir= Usa Reflector
+grep= Usa grep Color Auto
+xd= Recarga .Xresource
+
+Tmux
+ts= Lanza TMUX Con Nombre Si Se Escribe Si No Solo Lanza TMUX
+tl= Hace Un LS En TMUX
+tk= Tmux Se Une A Una Session Con El Target
+tk= Tmux Elimina Una Session con El Target
+
+Nvim
+nv= Lanza nvim
+nz= Abre .zshrc Con NVIM
+nb= Abre .bashrc Con NVIM
+ns= Abre sxhkdrc Con NVIM
+
+XED
+zx= Abre .zshrc Con XED
+xb= Abre .bashrc Con XED
+xh= Abre .zshrc_history Con XED
+
+Git
+ga=  git add .
+bra= git branch
+che= git checkout
+cl=  git clone
+gc=  git commit
+pul= git pull
+gp=  git push
+gs=  git status
+fet= git fetch
+tag= git tag
+nt=  git tag -a
+
+Funciones
+
+dl Funcion Entra En La Carpeta Dada Y Lista El Contenido
+
+ir Funcion Entra En La Carpeta Dada
+
+op Funcion Abre Aplicacion o Archivo
+
+rf Funcion Borra Archivo
+
+rd Funcion Borra Directorio
+
+nf Funcion Edita Archivo Con Nvim
+
+ve Funcion Muestra El Archivo En Forma BAT
+
+cr Funcion Copia Ruta De Un Archivo
+
+hi Funcion Pega Historial en la terminal

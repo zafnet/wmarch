@@ -5,17 +5,18 @@
 #  ███████╗██████╔╝██║░░██║██║░░██║╚█████╔╝
 #  ╚══════╝╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░
 
-#-- FUENTE DE DONDE CARGA LOS PLUGINS ZSH
+#-- Fuente De Donde Carga Los Plugins Zsh
+
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-#-- TAMAÑO UBICACION Y GUARDADO DEL HISTORIAL
+#-- Tamaño Ubicacion Y Guardado Del Historial
 
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 
-#-- PROMPT PERSONALIZADO SIN POWERLEVEL10K CON PROMPT_SUBST OPCION DE ZSH
+#-- Prompt Personalizado Sin Powerlevel10k Con Prompt_subst Opcion De Zsh
 
 git_b() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/{ \1 }/' }
 
@@ -28,16 +29,18 @@ elif [[ "$(id -u)" -eq "1000" ]]; then
 PROMPT='%F{#91fe36}%n%f%F{#ffe647}%f%F{#58d68d}%m%f%F{#0087ff}:%f %F{#fe820e}%~%f %F{red}$(git_b)%f %F{green}%f '
 fi
 
-#-- Alias Sistema
+#-- Sistema
 
-alias ll='lsd -lha --total-size --group-dirs=first'
-alias ls='lsd --group-dirs=first'
+alias ll='lsd -lha --group-dirs=first'
+alias l='lsd -lda --group-dirs=first */'
+alias lo='lsd -lda --group-dirs=first .*/'
+alias ls='lsd -lha --group-dirs=first'
 alias tree='lsd --tree'
 alias to='touch'
 alias ins='sudo pacman -S'
 alias ac='sudo pacman -Syu'
 alias al='sudo pacman -Qs'
-alias rem='sudo pacman -Rs'
+alias re='sudo pacman -Rs'
 alias rep='sudo pacman -Ss'
 alias cp='cp -ur'
 alias ct='cp -urv'
@@ -48,25 +51,31 @@ alias mt='mv -uv'
 alias mk='mkdir -v'
 alias smk='sudo mkdir'
 alias pe='du -h | fzf'
-alias icat='kitty +kitten icat'
+alias ic='kitty +kitten icat'
 alias ba='bat'
 alias his='history 0'
 alias mir="sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist"
 alias grep='grep --color=auto'
-alias xrd='xrdb merge ~/.Xresources'
-alias tm='tmux'
+alias xd='xrdb merge ~/.Xresources'
 
-#-- Alias Editor
+#-- Tmux
+
+alias ts='tmux new -s'
+alias tl='tmux ls'
+alias ta='tmux a -t'
+alias tk='tmux kill-session -t'
+
+#-- Editor
 
 alias nv='nvim'
-alias hi='xed ~/.zsh_history >/dev/null 2>&1  & disown'
+alias xh='xed ~/.zsh_history >/dev/null 2>&1  & disown'
 alias nz='nvim /home/$USER/.zshrc'
 alias nb='nvim /home/$USER/.bashrc'
-alias xzs='xed /home/$USER/.zshrc >/dev/null 2>&1  & disown'
+alias zx='xed /home/$USER/.zshrc >/dev/null 2>&1  & disown'
 alias xb='xed /home/$USER/.bashrc >/dev/null 2>&1  & disown'
 alias ns='nvim /home/$USER/.config/sxhkd/sxhkdrc'
 
-#-- Alias Git
+#-- Git
 
 alias ga='git add .'
 alias bra='git branch'
@@ -80,7 +89,7 @@ alias gs='git status'
 #alias tag='git tag'
 #alias nt='git tag -a'
 
-#-- FUNCIONES
+#-- Funciones
 
 extra () {
 	for archive in $*; do
@@ -107,10 +116,10 @@ extra () {
 
 #-- FZF
 
-#-- OPCION CON BORDE '--height 60% --border'
+#-- Opcion Con Borde '--height 60% --border'
 export FZF_DEFAULT_OPTS='--height 60%'
 
-cdl(){cd $1 ; ls -al}
+dl(){cd $1 ; ls -al}
 
 ir() { cd $(find / -type d 2> /dev/null | fzf) }
 
@@ -122,15 +131,15 @@ rd() { rm -rf $(find / -type d 2> /dev/null | fzf -m)}
 
 nf () { sh -c 'find / -type f 2> /dev/null | fzf -m | xargs -r nvim'}
 
-ve () {find / -type f 2> /dev/null | fzf -m | bat }
+ve () {find / -type f 2> /dev/null | fzf -m | xargs bat}
 
 cr() {find / -type f 2>/dev/null | fzf | tr -d '\n' | xclip -selection c}
 
-tor() { print -z  $(([ -n "$ZSH_NAME" ] && fc -ln) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')}
+hi() { print -z  $(([ -n "$ZSH_NAME" ] && fc -ln) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')}
 
 #cr() {find / -type f 2>/dev/null | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c}
 
-#-- COLORES DE 'MAN'
+#-- Colores De 'MAN'
 
 function man() {
     env \
@@ -144,12 +153,11 @@ function man() {
     man "$@"
 }
 
-#-- AUTOCOMPLETADO MODERNO DE ZSH
+#-- Autocompletado Moderno De ZSH
 
 autoload -Uz compinit
 compinit
-#zstyle ':completion:*' auto-description 'specify: %d'
-#zstyle ':completion:*' completer _expand _complete _correct _approximate
+
 zstyle ':completion:*' format 'autocompletado %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
@@ -164,40 +172,43 @@ zstyle ':completion:*' menu select=2
 #zstyle ':completion:*' verbose true
 #zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 #zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+#zstyle ':completion:*' auto-description 'specify: %d'
+#zstyle ':completion:*' completer _expand _complete _correct _approximate
 #eval "$(dircolors -b)"
 
-#-- OPCIONES DE ZSH
+#-- Opciones De ZSH
 
 unsetopt MENU_COMPLETE
 unsetopt FLOW_CONTROL
 unsetopt NO_BEEP
 setopt AUTO_CD
 setopt ALWAYS_TO_END
-#setopt AUTO_NAME_DIRS
 setopt AUTO_LIST
 setopt AUTO_PARAM_SLASH
 setopt COMPLETE_IN_WORD
 setopt CORRECT
 setopt PATH_DIRS
-#setopt APPEND_HISTORY
-#setopt EXTENDED_HISTORY
-#setopt INC_APPEND_HISTORY
-#setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 setopt SHARE_HISTORY
+#setopt AUTO_NAME_DIRS
+#setopt APPEND_HISTORY
+#setopt EXTENDED_HISTORY
+#setopt INC_APPEND_HISTORY
+#setopt HIST_EXPIRE_DUPS_FIRST
 
-#-- MOD DE TECLAS PARA LA TERMINAL ZSH
+
+#-- Mod De Teclas Para La Terminal ZSH
 
 bindkey ";5D" backward-word
 bindkey ";5C" forward-word
 bindkey ";5"  delete-word
 bindkey "\e[3~"   delete-char
 
-#-- OPCIONES NVIM PARA LA TERMINAL
+#-- Opciones NVIM Para La Terminal
 
 #bindkey -v
 #export KEYTIMEOUT=1
@@ -211,7 +222,7 @@ bindkey "\e[3~"   delete-char
 #bindkey -M '^l' vi-forward-char
 #bindkey -M '^j' vi-down-line-or-history
 
-#-- CURSOR EN FORMA DE HAZ PARA DIFERENTES MODOS DE NVIM
+#-- Cursor En Forma De Haz Para Modos De NVIM En Terminal
 
 #function zle-line-init zle-keymap-select {
 #  if [ $KEYMAP = vicmd ]; then
@@ -224,11 +235,11 @@ bindkey "\e[3~"   delete-char
 #zle -N zle-line-init
 #zle -N zle-keymap-select
 
-#-- TERMINAL XTERM CON CURSOR FORMA DE HAZ
+#-- Terminal XTERM Con Cursor Forma De Haz
 
 printf '\033[6 q'
 
-#-- PROMPT PERSONALIZADO SIN POWERLEVEL10K CON EXPORT NORMAL
+#-- Prompt Personalizado Sin Powerlevel10k Con Export Normal
 
 #if [[ $(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)) == "kitty" ]]; then
 #export PS1='%F{#91fe36}%n%f%F{#ffe647}%f%F{#58d68d}%m%f%F{#0087ff}:%f %F{#fe820e}%~%f %F{red}$(git_b)%f %F{green}%f '
@@ -237,3 +248,6 @@ printf '\033[6 q'
 #export PS1='%F{#91fe36}%n%f%F{#ffe647}%f%F{#58d68d}%m%f%F{#0087ff}:%f %F{#fe820e}%~%f %F{red}$(git_b)%f %F{green}%f '
 
 #fi
+
+LS_COLORS='di=34:fi=37:ln=35:pi=4;33:so=1;34;41:bd=47:cd=1;31:or=31:mi=31:ex=32:*.pdf=36'
+export LS_COLORS

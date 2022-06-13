@@ -5,11 +5,13 @@
 # ███████║██╔╝ ██╗██║  ██║██║  ██╗██████╔╝██║  ██║╚██████╗
 # ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝ ╚════
 
-#-- Cargar Archivos De Configuración
+#-- Recargar Configuración
 
 super + Escape
 #      pkill -USR1 -x sxhkd
    notify-send  "SXHKDRC ACTUALIZADO" "$(pkill -USR1 -x sxhkd)"
+
+
 
 #-- Salir y Restaurar Bspwm
 
@@ -19,10 +21,14 @@ super + alt + {q,r}
 
 #notify-send "BWPWM ACTUALIZADO" "$(bspc {quit,wm -r})"
 
+
+
 #-- Cerrar y Terminar
 
 super + {_,shift + }q
 	bspc node -{c,k}
+
+
 
 #-- Bloquear Pantalla
 
@@ -30,15 +36,20 @@ super + Delete
 
      exec  ~/.local/share/i3lock/locker.sh
 
+
 #-- Terminales
 
 super + {_,alt + } Return
         	{kitty,xterm}
 
+
+
 #-- Navegadores
 
 super + {i,m,n,c}
 	{firefox -private-window,firefox,google-chrome-stable,google-chrome-stable --incognito}
+
+
 
 #-- Aplicaciones
 
@@ -46,11 +57,45 @@ super + {g,d,b}
 
           {pcmanfm,rofi -show drun,kitty -e ranger}
 
-#-- Buscador Web
 
 ctrl + shift + d
 
    exec  ~/.config/rofi/menuweb/web-search.sh
+
+
+
+#-- Aliases
+
+alt + a
+
+   exec  ~/.config/rofi/alias/alias.sh
+
+
+
+#-- shortcuts
+
+#- sxhkdrc
+alt + s
+
+  exec ~/.config/rofi/atajos/sxhshort/sxhshort.sh
+
+#- kitty
+alt + k
+
+  exec ~/.config/rofi/atajos/kitty/shortk.sh
+
+#- tmux
+alt + t
+
+    exec ~/.config/rofi/atajos/tmuxshort/tmuxshort.sh
+
+#- Nvim
+
+alt + n
+
+    exec ~/.config/rofi/atajos/nvimshort/nvimshort.sh
+
+
 
 #-- Mensajeria
 
@@ -58,45 +103,64 @@ ctrl + alt + {t,d}
 
     {telegram-desktop,discord}
 
+
+
 #-- Polybar Oculta
 
 super +  p
 	polybar-msg cmd toggle
+
+
 
 #-- Captura de Pantalla
 
 {_,super+}Print
      {flameshot full -c -p ~/screenshoot,flameshot gui}
 
+
+
 #-- Ocultar El Nodo Actual o Restaurar
 
 super + minus
 	bspc node {,$(bspc query -N -d -n .hidden | head -n 1)} -g hidden
+
+
 
 #-- Altura De Ventana De Escritorio Enfocado
 
 super + alt + {Up,Down}
 	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
 
+
+
 #-- Intercambiar El Nodo Actual y El Nodo Más Grande
 
 super + alt + n
 	bspc node -s biggest
 
+
+
 #-- MANEJO DE VENTANAS --#
+
 
 #-- Mover La Ventana Principal De Izquerda A Derecha
 super + {_,shift + } r
     bspc node @/ --rotate {180,-180}
 
+
+
 #-- Rotar Ventanas En Horizontal 90° | Ventana Flotante | Fijar Ventana|-#
 super + shift  o
 		{bspc node @focused:/ -R 90,bspc node focused -t \~floating,bspc node -g sticky}
+
+
 
 #-- Rotar Ventanas En Sentido Horario Y Antihorario
 
 super + shift + {d,i}
     bspc node @/ -C {forward,backward}
+
+
 
 #-- Estado De La Ventana
 
@@ -108,22 +172,24 @@ super + {e,t}
 super + w
    bspc desktop -l next
 
-#-- Ventana FullScreen
+#-- Ventana En Fullscreen
 
 super + f
 	bspc node focused.tiled -t fullscreen || bspc node focused.fullscreen -t tiled
 
-#-- Ventana En todos Los Escritorios
+
+#-- Establecer Las Banderas De la Ventana
 
 super + s
 	bspc node --flag sticky|[=on|off]
 
-#-- Establecer Las Banderas De la Ventana
-
-super + alt + {m,x,z}
+alt + {m,x,z}
 	bspc node -g {marked,locked,private}
 
+
+
 #-- ENFOQUE E INTERCAMBIO --#
+
 
 #-- Marcar La Ventana En La Dirección Dada
 
@@ -133,15 +199,21 @@ super + {_,shift + }{Left,Down,Up,Right}
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
+
+
 #-- Marca Las Ventanas Una Por Una
 
 alt + {_,shift + }Tab
 	bspc node -f {next,prev}.local
 
+
+
 #-- Desplazarse Por Los Escritorios Con Las Flechas
 
 super + alt + {Left,Right}
 	bspc desktop -f {prev,next}.local
+
+
 
 #-- Mover La Ventana Al Escritorio Dado Con Las Flechas o Los Numeros
 
@@ -151,50 +223,70 @@ super + {_,alt + }{1-9,0}
 super + ctrl + {Right,Left}
 	bspc node -d {next,prev} -f
 
+
+
 #-- Mover Ventana A Un Espacio De Trabajo y Cambiar A El
 
 super + shift + {1-9,0}
     bspc node -d '^{1-9,10}' --follow
+
+
 
 #-- Nos LLeva Al Escritorio Visitado Anterior
 
 super + {grave,Tab}
 	bspc {node,desktop} -f last
 
+
+
 #-- Preseleccionar La Dirección De La Nueva Ventana
 
 super + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
+
+
 
 #-- Preseleccionar La Proporción De La Nueva Ventana
 
 super + ctrl + {1-9}
 	bspc node -o 0.{1-9}
 
+
+
 #-- Cancelar La Preselección Del Nodo Enfocado
 
 ctrl + space
 	bspc node -p cancel
+
+
 
 #-- Cancelar La Preselección Para El Escritorio Enfocado
 
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
+
+
 #-- Expanda Una Ventana Moviendo Uno De Sus Lados Hacia Afuera
 
 super + alt + {h,j,k,l}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+
 
 #-- Contraer Una Ventana Moviendo Uno De Sus Lados Hacia Adentro
 
 super + alt + shift + {h,j,k,l}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
+
+
 #-- Mover Una Ventana Flotante
 
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+
 
 #-- Volumen Con pactl
 
@@ -206,6 +298,8 @@ alt + @F11
 
 alt + @F10
   pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+
 
 #-- Enviar El Nodo Marcado Más Nuevo Al Nodo Preseleccionado Más Nuevo
 

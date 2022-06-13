@@ -1,0 +1,63 @@
+Tecla Lider Coma
+
+Guardar Archivo -> ÑÑ 
+
+Sale Sin Guardar Los Cambios -> XX
+
+Sale Cuando No Hay Un Cambio -> TT
+
+AutoCompleta Palabra En Modo Insercion -> <leader>p 
+
+Deja Un Espacio Una Linea Abajo -> <leader>o 
+
+Deja Un Espacio Una Line Arriba -> <leader>p 
+
+Lanza Terminal En Modo Visual ->  <c-t> 
+
+Lanza Terminal En Mod Normal ->  <c-t> 
+
+Crea Nueva Pestaña -> <leader>t 
+
+Cierra Pestaña ->  <leader>q :tabclose<CR>
+
+Siguiente Buffer -> <Leader>bn 
+
+Buffer Anterior -> <Leader>bp 
+
+Crea Ventana En Horizontal -> <Leader>h <C-w>s
+
+Crea Ventana En vertical -> <Leader>v 
+
+Elimina Buffer -> <Leader>d 
+
+Lanza Archivo De Configuracion De Nvim  -> <Leader>c 
+
+Redimensiona Ventana Hacia La Izquierda -> <A-S-h> 
+
+Redimensiona Ventana Hacia La Derecha   -> <A-S-l> 
+
+Va Hacia La Ventana Izquierda  -> <C-h>  
+
+Va Hacia La Ventana Derecha    -> <C-l> 
+
+Va Hacia La Ventana De Abajo   -> <C-j>  
+
+Va Hacia La Ventana Arriba     -> <C-k>   
+
+Ventana En Vertical -> <Leader>vv 
+
+Ventana En Horizontal -> <Leader>vh 
+
+Recarga Archivo Actual <Leader>s 
+
+Tecla Para Escribir Dos Puntos -> º
+
+Para Escribir El Comando De Editar -> <leader>e
+
+Salir De Modo Terminal E Ir A Otra Ventana -> <Esc><Esc> 
+
+Zoom+ y -Zoom a La Ventana Actual -> <leader>z <leader>x
+
+Tamaño De Ventana Vertical ->   <A-S-k> <A-S-j>
+
+Tamaño De Ventana Hacia Arriba Y Abajo -> <A-S-u> <A-S-d>

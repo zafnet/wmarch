@@ -1,0 +1,93 @@
+Recargar sxhkdrc -> super + Escape
+
+Salir y Restaurar Bspwm -> super + alt + {q,r} {quit,wm -r}
+
+Cerrar y Terminar -> super + {_,shift + }q bspc node -{c,k}
+
+Bloquear Pantalla ->  super + Delete
+
+Terminales -> super + {_,alt + } Return  {kitty,xterm}
+
+Navegadores -> super + {i,m,n,c} {fire-private,fire,google,google --incognito}
+
+Aplicaciones -> super + {g,d,b} {pcmanfm,rofi -show drun,kitty -e ranger}
+
+menu Web -> ctrl + shift + d
+
+Mensajeria -> ctrl + alt + {t,d} {telegram-desktop,discord}
+
+Muestra Aliases -> alt + a
+
+Muestra atajo sxhkdrc -> alt + s
+
+Muestra atajo kitty -> alt + k
+
+Muestra atajo tmux -> alt + t
+
+Muestra atajo nvim -> alt + n
+
+Polybar Oculta -> super +  p
+
+Captura de Pantalla -> {_,super+}Print {flameshot full -c -p ~/screenshoot,flameshot gui}
+
+Ocultar Nodo Actual o Restaurar -> super + minus
+
+Altura Ventana Enfocada -> super + alt + {Up,Down}
+
+Intercambiar El Nodo Actual y El Nodo Más Grande -> super + alt + n
+
+MANEJO DE VENTANAS
+
+Mover Ventana Principal De Izquerda A Derecha -> super + {_,shift + } r
+
+Rotar Ventanas En Horizontal 90° -> super + shift  o
+
+Rotar Ventanas En Sentido Horario Y Antihorario -> super + shift + {d,i}
+
+Estado De Ventana -> super + {e,t} bspc node -t {floating,tiled}
+
+Ventana En Monoculo -> super + w
+
+Ventana FullScreen -> super + f
+
+Ventana En todos Los Escritorios -> super + s
+
+Establecer Las Banderas De la Ventana -> super + alt + {m,x,z}
+
+ENFOQUE E INTERCAMBIO
+
+Marcar La Ventana En La Dirección Dada -> super + {_,shift + }{Left,Down,Up,Right}
+                                       -> super + {_,shift + }{h,j,k,l}
+
+Marca Las Ventanas Una Por Una -> alt + {_,shift + }Tab
+
+Desplazarse Por Los Escritorios Con Las Flechas -> super + alt + {Left,Right}
+
+Mover La Ventana Al Escritorio Dado Con Las Flechas o Los Numeros -> super + {_,alt + }{1-9,0}
+                                                                  -> super + ctrl + {Right,Left}
+
+Mover Ventana A Espacio De Trabajo y Cambiar A El -> super + shift + {1-9,0}
+
+Nos LLeva Al Escritorio Visitado Anterior -> super + {grave,Tab}
+
+Preseleccionar Dirección De La Nueva Ventana -> super + ctrl + {h,j,k,l}
+
+Preseleccionar Proporción De La Nueva Ventana -> super + ctrl + {1-9}
+
+Cancelar Preselección Del Nodo Enfocado -> ctrl + space
+
+Cancelar Preselección Para Escritorio Enfocado -> super + ctrl + shift + space
+
+Expanda Ventana Uno De Sus Lados Hacia Afuera -> super + alt + {h,j,k,l}
+
+Contraer Ventana Uno De Sus Lados Hacia Adentro -> super + alt + shift + {h,j,k,l}
+
+Mover Una Ventana Flotante -> super + {Left,Down,Up,Right}
+
+Subir Volumen -> alt + @F12
+
+Bajar Volumen -> alt + @F11
+
+Volumen Mudo -> alt + @F10
+
+Enviar El Nodo Marcado Más Nuevo Al Nodo Preseleccionado Más Nuevo super + y

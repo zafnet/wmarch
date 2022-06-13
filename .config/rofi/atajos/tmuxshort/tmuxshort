@@ -1,0 +1,59 @@
+Tecla Maestra -> Ctrl-a
+
+Editar tmux.conf -> Ctrl-a e
+
+Recargar Configuration -> Ctrl-a r
+
+Borrar Tanto La Pantalla Como El Historial -> Ctrl-a Ctrl-l
+
+Crear Pestaña -> Ctrl-a Ctrl-c
+
+Encontrar Sesión -> Ctrl-a Ctrl-f
+
+Dividir Ventana Horizontalmente -> Ctrl-a o
+
+Dividir Ventana Verticalmente -> Ctrl-a v
+
+Cerrar Ventana O Pestaña -> Ctrl-a x
+
+Mover Foco a La Izquierda -> Ctrl-a h
+
+Mover Foco Hacia Abajo -> Ctrl-a j
+
+Mover Foco Hacia Arriba -> Ctrl-a k
+
+Mover Foco a La Derecha -> Ctrl-a l
+
+Mover Ventana Actual Con El Siguiente -> Ctrl-a >
+
+Mover Ventana Actual Con El Anterior -> Ctrl-a  <
+
+Maximizar El Panel Actual -> Ctrl-a z
+
+Cambio De Tamaño Del Panel ->  Ctrl-a-r H J K L
+
+Seleccionar Pestaña Anterior -> Ctrl-a Ctrl-h
+
+Seleccionar Pestaña Siguiente -> Ctrl-a Ctrl-l
+
+Mover a La Última Pestaña Activa -> Ctrl-a Tab
+
+Cambiar Nombre De La Pestaña -> Ctrl-a ,
+
+Entrar En Modo Copia -> Ctrl-a Enter
+
+Enumerar Los Búferes De Pegado -> Ctrl-a b
+
+Pegar Desde El Búfer De Pegado Superior -> Ctrl-a p
+
+Elegir Desde Qué Búfer Pegar -> Ctrl-a P
+
+#- Teclas Nativas
+
+Elija la ventana actual de forma interactiva -> Ctrl-a w
+
+Enumere todas las combinaciones de teclas -> Ctrl-a ?
+
+Mostrar brevemente los índices de los paneles -> Ctrl-a q
+
+Muestra la hora  -> Ctrl-a t

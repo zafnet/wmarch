@@ -1,26 +1,34 @@
-# If not running interactively, don't do anything
+# ██████╗  █████╗ ███████╗██╗  ██╗██████╗  ██████╗
+# ██╔══██╗██╔══██╗██╔════╝██║  ██║██╔══██╗██╔════╝
+# ██████╔╝███████║███████╗███████║██████╔╝██║
+# ██╔══██╗██╔══██║╚════██║██╔══██║██╔══██╗██║
+# ██████╔╝██║  ██║███████║██║  ██║██║  ██║╚██████╗
+# ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
+
+#-- Si No Es Interactiva, No Hacer Nada
+
 [[ $- != *i* ]] && return
- 
-#--------------------------------------------#
-# TAMAÑO GUARDADO Y UBICACION DEL HISTORIAL  #
-#--------------------------------------------#
+
+#-- Tamaño Guardado Y Ubicacion Del Historial
+
 HISTFILE=~/.bash_history
 HISTSIZE=1000
 SAVEHIST=1000
 
-#-----------------------------------------------------------------------------------#
-#                   PROMPT PERSONALIZADO PARA DIFERENTE TERMINAL                    # 
-#-----------------------------------------------------------------------------------#
-#if [[ $(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)) == "tilix" ]]; then
-#export PS1='%F{#91fe36}%n%f%F{#ffe647}%f%F{#58d68d}%m%f%F{#0087ff}:%f %F{#fe820e}%~%f %F{red}$(git_b)%f %F{green}%f '
+#-- Prompt Personalizado Para Diferente Terminal
 
-#elif [[ $(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)) == "xterm" ]]; then
-#export PS1='%F{#91fe36}%n%f%F{#ffe647}%f%F{#58d68d}%m%f%F{#0087ff}:%f %F{#fe820e}%~%f %F{red}$(git_b)%f %F{green}%f '  
+# if [[ $(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)) == "tilix" ]]; then
+# export PS1='%F{#91fe36}%n%f%F{#ffe647}%f%F{#58d68d}%m%f%F{#0087ff}:%f %F{#fe820e}%~%f %F{red}$(git_b)%f %F{green}%f '
 
-#fi
+# elif [[ $(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)) == "xterm" ]]; then
+# export PS1='%F{#91fe36}%n%f%F{#ffe647}%f%F{#58d68d}%m%f%F{#0087ff}:%f %F{#fe820e}%~%f %F{red}$(git_b)%f %F{green}%f '
+
+# fi
+
+#-- Prompt Personalizado Para Root Y Usuario
 
 if [[ "$(id -u)" -eq "0" ]]; then
-export PS1='\[\e[0;1;38;5;196m\]\u\[\e[0;1;38;5;35m\]@\[\e[0;1;38;5;202m\]\H\[\e[0m\]: \[\e[0;31m\]\w \[\e[0;1;38;5;40m\]\[\e[0;3;38;5;78m\]\[\e[0;1;38;5;40m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2) \[\e[0;38;5;196m\]\[\e[0;38;5;196m\] \[\e[0m\]' 
+export PS1='\[\e[0;1;38;5;196m\]\u\[\e[0;1;38;5;35m\]@\[\e[0;1;38;5;202m\]\H\[\e[0m\]: \[\e[0;31m\]\w \[\e[0;1;38;5;40m\]\[\e[0;3;38;5;78m\]\[\e[0;1;38;5;40m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2) \[\e[0;38;5;196m\]\[\e[0;38;5;196m\] \[\e[0m\]'
 
 elif [[ "$(id -u)" -eq "1000" ]]; then
 export PS1='\[\e[0;1;38;5;40m\]\u\[\e[0;1;38;5;35m\]@\[\e[0;1;38;5;70m\]\H\[\e[0m\]: \[\e[0;1;38;5;33m\]\w \[\e[0;1;38;5;40m\]\[\e[0;3;38;5;79m\]\[\e[0;31m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2) \[\e[0;38;5;40m\]\[\e[0;38;5;41m\] \[\e[0m\]'
@@ -32,12 +40,20 @@ fi
 #LS_COLORS='di=32:fi=35:ln=93:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=37:*.rpm=90'
 #export LS_COLORS
 
-# IGNORAR MAYÚSCULAS Y MINÚSCULAS AL COMPLETAR CON TAB
+#-- Opciones De Configuracion De Bash
+
+shopt -s nocaseglob
+shopt -s autocd
+shopt -s dotglob
+shopt -s extglob
+shopt -s histverify
+shopt -s xpg_echo
+
+#-- Ignorar Mayúsculas Y Minúsculas Al Completar Con Tab
+
 bind "set completion-ignore-case on"
 
-#-------------------------------------------------------#
-# VERIFICAR SI EL  AUTOCOMPLETADO DE BASH ESTA ACTIVADO #
-#-------------------------------------------------------#
+#-- Verificar Si El  Autocompletado De BASH Esta Activado
 
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -47,35 +63,46 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#---------#
-#  ALIAS  #
-#---------#
-alias ll='ls -lha --total-size --group-dirs=first'
+#-- Alias Sistema
+
+alias ll='lsd -lha --total-size --group-dirs=first'
 alias ls='lsd --group-dirs=first'
-alias to='touch'
-alias pe='du -h | fzf'
-alias nv='nvim'
-alias ba='bat'
-alias mk='mkdir -v'
-alias hi='xed ~/.zsh_history >/dev/null 2>&1  & disown' 
 alias tree='lsd --tree'
-alias smk='sudo mkdir'
+alias to='touch'
+alias ins='sudo pacman -S'
+alias ac='sudo pacman -Syu'
+alias al='sudo pacman -Qs'
+alias re='sudo pacman -Rs'
+alias rep='sudo pacman -Ss'
 alias cp='cp -ur'
 alias ct='cp -urv'
 alias rm='rm -r'
 alias rt='rm -rv'
 alias mv='mv -u'
 alias mt='mv -uv'
-alias nz='nvim /home/$USER/.zshrc'
-alias nb='nvim /home/$USER/.bashrc'
-alias xzs='xed /home/$USER/.zshrc >/dev/null 2>&1  & disown'
-alias xb='xed /home/$USER/.bashrc >/dev/null 2>&1  & disown'
+alias mk='mkdir -v'
+alias smk='sudo mkdir'
+alias pe='du -h | fzf'
+alias ic='kitty +kitten icat'
+alias ba='bat'
 alias his='history 0'
-alias ins='sudo pacman -S'   
-alias ac='sudo pacman -Syu'
-alias rem='sudo pacman -Rs' 
 alias mir="sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist"
 alias grep='grep --color=auto'
+alias xd='xrdb merge ~/.Xresources'
+alias tm='tmux'
+
+#-- Alias Editor
+
+alias nv='nvim'
+alias xh='xed ~/.zsh_history >/dev/null 2>&1  & disown'
+alias nz='nvim /home/$USER/.zshrc'
+alias nb='nvim /home/$USER/.bashrc'
+alias zx='xed /home/$USER/.zshrc >/dev/null 2>&1  & disown'
+alias xb='xed /home/$USER/.bashrc >/dev/null 2>&1  & disown'
+alias ns='nvim /home/$USER/.config/sxhkd/sxhkdrc'
+
+#-- Alias Git
+
 alias ga='git add .'
 alias bra='git branch'
 alias che='git checkout'
@@ -88,13 +115,8 @@ alias gs='git status'
 #alias tag='git tag'
 #alias nt='git tag -a'
 
-#------------#
-# FUNCIONES  #
-#------------#
+#-- Funciones
 
-#---------------------------------------------#
-# EXTRAER CUALQUIER COMPRIMIDO EN LA TERMINAL #
-#---------------------------------------------#
 extra () {
 	for archive in $*; do
 		if [ -f $archive ] ; then
@@ -118,31 +140,9 @@ extra () {
 	done
 }
 
-#-----#
-# FZF #
-#-----#
-#OPCION CON BORDE '--height 60% --border'
-export FZF_DEFAULT_OPTS='--height 60%'
 
-ir() { cd $(find / -type d 2> /dev/null | fzf) }
+#-- Colores De 'MAN'
 
-op() { xdg-open $(find / -type f 2> /dev/null | fzf) }
-
-rf() { rm -rf $(find / -type f 2> /dev/null | fzf -m) }
-
-rd() { rm -rf $(find / -type d 2> /dev/null | fzf -m)} 
-
-nvf() { nvim $(find / -type f 2> /dev/null | fzf -m)}
-
-cr() {find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c}
-
-tor() { print -z  $(([ -n "$ZSH_NAME" ] && fc -ln) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')}
-
-xr(){exec xrdb merge ~/.Xresources}
-
-#------------------#
-# COLORES DE 'MAN' #
-#------------------#
 function man() {
     env \
     LESS_TERMCAP_mb=$'\e[01;31m' \
@@ -155,27 +155,5 @@ function man() {
     man "$@"
 }
 
-
-#-----------------------------------#
-# OPCIONES DE CONFIGURACION DE BASH #
-#-----------------------------------#
-
-# GLOBAL INSENSIBLE A MAYÚSCULAS Y MINÚSCULAS (UTILIZADO EN LA EXPANSIÓN DE NOMBRE DE RUTA)
-shopt -s nocaseglob
-# CUANDO SE EJECUTE UN COMANDO QUE COINCIDA CON EL NOMBRE DE UN DIRECTORIO, SE EJECUTARÁ UN CD A ESE DIRECTORIO. ESTA OPCIÓN SOLO SE USA EN LOS SHELLS INTERACTIVOS
-shopt -s autocd
-# EL SHELL BASH INCLUYE, EN EL RESULTADO DE LA EXPANSIÓN FICHEROS, LOS NOMBRES DE ARCHIVO QUE COMIENZAN CON UN PUNTO
-shopt -s dotglob
-# SI ESTÁ ESTABLECIDA, SE ACTIVAN LAS CARACTERÍSTICAS DE CONCORDANCIA DE PATRONES EXTENDIDOS
-shopt -s extglob
-# SI ESTÁ ESTABLECIDA, SE PRODUCIRÁ UN ERROR DE EXPANSIÓN CUANDO UN PATRÓN NO TENGA CONCORDANCIA CON NINGÚN FICHERO
-# PARA QUE TE MUESTRE PRIMERO EL COMANDO EN VEZ DE EJECUTARLO CUANDO USAMOS !789  EN EL HISTORIAL
-shopt -s histverify
-# PERMITIRÁ QUE EL COMANDO ECHO INTERPRETE LOS CARACTERES DE ESCAPE, COMO LAS OPCIONES "\n" Y "\t
-shopt -s xpg_echo
-
-#remo=(.zcompdump .xsession-errors .lesshst)
-
-#for x in ${remo[@]}; do
-#   [ -f ${x} ] && rm -f ${x} 
-#done
+#-- Terminal XTERM Con Cursor Forma De Haz
+printf '\033[6 q'

@@ -159,11 +159,33 @@ nnoremap <silent> <A-S-u> :resize -10<CR>
 
 " Barra De Estado Personalizada De Nvim
 
-" Barra 1
-"set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
-set laststatus=2
+"-- Bar 1
 
-" Barra 2
+"highlight WinSeparator ctermbg=none ctermfg=240
+"highlight izprin       ctermbg=240  ctermfg=9
+"highlight ln           ctermbg=244  ctermfg=198
+"highlight co           ctermbg=246  ctermfg=21
+"highlight buf          ctermbg=240     ctermfg=214
+"highlight modos        ctermbg=240     ctermfg=34
+
+"set laststatus=2
+"let g:currentmode={
+       \ 'n'  : 'NORMAL ',
+       \ 'v'  : 'VISUAL ',
+       \ 'V'  : 'V·Line ',
+       \ "\<C-V>" : 'V·Block ',
+       \ 'i'  : 'INSERT ',
+       \ 'R'  : 'R ',
+       \ 'Rv' : 'V·Replace ',
+       \ 'c'  : 'Command ',
+       \}
+
+"set statusline=
+"set statusline+=%#modos#%{toupper(g:currentmode[mode()])}
+"set statusline+=%#izprin#\ %F%m%r%h%w%=%#buf#﯄%n\ %#ln#\%l\-%L\ %#co#\ ﴳ\%c
+
+"-- Bar 2
+
 "set statusline+=\ %{mode()}
 "set statusline+=\ %l
 "set statusline+=\
