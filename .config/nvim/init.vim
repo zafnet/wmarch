@@ -21,8 +21,8 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
- Plug 'vim-airline/vim-airline'
- Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
  Plug 'morhetz/gruvbox'
  Plug 'lilydjwg/colorizer'
 
@@ -97,6 +97,7 @@ let g:netrw_browse_split = 0
 let g:netrw_winsize = 20
 let g:netrw_keepdir = 0
 let g:netrw_localcopydircmd = 'cp -r'
+let g:netrw_preview = 1
 hi! link netrwMarkFile search
 
 " Mapeos
@@ -124,6 +125,8 @@ nnoremap <C-h>   <C-w>h
 nnoremap <C-l>   <C-w>l
 nnoremap <C-j>   <C-w>j
 nnoremap <C-k>   <C-w>k
+nnoremap Y yg$
+map <C-n>  :nohl<CR>
 map <Leader>vv <C-w>t<C-w>H
 map <Leader>vh <C-w>t<C-w>K
 nnoremap <silent> <Leader>s :so %<CR>
@@ -149,6 +152,16 @@ nnoremap <silent> <A-S-k> :vertical resize -10<CR>
 nnoremap <silent> <A-S-d> :resize +10<CR>
 nnoremap <silent> <A-S-u> :resize -10<CR>
 
+
+" Funciones
+
+"Resalte Cuando Copio Una Linea
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
+augroup END
+
+
 " Cursor
 
 "hi CursorLine ctermfg=NONE ctermbg=red
@@ -161,15 +174,15 @@ nnoremap <silent> <A-S-u> :resize -10<CR>
 
 "-- Bar 1
 
-"highlight WinSeparator ctermbg=none ctermfg=240
-"highlight izprin       ctermbg=240  ctermfg=9
-"highlight ln           ctermbg=244  ctermfg=198
-"highlight co           ctermbg=246  ctermfg=21
-"highlight buf          ctermbg=240     ctermfg=214
-"highlight modos        ctermbg=240     ctermfg=34
+highlight WinSeparator ctermbg=none ctermfg=240
+highlight izprin       ctermbg=237  ctermfg=198
+highlight ln           ctermbg=239  ctermfg=34
+highlight co           ctermbg=239  ctermfg=15
+highlight buf          ctermbg=239  ctermfg=214
+highlight modos        ctermbg=236  ctermfg=34
 
-"set laststatus=2
-"let g:currentmode={
+set laststatus=2
+let g:currentmode={
        \ 'n'  : 'NORMAL ',
        \ 'v'  : 'VISUAL ',
        \ 'V'  : 'V·Line ',
@@ -180,9 +193,10 @@ nnoremap <silent> <A-S-u> :resize -10<CR>
        \ 'c'  : 'Command ',
        \}
 
-"set statusline=
-"set statusline+=%#modos#%{toupper(g:currentmode[mode()])}
-"set statusline+=%#izprin#\ %F%m%r%h%w%=%#buf#﯄%n\ %#ln#\%l\-%L\ %#co#\ ﴳ\%c
+set statusline=
+set statusline+=%#modos#%{toupper(g:currentmode[mode()])}
+set statusline+=%#izprin#\ %F%m%r%h%w%=%Y\ %#buf#B%n\ %#ln#\%l-%L\ %#co#\\:%c
+set statusline+=
 
 "-- Bar 2
 
@@ -203,49 +217,49 @@ nnoremap <silent> <A-S-u> :resize -10<CR>
 "set statusline+=\
 
 " Vim-Airline
-
-let g:airline_powerline_fonts = 1
-
-let g:airline_theme = 'gruvbox'
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
-let g:airline_skip_empty_sections = 1
-let no_buffers_menu=1
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-if !exists('g:airline_powerline_fonts')
-  let g:airline#extensions#tabline#left_sep = ' '
-  let g:airline#extensions#tabline#left_alt_sep = '|'
-  let g:airline_left_sep          = '▶'
-  let g:airline_left_alt_sep      = '»'
-  let g:airline_right_sep         = '◀'
-  let g:airline_right_alt_sep     = '«'
-  let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
-  let g:airline#extensions#readonly#symbol   = '⊘'
-  let g:airline#extensions#linecolumn#prefix = '¶'
-  let g:airline#extensions#paste#symbol      = 'ρ'
-  let g:airline_symbols.linenr    = '␊'
-  let g:airline_symbols.branch    = '⎇'
-  let g:airline_symbols.paste     = 'ρ'
-  let g:airline_symbols.paste     = 'Þ'
-  let g:airline_symbols.paste     = '∥'
-  let g:airline_symbols.whitespace = 'Ξ'
-else
-  let g:airline#extensions#tabline#left_sep = ''
-  let g:airline#extensions#tabline#left_alt_sep = ''
-
+"
+"let g:airline_powerline_fonts = 1
+"
+"let g:airline_theme = 'gruvbox'
+"let g:airline#extensions#branch#enabled = 1
+"let g:airline#extensions#ale#enabled = 1
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tagbar#enabled = 1
+"let g:airline_skip_empty_sections = 1
+"let no_buffers_menu=1
+"
+"if !exists('g:airline_symbols')
+"  let g:airline_symbols = {}
+"endif
+"
+"if !exists('g:airline_powerline_fonts')
+"  let g:airline#extensions#tabline#left_sep = ' '
+"  let g:airline#extensions#tabline#left_alt_sep = '|'
+"  let g:airline_left_sep          = '▶'
+"  let g:airline_left_alt_sep      = '»'
+"  let g:airline_right_sep         = '◀'
+"  let g:airline_right_alt_sep     = '«'
+"  let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
+"  let g:airline#extensions#readonly#symbol   = '⊘'
+"  let g:airline#extensions#linecolumn#prefix = '¶'
+"  let g:airline#extensions#paste#symbol      = 'ρ'
+"  let g:airline_symbols.linenr    = '␊'
+"  let g:airline_symbols.branch    = '⎇'
+"  let g:airline_symbols.paste     = 'ρ'
+"  let g:airline_symbols.paste     = 'Þ'
+"  let g:airline_symbols.paste     = '∥'
+"  let g:airline_symbols.whitespace = 'Ξ'
+"else
+"  let g:airline#extensions#tabline#left_sep = ''
+"  let g:airline#extensions#tabline#left_alt_sep = ''
+"
 " Powerline Symbols
-
-  let g:airline_left_sep = ''
-  let g:airline_left_alt_sep = ''
-  let g:airline_right_sep = ''
-  let g:airline_right_alt_sep = ''
-  let g:airline_symbols.branch = ''
-  let g:airline_symbols.readonly = ''
-  let g:airline_symbols.linenr = ''
-endif
+"
+"  let g:airline_left_sep = ''
+"  let g:airline_left_alt_sep = ''
+"  let g:airline_right_sep = ''
+"  let g:airline_right_alt_sep = ''
+"  let g:airline_symbols.branch = ''
+"  let g:airline_symbols.readonly = ''
+"  let g:airline_symbols.linenr = ''
+"endif

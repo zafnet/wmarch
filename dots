@@ -214,6 +214,7 @@ cp -r /home/$USER/wmarch/Lavender-Breeze-GTK/ /usr/share/themes/
 cp -r /home/$USER/wmarch/Infinity-Lavender-Dark-Icons/ /usr/share/icons/
 cp -r /home/$USER/wmarch/file-manager/ /home/$USER/.local/share/
 cp -r /home/$USER/wmarch/i3lock/ /home/$USER/.local/share/
+cp -r /home/$USER/wmarch/iconwall.png /usr/share/icons/hicolor/16x16/apps/
 sleep2
 clear
 

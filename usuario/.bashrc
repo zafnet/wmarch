@@ -63,10 +63,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#-- Alias Sistema
+#-- Sistema
 
-alias ll='lsd -lha --total-size --group-dirs=first'
-alias ls='lsd --group-dirs=first'
+alias ll='lsd -lha --group-dirs=first'
+alias l='lsd -lda --group-dirs=first */'
+alias lo='lsd -lda --group-dirs=first .*/'
+alias ls='lsd -lha --group-dirs=first'
 alias tree='lsd --tree'
 alias to='touch'
 alias ins='sudo pacman -S'
@@ -89,9 +91,15 @@ alias his='history 0'
 alias mir="sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist"
 alias grep='grep --color=auto'
 alias xd='xrdb merge ~/.Xresources'
-alias tm='tmux'
 
-#-- Alias Editor
+#-- Tmux
+
+alias ts='tmux new -s'
+alias tl='tmux ls'
+alias ta='tmux a -t'
+alias tk='tmux kill-session -t'
+
+#-- Editor
 
 alias nv='nvim'
 alias xh='xed ~/.zsh_history >/dev/null 2>&1  & disown'
@@ -101,19 +109,19 @@ alias zx='xed /home/$USER/.zshrc >/dev/null 2>&1  & disown'
 alias xb='xed /home/$USER/.bashrc >/dev/null 2>&1  & disown'
 alias ns='nvim /home/$USER/.config/sxhkd/sxhkdrc'
 
-#-- Alias Git
+#-- Git
 
-alias ga='git add .'
-alias bra='git branch'
-alias che='git checkout'
-alias cl='git clone'
-alias gc='git commit -m'
-alias pul='git pull origin'
-alias gp='git push origin main'
 alias gs='git status'
-#alias fet='git fetch'
-#alias tag='git tag'
-#alias nt='git tag -a'
+alias ga='git add .'
+alias gc='git clone'
+alias gm='git commit -m'
+alias gp='git push origin main'
+alias gb='git branch'
+alias gk='git checkout'
+alias gu='git pull origin'
+alias gt='git tag -a'
+alias gf='git fetch'
+alias gl='git log'
 
 #-- Funciones
 
@@ -140,7 +148,46 @@ extra () {
 	done
 }
 
+#-- FZF
 
+#-- Opcion Con Borde '--height 60% --border'
+export FZF_DEFAULT_OPTS='--height 60%'
+
+dl () {
+cd $1 ; ls -al
+}
+
+ir () {
+cd $(find / -type d 2> /dev/null | fzf)
+}
+
+op () {
+xdg-open $(find / -type f 2> /dev/null | fzf)
+}
+
+rf () {
+rm -rf $(find / -type f 2> /dev/null | fzf -m)
+}
+
+rd () {
+rm -rf $(find / -type d 2> /dev/null | fzf -m)
+}
+
+nf () {
+sh -c 'find / -type f 2> /dev/null | fzf -m | xargs -r nvim'
+}
+
+ve () {
+find / -type f 2> /dev/null | fzf -m | xargs bat
+}
+
+cr () {
+find / -type f 2>/dev/null | fzf | tr -d '\n' | xclip -selection c
+}
+
+#X hi () { print -z  $(([ -n "$ZSH_NAME" ] && fc -ln) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')}
+
+#cr() {find / -type f 2>/dev/null | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c}
 #-- Colores De 'MAN'
 
 function man() {

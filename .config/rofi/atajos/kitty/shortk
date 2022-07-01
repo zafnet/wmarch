@@ -8,7 +8,7 @@ Pega Desde El Buffer "b" -> kitty_mod f11
 
 Copia Al Clipboard       -> ctrl+y
 
-Pegar Desde El Clipboard -> ctrl+v
+Pegar Desde El Clipboard -> ctrl+alt+v
 
 Pegar Desde La Selección -> shift+insert
 

@@ -116,28 +116,28 @@ extra () {
 
 #-- FZF
 
-#-- Opcion Con Borde '--height 60% --border'
-export FZF_DEFAULT_OPTS='--height 60%'
+export FZF_DEFAULT_OPTS='--height 60% --border'
 
-dl(){cd $1 ; ls -al}
+dl(){ cd $1 ; ls -al }
 
-ir() { cd $(find / -type d 2> /dev/null | fzf) }
+ir() { cd $(find / -type d 2> /dev/null | fzf -e --border --cycle --prompt="Ir a La Carpeta: ") }
 
-op() { xdg-open $(find / -type f 2> /dev/null | fzf) }
+op() { xdg-open $(find / -type f 2> /dev/null | fzf -e --border --cycle --prompt="Abrir: ") }
 
-rf() { rm -rf $(find / -type f 2> /dev/null | fzf -m) }
+rf() { rm -rf $(find / -type f 2> /dev/null | fzf -m -e --border --cycle --prompt="Borrar Archivo: ") }
 
-rd() { rm -rf $(find / -type d 2> /dev/null | fzf -m)}
+rd() { rm -rf $(find / -type d 2> /dev/null | fzf -m -e --border --cycle --prompt="Borrar Directorio: ")}
 
-nf () { sh -c 'find / -type f 2> /dev/null | fzf -m | xargs -r nvim'}
+nf () { sh -c 'find / -type f 2> /dev/null | fzf -m -e --border --cycle --prompt="Abrir Con Nvim: "| xargs -r nvim'}
 
-ve () {find / -type f 2> /dev/null | fzf -m | xargs bat}
+ve () {find / -type f 2> /dev/null | fzf -m -e --border --cycle --prompt="Vista Previa De: "| xargs bat}
 
-cr() {find / -type f 2>/dev/null | fzf | tr -d '\n' | xclip -selection c}
+cr() {find / -type f 2>/dev/null | fzf -e --border --cycle --prompt="Copiar Ruta: " | tr -d '\n' | xclip -selection c}
 
-hi() { print -z  $(([ -n "$ZSH_NAME" ] && fc -ln) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')}
+hi() { print -z  $(([ -n "$ZSH_NAME" ] && fc -ln) | fzf +s --tac -e --border --cycle --prompt="Historial: "| sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')}
 
 #cr() {find / -type f 2>/dev/null | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c}
+
 
 #-- Colores De 'MAN'
 
@@ -161,20 +161,6 @@ compinit
 zstyle ':completion:*' format 'autocompletado %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
-#zstyle ':completion:*' file-list all #COMPLETADO INTELIGENTE "TAB" MUESTRA TODAS LAS COINCIDENCIAS DE LO ESCRITO PARA IR AL DIRECTORIO
-#zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} #PARA TOMAR LOS COLORES DE LS_COLORS ACTUALES
-#zstyle ':completion:*' list-colors ''
-#zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-#zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-#zstyle ':completion:*' menu select=long
-#zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-#zstyle ':completion:*' use-compctl false
-#zstyle ':completion:*' verbose true
-#zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-#zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-#zstyle ':completion:*' auto-description 'specify: %d'
-#zstyle ':completion:*' completer _expand _complete _correct _approximate
-#eval "$(dircolors -b)"
 
 #-- Opciones De ZSH
 
@@ -212,15 +198,13 @@ bindkey "\e[3~"   delete-char
 
 #bindkey -v
 #export KEYTIMEOUT=1
-#autoload -Uz edit-command-line
-#zle -N edit-command-line
-#bindkey -M vicmd 'º' edit-command-line
-#bindkey -M viins '^i' vi-cmd-mode
-#bindkey -M '^j' vi-cmd-mode
-#bindkey -M '^h' vi-backward-char
-#bindkey -M '^k' vi-up-line-or-history
-#bindkey -M '^l' vi-forward-char
-#bindkey -M '^j' vi-down-line-or-history
+#bindkey vicmd 'º' edit-command-line
+#bindkey viins '^i' vi-cmd-mode
+#bindkey '^j' vi-cmd-mode
+#bindkey '^h' vi-backward-char
+#bindkey '^k' vi-up-line-or-history
+#bindkey '^l' vi-forward-char
+#bindkey '^j' vi-down-line-or-history
 
 #-- Cursor En Forma De Haz Para Modos De NVIM En Terminal
 
