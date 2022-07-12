@@ -31,11 +31,6 @@ fi
 
 #-- Sistema
 
-alias ll='lsd -lha --group-dirs=first'
-alias l='lsd -lda --group-dirs=first */'
-alias lo='lsd -lda --group-dirs=first .*/'
-alias ls='lsd -lha --group-dirs=first'
-alias tree='lsd --tree'
 alias to='touch'
 alias ins='sudo pacman -S'
 alias ac='sudo pacman -Syu'
@@ -52,11 +47,20 @@ alias mk='mkdir -v'
 alias smk='sudo mkdir'
 alias pe='du -h | fzf'
 alias ic='kitty +kitten icat'
-alias ba='bat'
 alias his='history 0'
-alias mir="sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist"
 alias grep='grep --color=auto'
 alias xd='xrdb merge ~/.Xresources'
+
+#-- Apps
+
+alias ll='lsd -lha --group-dirs=first'
+alias l='lsd -lda --group-dirs=first */'
+alias lo='lsd -lda --group-dirs=first .*/'
+alias ls='lsd -lha --group-dirs=first'
+alias tree='lsd --tree'
+alias ba='bat'
+alias mir="sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist"
+alias ra='ranger'
 
 #-- Tmux
 
