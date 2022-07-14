@@ -198,6 +198,9 @@ chown -R $USER /home/$USER/*
 chgrp -R users /home/$USER/*
 chown -R $USER /home/$USER/.local/*
 chgrp -R users /home/$USER/.local/*
+chown -R $USER /home/$USER/.local/share/i3lock/locker.sh
+chgrp -R users /home/$USER/.local/share/i3lock/locker.sh
+
 
 sleep2
 clear
