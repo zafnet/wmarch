@@ -247,7 +247,7 @@ cd
 cp -r /home/$USER/wmarch/usuario/.zshrc /root/
 cp -r /home/$USER/wmarch/usuario/.bashrc /root/
 cp -r /home/$USER/wmarch/.tmux.conf /root/
-cp -r /home/$USER/wmarch/usuario/.nanorc /home/$USER/
+cp -r /home/$USER/wmarch/usuario/.nanorc /root/
 cp -r /home/$USER/wmarch/.config/nvim/ /root/.config/
 
 #ln -s -f /home/$USER/.nanorc .nanorc
@@ -264,7 +264,7 @@ clear
 
 cd /home/$USER/wmarch/polybar/
 
-pacman -U polybar-git-3.6.3.r45.g1ee11f7c-1-x86_64.pkg.tar.zst
+pacman -U polybar-git-3.6.3.r45.g1ee11f7c-1-x86_64.pkg.tar.zst -y --noconfirm
 
 #--------------REINICIANDO EL PC
 #echo
