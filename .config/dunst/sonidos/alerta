@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+paplay ~/.config/dunst/sonidos/alerta.ogg

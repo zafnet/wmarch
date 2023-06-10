@@ -1,0 +1,88 @@
+sz= Actualiza archivo .zshrc
+bs= Actualiza archivo .bashrc
+bh= Borra Historial De BASH
+zh= Borra Historial De ZSH
+cm= Permiso Propietario 744
+ca= Borra Carpeta De .cache
+ll= Lista Todos Los Archivos y Carpetas Con Sus Permisos
+l=  Lista Directorios Comunes
+lo= Lista Directorio De Punto
+tree= Lista En Forma De La Herramienta Tree
+to= Crea Archivo touch
+ins= Instala Un Programa
+acn= Actualiza El Sistema sin Confirmar
+acm= Actualiza La Lista de Mirror y El Sistema
+ac= Actualiza El Sistema
+al= Lista Paquetes Instalados En El Sistema
+rem= Elimina Paquetes Instalados En El Sistema
+rep= Lista Paquetes En Los Repositorios De Arch
+cp= Copia Actualiza Cada Archivo o Carpeta
+ct= Copia Actualiza y Verbose Cada Archivo o Carpeta
+rm= Elimina Archivo o Carpeta
+rt= Elimina Archivo o Carpeta y Verbose
+mv= Mueve o Renombra Archivo o Carpeta Actualizando
+mt= Mueve o Renombra Archivo o Carpeta Actualizando y Verbose
+mk= Crea Carpeta y Verbose
+smk= Crea Carpeta Como Root
+pe= Muestra Peso De Las Carpetas --> Cancelada
+ic= Muestra Las Fotos En La Terminal
+ba= Comando bat
+his= Muestra El Historial Comun
+mir= Usa Reflector
+grep= Usa grep Color Auto
+xd= Recarga .Xresource
+ch= Nombre De Las Actualizaciones Que Se Van A Descargar
+bu= Busca Con Find En La Carpeta Raiz Pasando Un Argumento
+
+Tmux
+ts= Lanza TMUX Con Nombre Si Se Escribe Si No Solo Lanza TMUX
+tl= Hace Un LS En TMUX
+ta= Tmux Se Une A Una Session Con El Target
+tk= Tmux Elimina Una Session con El Target
+
+Nvim
+nv= Lanza nvim
+nz= Abre .zshrc Con NVIM
+nb= Abre .bashrc Con NVIM
+ns= Abre sxhkdrc Con NVIM
+nzh= Abre .zsh_history Con NVIM
+nbh= Abre .bash_history Con NVIM
+
+Git
+gs= git status
+ga= git add .
+gc= git clone
+gm= git commit -m
+gp= git push origin main
+gb= git branch
+gk= git checkout
+gu= git pull origin
+gt= git tag -a
+gf= git fetch
+gl= git log
+
+Funciones
+
+Alt + u -> Entra En La Carpeta Dada Y Lista El Contenido Sin Tecla Funcion
+
+Alt + i -> Entra En La Carpeta Dada Funcion
+
+Alt + o -> Abre Aplicacion o Archivo Funcion
+
+Alt + r -> Borra Archivo Y Directorio Funcion
+
+Alt + t -> Borra Directorio Funcion Cancelada
+
+Ctrl + f -> Edita Archivo Con Nvim Funcion
+
+Alt + v -> Muestra El Archivo En Forma BAT Funcion
+
+Alt + l -> Lista Contenido De Carpeta Dada Funcion
+
+Alt + y -> Copia Ruta De Un Archivo o Directorio Funcion
+
+Alt + c -> Copia Contenido De Un Archivo De Texto Funcion
+
+Ctrl + r -> Pega Historial en la terminal Funcion
+
+Alt + k -> Mata Procesos Con FZF Funcion

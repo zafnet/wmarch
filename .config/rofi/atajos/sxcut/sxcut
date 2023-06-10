@@ -1,0 +1,118 @@
+super + Escape|Recargar sxhkdrc
+
+super + alt + q(quit),r(reload)|Logout y Reload Bspwm
+
+super + q|Cerrar Vent Actual 
+
+super + Scroll_Lock|Restaura Carpeta Config Desde Repo
+
+super + shift + q|Cerrar Vent De Mismo Nombre (ej Pcmanfm1 Pcmanfm2)
+
+super + Delete|Bloquear Pantalla
+
+super + c(xterm)|Terminales 
+
+super + shift + m [Desactivado]|Lanza Script Para Monitorear La Carpeta Descargas
+
+alt + 1,2,3,4|fire-priv,fire,google,google --inc
+
+super + a,v,b,m,t,d|pcmanfm,rofi,ranger,cmus,telegram-desktop,discord
+
+ctrl + alt + p|Power-Menu
+
+ctrl + m|Menu Para elegir y Abrir Una VM
+
+ctrl + p|Menú de apagado, reinicio y suspensión con Rofi
+
+ctrl + shift + w|Ventanas Abiertas Con Rofi
+
+alt + w,m,e,a,s,o,t,n,p web,marc,emo,alias,sxhkd,teclas nv,tmux,nvim,wall|Muestra Atajos
+
+shift + alt + r|Lanza retroarch [Desactivado]
+
+super + p|Polybar Oculta [Desactivado]
+
+super + Print(gui) O Print{~/screenshoot}|Captura de Pantalla
+
+super + minus|Ocultar o Restaurar Vent Actual
+
+super + alt + Up,Down|Altura Vent Enfocada
+
+super + alt + n|Intercambiar Vent Actual y Vent Más Grande
+
+#---------------------------#
+# ATAJO PARA TERMINAL XTERM #
+#---------------------------#
+alt + shift + p|Elegir Nombre En La Terminal Para Sesion Tmux
+
+#-------------------#
+# MANEJO DE VENTANA #
+#-------------------#
+super + shift + r|Mover Vent Principal De Izquerda A Derecha
+
+super + shift  o|Rotar Vent En Horizontal 90°
+
+super + shift + d,i|Rotar Vent En Sentido Horario Y Antihorario
+
+super + e (floating,tiled)|Vent flotante o tiled
+
+super + w|Vent Monoculo
+
+super + f|Vent FullScreen
+
+super + shift + s|Vent Pseudo Tiled y Tiled Mode
+
+super + s|Vent todos Los Escritorios
+
+alt + shift + m(mark),x(lock),z(priv),s(stic)|Banderas Para La Vent
+
+#------------------------#
+# MANEJO DE RECEPTACULOS #
+#------------------------#
+super + y; {h,j,k,l}|Insertar Un Receptaculo En La Direccion Dada
+
+alt + y; t|Cerrar Todos Los Receptaculos
+
+super + g|Enviar El Nodo AL Receptaculo Creado
+
+shift + alt + b|Que Todos Los Nodos Tengan El Mismo Tamaño [Desactivado]
+
+#-----------------------#
+# ENFOQUE E INTERCAMBIO #
+#-----------------------#
+super + shift + h,j,k,l|Mover La Vent En La Dirección
+
+alt + shift + Tab o alt + Tab|Marca Las Vent Una Por Una
+
+super + alt + Left,Right|Ir A Los Escrit Con Las Flechas
+
+super + alt + 1-9,0|Mover Vent Al Escrit Sin Ir Al Escritorio
+
+super + ctrl + h,j,k,l|Mover Vent Al Escrit Con Las Flechas E Ir A El
+
+super + shift + 1-9,0|Mover Vent Al Escrit y Cambiar A El
+
+super + grave,Tab|Vamos Al Escrit Visitado Anterior
+
+super + ctrl + h,j,k,l|Preselec Dirección De La Nueva Ventana
+
+super + ctrl + 1-9|Preselec Proporción De La Nueva Ventana
+
+ctrl + space|Cancelar Preselec Del Nodo Enfocado
+
+super + ctrl + shift + space|Cancelar Preselec Para Escrit Enfocado
+
+super + alt + h,j,k,l|Expan Vent Uno De Sus Lados Hacia Afuera
+
+super + alt + shift + h,j,k,l|Contraer Vent Uno De Sus Lados Hacia Adentro
+
+shift + alt + {h,j,k,l}|Mover Una Vent Flotante
+
+#---------#
+# VOLUMEN #
+#---------#
+alt + @F12|Subir Volumen
+
+alt + @F11|Bajar Volumen
+
+alt + @F10|Mudo Volumen

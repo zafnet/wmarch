@@ -1,0 +1,507 @@
+# ██╗██████╗░░█████╗░░█████╗░███╗░░██╗███████╗██╗░██████╗░
+# ██║╚════██╗██╔══██╗██╔══██╗████╗░██║██╔════╝██║██╔════╝░
+# ██║░█████╔╝██║░░╚═╝██║░░██║██╔██╗██║█████╗░░██║██║░░██╗░
+# ██║░╚═══██╗██║░░██╗██║░░██║██║╚████║██╔══╝░░██║██║░░╚██╗
+# ██║██████╔╝╚█████╔╝╚█████╔╝██║░╚███║██║░░░░░██║╚██████╔╝
+# ╚═╝╚═════╝░░╚════╝░░╚════╝░╚═╝░░╚══╝╚═╝░░░░░╚═╝░╚═════╝░
+
+#-- Fuente Pango Se Usa Para Ventanas Y Barras Provee De Glifos Unicode
+#-- Ejemplo font pango: Nerd Fonts 10
+font pango: Hack Nerd Fonts 10
+
+#-- Tecla Lider
+
+set $mod Mod4
+
+
+#- Wallpaper Con Nitrogen Y Feh
+
+# exec --no-startup-id sleep 2 && nitrogen --restore
+exec_always feh --bg-fill --randomize --no-fehbg /home/$USER/.wall/*
+
+#- Picom
+exec_always picom
+# exec_always --no-startup-id picom --config ~/.config/picom.conf
+
+#-- DUNST Notificaciones De Escritorio
+
+exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
+
+#-- Resolucion
+
+#-- 1.Monitor Real 2.Resolucion En Virtualbox
+
+# exec_always xrandr --output HDMI-1 --mode 1600x900
+# exec_always xrandr --output Virtual-1 --mode 1440x900
+
+#-- 1.Bloquear Pantalla Con Una Imagen 2.Bloquear Con  Desenfoque 3.Bloquear La Pantalla Con LIGHTDM
+
+# bindsym $mod+l exec i3lock -i  ~/.config/i3/i3-lock-screen.png -p default|win -t
+
+# bindsym $mod+l exec ~/.config/i3/scripts/blur-lock
+
+# bindsym $mod+print exec dm-tool lock
+
+#-- Lanzador De Polybar Para usar polybar se tiene que comentar
+#   donde esta toda la bar de I3blocks
+
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+#-- Empezar Conky
+
+# exec_always --no-startup-id conky
+
+
+#-- Configurar Varios Idiomas De Teclado Y Tecla De Acceso Rápido
+#   Para Cambiar (ALT+BLOQ MAYÚS En Este Ejemplo)
+
+# exec --no-startup-id setxkbmap -layout 'us,sk' -variant altgr-intl,qwerty -option 'grp:alt_caps_toggle'
+
+exec --no-startup-id setxkbmap -layout 'es'
+
+#-- Bloqueo Numerico Activado
+
+# exec --no-startup-id numlockx on
+
+#-- Bandeja Del Sistema
+
+#-- Si No Usas DEX
+# exec --no-startup-id dex --autostart --environment i3
+
+#-- Necesita Tener Aplicaciones De Bandeja Iniciadas Aquí
+
+#-- 1.App Blueberry Para Administrar Dispositivos Bluetooth Desde La Bandeja
+#   2.networkmanager-applet
+#   3.clipman-applet
+
+# exec --no-startup-id blueberry-tray
+
+# exec --no-startup-id nm-applet
+
+# exec --no-startup-id xfce4-clipman
+
+
+#-- Comienzo de Shortcuts
+
+#-- Cerrar Ventanas
+
+bindsym $mod+q kill
+
+#-- Recargar Archivo De Configuracion
+
+bindsym $mod+Shift+c reload
+
+#-- Reinicie I3 En Su Lugar Conserva Su Diseño Y Sesión
+#   Puede Usarse Para Actualizar I3
+
+bindsym $mod+mod1+r restart
+
+#-- Salir De I3
+
+bindsym $mod+mod1+q exec --no-startup-id i3-msg exit
+
+#-- Terminales
+
+bindsym $mod+Return exec kitty
+
+bindsym mod1+Return exec xterm
+
+#-- Navegadores
+
+bindsym $mod+i exec /usr/bin/firefox -private-window
+bindsym $mod+m exec /usr/bin/firefox
+bindsym $mod+n exec /usr/bin/google-chrome-stable
+bindsym $mod+c exec /usr/bin/google-chrome-stable --incognito
+
+#-- Aplicaciones
+
+bindsym $mod+d exec rofi -modi drun -show drun \
+		-config ~/.config/rofi/config.rasi
+
+bindsym $mod+g exec pcmanfm
+
+bindsym ctrl + shift + d exec  ~/.config/rofi/menuweb/web-search.sh
+
+
+#-- Aliases
+
+bindsym mod1+a  exec ~/.config/rofi/allias/allias.sh
+
+
+#-- shortcuts
+
+#- sxhkdrc
+#bindsym mod1+s exec ~/.config/rofi/atajos/sxhshort/sxhshort.sh
+
+#- kitty
+bindsym mod1+k exec ~/.config/rofi/atajos/kitty/shortk.sh
+
+#- tmux
+bindsym mod1+t exec ~/.config/rofi/atajos/tmuxshort/tmuxshort.sh
+
+#- Nvim
+bindsym mod1+n exec ~/.config/rofi/atajos/nvimshort/nvimshort.sh
+
+
+#-- Forma De Las Ventana En El Escritorio Apiladas En Pestañas O Flotantes
+#   En Todos Los Espacio De Trabajo
+#- 1.Eliminando El Comentario Nos Deja En Modo De Mosaico I3 Predeterminado
+#    En Todos Los Espacio De Trabajo
+#- 2.Modo Apilado En Todos Los Espacios De Trabajo
+#- 3.Modo Con Pestañas En Todos Los Espacio De Trabajo
+
+# workspace_layout default
+
+# workspace_layout stacking
+
+# workspace_layout tabbed
+
+
+#-- Diseño De Las Ventanas Individualmente En Cada Espacio De Trabajo
+#-- Pero Hay Que Desactivar La Otra Tecla Asociada En La Opcion
+#   "Cambiar Espacio De Trabajo"
+
+# bindsym $mod+7 workspace 7; layout stacking
+
+#-- Huecos Entre Ventanas Para Esto Hay Que Instalar I3-GAPS
+#   En ARCH Y Se Va A Eliminar I3-WM
+
+gaps inner 6
+gaps outer 6
+
+#-- 1.Borde Sin Titulo En La Ventana
+#   2.Bordes Delgados
+#   3.Opciones Para Esconder El Borde De La Ventana
+
+for_window [class = "^.*"] border pixel 3
+
+# thin borders
+
+# hide_edge_borders both
+# hide_edge_borders none
+# hide_edge_borders vertical
+# hide_edge_borders horizontal
+hide_edge_borders smart
+
+#-- 1.Mostrar Las Barras De Título De La Ventana
+#     (NO COMPATIBLE OFICIALMENTE CON I3GAPS)
+#   2.Alineación Del Título De La Ventana
+
+# default_border normal
+
+# title_align center
+
+
+#-- Mouse+$mod Para Arrastrar La Ventana En Modo Flotantes
+
+floating_modifier $mod
+
+#-- Navegar A Los Espacios De Trabajo
+
+bindsym $mod+mod1+Right workspace next
+bindsym $mod+mod1+Left workspace prev
+
+#-- Mover Ventana A Otro Espacio De Trabajo Si Existe
+#   El Espacio De Trabajo Anterior O Previo
+
+bindsym ctrl+$mod+Left move container to workspace prev
+bindsym ctrl+$mod+Right move container to workspace next
+
+#-- Cambiar Al Espacio De Trabajo
+
+bindsym $mod+1    workspace  $ws1
+bindsym $mod+2    workspace  $ws2
+bindsym $mod+3    workspace  $ws3
+bindsym $mod+4    workspace  $ws4
+bindsym $mod+5    workspace  $ws5
+bindsym $mod+6    workspace  $ws6
+bindsym $mod+7    workspace  $ws7
+bindsym $mod+8    workspace  $ws8
+bindsym $mod+9    workspace  $ws9
+bindsym $mod+0    workspace  $ws10
+
+#-- Mover La Ventana Enfocada Al Escritorio Deseado
+
+bindsym $mod+Mod1+1    move container to workspace  $ws1
+bindsym $mod+Mod1+2    move container to workspace  $ws2
+bindsym $mod+Mod1+3    move container to workspace  $ws3
+bindsym $mod+Mod1+4    move container to workspace  $ws4
+bindsym $mod+Mod1+5    move container to workspace  $ws5
+bindsym $mod+Mod1+6    move container to workspace  $ws6
+bindsym $mod+Mod1+7    move container to workspace  $ws7
+bindsym $mod+Mod1+8    move container to workspace  $ws8
+bindsym $mod+Mod1+9    move container to workspace  $ws9
+bindsym $mod+Mod1+0    move container to workspace  $ws10
+
+
+#-- Cambiar El Tamaño De La Ventana Tambien Puede Usar El Mouse Para Eso
+
+mode "R" {
+
+#- Estos Enlaces Se Activan Tan Pronto Como Ingresa Al Modo De Cambio De Tamaño
+        bindsym j resize shrink width 3 px or 3 ppt
+        bindsym k resize grow height 3 px or 3 ppt
+        bindsym l resize shrink height 3 px or 3 ppt
+        bindsym ntilde resize grow width 3 px or 3 ppt
+
+#-- Los Mismo Atajos Pero Para Las Flechas
+
+	     bindsym Left resize shrink width 3 px or 3 ppt
+        bindsym Down resize grow height 3 px or 3 ppt
+        bindsym Up resize shrink height 3 px or 3 ppt
+        bindsym Right resize grow width 3 px or 3 ppt
+
+#-- Volver Estado Normal Enter O Esc
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "R"
+
+#-- Control De Retroiluminacion
+
+# bindsym XF86MonBrightnessUp exec xbacklight +5 && notify-send "Brightness - ${$(xbacklight -get)%.*}%"
+# bindsym XF86MonBrightnessDown exec xbacklight -5 && notify-send "Brightness - ${$(xbacklight -get)%.*}%"
+
+#-- 1.Cambiar El Foco 2.Cambiar Con Flechas Del Cursor
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+
+#-- 1.Mover Ventana Enfocada 2.Mover Con Las Flechas
+
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+i move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+#-- 1.Ventana En Horizontal y En Vertical
+
+bindsym $mod+o split h
+bindsym $mod+v split v
+
+#-- Cambiar Ventana A Modo stacked,tabbed,
+#   toggle,split,Pantalla Completa Manualmente
+#   Alterna Entre Mosaico A Flotantes
+#   Alterna Entre Mosaico A Sticky
+
+bindsym $mod+a layout stacking
+bindsym $mod+p layout tabbed
+bindsym $mod+s layout toggle split
+bindsym $mod+f fullscreen toggle
+bindsym $mod+e floating toggle
+bindsym $mod+y sticky toggle
+
+#-- Cambiar El foco Entre Mosaicos Y Ventana Flotante
+
+bindsym $mod+space focus mode_toggle
+
+#-- 1.Marcar La Ventana Principal Y La Siguiente 2.Desmarcar La Ventana
+
+bindsym $mod+z focus parent
+bindsym $mod+x focus child
+
+#-- Volumen
+
+bindsym $mod+F10 exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym $mod+F11 exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym $mod+F12 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+
+
+#-- 1.Captura De Pantalla Con SCROT Y Notificacion De DUNST
+#   2.Con flameshot
+
+# bindsym Print exec scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
+
+bindsym $mod+Print exec --no-startup-id flameshot full -p ~/screenshot
+
+
+#-- Abrir Espacio De Trabajo Vacío
+
+# bindsym $mod+Shift+n exec ~/.config/i3/scripts/empty_workspace
+
+
+#-- Defina Los Nombres De Los Espacios De Trabajo Predeterminados
+#   Para Los Que Configuraremos Los Enlaces De Teclas Más Adelante
+
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
+set $ws10 "10:"
+
+#-- Usar Espacios De Trabajo En Diferentes Pantallas
+#- Donde Debe Reemplazar VGA-0/HDMI-0 Con Los Nombres De Sus Pantallas
+#- Se Puede Obtener Del Comando XRANDR
+
+# workspace $ws1 output VGA-0
+# workspace $ws2 output VGA-0
+# workspace $ws3 output HDMI-0
+# workspace $ws4 output HDMI-0
+# workspace $ws5 output HDMI-0
+
+#-- Vincular El Programa Al Escritorio Y Centrarse En Ellas En El Inicio
+
+# assign [class="tilix"] $ws1
+# assign [class="(?i)firefox"] $ws2
+# assign [class="pcmanfm"] $ws3
+# assign [class="TelegramDesktop"] $ws5
+
+#-- Te Lleva Donde Se Abrio La Nueva Ventana Si Se Abre
+#   En Otro Espacio De Trabajo,Entonces Te Lleva Ahi
+
+# for_window [class=tilix] focus
+# for_window [class=(?i)firefox] focus
+# for_window [class=pcmanfm] focus
+# for_window [class=Thunderbird] focus
+# for_window [class=TelegramDesktop] focus
+
+
+#-- Hacer Que La Autenticación Funcione Con POLKIT-GNOME
+
+# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+
+#-- Configurar El Ahorro De Energía Para La Pantallas
+
+# exec --no-startup-id xset s 480 dpms 600 600 600
+
+#-- Aplicaciones Que Se Inician Automáticamente Con Unos Segundos
+#   De Espera Con El Comando Sleep Cuando Se Reinicia La PC
+
+# exec --no-startup-id sleep 2 && tilix
+# exec --no-startup-id sleep 7 && firefox https://www.LAPAGINAQUEQUIERA.com/
+# exec --no-startup-id sleep 3 && pcmanfm
+
+
+#-- Reglas Flotantes Configuracion (SIN MOSAICO)
+#   Para Las Aplicaciones Que Lo Necesitan
+
+# for_window [class="Yad" instance="yad"] floating enable
+# for_window [class="Galculator" instance="galculator"] floating enable
+# for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+
+#-- Establecer Flotante (SIN MOSAICO)
+#   Para Aplicaciones Especiales
+
+# for_window [class="Xsane" instance="xsane"] floating enable
+# for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+# for_window [class="qt5ct" instance="qt5ct"] floating enable
+# for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+# for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
+# for_window [class="Pamac-manager"] floating enable
+# for_window [window_role="About"] floating enable
+
+
+#-- Establecer El Borde De La Ventana Flotantes
+
+# for_window [class="urxvt"] border pixel 1
+
+
+#-- Establecer El Tamaño De La Ventana Flotantes
+
+#- 1.Para Establecer El Tamaño Del Archivo, Elija El Cuadro De Diálogo
+#- 2.Para Cambiar El Tamaño De Todas Las Ventanas Flotantes
+#- 3.Establecer La Posición De La Ventana Flotantes
+
+# for_window [window_role="(?i)GtkFileChooserDialog"] resize set 640 480
+# for_window [class=".*"] resize set 640 480
+# for_window [class=".*"] move position center
+
+
+#-- Ajustes De Color Para Barra Y Ventanas
+
+set $darkbluetrans	#08052be6
+set $darkblue	    #08052b
+set $lightblue	    #5294e2
+set $urgentred	    #e53935
+set $white		    #ffffff
+set $black		    #000000
+set $purple		    #e345ff
+set $darkgrey		#383c4a
+set $grey		    #b0b5bd
+set $mediumgrey		#8b8b8b
+set $yellowbrown	#e1b700
+set $m1             #05a533
+set $m2             #ff0000
+
+
+#-- Class
+#                        	  border	bground		text	indicator	child_border
+client.focused		         $darkblue	$darkblue	$white	 $purple		$m1
+client.unfocused	         $darkblue	$darkblue	$grey	 $purple		$m2
+client.focused_inactive	     $darkblue	$darkblue	$grey	 $purple		$black
+client.urgent		         $urgentred	$urgentred	$white	 $purple		$yellowbrown
+
+
+#-- Barra
+
+#-- NOTA: Si Dice ERROR 127 Hay Que Instalar I3BLOCKS
+
+#-- Para Bandeja Podría Ser Que No Tenga Configurada La Pantalla Principal:
+#   set one (xrandr --output <output> --primary)
+# Referencia: https://i3wm.org/docs/userguide.html#_tray_output Este Es Para Bandeja De Entrada
+
+# tray_output primary
+# tray_padding 0
+
+#-- Cuando strip_workspace_numbers Se Establece En Sí,
+#-- Cualquier Espacio De Trabajo Que Tenga El Nombre Del Formulario
+#-- “[n][:][NAME]” Mostrará Sólo El Nombre
+
+
+bar {
+		font pango: Hack Nerd Fonts 10
+		status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	    	position top
+
+strip_workspace_numbers yes
+
+# strip_workspace_name no
+
+		    colors {
+		    separator          $purple
+		    background         $darkgrey
+		    statusline         $white
+
+#                        		border        bg		       txt        indicator
+		focused_workspace	 $mediumgrey	$grey	         $darkgrey     $purple
+		active_workspace	 $lightblue     $mediumgrey	     $darkgrey     $purple
+		inactive_workspace	 $darkgrey      $darkgrey	     $grey	       $purple
+		urgent_workspace	 $urgentred     $urgentred	     $white		   $purple
+	}
+}
+
+
+#-- Puede Agregar Diferentes Barras Para Configuraciones De Múltiples Pantallas En Cada Pantalla
+#-- set output HDMI-0 A La Pantalla Que Desea La Barra, --transparency Se Puede Ajustar
+#-- La Transparencia Necesita Que Se Usen Códigos De Color RGBA Donde Las Dos Últimas Letras
+#-- Son El Factor De Transparencia,
+#-- Consulte Aquí https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4#08052be6 --> e6=90%
+
+#-- Esconder Barra De Estado
+
+bindsym $mod+mod1+p bar mode toggle
+
+#-- Control De Ventanas Popups Mientras Estamos En Pantalla Completa
+
+# popup_during_fullscreen smart

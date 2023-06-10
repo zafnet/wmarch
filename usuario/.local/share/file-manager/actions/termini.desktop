@@ -1,0 +1,11 @@
+# Para Abrir Terminal Dentro De Una Carpeta
+[Desktop Entry]
+Tooltip=abrir Terminal
+Type=Action
+Name= termi
+Icon=utilities-terminal
+Profiles=profile-zero;
+
+[X-Action-Profile profile-zero]
+MimeTypes=inode/directory;
+Exec=xterm -e "cd %f; zsh"

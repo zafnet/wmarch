@@ -1,0 +1,58 @@
+//███████╗███╗   ███╗ ██████╗      ██╗   ██████╗  █████╗ ███████╗██╗
+//██╔════╝████╗ ████║██╔═══██╗     ██║   ██╔══██╗██╔══██╗██╔════╝██║
+//█████╗  ██╔████╔██║██║   ██║     ██║   ██████╔╝███████║███████╗██║
+//██╔══╝  ██║╚██╔╝██║██║   ██║██   ██║   ██╔══██╗██╔══██║╚════██║██║
+//███████╗██║ ╚═╝ ██║╚██████╔╝╚█████╔╝██╗██║  ██║██║  ██║███████║██║
+//╚══════╝╚═╝     ╚═╝ ╚═════╝  ╚════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝
+
+
+* {
+    text-color:                  #ff5733;
+    background-color:            #2d3335;
+    lightbg:                     #534c48;
+    red:                         #f15d22;
+    orange:                      #faa41a;
+    blue:                        #8bb6c8;
+    green:                       #2da30b;
+    alter-nback:                 #2d3335;
+    negro:                       #000000;
+    columns: 5;
+    font: "IBM 3270 Bold 13";
+    sort: true;
+    hide-scrollbar: true;
+    fullscreen: false;
+    color:                  #ff0268;
+}
+
+
+window {
+    border:     0;
+//  background-color: rgba ( 0, 0, 0, 0 % );
+//  text-color: @text-color;
+//  border: 1px;
+//  border-color: @red;
+    padding: 0%;
+    marging: 4%;
+    x-offset: -9%;
+    y-offset: 10%;
+    width:    43%;
+    height:   20%;
+    separator-style: "none";
+}
+
+
+inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+
+textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0px 0.3em 0em 0em ;
+    text-color:  @text-color;
+}
+
+
+element selected.normal {
+    background-color: #2da30b;
+}

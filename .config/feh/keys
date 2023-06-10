@@ -1,0 +1,54 @@
+# configuración de clave feh.
+# Los comentarios comienzan con un signo #, no los use en la mitad de la línea
+# Cada línea debe estar en blanco, un comentario o una definición clave
+# key definition: <action name> <key1> [<key2> [<key3>]]
+
+# definición de tecla: <nombre de acción> <tecla1> [<tecla2> [<tecla3>]]
+#
+# Cada <key> es un keysym X11 (como salida por xev) con modificador opcional
+# Por ejemplo, C-x sería Ctrl+X, o 4-espace Mod4+Espacio
+
+# Ejemplos de enlaces de menú tipo vim en un teclado qwerty:
+menu_parent h Left
+menu_child  l Right
+menu_down   j Down
+menu_up     k Up
+menu_select space Return
+
+# Con La m Abre El Menu Contextual y Con M Cierra El Menu Contextual
+menu_close M
+
+# Pasa a La Siguiente Imagen Con j k o Con Flechas o Con space BackSpace
+#next_img j Right space
+#prev_img k Left BackSpace
+
+# Pasa a La Siguiente Imagen Con C-h C-l
+next_img C-h 
+prev_img C-l 
+
+# y movimiento de imagen
+scroll_up    J 
+scroll_down  K 
+scroll_left  H 
+scroll_right L 
+
+# Eliminación de archivos remove lo borra de la lista actual pero delete borra el archivo de la carpeta
+remove  C-Delete
+delete  Delete 
+
+# Alternar la visibilidad del puntero
+toggle_pointer p
+
+# Oculta La Barra Que Esta Debajo Del Nombre De La Ruta De Archivo
+toggle_filenames o
+
+# zoom
+zoom_in  C-k 
+zoom_out C-j 
+zoom_default a
+zoom_fit u
+
+# Guarda la imagen actual como "feh_PID_ID_FILENAME"
+#save_image
+
+#save_filelist

@@ -1,0 +1,45 @@
+#-- Funciones FZF Para Bash
+
+dl(){ 
+cd $1 ; ls -al 
+}
+
+ir() {
+cd $(find / -type d 2> /dev/null | fzf -e --border --cycle --prompt="Ir a La Carpeta: ") 
+}
+
+op() {
+xdg-open $(find / -type f 2> /dev/null | fzf -e --border --cycle --prompt="Abrir: ") 
+}
+
+rf() {
+rm -rf $(find / -type f 2> /dev/null | fzf -m -e --border --cycle --prompt="Borrar Archivo: ") 
+}
+
+rd() {
+rm -rf $(find / -type d 2> /dev/null | fzf -m -e --border --cycle --prompt="Borrar Directorio: ") 
+}
+
+nf () {
+sh -c 'find / -type f 2> /dev/null | fzf -m -e --border --cycle --prompt="Abrir Con Nvim: "| xargs -r nvim' 
+}
+
+ve () {
+find / -type f 2> /dev/null | fzf -m -e --border --cycle --prompt="Vista Previa De: "| xargs bat 
+}
+
+li () {
+find / -type d 2> /dev/null | fzf -m -e --border --cycle --prompt="Listar Una Carpeta: "| xargs -r lsd -la 
+}
+
+cr() {
+find / -type f 2>/dev/null | fzf -e --border --cycle --prompt="Copiar Ruta: " | tr -d '\n' | xclip -selection c 
+}
+
+cl() {
+find / -type f 2>/dev/null | fzf -e --border --cycle --prompt="Copiar en clipboard: " |tr -d '\n' | xargs xclip -sel clipboard 
+}
+
+#hi() {
+#print -z $( ([ -n "$ZSH_NAME" ] && history 0) | sed 's/^ *[0-9][0-9]*  *//g' | fzf +s --tac -e --border --cycle --prompt="Historial: ")
+#}

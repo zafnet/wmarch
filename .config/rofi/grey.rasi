@@ -1,0 +1,147 @@
+// ██████╗ ██████╗ ███████╗██╗   ██╗██████╗  █████╗ ███████╗██╗
+//██╔════╝ ██╔══██╗██╔════╝╚██╗ ██╔╝██╔══██╗██╔══██╗██╔════╝██║
+//██║  ███╗██████╔╝█████╗   ╚████╔╝ ██████╔╝███████║███████╗██║
+//██║   ██║██╔══██╗██╔══╝    ╚██╔╝  ██╔══██╗██╔══██║╚════██║██║
+//╚██████╔╝██║  ██║███████╗   ██║██╗██║  ██║██║  ██║███████║██║
+// ╚═════╝ ╚═╝  ╚═╝╚══════╝   ╚═╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝
+
+configuration {
+modi: "window,run,ssh,filebrowser,keys,drun,windowcd,combi";
+font: "agave Nerd Font 13";
+combi-modi: "drun,run";
+show-icons: true;
+fake-transparency: true;
+sorting-method: "normal";
+case-sensitive: false;
+cycle: true;
+display-combi:"練  Combinado";
+display-window:"缾 Ventanas";
+display-run: "  Binarios";
+display-drun: " Aplicaciones";
+display-keys:"  Atajos";
+display-ssh:"  ssh";
+display-filebrowser:"  Archivos";
+kb-move-front: "Control+a";
+kb-move-end: "Control+e";
+kb-move-word-back: "Alt+b";
+kb-move-word-forward: "Alt+f";
+kb-remove-to-eol: "Control+k";
+kb-remove-to-sol: "Control+K";
+kb-accept-entry: "Control+j";
+kb-delete-entry: "Shift+Delete";
+/*sidebar-mode: true;
+hover-select: false;*/
+}
+
+* {
+    border-color: #4c566a;
+    anchor: south;
+    location: south;
+    lines: 10;
+    columns: 1;
+    sort: true;
+    hide-scrollbar: true;
+    fullscreen: false;
+}
+
+filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+}
+
+window {
+    transparency: true;
+    border-radius: 10px;
+    background-color:#4c566a;
+    border: 1;
+    x-offset: 0;
+    y-offset: -10%;
+    width:      45%;
+    padding:    1%;
+    height:     375;
+    separator-style: "none";
+}
+
+prompt normal.normal {
+    background-color:#4c566a;
+    color: #8fbcbb;
+    padding: 0px;
+}
+
+textbox-prompt-colon {
+	padding: 						1px 1px 1px 5px;
+	//font:							"IBM 3270 Bold 13";
+	//background-color: 				@al;
+	//expand: false;
+    str: ">";
+    text-color: 					#ff2100;
+}
+
+inputbar {
+    background-color:#4c566a;
+    spacing: 1;
+    border: 0px 0px 0px 0px;
+    border-radius: 0px;
+    padding: 5px 10px 5px 5px;
+}
+
+entry normal.normal {
+    background-color:#4c566a;
+    color: #88c0d0;
+    padding: 0px;
+}
+
+listview {
+    border-radius: 0px;
+    border: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    background-color:#4c566a;
+    scrollbar: false;
+    scrollbar-width: 15px;
+    fixed-height: true;
+    reverse: false;
+    color:#955f20;
+    spacing: 0.3em;
+}
+
+element {
+    border: 0;
+    padding: 0px;
+    highlight: bold ;
+    //background-color:#2e3440;
+    //text-color: #00FF36;
+    orientation: horizontal;
+    children: [ element-icon,element-text ];
+    spacing:10px;
+}
+
+element normal.normal {
+    text-color: #2e3440;
+    background-color:#4c566a;
+}
+
+element selected.normal {
+    text-color: #2e3440;
+    background-color:#d8dee9;
+}
+
+element alternate.normal {
+    text-color: #2e3440;
+   background-color: #4c566a;
+}
+
+/*mode-switcher {
+    border: 1px dash 0px 0px ;
+}*/
+
+/*button selected {
+    text-color: #
+    background-color: #
+}*/
+
+/*button normal {
+    text-color: #
+}*/
+
+/* vim:ft=css

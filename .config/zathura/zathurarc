@@ -1,0 +1,70 @@
+#-- Configuracion de Colores 
+
+set completion-group-bg         "#282828"
+set completion-group-fg         "#ebdbb2"
+set completion-bg               "#282828"
+set completion-fg               "#ff64a8"
+set completion-highlight-bg     "#458588"
+set completion-highlight-fg     "#ebdbb2"
+
+set notification-error-bg       "#ff0000"
+set notification-error-fg       "#ffffff"
+set notification-warning-bg     "#1d2021"
+set notification-warning-fg     "#ff0000"
+set notification-bg             "#3c3836"
+set notification-fg             "#80daf9"
+
+set index-bg                    "#1d2021"
+set index-fg                    "#73b7f8"
+set index-active-bg             "#282828"
+set index-active-fg             "#00ff8f"
+
+set inputbar-bg                 "#3c3836"
+set inputbar-fg                 "#00ff8f"
+
+set statusbar-bg                "#282828"
+set statusbar-fg                "#00ff8f"
+
+set highlight-color             "#ff9700"
+set highlight-active-color      "#00ff8f"
+
+set default-bg                  "#1d2021"
+set default-fg                  "#001512"
+set recolor-lightcolor          "#282828"
+set recolor-darkcolor           "#ebdbb2"
+
+
+#-- Configuracion de Otras Opciones 
+
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 1
+set recolor                     true
+set show-hidden                 true
+set selection-clipboard clipboard
+#set selection-clipboard         primary
+set incremental-search
+#set show-directories
+
+#-- Configuracion de Maps 
+
+map i toggle_index
+map u scroll half-up
+map d scroll half-down
+map D toggle_page_mode
+map r reload
+map R rotate
+map K zoom in
+map J zoom out
+map c recolor
+map p print
+map º focus_inputbar
+map o toggle_inputbar
+map b toggle_statusbar
+map <C-a> feedkeys ":open <Tab>"
+
+# Deshabilita F11 Mapea z En Modo Normal y
+# En Modo Fullscreen Mapea La z Otra Vez
+unmap <F11> 
+map z toggle_fullscreen
+map [fullscreen] z toggle_fullscreen

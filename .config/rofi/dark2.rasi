@@ -1,0 +1,128 @@
+//██████╗  █████╗ ██████╗ ██╗  ██╗██████╗    ██████╗  █████╗ ███████╗██╗
+//██╔══██╗██╔══██╗██╔══██╗██║ ██╔╝╚════██╗   ██╔══██╗██╔══██╗██╔════╝██║
+//██║  ██║███████║██████╔╝█████╔╝  █████╔╝   ██████╔╝███████║███████╗██║
+//██║  ██║██╔══██║██╔══██╗██╔═██╗ ██╔═══╝    ██╔══██╗██╔══██║╚════██║██║
+//██████╔╝██║  ██║██║  ██║██║  ██╗███████╗██╗██║  ██║██║  ██║███████║██║
+//╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝
+
+configuration {
+modi: "window,run,ssh,filebrowser,keys,drun,windowcd,combi";
+font: "agave Nerd Font 13";
+combi-modi: "drun,run";
+show-icons: true;
+fake-transparency: true;
+sorting-method: "normal";
+case-sensitive: false;
+cycle: true;
+display-combi:"練  Combinado";
+display-window:"缾 Ventanas";
+display-run: "  Binarios";
+display-drun: " Aplicaciones";
+display-keys:"  Atajos";
+display-ssh:"  ssh";
+display-filebrowser:"  Archivos";
+kb-move-front: "Control+a";
+kb-move-end: "Control+e";
+kb-move-word-back: "Alt+b";
+kb-move-word-forward: "Alt+f";
+kb-remove-to-eol: "Control+k";
+kb-remove-to-sol: "Control+K";
+kb-accept-entry: "Control+j";
+kb-delete-entry: "Shift+Delete";
+}
+
+* {
+    border-color: #ffd966;
+    anchor: south;
+    location: south;
+    lines: 10;
+    columns: 1;
+    sort: true;
+    hide-scrollbar: true;
+    fullscreen: false;
+}
+
+filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+  }
+
+window {
+    transparency: true;
+    border-radius: 10px;
+    background-color: #0b0000;
+    border: 1;
+    padding: 1%;
+    x-offset: 0;
+    y-offset: -24%;
+    width:    45%;
+    height:   40%;
+    separator-style: "none";
+}
+
+prompt normal.normal {
+    background-color: #000000;
+    color: #D75F00;
+    padding: 0px;
+}
+
+textbox-prompt-colon {
+	padding: 						1px 1px 1px 5px;
+	//font:							"IBM 3270 Bold 13";
+	//background-color: 				#D75F00;
+	//expand: false;
+    str: ">";
+    text-color: 					#ff2100;
+
+}
+
+inputbar {
+    spacing: 0;
+    background-color: #0b0000;
+    border: 0px 0px 0px 0px;
+    border-radius: 0px;
+    padding: 1px 1px 5px 5px;
+}
+
+entry normal.normal {
+    background-color: #00000000;
+    color: #D75F00;
+    padding: 0px;
+}
+
+listview {
+    border-radius: 0px;
+    border: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    background-color: #0b0000;
+    scrollbar: false;
+    scrollbar-width: 15px;
+    fixed-height: true;
+    reverse: false;
+    color: #00ff1e;
+    spacing: 0.3em;
+}
+
+element {
+    orientation: horizontal;
+    children: [ element-icon,element-text ];
+    spacing:10px;
+}
+
+element normal.normal {
+    text-color: #ff009b;
+    background-color: #0b0000;
+}
+
+element selected.normal {
+    text-color: #ff009b;
+    background-color:#ffdb8e;
+}
+
+element alternate.normal {
+    text-color: #ff009b;
+   background-color: #0b0000;
+}
+
+/* vim:ft=css

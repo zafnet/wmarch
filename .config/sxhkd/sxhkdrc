@@ -1,0 +1,239 @@
+# ███████╗██╗  ██╗██╗  ██╗██╗  ██╗██████╗ ██████╗  ██████╗
+# ██╔════╝╚██╗██╔╝██║  ██║██║ ██╔╝██╔══██╗██╔══██╗██╔════╝
+# ███████╗ ╚███╔╝ ███████║█████╔╝ ██║  ██║██████╔╝██║
+# ╚════██║ ██╔██╗ ██╔══██║██╔═██╗ ██║  ██║██╔══██╗██║
+# ███████║██╔╝ ██╗██║  ██║██║  ██╗██████╔╝██║  ██║╚██████╗
+# ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝ ╚════
+
+#---------------------------#
+# OPCIONES DE ENTORNO BSPWM #
+#---------------------------#
+
+#- Recargar Configuración Del Archivo sxhkdrc
+super + Escape
+        notify-send  "SXHKDRC ACTUALIZADO" "$(pkill -USR1 -x sxhkd)"
+     
+#- Sale o Restaura Bspwm
+super + alt + {q,r}
+         bspc {quit,wm -r}
+
+#- Cerrar Aplicacion o Matar Aplicacion
+super + {_,shift + }q
+	bspc node -{c,k}
+
+#- Polybar Oculta
+#super +  p
+#	polybar-msg cmd toggle
+
+#--------------#
+# APLICACIONES #
+#--------------#
+
+#- Terminal
+super + c
+        xterm
+
+#- Navegadores
+alt + {1,2,3,4}
+     {firefox -private-window,firefox,google-chrome-stable,google-chrome-stable --incognito}
+
+#- Otras Aplicaciones
+super + {a,v,b,m,t,d}
+      {pcmanfm,rofi -show drun,xterm -e ranger,xterm -e cmus,telegram-desktop,discord}
+
+#---------------#
+# ATAJOS CUSTOM #
+#---------------#
+
+#- Ver Atajos De Archivos Con Rofi
+alt + {w,m,e,a,s,o,t,n,p}
+
+         {exec  ~/.config/rofi/{menuweb/web-search.sh,/marcadores/marcadores.sh,/emojis/emojis.sh,/ralias/ralias.sh,/atajos/sxcut/sxcut.sh,/atajos/nvcut/usonvim.sh,/atajos/tmcut/tmcut.sh,/atajos/nvcut/nvcut.sh,/walle/wallp.sh}
+
+#- Ver Ventanas Abiertas Con Rofi
+ctrl + shift + w
+     rofi -show window
+
+#- Ver Maquinas Virtuales Existentes Con Rofi
+ctrl + m
+   exec  ~/.config/rofi/autovm/autovm.sh
+
+#- Menu De Apagado, Reinicio y Suspensión Con Rofi
+#ctrl + alt + p
+#    exec ~/.config/rofi/power/power-menu.sh
+
+#- Captura de Pantalla
+{_,super+}Print
+     {flameshot full -c -p ~/screenshoot,flameshot gui}
+
+#- Restaura Archivos De Carpeta Config
+super + Scroll_Lock
+	 ~/.local/restorconf.sh
+
+#- Bloquear Pantalla
+super + Delete
+     exec  ~/.local/share/i3lock/locker.sh
+
+#-----------------#
+# MANEJO DE NODOS #
+#-----------------#
+
+#- Oculta o Restaura El Nodo Actual
+super + minus
+	bspc node {,$(bspc query -N -d -n .hidden | head -n 1)} -g hidden
+
+#- Altura De Nodos De Escritorio Enfocado
+super + alt + {Up,Down}
+	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
+
+#- Intercambiar El Nodo Actual y El Nodo Más Grande
+super + alt + n
+	bspc node -s biggest
+
+#-------------------#
+# ROTACION DE NODOS #
+#-------------------#
+
+#- Rotar Los Nodos Principal De Izquerda A Derecha
+super + {_,shift + } r
+    bspc node @/ --rotate {180,-180}
+
+#- Rotar Nodos En Horizontal 90° | Nodos Flotante | Fijar Nodo|-#
+super + shift + o
+		{bspc node @focused:/ -R 90,bspc node focused -t}
+
+#- Rotar Nodos En Sentido Horario y Antihorario
+super + shift + {d,i}
+    bspc node @/ -C {forward,backward}
+
+#-----------------#
+# ESTADO DEL NODO #
+#-----------------#
+
+#- Flotante y tiled
+super + e
+    bspc node -t "~"{floating,tiled}
+
+#- Fullscreen y tiled
+super + f
+    bspc node -t "~"fullscreen
+
+#- Pseudo Tiled y Tiled 
+super + shift + s
+    bspc node -t "~"{pseudo_tiled,tiled}
+
+#- Monoculo
+super + w
+    bspc desktop -l next
+
+#--------------------------------------#
+# ESTABLECER LAS BANDERAS DE LOS NODOS #
+#--------------------------------------#
+
+alt + shift + {m,x,z,s}
+	bspc node -g {marked,locked,private,sticky}
+
+#--------------------------------#
+# ENFOQUE E INTERCAMBIO DE NODOS #
+#--------------------------------#
+
+#- Marcar EL Nodo En La Dirección Dada
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+#- Marca Los Nodos Uno Por Uno
+alt + {_,shift + }Tab
+	bspc node -f {next,prev}.local
+
+#- Mover EL Nodo Al Escritorio Dado Con Los Numeros y Con ctrl + shift + h,l
+super + {_,alt + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#- Mover EL Nodo Al Escritorio Dado LLevandonos Con El Al Mismo Tiempo Que Lo Accionamos
+ctrl + shift + {h,l}
+	bspc node -d {next,prev} -f
+
+#- Mover EL Nodo A Un Espacio De Trabajo y Cambiar A El
+super + shift + {1-9,0}
+    bspc node -d '^{1-9,10}' --follow
+
+#- Mover Un Nodo Flotante
+shift + alt + {h,j,k,l}
+	bspc node -v {-100 0,0 100,0 -100,100 0}
+
+#-----------------------#
+# PRESELECCION DE NODOS #
+#-----------------------#
+
+#- Preseleccionar La Dirección Del Nuevo Nodo
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+#- Preseleccionar La Proporción Del Nuevo Nodo
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+#- Cancelar La Preselección Del Nodo Enfocado
+ctrl + space
+	bspc node -p cancel
+
+#----------------------------------#
+# EXPANSION O CONTRACCION DE NODOS #
+#----------------------------------#
+
+#- Expanda Un Nodo Moviendo Uno De Sus Lados Hacia Afuera
+super + alt + {h,j,k,l}
+	bspc node -z {left -100 0,bottom 0 100,top 0 -100,right 100 0}
+
+#- Contraer Un Nodo Moviendo Uno De Sus Lados Hacia Adentro
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -100 0,top 0 100,bottom 0 -100,left 100 0}
+
+#------------------------------------#
+# DESPLAZAMIENTO POR LOS ESCRITORIOS #
+#------------------------------------#
+
+#- Desplazarse Por Los Escritorios Con Las Flechas
+super + alt + {Left,Right}
+	bspc desktop -f {prev,next}.local
+
+#- Cambiar Al Ultimo Espacio De Trabajo Abierto
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+#- Cancelar La Preselección Para El Escritorio Enfocado
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#------------------------#
+# MANEJO DE RECEPTACULOS #
+#------------------------#
+
+#- Insertar Un Receptaculo En La Direccion Dada
+super + y; {h,j,k,l}
+    bspc node --presel-dir {west,south,north,east} -i
+
+#- Cerrar Todos Los Receptaculos
+alt + y; t
+   for win in `bspc query -N -n .leaf.\!window`; do bspc node $win -k; done; 
+
+#- Enviar El Nodo AL Receptaculo Creado
+super + g
+    bspc node $(bspc query -N -n focused) -n $(bspc query -N -n .leaf.\!window)
+
+#- Que Todos Los Nodos Tengan El Mismo Tamaño
+#shift + alt + b
+#    bspc node @/ -B
+
+#-------------------#
+# VOLUMEN CON PACTL #
+#-------------------#
+
+alt + @F12
+  pactl set-sink-volume @DEFAULT_SINK@ +1000
+
+alt + @F11
+  pactl set-sink-volume @DEFAULT_SINK@ -1000
+
+alt + @F10
+  pactl set-sink-mute @DEFAULT_SINK@ toggle

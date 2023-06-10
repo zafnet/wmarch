@@ -1,0 +1,71 @@
+//██╗    ██╗ █████╗ ██╗     ██╗     ██████╗ ██████╗  █████╗ ███████╗██╗
+//██║    ██║██╔══██╗██║     ██║     ██╔══██╗██╔══██╗██╔══██╗██╔════╝██║
+//██║ █╗ ██║███████║██║     ██║     ██████╔╝██████╔╝███████║███████╗██║
+//██║███╗██║██╔══██║██║     ██║     ██╔═══╝ ██╔══██╗██╔══██║╚════██║██║
+//╚███╔███╔╝██║  ██║███████╗███████╗██║██╗  ██║  ██║██║  ██║███████║██║
+// ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝
+                                                                       
+* {                                                                    
+ modi: "window,run,ssh,filebrowser,keys,drun,windowcd,combi";
+ font: "agave Nerd Font 13";
+ combi-modi: "drun,run";
+ padding: 3;
+ line-margin: 2;
+ line-padding: 1;
+ show-icons: true;
+ fake-transparency: true;
+// sorting-method: "normal";
+ case-sensitive: false;
+ cycle: true;
+ border-color: #ffd966;
+// lines: 10;
+ columns: 1;
+ sort: true;
+ hide-scrollbar: true;
+ fullscreen: false;
+ background-color:#412307;
+ color:#48b9c7;
+}
+
+window {
+    transparency: true;
+    border-radius: 10px;
+    background-color:#412307;
+    border: 1;
+    padding: 1%;
+    x-offset: -20%;
+    y-offset: -10%;
+    width:      30%;
+    height:     325;
+    separator-style: "none";
+}
+
+prompt normal.normal {
+    background-color:#412307;
+    color: #ffd966;
+    padding: 0px;
+}
+
+inputbar {
+    spacing: 1;
+    background-color:#412307;
+    border: 0px 0px 0px 0px;
+    border-radius: 0px;
+    padding: 5px 10px 5px 5px;
+}
+
+entry normal.normal {
+    background-color:#412307;
+    color: #ffd966;
+    padding: 0px;
+}
+
+listview {
+    background-color:#412307;
+    color:#955f20;
+    spacing: 0.3em;
+}
+
+//element selected.normal {
+//    background-color:#763c28;
+//}

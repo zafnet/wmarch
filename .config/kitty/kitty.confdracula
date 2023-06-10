@@ -1,0 +1,576 @@
+#--
+#-- ██╗░░██╗██╗████████╗████████╗██╗░░░██╗░░░░█████╗░░█████╗░███╗░░██╗███████╗
+#-- ██║░██╔╝██║╚══██╔══╝╚══██╔══╝╚██╗░██╔╝░░░██╔══██╗██╔══██╗████╗░██║██╔════╝
+#-- █████═╝░██║░░░██║░░░░░░██║░░░░╚████╔╝░░░░██║░░╚═╝██║░░██║██╔██╗██║█████╗░░
+#-- ██╔═██╗░██║░░░██║░░░░░░██║░░░░░╚██╔╝░░░░░██║░░██╗██║░░██║██║╚████║██╔══╝░░
+#-- ██║░╚██╗██║░░░██║░░░░░░██║░░░░░░██║░░░██╗╚█████╔╝╚█████╔╝██║░╚███║██║░░░░░
+#-- ╚═╝░░╚═╝╚═╝░░░╚═╝░░░░░░╚═╝░░░░░░╚═╝░░░╚═╝░╚════╝░░╚════╝░╚═╝░░╚══╝╚═╝░░░░░
+#--
+
+#-- Fonts
+
+#- Para Tener Una Lista De Fuentes Soportadas  Use `kitty +list-fonts`
+
+font_family      agave Nerd Font
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+font_size 15.0
+force_ltr no
+adjust_line_height  0
+adjust_column_width 0
+adjust_baseline 0
+disable_ligatures never
+box_drawing_scale 0.001, 1, 1.5, 2
+# symbol_map
+# narrow_symbols
+#- E.j. font_features none
+#- font_features UnifontMedium +isol -medi -fina -init
+# font_features
+
+#- El valor de kitty_mod se usa como Tecla modificadora
+
+#kitty_mod
+
+#-- Optimización Del Rendimiento --#
+
+repaint_delay 10
+input_delay 3
+sync_to_monitor yes
+
+#-- Descartar El Atajo Kitty_mod + u De Unicode
+
+map kitty_mod+u discard_event
+
+#-- Colores De Primer Plano Y De Fondo --#
+
+foreground #50fa7b
+background #282A36
+background_opacity 0.9
+selection_foreground #ffffff
+selection_background #44475a
+
+# black
+color0  #21222c
+color8  #6272a4
+
+# red
+color1  #ff5555
+color9  #ff6e6e
+
+# green
+color2  #50fa7b
+color10 #69ff94
+
+# yellow
+color3  #f1fa8c
+color11 #ffffa5
+
+# blue
+color4  #bd93f9
+color12 #d6acff
+
+# magenta
+color5  #ff79c6
+color13 #ff92df
+
+# cyan
+color6  #8be9fd
+color14 #a4ffff
+
+# white
+color7  #f8f8f2
+color15 #ffffff
+
+#-- Cursor Color --#
+
+cursor #f8f8f2
+
+#- Color Del Texto Debajo Del Cursor
+
+cursor_text_color background
+
+#- Forma Del Cursor (bloque,barra,subrayado)
+
+cursor_shape beam
+
+#- Grosor Del Cursor Del Haz (en pts)
+
+cursor_beam_thickness 1.5
+
+#- Grosor Del Cursor Subrayado (en pts)
+
+cursor_underline_thickness 2.0
+
+#- Cuanto Parpadea El Cursor (En Segundos) En Cero Deshabilitar El Parpadeo
+
+cursor_blink_interval 0.4
+
+#-- Mouse --#
+
+mouse_hide_wait 3.0
+url_color  #8be9fd
+url_style curly
+open_url_with default
+url_prefixes file ftp ftps gemini git gopher http https irc ircs kitty mailto news sftp ssh
+detect_urls yes
+copy_on_select yes
+map alt+1 copy_to_buffer a
+map alt+2 paste_from_buffer a
+map alt+3 copy_to_buffer b
+map alt+4 paste_from_buffer b
+#url_excluded_characters
+
+#- Deja De Parpadear El Cursor Después Del Número Especificado De Segundos De
+#- Inactividad Del Teclado. Establézcalo En Cero Para Que Nunca Deje De Parpadear
+
+cursor_stop_blinking_after 0.0
+
+#-- Ruta A Una Imagen De Fondo Debe Estar En Formato PNG --#
+
+#background_image
+background_image_layout tiled
+background_image_linear no
+dynamic_background_opacity yes
+background_tint 0.0
+dim_opacity 0.75
+
+#- Desplazarse Hacia Atrás
+
+scrollback_lines 2000
+
+#- Número De Líneas Que Se Mantendrán En La Memoria Para Desplazarse Hacia Atrás Del Historial
+
+scrollback_pager less --chop-long-lines --RAW-CONTROL-CHARS +INPUT_LINE_NUMBER
+
+scrollback_pager_history_size 0
+
+scrollback_fill_enlarged_window no
+
+wheel_scroll_multiplier 5.0
+
+wheel_scroll_min_lines 1
+
+touch_scroll_multiplier 1.0
+
+#- Elimine Los Espacios Al Final De Las Líneas Al Copiar Al Portapapeles A
+
+strip_trailing_spaces always
+
+#- Caracteres Considerados Parte De Una Palabra Al Hacer Doble Clic
+
+select_by_word_characters @-./_~?&=%+#
+click_interval -1.0
+
+#- El Intervalo Entre Clicks Sucesivos Para Detectar Doble/Triple Clicks
+#- (En Segundos).Los Números Negativos Usarán El Valor Predeterminado Del Sistema
+#- En Su Lugar,Si Está Disponible,O Recurra a 0.5.
+
+#- Establece La Ventana Activa Cuando El Mouse Esta Sobre El
+
+focus_follows_mouse no
+pointer_shape_when_grabbed arrow
+default_pointer_shape beam
+pointer_shape_when_dragging beam
+
+#- Elimine Todas Las Acciones Del Mouse Vistas Hasta Este Punto
+
+clear_all_mouse_actions no
+
+#-- Campana En Terminal --#
+
+enable_audio_bell no
+visual_bell_duration 0.0
+visual_bell_color none
+window_alert_on_bell yes
+bell_on_tab "🔔 "
+command_on_bell none
+bell_path none
+
+#-- Diseño De Ventana --#
+
+remember_window_size  yes
+initial_window_width  640
+initial_window_height 400
+enabled_layouts *
+window_resize_step_cells 2
+window_resize_step_lines 2
+window_border_width 0.5pt
+draw_minimal_borders yes
+window_margin_width 0
+single_window_margin_width -1
+window_padding_width 0
+placement_strategy center
+active_border_color #f8f8f2
+inactive_border_color  #6272a4
+bell_border_color #ff5a00
+inactive_text_alpha 1.0
+hide_window_decorations no
+window_logo_path none
+window_logo_position bottom-right
+window_logo_alpha 0.5
+resize_debounce_time 0.1
+resize_draw_strategy static
+resize_in_steps no
+visual_window_select_characters 1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ
+confirm_os_window_close 0
+
+#-- Pestañas, Arriba O Abajo --#
+
+tab_bar_edge bottom
+
+#- El Margen A La Izquierda Y Derecha De La Barra De Pestañas (En Pts)
+
+tab_bar_margin_width 0.0
+tab_bar_margin_height 0.0 0.0
+tab_bar_style fade
+
+#- La Alineación Horizontal De La Barra De Pestañas
+#- Puede Ser Una De Las Siguientes: left,center,right
+
+tab_bar_align left
+
+#- Número Mínimo Existente De Pestañas Para Mostrar La Barra De Pestañas
+
+tab_bar_min_tabs 2
+tab_switch_strategy previous
+tab_fade 0.25 0.5 0.75 1
+tab_separator " ┇"
+tab_powerline_style angled
+tab_activity_symbol none
+tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}"
+
+#- Plantilla A Usar Para Pestañas Activas,Si No Se Especifica,Recurre A tab_title_template
+
+active_tab_title_template none
+active_tab_foreground  #282a36
+active_tab_background  #f8f8f2
+active_tab_font_style   bold-italic
+inactive_tab_foreground #282a36
+inactive_tab_background #6272a4
+inactive_tab_font_style normal
+tab_bar_background none
+tab_bar_margin_color none
+
+#- Avanzado shell . y editor . (TIENE UN PUNTO)
+
+shell .
+
+editor .
+
+close_on_child_death no
+
+allow_remote_control no
+
+listen_on none
+
+#- Comprueba actualización disponible de kitty
+#- El valor predeterminado es verificar cada 24 horas,
+#- establecer en cero para deshabilitar
+
+update_check_interval 24
+
+startup_session none
+
+#-- Clipboard --#
+
+#- También hay una acción copy_or_interrupt que puede ser opcionalmente
+#- asignado a Ctrl+c Se copiará sólo si hay una selección y
+#- enviar una interrupción de lo contrario.Similar,copy_and_clear_or_interrupt
+#- copiará y borrará la selección o envía una interrupción si no hay selección
+
+# map ctrl+y copy_to_clipboard
+
+#- Pegar Desde El Portapapeles
+
+map ctrl+p paste_from_clipboard
+
+#- Pegar Desde La Selección
+
+map shift+insert paste_from_selection
+
+#- Permitir que los programas que se ejecutan en kitty lean y escriban desde el portapapeles
+#- Puede controlar exactamente qué acciones están permitidas.El conjunto de acciones posibles es:
+#- 1.write-clipboard 2.read-clipboard 3.write-primary 4.read-primary 5.read-clipboard-ask 6.read-primary-ask
+#- El valor predeterminado es permitir la escritura en el portapapeles y la selección principal y
+#- solicitar permiso cuando un programa intenta leer desde el portapapeles.Tenga en cuenta que
+#- deshabilitar la confirmación de lectura es un riesgo de seguridad,ya que significa que cualquier
+#- programa incluso uno que se ejecute en un servidor remoto a través de SSH,puede leer su portapapeles
+#- Véase también clipboard_max_size
+
+clipboard_control write-clipboard write-primary read-clipboard-ask read-primary-ask
+
+#- El tamaño máximo (en MB) de los datos de los programas que se ejecutan en kitty que se
+#- almacenarán para escribirlos en el portapapeles del sistema.Véase también clipboard_control
+#- Un valor de cero significa que no se aplica ningún límite de tamaño
+
+clipboard_max_size 64
+
+#-- Ajustes Específicos Del OS --#
+
+allow_hyperlinks yes
+shell_integration enabled
+term xterm-kitty
+# wayland_titlebar_color system
+linux_display_server auto
+
+#- Elimine todas las definiciones de atajos hasta este punto Útil para  EJ eliminar los accesos directos predeterminados
+
+clear_all_shortcuts no
+
+#- Definir alias de acción para evitar repetir las mismas opciones en asignaciones múltiples
+#- Se pueden definir alias para cualquier acción y expandirse recursivamente Por ejemplo
+#- el alias abajo le permite crear asignaciones para iniciar una nueva pestaña en el trabajo actual
+#- directorio sin duplicación
+#- E.j. action_alias launch_tab launch --type=tab --cwd=current
+
+# action_alias
+
+#- [ launch_tab ] es un nombre que nosotros podemos definir para despues mapearlo como dice abajo
+
+# map f1 launch_tab nvim
+
+#- Tambien se puede definir como abajo los parametros en este caso son launch --type=tab --cwd=current
+# map f1 launch --type=tab nvim
+
+#- Desplazarse Hacia Arriba
+
+map kitty_mod+up    scroll_line_up
+map ctrl+k          scroll_line_up
+
+#- Desplazarse Hacia Abajo
+
+map kitty_mod+down    scroll_line_down
+map ctrl+j            scroll_line_down
+
+#- Ver La Salida De Un Comando De Shell En Pager(Como se ve man)
+
+map kitty_mod+h show_scrollback
+
+#- Ver La Salida Del Último Comando De Shell En Modo Pager(Como se ve man)
+
+map kitty_mod+g show_last_command_output
+
+#-- Gestión De Ventanas --#
+
+#- Nueva Ventana
+
+map ctrl+n new_window
+
+#- Puede Abrir Una Nueva Ventana Ejecutando Un Programa Arbitrario,Por Ejemplo mutt Ejemplo
+
+# map kitty_mod+y  launch mutt
+
+#- Puede abrir una nueva ventana con el conjunto de directorios de trabajo actual
+#- al directorio de trabajo de la ventana actual usando Ejemplo
+
+# map ctrl+alt+enter  launch --cwd=current
+
+#-- Nueva ventana del OS --#
+
+#- Funciona como new_window arriba excepto que abre un sistema operativo de nivel superior
+#- ventana kitty En particular puede usar new_os_window_with_cwd para abrir una
+#- ventana con el directorio de trabajo actual Ejemplo
+
+# map kitty_mod+n new_os_window
+
+#- Cerrar Ventana
+
+map kitty_mod+c close_window
+
+#- Siguiente Ventana
+
+map kitty_mod+n next_window
+
+#- Ventana Previa
+
+map kitty_mod+p previous_window
+
+#- Mover Ventana Hacia Adelante
+
+#map kitty_mod+f move_window_forward
+
+#-Mover Ventana Hacia Atras
+
+map kitty_mod+a move_window_backward
+
+#- Mover Ventana Al Principio
+
+map kitty_mod+home move_window_to_top
+
+#- Empezar A Cambiar El Tamaño De La Ventana
+
+map kitty_mod+s start_resizing_window
+
+#- Cambiar a La Ventana Numero
+
+map ctrl+1 first_window
+
+map ctrl+2 second_window
+
+map ctrl+3 third_window
+
+map ctrl+4 fourth_window
+
+map ctrl+5 fifth_window
+
+map ctrl+6 sixth_window
+
+map ctrl+7 seventh_window
+
+map ctrl+8 eighth_window
+
+map ctrl+9 ninth_window
+
+map kitty_mod+0 tenth_window
+
+#- Muestra Visualmente Numero De Ventanas
+
+map kitty_mod+m focus_visible_window
+
+#- Presionando El Atajo y El Numero Donde Queremos Mover La Ventana
+
+map kitty_mod+' swap_with_window
+
+
+#-- Gestión De Pestañas --#
+
+#- Siguiente Pestaña
+
+# map kitty_mod+right next_tab
+map ctrl+tab        next_tab
+
+#- Pestaña Previa
+
+# map kitty_mod+left previous_tab
+map kitty_mod+tab previous_tab
+
+#- Nueva Pestaña
+
+map kitty_mod+t new_tab
+
+#- Cerrar Pestaña
+
+map ctrl+q close_tab
+
+#- Cerrar La Ventana Del OS
+
+map shift+cmd+w close_os_window
+
+#- Mover Pestaña Hacia Adelante
+
+map kitty_mod+. move_tab_forward
+
+#- Mover Pestaña Hacia Atras
+
+map kitty_mod+, move_tab_backward
+
+#- Establecer Título De Pestaña
+
+map ctrl+, set_tab_title
+
+#- también puede crear accesos directos para ir a pestañas específicas
+#- (siendo 1 la primera) (pestaña 2 la segunda pestaña) y -1 siendo la activa anteriormente
+#- tabulador y cualquier número mayor que el último tabulador siendo el último tabulador Ejemplo
+
+#  map ctrl+alt+1 goto_tab 1
+#  map ctrl+alt+2 goto_tab 2
+
+#- Al igual que con new_window arriba también puede pasar el nombre de
+#- comandos arbitrarios para ejecutar cuando se usa new_tab y use
+#- new_tab_with_cwd Finalmente si desea que la nueva pestaña se abra junto a
+#- la pestaña actual en lugar de al final de la lista de pestañas use Ejemplo
+
+# map ctrl+t new_tab !neighbor [optional cmd to run]
+
+#-- Gestión De Diseño --#
+
+#- Diseño De Ventana Siguiente
+
+map kitty_mod+l next_layout
+
+#- Del Mismo Modo Para Volver Al Diseño Anterior
+
+# map kitty_mod+p last_used_layout
+
+#- También Puede Crear Accesos Directos Para Cambiar A Diseños Específicos
+
+# Ejemplo map ctrl+alt+t goto_layout tall
+# Ejemplo map ctrl+alt+s goto_layout stack
+
+#- También hay una función de cambio de diseño que cambia al diseño Como Una
+#- zoom lo Cambia a Forma Apilada Pero Es Como Un zoom
+
+map kitty_mod+z toggle_layout stack
+
+#- Tamaño De La Fuente Plus(+) Aumenta
+
+map kitty_mod+plus   change_font_size all +2.0
+
+#- Tamaño De Fuente Minus(-) Disminuir
+
+map kitty_mod+minus  change_font_size all -2.0
+
+#- Tamaño De Fuente Restablecer
+
+map kitty_mod+backspace change_font_size all 0
+
+#- para configurar accesos directos para cambiar solo el
+#- tamaño de fuente de la ventana actual del OS Ejemplo
+
+# map kitty_mod+f6 change_font_size current 10.0
+
+#-- Abrir URL --#
+
+#- Abra una URL actualmente visible usando el teclado.El programa utilizado
+#- para abrir la URL se especifica en open_url_with
+
+# map kitty_mod+e open_url_with_hints
+
+#-- Entrada Unicode --#
+
+map kitty_mod+u    kitten unicode_input
+
+#-- Editar Archivo De Configuración --#
+
+map kitty_mod+e edit_config_file
+
+#- Abre el shell de Kitty en una nueva ventana/pestaña/superposición/os_window
+#- para controlar a Kitty usando comandos
+
+map kitty_mod+escape kitty_shell window
+
+#-- Aumentar La Opacidad Del Fondo --#
+
+map kitty_mod+b>m set_background_opacity +0.1
+
+#- Disminuir La Opacidad Del Fondo
+
+map kitty_mod+b>l set_background_opacity -0.1
+
+#- Hacer Que El Fondo Sea Completamente Opaco
+
+map kitty_mod+b>1 set_background_opacity 1
+
+#- Restablecer La Opacidad Del Fondo
+
+map kitty_mod+b>d set_background_opacity default
+
+#- Restablecer El Terminal
+
+map kitty_mod+delete clear_terminal reset active
+
+#- Recargar kitty.conf aplicando cualquier cambio desde
+#- la última vez que se cargó Tenga en cuenta que algunas
+#- configuraciones no se pueden cambiar dinámicamente y
+#- requieren un reinicio completo de kitty También puede
+#- asignar una combinación de teclas para cargar un archivo
+#- de configuración diferente por ejemplo
+
+# Ejemplo map f5 load_config /path/to/alternative/kitty.conf
+
+#- Tenga en cuenta que todas las configuraciones del
+#- kitty.conf original se descartan,en otras palabras
+#- las nuevas configuraciones de conf *reemplazan* a las antiguas
+
+map kitty_mod+f5 load_config_file

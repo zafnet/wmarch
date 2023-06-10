@@ -1,0 +1,290 @@
+#!/usr/bin/env bash
+
+if [ "$(id -u)" -eq "0" ]; then
+
+pacman -Syu  --noconfirm
+
+clear
+
+else
+
+echo  ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
+echo  "> ███╗░░██╗░█████╗░  ██████╗░░█████╗░░█████╗░████████╗  < "
+echo  "> ████╗░██║██╔══██╗  ██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝  < "
+echo  "> ██╔██╗██║██║░░██║  ██████╔╝██║░░██║██║░░██║░░░██║░░░  < "
+echo  "> ██║╚████║██║░░██║  ██╔══██╗██║░░██║██║░░██║░░░██║░░░  < "
+echo  "> ██║░╚███║╚█████╔╝  ██║░░██║╚█████╔╝╚█████╔╝░░░██║░░░  < "
+echo  "> ╚═╝░░╚══╝░╚════╝░  ╚═╝░░╚═╝░╚════╝░░╚════╝░░░░╚═╝░░░  < "
+echo  ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
+
+sleep 1
+
+clear
+
+exit
+
+fi
+
+# Definir variables
+FOLD_SHARE="/usr/share"
+USER_HOME="/home/$USER"
+REPO_DIR="$USER_HOME/wmarch"
+ROFI_DIR="$USER_HOME/.config/rofi"
+ICONS_DIR="$FOLD_SHARE/icons"
+THEMES_DIR="$FOLD_SHARE/themes"
+LOCAL_DIR="$USER_HOME/.local/share"
+CONFIG_DIR="$USER_HOME/.config"
+LOCKER_DIR="$LOCAL_DIR/i3lock"
+APPLICATIONS_DIR="$FOLD_SHARE/applications"
+FSTAB_FILE="/etc/"
+WALL_DIR="$FOLD_SHARE/icons/hicolor/16x16/apps/"
+FONT_DIR="$FOLD_SHARE"
+POLYBAR_PKG="polybar-git-3.6.3.r45.g1ee11f7c-1-x86_64.pkg.tar.zst"
+BROWSE="FIREFOX"
+LOG_MANA="LIGHTDM"
+
+# Funciones
+function print_status {
+    echo -e "\033[1;92m$1\033[0m"
+}
+
+ins_browser() {
+    print_status "\n\t\t\t\t -- INSTALANDO $BROWSE --"
+    pacman -S --needed firefox --noconfirm
+    sleep 2
+    clear
+}
+
+ins_logman() {
+    print_status "\n\t\t\t\t -- INSTALANDO $LOG_MANA --"
+    pacman -S --needed lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings accountsservice  --noconfirm
+    systemctl enable lightdm
+    sleep 2
+    clear
+}
+
+# Definir Funciones
+check_plugins() {
+    print_status "\n\t\t\t\t -- COMPROBANDO PLUGINS DE ZSH--"
+    if [[ -d $FOLD_SHARE/zsh-syntax-highlighting/ && -d $FOLD_SHARE/zsh-autosuggestions/ ]]; then
+    sleep 2
+    clear    
+    print_status "\n\t\t\t\t -- YA EXISTEN LAS CARPETAS DE PLUGINS DE ZSH --"
+    else
+    sleep 2
+    clear    
+    print_status "\n\t\t\t\t -- COPIANDO PLUGINS DE ZSH --"
+    cp -ru $FOLD_SHARE/zsh/plugins/zsh-syntax-highlighting $FOLD_SHARE/
+    cp -ru $FOLD_SHARE/zsh/plugins/zsh-autosuggestions $FOLD_SHARE/
+    fi
+    sleep 2
+    clear
+}
+
+create_common_dirs() {
+    print_status "\n\t\t\t\t\t -- CREANDO CARPETAS COMUNES --"
+    mkdir -pv $USER_HOME/{desc,plant,ima,mus,screenshoot,doc}
+    sleep 2
+    clear
+}
+
+add_dotfiles() {
+    print_status "\n\t\t\t\t\t -- AGREGANDO DOTFILES --"
+    mkdir -pv $WALL_DIR
+    cp -ru $REPO_DIR/usuario/. $USER_HOME/
+    cp -ru $REPO_DIR/.config $USER_HOME/
+    cp -ru $REPO_DIR/Lavender-Breeze-GTK $THEMES_DIR/
+    cp -ru $REPO_DIR/Infinity-Lavender-Dark-Icons $ICONS_DIR/
+    cp -ru $REPO_DIR/iconwall.png $WALL_DIR
+    cp -ru $REPO_DIR/fonts $FONT_DIR/
+    cp -ru $REPO_DIR/.gtk-bookmarks $USER_HOME/
+    cp -ru $REPO_DIR/appdesk/. $APPLICATIONS_DIR/
+    cp -ru $REPO_DIR/fstab $FSTAB_FILE/
+    #cp -ru  $REPO_DIR/tilix $FONT_DIR/
+    #cp -ru  $REPO_DIR/.xinitrc $USER_HOME/
+    sleep 2
+    clear
+}
+
+perm_comun_files() {
+    
+    # Permisos y Propiedad Para Archivos y Carpetas
+    print_status "\n\t\t\t\t -- PERMISOS Y PROPIEDAD PARA CARPETAS COMUNES CREADAS --"
+    chown -R $USER:users $USER_HOME
+    chmod -R 700 $LOCKER_DIR/locker.sh
+    chmod -R 600 $LOCKER_DIR/locked.jpg
+    chmod -R 700 $USER_HOME/.local/wallrandom.sh
+    #chmod -R 700 $USER_HOME/.local/monidesc.sh
+    # Permisos y Propiedad Carpeta .CONFIG
+    chmod -R 700 "$CONFIG_DIR/"
+    sleep 2
+    clear
+}
+
+pass_root_file() {
+
+    print_status "\n\t\t\t\t -- PASANDO ARCHIVOS A ROOT --"
+    # Creando Una Carpeta .config en root   
+    mkdir -pv /root/.config/
+    # Copia archivos "bashc,nano,nvim,ranger,zshc," a .config del usuario root
+    cp -ru $REPO_DIR/.config/{bashc,nano,nvim,ranger,zshc} /root/.config/
+    # Copia los archivos ".bashrc" y ".zshenv" a la carpeta raíz del usuario "root"
+    cp -ru $REPO_DIR/usuario/{.bashrc,.zshenv} /root/
+    sleep 2
+    clear
+}
+
+poly_ins() {
+
+    print_status "\n\t\t\t\t -- INSTALANDO POLYBAR --"
+    cd $REPO_DIR/polybar/
+    # Instala el paquete "polybar-git" desde un archivo ".pkg.tar.zst"
+    pacman -U $POLYBAR_PKG --noconfirm
+    sleep 2
+    clear
+}
+
+ins_logman
+ins_browser
+check_plugins
+create_common_dirs
+add_dotfiles
+perm_comun_files
+pass_root_file
+poly_ins
+
+
+##########################################################################################
+#- INSTALO VIRTUALBOX Y ELIJO UN PAQUETE PARA PROPORCIONAR MÓDULOS AL SISTEMA ANFITRIÓN -#
+##########################################################################################
+
+#-- Este Es Para El KERNEL LINUX NORMAL e Instalo ESTE MODULO 
+
+# print_status "\n\t\t\t\t\t INSTALANDO VIRTUALBOX Y MODULO VIRTUALBOX-HOST-MODULES-ARCH"
+# pacman -S virtualbox virtualbox-host-modules-arch  --noconfirm
+# sleep 2
+# clear
+
+#-- Si Elejimos Este Es Para OTROS KERNELS YO USO ESTE AHORA 
+
+#print_status "\n\t\t\t\t\t INSTALANDO VIRTUALBOX Y VIRTUALBOX-HOST-DKMS"
+# pacman -S virtualbox virtualbox-host-dkms  --noconfirm
+#sleep 2
+#clear
+
+#############################################################
+#- CARGAR LOS MÓDULOS DEL KERNEL DE VIRTUALBOX MANUALMENTE -#
+#############################################################
+
+#-Ya Sea Que Utilices El Módulo virtualbox-host-modules-arch O virtualbox-host-dkms
+#-El Kernel Usa systemd-modules-load.service Para Cargar Los Módulos De virtualbox En El Momento Del Arranque
+
+#-Para Cargarlos De Forma Manual Utilizamos El Comando modprobe y El Modulo vboxdrv
+#-La Ejecución De Esta Linea Requiere De Privilegios De Administrador
+
+#print_status "\n\t\t\t\t\t CARGANDO MODULOS"
+#modprobe vboxdrv
+#sleep 2
+#clear
+
+#-Este Modulo vboxdrv Es Obligatorio,Aunque Para Un Uso Avanzado De virtualbox
+#-Puede Que Los Siguientes Módulos Te Sean De Utilidad También:
+
+# 1 vboxnetadp y vboxnetflt: Son Necesarios Si Usas La Característica BRIDGED o CONEXIÓN DE RED Solo Para El Sistema Anfitrión
+
+# 2 vboxpci: Es Necesario Cuando Su Máquina Virtual Necesita Pasar a Través De Un Dispositivo PCI Del Sistema Anfitrión
+
+#- Si Deseamos,Es Posible Cargar Todos En Una Sola Linea De Comando Así:
+
+# print_status "\n\t\t\t\t\t CARGANDO MODULOS VBOXDRV VBOXNETADP VBOXNETFLT VBOXPCI"
+# modprobe vboxdrv vboxnetadp vboxnetflt vboxpci
+# sleep 2
+# clear
+
+########################################
+#- AÑADIR USUARIOS AL GRUPO vboxusers -#
+########################################
+
+#-Para Usar Los Puertos USB Del Equipo Anfitrión En Las Máquinas Virtuales,Es Necesario Agregar a
+#-El o Los Usuarios Del Sistema Al Grupo vboxusers Bastara Con Ejecutar La Siguiente Linea De Comando
+
+#print_status "\n\t\t\t\t\t AÑADIR USUARIO AL GRUPO VBOXUSERS"
+#gpasswd -a $USER vboxusers
+#sleep 2
+#clear
+
+##########################################
+#- DESCARGANDO DISCO DE GUEST ADDITIONS -#
+##########################################
+
+#-También Se Recomienda Instalar El Paquete virtualbox-guest-iso En El Equipo Que Ejecuta Virtualbox
+#-Este Paquete Actuará Como Una Imagen De Disco Que Se Puede Usar Para Instalar Los Complementos («Guest Additions»)
+
+#print_status "\n\t\t\t\t\t DESCARGANDO DISCO DE GUEST ADDITIONS"
+#pacman -S virtualbox-guest-iso --noconfirm
+#sleep 2
+#clear
+
+#############################################################
+#- SI NO ME DEJA INICIAR UNA MAQUINA VIRTUAL DE VIRTUALBOX -#
+#############################################################
+
+#-Decia En El Cuadro De Error Que Tenia Que Poner El Comando /sbin/vboxconfig Con sudo o Siendo root
+#-Pero Es Porque No Estaban Firmados o Cargados Los Modulos Para Virtualbox
+#-Entonces Antes Tuve Que Escribir Esto "sudo rcvboxdrv setup" y Me Dejo
+
+#print_status "\n\t\t\t\t\t FIRMANDO O CARGANDO MODULOS PARA VIRTUALBOX AUTOMATICAMENTE"
+#rcvboxdrv setup
+#sleep 2
+
+
+#######################################################################################################################
+#- INSTALAR EL PAQUETE QEMU (Ó qemu-headless PARA LA VERSIÓN SIN GUI) Y LOS PAQUETES OPCIONALES PARA TUS NECESIDADES -#
+#######################################################################################################################
+
+#-1 qemu-arch-extra - SOPORTE EXTRA PARA ARQUITECTURAS
+#-2 qemu-block-gluster - SOPORTE PARA BLOQUE glusterfs
+#-3 qemu-block-iscsi - SOPORTE PARA BLOQUE iSCSI
+#-4 qemu-block-rbd - SOPORTE PARA BLOQUE RBD
+#-5 samba - SMB/ SOPORTE PARA SERVIDOR CIFS
+
+#################################
+#- PAQUETES PARA INSTALAR QEMU -#
+#################################
+
+#print_status "\n\t\t\t\t  INSTALANDO QEMU BASE"
+# pacman -S qemu-base edk2-ovmf ebtables dmidecode libvirt dnsmasq bridge-utils openbsd-netcat virt-viewer vde2 virt-manager --noconfirm
+
+#print_status "\n\t\t\t\t INSTALANDO QEMU-DESKTOP"
+# pacman -S qemu-desktop edk2-ovmf ebtables dmidecode libvirt dnsmasq bridge-utils openbsd-netcat virt-viewer vde2 virt-manager --noconfirm
+
+#print_status "\n\t\t\t\t INSTALANDO QEMU-FULL"
+# pacman -S qemu-full edk2-ovmf ebtables dmidecode libvirt  dnsmasq bridge-utils openbsd-netcat virt-viewer vde2 virt-manager --noconfirm
+
+########################################################
+#- AÑADIR USUARIOS A LOS GRUPOS kvm Y libvirt EN QEMU -#
+########################################################
+
+#print_status "\n\t\t\t\t AÑADIR USUARIO A GRUPOS KVM Y LIBVIRT"
+
+# usermod -a -G kvm $USER
+# usermod -a -G libvirt $USER
+#sleep 2
+#clear
+
+#########################################
+#- PARA HABILITAR EL SERVICIO LIBVIRTD -#
+#########################################
+
+#print_status "\n\t\t\t\t\t HABILITANDO E INICIANDO SERVICIO LIBVIRTD"
+# systemctl enable libvirtd
+# systemctl start libvirtd
+#sleep 2
+#clear
+
+#print_status "*************************"
+#print_status "*** REINICIANDO EL PC ***"
+#print_status "*************************"
+#sleep 1
+
+#reboot

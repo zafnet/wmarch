@@ -1,0 +1,81 @@
+//██████╗  █████╗ ██╗     ██╗ █████╗ ███████╗   ██████╗  █████╗ ███████╗██╗
+//██╔══██╗██╔══██╗██║     ██║██╔══██╗██╔════╝   ██╔══██╗██╔══██╗██╔════╝██║
+//██████╔╝███████║██║     ██║███████║███████╗   ██████╔╝███████║███████╗██║
+//██╔══██╗██╔══██║██║     ██║██╔══██║╚════██║   ██╔══██╗██╔══██║╚════██║██║
+//██║  ██║██║  ██║███████╗██║██║  ██║███████║██╗██║  ██║██║  ██║███████║██║
+//╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝
+
+* { 
+   // Colores
+   amarcl:#e3b268;
+   gris1:#585554;
+   gris2:#4e4743;
+   gris3:#534c48;
+   rojo:#FF0000;
+   naranja:#f15d22;
+   amar:#faa41a;
+   azul:#48b9c7;
+   verde:#2da30b;
+   verdef: #06e22e;
+   verdec: #2ef99c;
+   azulos:#1c2833;
+   blanco:#FFFFFF;
+   negro:#000000;
+   oscuro:#494948;   
+   rosa:#ff0268;
+   griscl:#b9b9b7;
+   font: "agave Nerd Font 13";
+   sort: true;
+   hide-scrollbar: true;
+   fullscreen: false;
+   text-color: @amarcl;
+   background-color: @azulos;
+   color: @rosa;
+}
+
+window {
+    border: 0;
+    padding: 0.5%;
+    x-offset: 3%;
+    y-offset: 3%;
+    width:    60%;
+    height:   72%;
+    separator-style: "none";
+}
+
+inputbar {
+    spacing: 0.5%;
+//  background-color: @negro;
+    border: 0px 0px 0px 0px;
+    border-radius: 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+entry normal.normal {
+//  background-color:@negro;
+    color: @rosa;
+    padding: 0px;
+}
+
+listview {
+    fixed-height: 0;
+    border:       0px 0px 0px ;
+    padding:      9px 1px 1px ;
+}
+
+prompt normal.normal {
+//  background-color: #FF0000;
+    color:@amar;
+    padding: 0px;
+}
+
+inputbar {
+    children: [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+
+textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0px 0.3em 0em 0em ;
+    text-color: @amar;
+}

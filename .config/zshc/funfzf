@@ -1,0 +1,65 @@
+#-- Funciones FZF
+
+dl() {cd $(find / -type d 2> /dev/null | fzf -e --border --cycle --prompt="Ir a La Carpeta y Listarla: ") | xargs -r lsd -la && zle reset-prompt}
+
+ir() {cd $(find / -type d 2> /dev/null | fzf -e --border --cycle --prompt="Ir a La Carpeta: ") && zle reset-prompt}
+
+op() {xdg-open $(find / -type f 2> /dev/null | fzf -e --border --cycle --prompt="Abrir: ") && zle reset-prompt}
+
+rf() {rm -rf $(find / -type f,d 2> /dev/null | fzf -m -e --border --cycle --prompt="Borrar Archivo o Directorio: ") && zle reset-prompt}
+
+nf() {sh -c 'find / -type f 2> /dev/null | fzf -m -e --border --cycle --prompt="Abrir Con Nvim: "| xargs -r nvim' && zle reset-prompt}
+
+ve() {find / -type f 2> /dev/null | fzf -m -e --border --cycle --prompt="Vista Previa De: "| xargs -r bat && zle reset-prompt}
+
+li() {find / -type d 2> /dev/null | fzf -m -e --border --cycle --prompt="Listar Una Carpeta: "| xargs -r lsd -la && zle reset-prompt}
+
+cr() {find / -type f,d 2>/dev/null | fzf -e --border --cycle --prompt="Copiar Ruta: " | tr -d '\n' | xclip -selection c && zle reset-prompt}
+
+cl() {find / -type f 2>/dev/null | fzf -e --border --cycle --prompt="Copiar en clipboard: " |tr -d '\n' | xargs xclip -sel clipboard && zle reset-prompt}
+
+hi() {
+    local selected=$({ ([ -n "$ZSH_NAME" ] && history 0) | sed 's/^ *[0-9][0-9]*  *//g'; echo "";} | fzf +s --tac -e --border --cycle --prompt="Historial: ")
+    BUFFER=$selected
+    zle redisplay
+}
+
+fk() { pid=$(ps -ef | sed 1d | fzf -m --color --height 60%  --prompt="Eliminar proceso ➤ " --pointer="➤ " --marker="➤ " | awk '{print $2}')
+if [ "x$pid" != "x" ]; then 
+kill -${1:-9} $pid 
+fi && zle reset-prompt}
+
+#-- Atajos De Teclas Para Las Funciones De FZF
+
+zle -N ir
+bindkey "^[i" ir
+
+zle -N op
+bindkey "^[o" op
+
+zle -N rf
+bindkey  "^[r" rf
+
+zle -N nf
+bindkey '^f' nf
+
+zle -N ve
+bindkey "^[v" ve
+
+zle -N li
+bindkey "^[l" li
+
+zle -N cr
+bindkey  "^y" cr
+
+zle -N cl
+bindkey  "^[c" cl
+
+zle -N hi
+bindkey '^r' hi
+
+zle -N dl
+bindkey "^[u" dl
+
+zle -N fk
+bindkey "^[k" fk

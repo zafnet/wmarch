@@ -1,0 +1,69 @@
+Tecla Maestra -> Ctrl-a
+
+Editar tmux.conf -> Ctrl-a e
+
+Recargar Configuration -> Ctrl-a r
+
+Borrar Tanto La Pantalla Como El Historial -> Ctrl-a Ctrl-l
+
+Crear Pestaña -> Ctrl-a Ctrl-c
+
+Abrir POPUP Nvim -> Ctrl-Alt-n 
+
+Abrir POPUP Sxhkdrc -> Ctrl-Alt-s 
+
+Abrir POPUP Kitty -> Ctrl-Alt-k 
+
+Abrir POPUP Tmux -> Ctrl-Alt-t 
+
+Dividir Panel Horizontal -> Ctrl-a o
+
+Dividir Panel Vertical -> Ctrl-a v
+
+Dividir Panel Actual Horizontal -> Ctrl-a O
+
+Dividir Panel Actual Vertical -> Ctrl-a V
+
+Cerrar Ventana O Pestaña -> Ctrl-a x
+
+Mover Foco Al Panel Izquierda -> Ctrl-a h
+
+Mover Foco Al Panel Abajo -> Ctrl-a j
+
+Mover Foco Al Panel Arriba -> Ctrl-a k
+
+Mover Foco Al Panel Derecha -> Ctrl-a l
+
+Mover Panel Actual Con El Siguiente -> Ctrl-a >
+
+Mover Panel Actual Con El Anterior -> Ctrl-a  <
+
+Maximizar El Panel Actual -> Ctrl-a z
+
+Cambio De Tamaño Del Panel ->  Ctrl-a-r H J K L
+
+Ir Pestaña Anterior -> Ctrl-a Ctrl-h
+
+Ir Pestaña Siguiente -> Ctrl-a Ctrl-l
+
+Ir a La Última Pestaña Activa -> Ctrl-a Tab
+
+Cambiar Nombre De La Pestaña -> Ctrl-a ,
+
+Entrar En Modo Copia -> Ctrl-a Enter
+
+Enumerar Los Búferes De Pegado -> Ctrl-a b
+
+Pegar Desde El Búfer De Pegado Superior -> Ctrl-a p
+
+Elegir Desde Qué Búfer Pegar -> Ctrl-a P
+
+#- Teclas Nativas
+
+Elija la ventana actual de forma interactiva -> Ctrl-a w
+
+Enumere todas las combinaciones de teclas -> Ctrl-a ?
+
+Mostrar brevemente los índices de los paneles -> Ctrl-a q
+
+Muestra la hora  -> Ctrl-a t

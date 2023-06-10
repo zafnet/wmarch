@@ -1,0 +1,73 @@
+Tecla Lider -> Espacio
+
+Guardar Archivo -> C-s = :w
+
+Sale Sin Guardar Los Cambios -> C-x = :q!
+
+Sale Cuando No Hay Un Cambio -> A-q = :q
+
+Crea Vent Horiz Del Mismo Buffer -> <Leader>h
+
+Crea Vent Vert Del Mismo Buffer -> <Leader>v
+
+Redi Vent Vert en 10 -> A-C-h  A-C-l
+
+Redi Vent Hori En 10 -> A-C-j  A-C-k
+
+Abrir Vent Vert a La Izquierda Con Otro Archivo -> <leader>q
+
+Ir a La Vent Izquierda -> A-h
+
+Ir a La Vent Derecha -> A-l
+
+Ir a La Vent De Abajo -> A-j
+
+Ir a La Vent Arriba -> A-k
+
++ y - Zoom a La Vent Actual -> <leader>z <leader>x
+
+Diseño Vent Horiz en Vert -> <Leader>vv
+
+Diseño Vent Vert En Horiz -> <Leader>vh
+
+Mueve Las Ventanas -> C-{l-h-j-k} Derecha Izquierda Abajo Arriba
+
+AutoComp Palabra En Modo Insercion -> <leader>y
+
+Crea Comentario # Con Espacio Para Escribir -> <leader>Shift+3
+
+Crea Comentario " Con Espacio Para Escribir -> <leader>"
+
+Crea Comentario # Con Espacio Atras De Algo Escrito <leader>y
+
+Crea Comentario " Con Espacio Atras De Algo Escrito <leader>m
+
+Deja Espacio Una Linea Abajo -> <leader>o
+
+Deja Espacio Una Line Arriba -> <leader>p
+
+Lanza Term En Modo Visual -> C-t
+
+Lanza Term En Modo Normal -> C-t
+
+Buffer Siguiente -> <Leader>bn
+
+Buffer Anterior -> <Leader>bp
+
+Escribe Barra / En Modo Normal -> <Leader>0(cero)
+
+Elimina Buffer -> <Leader>d
+
+Nvim Config -> <Leader>c
+
+Recarga Config Actual -> <Leader>r
+
+Remplaza Palabra En Archivo Actual -> <Leader>s
+
+Quita Resaltado De Palabra Buscada -> C-ñ
+
+Escribe Dos Puntos -> º
+
+Escribe El Comando :e -> <leader>e
+
+Salir De Modo Terminal -> <Esc><Esc>

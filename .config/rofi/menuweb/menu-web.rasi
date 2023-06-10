@@ -1,0 +1,67 @@
+//███╗   ███╗███████╗███╗   ██╗██╗   ██╗      ██╗    ██╗███████╗██████╗    ██████╗  █████╗ ███████╗██╗
+//████╗ ████║██╔════╝████╗  ██║██║   ██║      ██║    ██║██╔════╝██╔══██╗   ██╔══██╗██╔══██╗██╔════╝██║
+//██╔████╔██║█████╗  ██╔██╗ ██║██║   ██║█████╗██║ █╗ ██║█████╗  ██████╔╝   ██████╔╝███████║███████╗██║
+//██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║╚════╝██║███╗██║██╔══╝  ██╔══██╗   ██╔══██╗██╔══██║╚════██║██║
+//██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝      ╚███╔███╔╝███████╗██████╔╝██╗██║  ██║██║  ██║███████║██║
+//╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝        ╚══╝╚══╝ ╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝
+
+
+* {
+    text-color:            #e3b268;
+    fondo:                 #4e4743;
+    lightbg:               #534c48;
+    red:                   #FF0000;
+    orange:                #f15d22;
+    yellow:                #faa41a;
+    blue:                  #48b9c7;
+    green:                 #2da30b;
+    alter-nback:           #1c2833;
+    white:                 #FFFFFF;
+    negro:                 #000000;
+    macl:                  #e3b268;
+    gris:                  #585554;
+    background-color:      @fondo;
+    font: "agave Nerd Font 13";
+    sort: true;
+    hide-scrollbar: true;
+    fullscreen: false;
+}
+
+window {
+    border: 0;
+    background-color: @fondo;
+    text-color: @text-color;
+    padding: 0.5%;
+    x-offset: -1%;
+    y-offset: -9%;
+    width:    19%;
+    height:   9%;
+    separator-style: "none";
+}
+
+inputbar {
+//  enabled: false;
+    spacing: 0.1%;
+//  background-color: @negro;
+    border: 0px 0px 0px 0px;
+    border-radius: 0px;
+//  padding: 2px 2px 3px 3px;
+}
+
+/*entry normal.normal {
+    background-color:@gris;
+    color: @green;
+    padding: 0px;
+    placeholder: "Escriba Aqui";
+}*/
+
+ prompt normal.normal {
+//   background-color: @negro;
+     color:@yellow;
+     padding: 0px;
+}
+
+element selected.normal {
+    background-color:@yellow;
+    padding: 0px;
+}

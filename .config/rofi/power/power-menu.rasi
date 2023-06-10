@@ -1,0 +1,65 @@
+//██████╗  ██████╗ ██╗    ██╗███████╗██████╗       ███╗   ███╗███████╗███╗   ██╗██╗   ██╗   ██████╗  █████╗ ███████╗██╗
+//██╔══██╗██╔═══██╗██║    ██║██╔════╝██╔══██╗      ████╗ ████║██╔════╝████╗  ██║██║   ██║   ██╔══██╗██╔══██╗██╔════╝██║
+//██████╔╝██║   ██║██║ █╗ ██║█████╗  ██████╔╝█████╗██╔████╔██║█████╗  ██╔██╗ ██║██║   ██║   ██████╔╝███████║███████╗██║
+//██╔═══╝ ██║   ██║██║███╗██║██╔══╝  ██╔══██╗╚════╝██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║   ██╔══██╗██╔══██║╚════██║██║
+//██║     ╚██████╔╝╚███╔███╔╝███████╗██║  ██║      ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝██╗██║  ██║██║  ██║███████║██║
+//╚═╝      ╚═════╝  ╚══╝╚══╝ ╚══════╝╚═╝  ╚═╝      ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝
+                                                                       
+* {                                                                    
+ modi: "window,run,ssh,filebrowser,keys,drun,windowcd,combi";
+ font: "agave Nerd Font 13";
+ combi-modi: "drun,run";
+ padding: 3;
+ line-margin: 2;
+ line-padding: 1;
+ show-icons: true;
+ fake-transparency: true;
+ sorting-method: "normal";
+ case-sensitive: false;
+ cycle: true;
+ //border-color: #f59603;
+ lines: 10;
+ columns: 1;
+ sort: true;
+ sort: true;
+ hide-scrollbar: true;
+ fullscreen: false;
+ background-color:#474746;
+ color: #ff3084;
+}
+
+window {
+    transparency: true;
+    border-radius: 10px;
+    background-color:#474746;
+    border: 3;
+    padding: 1%;
+    x-offset: -1%;
+    y-offset: -3%;
+    width:      15%;
+    height:     350;
+    separator-style: "none";
+}
+
+listview {
+    background-color:#474746;
+    color:#412307;
+    spacing: 0.3em;
+}
+
+inputbar {
+    enabled: false;
+//  spacing: 1;
+//    background-color:#412307;
+//    border: 0px 0px 0px 0px;
+//    border-radius: 0px;
+//    padding: 5px 10px 5px 5px;
+}
+
+//element selected.normal {
+//    border: 0px;
+ //   background-color:#ff3440;
+//    padding: 0px;
+//    highlight: bold;
+//    margin: 5px;
+//}

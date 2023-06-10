@@ -1,0 +1,134 @@
+// ██████╗  ██████╗ ██████╗ ███████╗██╗   ██╗██████╗  █████╗ ███████╗██╗
+//██╔════╝ ██╔════╝ ██╔══██╗██╔════╝╚██╗ ██╔╝██╔══██╗██╔══██╗██╔════╝██║
+//██║  ███╗██║  ███╗██████╔╝█████╗   ╚████╔╝ ██████╔╝███████║███████╗██║
+//██║   ██║██║   ██║██╔══██╗██╔══╝    ╚██╔╝  ██╔══██╗██╔══██║╚════██║██║
+//╚██████╔╝╚██████╔╝██║  ██║███████╗   ██║██╗██║  ██║██║  ██║███████║██║
+// ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝   ╚═╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝
+
+configuration {
+modi: "window,run,ssh,filebrowser,keys,drun,windowcd,combi";
+font: "agave Nerd Font 12";
+combi-modi: "drun,run";
+show-icons: true;
+sorting-method: "normal";
+case-sensitive: false;
+cycle: true;
+display-combi:"練  Combinado";
+display-window:"缾 Ventanas";
+display-run: "  Binarios";
+display-drun: " Aplicaciones";
+display-keys:"  Atajos";
+display-ssh:"  ssh";
+display-filebrowser:"  Archivos";
+kb-move-front: "Control+a";
+kb-move-end: "Control+e";
+kb-move-word-back: "Alt+b";
+kb-move-word-forward: "Alt+f";
+kb-remove-to-eol: "Control+k";
+kb-remove-to-sol: "Control+K";
+kb-accept-entry: "Control+j";
+kb-delete-entry: "Shift+Delete";
+}
+
+filebrowser {
+     directories-first: true;
+     sorting-method:    "name";
+}
+
+window {
+    border: 0px;
+    border-radius: 0px;
+    padding: 1em;
+    width:      1024px;
+//  height:     75px;
+    children:   [ horibox ];
+    background-color:#4c566a;
+//    background-image: url("ajedrez.jpg", width);
+//  separator-style: "none";
+//  x-offset: 0;
+//  y-offset: -2%;
+//  anchor: south;
+//  location: south;
+//  transparency: true;
+//  border-radius: 10px;
+   
+}
+
+horibox {
+    orientation: vertical;
+    children:   [  inputbar, listview ];
+}
+
+  inputbar {
+//     margin: 0px 0px 0em 0em;
+//     spacing: 0em;
+      background-color: #4c566a;
+//    border: 0px 0px 0px 0px;
+//    border-radius: 0px;
+      padding: 2px 2px 2px 2px;
+      color: #ffd966;
+  }
+
+
+listview {
+    border-radius: 0px 0px 0px 0px;
+    border: 0px 0px 0px 0px;
+    background-color: #4c566a;
+    columns: 7;
+    lines:   1;
+}
+
+
+element {
+     padding:      10px;
+     orientation: vertical;
+}
+
+element normal.normal {
+    text-color: #4c566a;
+    background-color:#8fbcbb;
+    border-radius: 10px;
+}
+
+
+element selected.normal {
+    text-color: #8fbcbb;
+    background-color: #416261;
+    border-color: #8fbcbb;
+    border:       2px;
+    border-radius: 10px;
+}
+
+
+element  selected {
+  border-color: #4c566a;
+  border:       2px;
+  border-radius: 10px;
+  background-color: #8fbcbb;
+}
+
+element alternate.normal {
+  border-color: #4c566a;
+  border:       2px;
+  border-radius: 10px;
+  background-color: #8fbcbb;
+  color:#4c566a;
+}
+
+element-icon {
+  size: 2em;
+}
+
+entry normal.normal {
+    background-color:#4c566a;
+    color: #8fbcbb;
+//    padding: 0px;
+//    width: 10em;
+}
+
+
+prompt normal.normal {
+//    background-color:#412307;
+    color: #8fbcbb;
+//    padding: 0px;
+}

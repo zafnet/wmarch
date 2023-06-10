@@ -1,0 +1,71 @@
+#-- Sistema
+
+alias to='touch'
+alias ins='sudo pacman -S'
+alias ac='sudo pacman -Syu && notify-send "Sistema Actualizado" && exit'
+alias acn='sudo pacman -Syu --noconfirm && notify-send "Sistema Actualizado" && exit'
+alias acm='sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist && sudo pacman -Syu --noconfirm && notify-send "Mirrorlist y Sistema Actualizados" && exit'
+alias al='pacman -Qs'
+alias rem='sudo pacman -Rs'
+alias rep='pacman -Ss'
+alias cp='cp -ur $(notify-send "Copia Terminada")'
+alias ct='cp -urv $(notify-send "Copia Terminada")'
+alias rm='rm -r'
+alias rt='rm -rv'
+alias mv='mv -u'
+alias mt='mv -uv'
+alias mk='mkdir -pv'
+alias smk='sudo mkdir'
+#alias ic='kitty +kitten icat'
+alias his='history 0'
+alias grep='grep --color=auto'
+alias xd='xrdb merge ~/.config/xres/Xresources && notify-send "Xresources Actualizado"'
+alias ch='checkupdates'
+alias sz='source ~/.config/zshc/.zshrc && notify-send "zshrc Actualizado"'
+alias cm='chmod 744 $(notify-send "Permiso 744 Otorgado")'
+alias ca='rt .cache/*'
+alias zh='echo " " > $HOME/.config/zshc/.zsh_history && notify-send "Borrado De zsh_history Terminado"'
+alias bh='echo " " > $HOME/.config/bashc/.bash_history && notify-send "Borrado De bash_history Terminado"'
+alias bu='sudo find / 2>/dev/null -iname $1'
+
+#-- Lsd Bat y Reflector
+
+alias ll='lsd -lha --group-dirs=first'
+alias l='lsd -lda --group-dirs=first */'
+alias lo='lsd -lda --group-dirs=first .*/'
+alias ls='lsd -ha --group-dirs=first'
+alias tree='lsd --tree'
+alias ba='bat'
+alias mir='sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist && notify-send "Mirrorlist Actualizado"'
+alias ra='ranger'
+
+#-- Tmux
+
+alias ts='bash -c $HOME/.config/tmux/tmxs.sh'
+alias tl='tmux ls'
+alias ta='tmux a -t'
+alias tk='tmux kill-session -t'
+alias tv='tmux neww -n'
+
+#-- Editor
+
+alias nv='nvim'
+alias nz='nvim /home/$USER/.config/zshc/.zshrc'
+alias nb='nvim /home/$USER/.bashrc'
+alias ns='nvim /home/$USER/.config/sxhkd/sxhkdrc'
+alias nbh='nvim /home/$USER/.config/bashc/.bash_history'
+alias nzh='nvim ~/.config/zshc/.zsh_history'
+
+#-- Git
+
+alias gs='git status'
+alias ga='git add .'
+alias gc='git clone'
+alias gm='git commit -m'
+alias gp='git push origin main'
+alias gb='git branch'
+alias gk='git checkout'
+alias gu='git pull origin'
+alias gt='git tag -a'
+alias gf='git fetch'
+alias gl='git log'

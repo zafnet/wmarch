@@ -1,0 +1,372 @@
+" ██╗   ██╗██╗███████╗███╗   ███╗
+" ██║   ██║██║██╔════╝████╗ ████║
+" ██║   ██║██║█████╗  ██╔████╔██║
+" ╚██╗ ██╔╝██║██╔══╝  ██║╚██╔╝██║
+"  ╚████╔╝ ██║██║     ██║ ╚═╝ ██║
+"   ╚═══╝  ╚═╝╚═╝     ╚═╝     ╚═╝
+
+" Configuracion General
+
+"set vicmd=nvim
+set syscalls
+set trash
+set trashdir='~/.Trash'
+set history=1000
+set nofollowlinks
+set sortnumbers
+set undolevels=1000
+set vimhelp
+set norunexec
+set wildmenu
+set wildstyle=popup
+set ignorecase
+set smartcase
+set nohlsearch
+set incsearch
+set scrolloff=4
+set tabstop=2
+set slowfs=curlftpfs
+set dotfiles= 1
+set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,phistory,fhistory,dirstack,registers,bookmarks,bmarks
+set viewcolumns=*{name}..,6{}.
+set timefmt=%m/%d/%Y\ %H:%M
+set statusline="%t %10A %10u:%g %= %8E %18d"
+set rulerformat="%l/%S%[ +%x%]"
+set grepprg='rg --line-number %i %a %s'
+highlight WinSeparator ctermbg=none ctermfg=240
+colorscheme gruvbox
+
+
+" Colores De VIFM
+
+" Los Colores Estándar De ncurses Son
+" Predeterminado = -1 = None Se Puede Usar Para Transparencia o Color Predeterminado
+" Black = 0
+" Red = 1
+" Green = 2
+" Yellow = 3
+" Blue = 4
+" Magenta = 5
+" Cyan = 6
+" White = 7
+
+" Las Versiones Claras De Los Colores También Están Disponibles (establezca el atributo en negrita)
+" LightBlack
+" LightRed
+" LightGreen
+" LightYellow
+" LightBlue
+" LightMagenta
+" LightCyan
+" LightWhite
+
+" Atributos Disponibles (algunos de ellos se pueden combinar)
+" bold
+" underline
+" reverse or inverse
+" standout
+" italic (en sistemas no compatibles se vuelve inversa)
+" none
+
+" highlight group cterm=attrs ctermfg=foreground_color ctermbg=background_color
+
+highlight clear
+highlight OtherWin  cterm=none ctermfg=default ctermbg=237
+highlight Win cterm=none ctermfg=default ctermbg=235
+
+highlight Directory cterm=bold ctermfg=blue ctermbg=default
+highlight Link cterm=bold ctermfg=default ctermbg=default
+highlight BrokenLink cterm=bold ctermfg=red ctermbg=default
+highlight Socket cterm=bold ctermfg=magenta ctermbg=default
+highlight Device cterm=bold ctermfg=red ctermbg=default
+highlight Fifo cterm=bold ctermfg=cyan ctermbg=default
+highlight Executable cterm=bold ctermfg=40 ctermbg=default
+
+highlight Selected cterm=bold ctermfg=magenta ctermbg=default
+highlight CurrLine cterm=bold,reverse ctermfg=232 ctermbg=34
+
+highlight TopLine cterm=none ctermfg=9 ctermbg=236
+highlight TopLineSel cterm=bold ctermfg=white ctermbg=default
+
+highlight StatusLine cterm=bold ctermfg=9 ctermbg=233
+
+highlight WildMenu cterm=underline,reverse ctermfg=124 ctermbg=black
+highlight CmdLine cterm=none ctermfg=green ctermbg=black
+highlight ErrorMsg cterm=none ctermfg=red ctermbg=black
+highlight Border cterm=none ctermfg=black ctermbg=235
+highlight JobLine cterm=bold,reverse ctermfg=black ctermbg=white
+highlight SuggestBox cterm=bold ctermfg=default ctermbg=default
+highlight CmpMismatch cterm=bold ctermfg=white ctermbg=red
+highlight AuxWin cterm=bold,underline,reverse,standout,italic ctermfg=9 ctermbg=default
+highlight TabLine cterm=none ctermfg=white ctermbg=black
+highlight TabLineSel cterm=bold,reverse ctermfg=default ctermbg=default
+highlight User1 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
+highlight User2 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
+
+highlight User3 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
+highlight User4 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
+highlight User5 cterm=bold,underline,reverse,standout,italic ctermfg=21 ctermbg=33
+highlight User6 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
+highlight User7 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
+highlight User8 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
+highlight User9 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
+
+
+" Definición de Comandos
+
+" Alternar información detallada/breve sobre los archivos
+command! togglefilesinfo
+            \ : if &viewcolumns == '*{name}..,6{}.'
+            \ |   set viewcolumns=*{name}.,10{size}.,12{perms},10{uname},-7{gname},18{mtime}
+            \ |   echo 'Files information: detailed'
+            \ | else
+            \ |   set viewcolumns=*{name}..,6{}.
+            \ |   echo 'Files information: brief'
+            \ | endif
+
+" Diff  Para Selecciones En El Panel Actual Si Contiene Más De Un Archivo De Lo Contrario
+" Diff  El Archivo En El Panel Izquierdo (Superior) Con El Archivo En El Panel Derecho (Inferior)
+command! diff : if expand('%%c') == expand('%%f')
+            \ |   if paneisat('right') && paneisat('bottom')
+            \ |     execute '!$EDITOR -d %%C %%c'
+            \ |   else
+            \ |     execute '!$EDITOR -d %%c %%C'
+            \ |   endif
+            \ | else
+            \ |   execute '!$EDITOR -d %%f'
+            \ | endif
+
+" Restablecer Ordenamiento
+command! resetsort
+            \ : if &sort != '+name'
+            \ |   set sort=+name
+            \ |   echo 'Reset sort to +name'
+            \ | endif
+
+" Integracion FZF
+command! FZFfind :set noquickview | :execute 'goto' fnameescape(term('fd -H | fzf --height 10 2>/dev/tty'))
+
+
+" Iconos Para vifm
+
+" NOTA: Combiné Varios Comandos `set classify` Para Evitar Un Inicio Lento
+
+" Filetypes(Tipos de archivo)
+set classify=' :dir:/, :exe:, :reg:, :link:,? :?:, ::../::'
+
+" Directorios
+set classify+=' ::.git/::/,
+             \  ::.config/::/,
+             \  ::Desktop/::/,
+             \  ::Documents/::/,
+             \  ::Development/::/,
+             \  ::Downloads/::/,
+             \  ::Dropbox/::/,
+             \  ::Google\ Drive/::/,
+             \  ::gitrepos/::/,
+             \  ::Music/::/,
+             \  ::Pictures/::/,
+             \  ::Public/::/,
+             \  ::Templates/::/,
+             \  ::Videos/::/,
+             \  ::node_modules/::/'
+
+" Archivos
+set classify+=' ::.Xauthority,,.Xdefaults,,.Xresources,,.bash_aliases,,.bashprofile,,.bash_profile,,.bash_logout,,.bash_history,,.bashrc,,.dmrc,,.DS_Store,,.fasd,,.gitconfig,,.gitattributes,,.gitignore,,.inputrc,,.jack-settings,,.mime.types,,.nvidia-settings-rc,,.pam_environment,,.profile,,.recently-used,,.selected_editor,,.tmux.conf,,.xinitrc,,.xinputrc,,config,,bspwmrc,,sxhkdrc,,Makefile,,Makefile.in,,Makefile.ac,,mimeapps.list,,.zshenv,,.zprofile,,.zshrc,,.zlogin,,.zlogout,,vifmrc,,yabairc,,skhdrc,,ini,,user-dirs.dirs::,
+             \  ::.fehbg::,
+             \  ::.vim,,.vimrc,,.viminfo,,init.vim::,
+             \  ::Dockerfile,,docker-compose.yml::,
+             \  ::dropbox::,
+             \  ::favicon.ico::,
+             \  ::a.out,,configure::,
+             \  ::config.mk,,config.m4,,config.ac::,
+             \  ::Rakefile::,
+             \  ::gruntfile.coffee,,gruntfile.js,,gruntfile.ls::,
+             \  ::gulpfile.coffee,,gulpfile.js,,gulpfile.ls::,
+             \  ::ledger::,
+             \  ::package.json,,package-lock.json,,webpack.config.js::,
+             \  ::.ncmpcpp,,playlists::,
+             \  ::known_hosts,,authorized_keys,,license,,LICENSE.md,,LICENSE,,LICENSE.txt::,
+             \  ::procfile::,
+             \  ::react.jsx::,
+             \  ::README.rst,,README.md,,README.markdown,,README,,README.txt::'
+
+" Extenciones
+set classify+=' ::*.7z,,*.apk,,*.bz2,,*.cpio,,*.deb,,*.gz,,*.gzip,,*.gem,,*.lha,,*.lzh,,*.lzma,,*.rar,,*.rpm,,*.tar,,*.tgz,,*.xbps,,*.xz,,*.zip::,
+             \  ::*.a,,*.cmake,,*.jl,,*.o,,*.so::,
+             \  ::*.ai::,
+             \  ::*.asm,,*.css,,*.less,,*.s,,*.sh,,*.zsh::,
+             \  ::*.asp,,*.rom,,*.efi,,*.elf,,*.fish::,
+             \  ::*.aup,,*.cue,,*.flac,,*.m4a,,*.mp3,,*.ogg,,*.wav::,
+             \  ::*.avi,,*.flv,,*.m4v,,*.mkv,,*.mov,,*.mp4,,*.mpeg,,*.mpg,,*.webm::,
+             \  ::*.bat,,*.conf,,*.cvs,,*.htaccess,,*.htpasswd,,*.ini,,*.rc,,*.yaml,,*.yml::,
+             \  ::*.bmp,,*.gif,,*.ico,,*.jpeg,,*.jpg,,*.png,,*.ppt,,*.pptx::,
+             \  ::*.c,,*.h::,
+             \  ::*.cbr,,*.cbz::,
+             \  ::*.class,,*.jar,,*.java::,
+             \  ::*.clj,,*.cljc::,
+             \  ::*.cljs,,*.edn::,
+             \  ::*.coffee::,
+             \  ::*.cs::,
+             \  ::*.cxx,,*.c++,,*.cc,,*.cp,,*.cpp::,
+             \  ::*.d::,
+             \  ::*.dart::,
+             \  ::*.db,,*.dump,,*.img,,*.iso,,*.sql::,
+             \  ::*.diff::,
+             \  ::*.dll,,*.exe,,*.msi::,
+             \  ::*.doc,,*.docx,,*.epub,,*.pdf,,*.rtf,,*.xls,,*.xlsx::,
+             \  ::*.ejs,,*.htm,,*.html,,*.slim,,*.xhtml,,*.xml::,
+             \  ::*.elm::,
+             \  ::*.erl,,*.hrl::,
+             \  ::*.ex,,*.exs,,*.eex::,
+             \  ::*.f#,,*.fs,,*.fsi,,*.fsscript,,*.fsx::,
+             \ | ::*.fifo::,
+             \  ::*.go::,
+             \  ::*.hbs,,*.mustache::,
+             \  ::*.hs,,*.lhs::,
+             \  ::*.js::,
+             \  ::*.json::,
+             \  ::*.jsx::,
+             \  ::*.key,,*.pub::,
+             \  ::*.log::,
+             \  ::*.lua::,
+             \  ::*.markdown,,*.md::,
+             \ λ ::*.ml,,*.mli::,
+             \  ::*.php::,
+             \  ::*.pl,,*.pm,,*.t::,
+             \  ::*.psb,,*.psd::,
+             \  ::*.py,,*.pyc,,*.pyd,,*.pyo::,
+             \  ::*.rb::,
+             \  ::*.rlib,,*.rs::,
+             \  ::*.rss::,
+             \  ::*.scala::,
+             \  ::*.scss::,
+             \  ::*.sln,,*.suo::,
+             \  ::*.styl::,
+             \  ::*.ts::,
+             \  ::*.twig::,
+             \  ::*.vim,,*.vimrc::,
+             \  ::*.xul::'
+
+" Mapeo De Teclas
+
+" Recargar vifm
+nnoremap <Leader>s :restart<cr>
+
+" Edit vifmrc
+nnoremap <Leader>c :write | edit $MYVIFMRC | restart<cr>
+
+" Guardar y Salir
+map ÑÑ :w<CR>
+map XX :q!<CR>
+map TT :q<CR>
+
+" Previsualizacion En Otro Panel
+nnoremap w :view<cr>
+vnoremap w :view<cr>gv
+
+" Rapido Renombrado
+nnoremap I cw<c-a>
+nnoremap cc cw<c-u>
+nnoremap A cw
+
+" Mover El Foco Entre Paneles
+noremap <C-k> <C-w>k
+noremap <C-j> <C-w>j
+noremap <C-h> <C-w>h
+noremap <BS> <C-w>h
+noremap <C-l> <C-w>l
+
+" Ajustar El Tamaño Del Panel (Izquierda Para Decrementar,Derecha Para Incrementar)
+nnoremap <left> <C-w><
+nnoremap <right> <C-w>>
+
+" Mover Cursor a Otro Panel
+nnoremap <silent> J <tab>j<tab>
+nnoremap <silent> K <tab>k<tab>
+
+
+" Aplicacion Para pdf
+
+" Pdf
+filetype *.pdf zathura,
+fileviewer *.pdf zathura,
+
+
+" Audio
+filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus open -a IINA.app,
+fileviewer *.mp3 vlc
+
+" Video
+filetype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,*.as[fx] open -a IINA.app,
+fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,*.as[fx] vlc
+
+" Web
+filetype *.html,*.htm open -a Google\ Chrome.app,
+fileviewer *.html,*.htm firefox
+
+" Object
+filetype *.o nm %f | less
+
+" Man page
+filetype *.[1-8] man ./%c
+fileviewer *.[1-8] man ./%c | col -b
+
+" Imagen
+filetype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm open -a Preview.app,
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+\ kitty +icat --silent --transfer-mode=stream --place %pwx%ph@%pxx%py %c %N
+\ %pc
+\ kitty icat --clear --silent %pd
+
+" MD5
+filetype *.md5 md5sum -c %f %S
+
+" SHA1
+filetype *.sha1 sha1sum -c %f %S
+
+" SHA256
+filetype *.sha256 sha256sum -c %f %S
+
+" SHA512
+filetype *.sha512 sha512sum -c %f %S
+
+" Torrent
+filetype *.torrent open -a Transmission.app
+
+" Extract zip files
+filetype *.zip unzip %f
+fileviewer *.zip,*.jar,*.war,*.ear zip -sf %c
+
+" Extract tar archives
+filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz tar -xf %f
+fileviewer *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz tar -tf %f
+
+" Extract .bz2 archives
+filetype *.bz2 bzip2 -d %f
+
+" Extract .gz files
+filetype *.gz gunzip %f
+
+" Mount .dmg archives
+filetype *.dmg open
+
+" Mount disk .img
+filetype *.img open
+
+" Open .pkg binaries
+filetype *.pkg open
+
+" Archivos De Oficina
+filetype *.odt,*.doc,*.docx open -a Microsoft\ Word.app
+filetype *.ods,*.xls,*.xlsx open -a Microsoft\ Excel.app
+filetype *.odp,*.pptx,*.ppt open -a Microsoft\ PowerPoint.app
+fileviewer *.doc antiword -
+fileviewer *.docx docx2txt.pl %f -
+
+"CSV
+filetype *.csv open -a Numbers.app
+
+" Codigo Fuente (with highlighting)
+fileviewer *.[ch],*.[ch]pp,*.html,*.css,*.less,*.js,*.java,*.go,*.py,*.coffee,*.dart,*.lua,*.md,*.rb,*.ts,*.php,*.cs,*.vim,*.conf,*.swift,*.json,*.xml highlight -O xterm256 -s dante %c --force
+fileviewer Makefile,Makefile.* highlight -O xterm256 -s dante --syntax make %cf
