@@ -12,7 +12,9 @@ super + Delete|Bloquear Pantalla
 
 super + c(xterm)|Terminales 
 
-super + shift + m [Desactivado]|Lanza Script Para Monitorear La Carpeta Descargas
+alt + shift + e|Menu Para Editar Configuraciones Con Rofi
+
+ctrl + alt + a|Ver Actualizaciones Pendientes Con Rofi
 
 alt + 1,2,3,4|fire-priv,fire,google,google --inc
 
