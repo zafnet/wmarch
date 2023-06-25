@@ -28,7 +28,7 @@ ctrl + p|Menú de apagado, reinicio y suspensión con Rofi
 
 ctrl + shift + w|Ventanas Abiertas Con Rofi
 
-alt + w,m,e,a,s,o,t,n,p web,marc,emo,alias,sxhkd,teclas nv,tmux,nvim,wall|Muestra Atajos
+alt + w,m,e,a,s,t,n,p web,marc,emo,alias,sxhkd,tmux,nvim,wall|Muestra Atajos
 
 shift + alt + r|Lanza retroarch [Desactivado]
 

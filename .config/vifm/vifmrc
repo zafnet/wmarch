@@ -7,7 +7,7 @@
 
 " Configuracion General
 
-"set vicmd=nvim
+set vicmd=nvim
 set syscalls
 set trash
 set trashdir='~/.Trash'
@@ -26,15 +26,14 @@ set incsearch
 set scrolloff=4
 set tabstop=2
 set slowfs=curlftpfs
-set dotfiles= 1
+set dotfiles= 0
 set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,phistory,fhistory,dirstack,registers,bookmarks,bmarks
 set viewcolumns=*{name}..,6{}.
 set timefmt=%m/%d/%Y\ %H:%M
 set statusline="%t %10A %10u:%g %= %8E %18d"
 set rulerformat="%l/%S%[ +%x%]"
 set grepprg='rg --line-number %i %a %s'
-highlight WinSeparator ctermbg=none ctermfg=240
-colorscheme gruvbox
+"colorscheme gruvbox
 
 
 " Colores De VIFM

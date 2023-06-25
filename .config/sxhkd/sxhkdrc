@@ -46,9 +46,9 @@ super + {a,v,b,m,t,d}
 #---------------#
 
 #- Ver Atajos De Archivos Con Rofi
-alt + {w,m,e,a,s,o,t,n,p}
+alt + {w,m,e,a,s,t,n,p}
 
-         {exec  ~/.config/rofi/{menuweb/web-search.sh,/marcadores/marcadores.sh,/emojis/emojis.sh,/ralias/ralias.sh,/atajos/sxcut/sxcut.sh,/atajos/nvcut/usonvim.sh,/atajos/tmcut/tmcut.sh,/atajos/nvcut/nvcut.sh,/walle/wallp.sh}
+         {exec  ~/.config/rofi/{menuweb/web-search.sh,/marcadores/marcadores.sh,/emojis/emojis.sh,/ralias/ralias.sh,/atajos/sxcut/sxcut.sh,/atajos/tmcut/tmcut.sh,/atajos/nvcut/nvcut.sh,/walle/wallp.sh}
 
 #- Menu Para Editar Configuraciones Con Rofi
 alt + shift + e

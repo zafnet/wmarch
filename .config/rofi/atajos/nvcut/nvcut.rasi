@@ -31,7 +31,7 @@ window {
     padding: 0.5%;
     x-offset: 3%;
     y-offset: 3%;
-    width:    39%;
+    width:    69%;
     height:   72%;
     separator-style: "none";
 }
