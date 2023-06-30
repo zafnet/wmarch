@@ -11,7 +11,7 @@ source ~/.config/nvim/bases.vim
 source ~/.config/nvim/maps.vim
 "source ~/.config/nvim/plugs.vim
 source ~/.config/nvim/funcions.vim
-source ~/.config/nvim/fzf.vim
+"source ~/.config/nvim/fzf.vim
 
 colorscheme saxs
 
