@@ -62,17 +62,21 @@ ctrl + alt + a
 ctrl + shift + w
      rofi -show window
 
+#- Ver Fecha y Hora Con Rofi
+ctrl + shift + d
+          dunstify -t 4000 -i "$HOME/.config/dunst/icons/calendar.png" "$(date "+%a %b %d %Y %H:%M%p")" 
+
 #- Ver Maquinas Virtuales Existentes Con Rofi
 ctrl + m
    exec  ~/.config/rofi/autovm/autovm.sh
 
 #- Menu De Apagado, Reinicio y Suspensión Con Rofi
-#ctrl + alt + p
-#    exec ~/.config/rofi/power/power-menu.sh
+ctrl + alt + p
+    exec ~/.config/rofi/power/power-menu.sh
 
 #- Captura de Pantalla
 {_,super+}Print
-     {flameshot full -c -p ~/screenshoot,flameshot gui}
+     {flameshot full -c -p ~/captura,flameshot gui}
 
 #- Restaura Archivos De Carpeta Config
 super + Scroll_Lock

@@ -110,6 +110,8 @@ super + alt + shift + h,j,k,l|Contraer Vent Uno De Sus Lados Hacia Adentro
 
 shift + alt + {h,j,k,l}|Mover Una Vent Flotante
 
+ctrl + shift + d|Lanza La Fecha Y Hora Con Rofi
+
 #---------#
 # VOLUMEN #
 #---------#

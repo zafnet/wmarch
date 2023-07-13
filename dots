@@ -64,18 +64,33 @@ ins_logman() {
 }
 
 # Definir Funciones
+# check_plugins() {
+#     print_status "\n\t\t\t\t -- COMPROBANDO PLUGINS DE ZSH--"
+#     if [[ -d $FOLD_SHARE/zsh/plugins/zsh-syntax-highlighting/ && -d $FOLD_SHARE/zsh/plugins/zsh-autosuggestions/ ]]; then
+#     sleep 2
+#     clear    
+#     print_status "\n\t\t\t\t -- YA EXISTEN LAS CARPETAS DE PLUGINS DE ZSH --"
+#     else
+#     sleep 2
+#     clear    
+#     print_status "\n\t\t\t\t -- COPIANDO PLUGINS DE ZSH --"
+#     cp -ru $FOLD_SHARE/zsh/plugins/zsh-syntax-highlighting $FOLD_SHARE/
+#     cp -ru $FOLD_SHARE/zsh/plugins/zsh-autosuggestions $FOLD_SHARE/
+#     fi
+#     sleep 2
+#     clear
+# }
+
 check_plugins() {
     print_status "\n\t\t\t\t -- COMPROBANDO PLUGINS DE ZSH--"
-    if [[ -d $FOLD_SHARE/zsh-syntax-highlighting/ && -d $FOLD_SHARE/zsh-autosuggestions/ ]]; then
+    if [[ -d $FOLD_SHARE/zsh/plugins/zsh-syntax-highlighting/ && -d $FOLD_SHARE/zsh/plugins/zsh-autosuggestions/ ]]; then
     sleep 2
     clear    
     print_status "\n\t\t\t\t -- YA EXISTEN LAS CARPETAS DE PLUGINS DE ZSH --"
     else
     sleep 2
     clear    
-    print_status "\n\t\t\t\t -- COPIANDO PLUGINS DE ZSH --"
-    cp -ru $FOLD_SHARE/zsh/plugins/zsh-syntax-highlighting $FOLD_SHARE/
-    cp -ru $FOLD_SHARE/zsh/plugins/zsh-autosuggestions $FOLD_SHARE/
+    print_status "\n\t\t\t\t -- NO EXISTE LA CARPETA DE ZSH --"
     fi
     sleep 2
     clear
@@ -83,7 +98,7 @@ check_plugins() {
 
 create_common_dirs() {
     print_status "\n\t\t\t\t\t -- CREANDO CARPETAS COMUNES --"
-    mkdir -pv $USER_HOME/{desc,plant,ima,mus,screenshoot,doc}
+    mkdir -pv $USER_HOME/{desc,plant,ima,mus,captura,doc}
     sleep 2
     clear
 }
