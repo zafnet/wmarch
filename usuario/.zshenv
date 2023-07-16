@@ -7,7 +7,9 @@ ZDOTDIR="$HOME/.config/zshc/"
 export GTK2_RC_FILES="$HOME/.config/pcmanfm/.gtkrc-2.0"
 
 #-- Cargar Xresources Desde .config
+if [[ $- != *i* ]]; then
 xrdb -I $HOME/.config/xres/Xresources
+fi
 
 #-- Inicia Xterm Con Sesion De Tmux Con Nombre sesion
 #[[ $TERM == "xterm-256color" ]] && tmux new -s sesion
