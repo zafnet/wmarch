@@ -46,5 +46,8 @@ bindkey "\e[3~"   delete-char
 alias tmx='~/.config/tmux/tmxs.sh'
 bindkey -s '^[P' 'tmx^M'
 
+# Sesion Tmux Con Numero De Inicio 0
+alias tms='tmux new -s 0'
+
 #-- Para Que Imprima El Acento En Kitty ^
 #bindkey -s '^y' '^'

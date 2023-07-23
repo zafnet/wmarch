@@ -380,7 +380,7 @@ clear
 # Establecer un mapa de teclado para la terminal virtual
 echo -e '\033[1;92m' "\n\t\t\t MAPA DE TECLADO PARA LA TERMINAL VIRTUAL"
 #echo "la-latin1" > keymap
-keymap="la-latin1"
+keymap="es"
 echo "KEYMAP=$keymap" > /mnt/etc/vconsole.conf
 cat /mnt/etc/vconsole.conf
 sleep 2
@@ -549,8 +549,8 @@ case $escritorio in
     arch-chroot /mnt /bin/bash -c "pacman -S --needed tmux --noconfirm"
     echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO XCLIP"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed xclip  --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO ARK"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed ark --noconfirm"
+#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO ARK"
+#    arch-chroot /mnt /bin/bash -c "pacman -S --needed ark --noconfirm"
     echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO CMUS"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed cmus --noconfirm"
     echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO LSD"
@@ -578,8 +578,8 @@ case $escritorio in
     arch-chroot /mnt /bin/bash -c "pacman -S --needed  i3lock  --noconfirm"
     echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO XED"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed xed  --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO RANGER"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed ranger --noconfirm"
+#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO RANGER"
+#    arch-chroot /mnt /bin/bash -c "pacman -S --needed ranger --noconfirm"
     echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO FEH"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed feh  --noconfirm"
     echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO PACMAN-CONTRIB"
@@ -616,7 +616,7 @@ case $escritorio in
 	arch-chroot /mnt /bin/bash -c "systemctl enable lightdm"
 
 	# ESTABLECER FORMATO DE TECLADO DENTRO DE XORG
-	keymap="la-latin1"
+	keymap="es"
 
 	touch /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
 	echo -e 'Section "InputClass"' > /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
@@ -657,7 +657,7 @@ case $escritorio in
     arch-chroot /mnt /bin/bash -c "systemctl enable sddm"
 
     # ESTABLECER FORMATO DE TECLADO DENTRO DE XORG
-	keymap="la-latin1"
+	keymap="es"
 
 	touch /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
 	echo -e 'Section "InputClass"' > /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
@@ -699,7 +699,7 @@ case $escritorio in
     arch-chroot /mnt /bin/bash -c "systemctl enable gdm"
 
     # ESTABLECER FORMATO DE TECLADO DENTRO DE XORG
-	keymap="la-latin1"
+	keymap="es"
 
 	touch /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
 	echo -e 'Section "InputClass"' > /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
@@ -753,8 +753,8 @@ case $escritorio in
     arch-chroot /mnt /bin/bash -c "pacman -S --needed tmux --noconfirm"
     echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO XCLIP"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed xclip  --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO ARK"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed ark --noconfirm"
+#    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO ARK"
+#    arch-chroot /mnt /bin/bash -c "pacman -S --needed ark --noconfirm"
     echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO CMUS"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed cmus --noconfirm"
     echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO LSD"
@@ -782,14 +782,14 @@ case $escritorio in
     arch-chroot /mnt /bin/bash -c "pacman -S --needed  i3lock  --noconfirm"
     echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO XED"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed xed  --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO RANGER"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed ranger --noconfirm"
+#    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO RANGER"
+#    arch-chroot /mnt /bin/bash -c "pacman -S --needed ranger --noconfirm"
     echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO FEH"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed feh  --noconfirm"
     echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO PACMAN-CONTRIB"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed pacman-contrib --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO KITTY"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed kitty --noconfirm"
+    #echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO KITTY"
+    #arch-chroot /mnt /bin/bash -c "pacman -S --needed kitty --noconfirm"
     echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO IMAGEMAGICK"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed  imagemagick --noconfirm"
     echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO LIBNOTIFY"

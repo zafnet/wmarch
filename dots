@@ -107,6 +107,9 @@ add_dotfiles() {
     print_status "\n\t\t\t\t\t -- AGREGANDO DOTFILES --"
     mkdir -pv $WALL_DIR
     cp -ru $REPO_DIR/usuario/. $USER_HOME/
+    cp -ru $REPO_DIR/00-keyboard.conf /etc/X11/xorg.conf.d/
+    cp -ru $REPO_DIR/dake.xml /usr/share/gtksourceview-4/styles/
+    cp -ru $REPO_DIR/keyboard /etc/default/
     cp -ru $REPO_DIR/.config $USER_HOME/
     cp -ru $REPO_DIR/Lavender-Breeze-GTK $THEMES_DIR/
     cp -ru $REPO_DIR/Infinity-Lavender-Dark-Icons $ICONS_DIR/
@@ -142,7 +145,7 @@ pass_root_file() {
     # Creando Una Carpeta .config en root   
     mkdir -pv /root/.config/
     # Copia archivos "bashc,nano,nvim,ranger,zshc," a .config del usuario root
-    cp -ru $REPO_DIR/.config/{bashc,nano,nvim,ranger,zshc} /root/.config/
+    cp -ru $REPO_DIR/.config/{bashc,nano,nvim,ranger,zshc,xres} /root/.config/
     # Copia los archivos ".bashrc" y ".zshenv" a la carpeta raíz del usuario "root"
     cp -ru $REPO_DIR/usuario/{.bashrc,.zshenv} /root/
     sleep 2

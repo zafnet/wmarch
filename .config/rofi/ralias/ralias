@@ -39,6 +39,8 @@ ts= Lanza TMUX Con Nombre Si Se Escribe Si No Solo Lanza TMUX
 tl= Hace Un LS En TMUX
 ta= Tmux Se Une A Una Session Con El Target
 tk= Tmux Elimina Una Session con El Target
+tms= Sesion Tmux Con Numero De Inicio En 0
+tmx= Sesion Tmux Con Nombre Custom
 
 Nvim
 nv= Lanza nvim
