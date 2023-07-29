@@ -50,6 +50,10 @@ alt + {w,m,e,a,s,t,n,p}
 
          {exec  ~/.config/rofi/{menuweb/web-search.sh,/marcadores/marcadores.sh,/emojis/emojis.sh,/ralias/ralias.sh,/atajos/sxcut/sxcut.sh,/atajos/tmcut/tmcut.sh,/atajos/nvcut/nvcut.sh,/walle/wallp.sh}
 
+#- Menu Para Cargar Nueva Polybar
+ctrl + shift + p
+       exec  ~/.config/rofi/elebar/elebar.sh
+
 #- Menu Para Editar Configuraciones Con Rofi
 alt + shift + e
        exec  ~/.config/rofi/confiles/confiles.sh

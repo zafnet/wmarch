@@ -1,0 +1,67 @@
+//██╗   ███╗ █████╗ ██████╗  ██████╗ █████╗ ██████╗  ██████╗ ██████╗ ███████╗███████╗   ██████╗  █████╗ ███████╗██╗
+//███╗ ████║██╔══██╗██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔═══██╗██╔══██╗██╔════╝██╔════╝   ██╔══██╗██╔══██╗██╔════╝██║
+//█╔████╔██║███████║██████╔╝██║     ███████║██║  ██║██║   ██║██████╔╝█████╗  ███████╗   ██████╔╝███████║███████╗██║
+//█║╚██╔╝██║██╔══██║██╔══██╗██║     ██╔══██║██║  ██║██║   ██║██╔══██╗██╔══╝  ╚════██║   ██╔══██╗██╔══██║╚════██║██║
+//█║ ╚═╝ ██║██║  ██║██║  ██║╚██████╗██║  ██║██████╔╝╚██████╔╝██║  ██║███████╗███████║██╗██║  ██║██║  ██║███████║██║
+//═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝
+
+* {
+    text-color:         #e3b268;
+    fondo:              #4e4743;
+    lightbg:            #534c48;
+    red:                #FF0000;
+    orange:             #f15d22;
+    yellow:             #faa41a;
+    blue:               #48b9c7;
+    green:              #2da30b;
+    alter-nback:        #1c2833;
+    white:              #FFFFFF;
+    negro:              #000000;
+    macl:               #e3b268;
+    gris:               #585554;
+    background-color: @fondo;
+    font: "agave Nerd Font 13";
+    sort: true;
+    hide-scrollbar: true;
+    fullscreen: false;
+}
+
+window {
+    border: 0;
+    background-color: @fondo;
+    text-color: @text-color;
+    padding: 0.5%;
+    x-offset: 3%;
+    y-offset: 3%;
+    width:    54%;
+    height:   65%;
+    separator-style: "none";
+}
+
+inputbar {
+    spacing: 0.4%;
+//  background-color: @fondo;
+    border: 0px 0px 0px 0px;
+    border-radius: 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+
+listview {
+    fixed-height: 0;
+    border: 0px 0px 0px;
+    padding: 2px 0px 0px;
+    text-color: @orange;
+    color: @blue;
+}
+
+element {
+    border: 0;
+    padding: 0px;
+    highlight: bold;
+}
+
+element selected.normal {
+     text-color: @orange;
+     background-color: @blue;
+ }
