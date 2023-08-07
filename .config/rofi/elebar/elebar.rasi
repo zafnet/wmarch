@@ -6,7 +6,7 @@
 //╚══════╝╚══════╝╚══════╝╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
     
 * {
-    spacing:    2;
+//    spacing:    9px;
     border-color: #4e4743;
     background-color: transparent;
     color:#e3b268;
@@ -16,10 +16,9 @@
 window {
     width:      19%;
     height:     165;
-    padding:    1%;
 //    border:     2px;
 //    border-color: #000000;
-    padding:    5;
+    padding:    1%;
     background-color: #4e4743;
 //    background-image: url("~/.config/rofi/izuku.jpg", width);
 }
@@ -49,7 +48,7 @@ element alternate.normal {
 inputbar {
 //    background-color:#ff4743;
     text-color:#ff4743;
-    spacing: 2;
+//    spacing: 2%;
     border: 0px 0px 0px 0px;
     border-radius: 0px;
     padding: 5px 10px 5px 5px;

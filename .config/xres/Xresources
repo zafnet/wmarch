@@ -141,6 +141,8 @@ XTerm.vt100.translations: #override \n\
       Ctrl <Key> 0: set-vt-font(d) \n\
       Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
       Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+      Ctrl Shift <Key>k: scroll-back(1,pixel) \n\
+      Ctrl Shift <Key>j: scroll-forw(1,pixel) \n\
       Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY) \n\
       !<Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\
       !<Btn2Up>: insert-selection(PRIMARY)
