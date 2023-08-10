@@ -13,12 +13,8 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 #-- Cargando Alias Funciones y exports De Zsh
 
 source ~/.config/zshc/aleas
-source ~/.config/zshc/funfzf
-source ~/.config/zshc/exports
-
-#-- Funcion Para Ver Los Manuales De Man En Nvim
-
-man() { /usr/bin/man $* | nvim -c "set ft=man" -R -}
+source ~/.config/zshc/funciones
+#source ~/.config/zshc/exports
 
 #-- Prompt Custom Con PROMPT_SUBST Opcion De Zsh
 

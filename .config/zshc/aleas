@@ -16,8 +16,6 @@ alias mv='mv -u'
 alias mt='mv -uv'
 alias mk='mkdir -pv'
 alias smk='sudo mkdir'
-#alias ic='kitty +kitten icat'
-alias his='history 0'
 alias grep='grep --color=auto'
 alias xd='xrdb merge ~/.config/xres/Xresources && notify-send "Xresources Actualizado"'
 alias ch='checkupdates'
@@ -46,6 +44,8 @@ alias tl='tmux ls'
 alias ta='tmux a -t'
 alias tk='tmux kill-session -t'
 alias tv='tmux neww -n'
+alias tmx='~/.config/tmux/tmxs.sh'
+alias tms='tmux new -s 0'
 
 #-- Editor
 

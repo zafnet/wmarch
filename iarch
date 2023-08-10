@@ -839,10 +839,10 @@ clear
 #sleep 2
 #clear
 
-#echo -e '\033[1;95m' "\n\t\t\t DESMONTANDO PARTICIONES"
-#umount -R /mnt
-#sleep 2
-#clear
+echo -e '\033[1;95m' "\n\t\t\t DESMONTANDO PARTICIONES"
+umount -R /mnt
+sleep 2
+clear
 
 #echo -e '\033[1;95m' "\n\t\t\t REINICIANDO EL SISTEMA"
 #reboot
