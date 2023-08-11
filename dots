@@ -88,20 +88,20 @@ create_common_dirs() {
 add_dotfiles() {
     print_status "\n\t\t\t\t AGREGANDO DOTFILES"
     mkdir -pv $WALL_DIR
-    cp -ru $REPO_DIR/usuario/. $USER_HOME/
-    cp -ru $REPO_DIR/00-keyboard.conf /etc/X11/xorg.conf.d/
-    cp -ru $REPO_DIR/dake.xml /usr/share/gtksourceview-4/styles/
-    cp -ru $REPO_DIR/keyboard /etc/default/
-    cp -ru $REPO_DIR/.config $USER_HOME/
-    cp -ru $REPO_DIR/Lavender-Breeze-GTK $THEMES_DIR/
-    cp -ru $REPO_DIR/Infinity-Lavender-Dark-Icons $ICONS_DIR/
-    cp -ru $REPO_DIR/iconwall.png $WALL_DIR
-    cp -ru $REPO_DIR/fonts $FONT_DIR/
-    cp -ru $REPO_DIR/.gtk-bookmarks $USER_HOME/
-    cp -ru $REPO_DIR/appdesk/. $APPLICATIONS_DIR/
-    cp -ru $REPO_DIR/fstab $FSTAB_FILE/
-    #cp -ru  $REPO_DIR/tilix $FONT_DIR/
-    #cp -ru  $REPO_DIR/.xinitrc $USER_HOME/
+    cp -r $REPO_DIR/usuario/. $USER_HOME/
+    cp -r $REPO_DIR/00-keyboard.conf /etc/X11/xorg.conf.d/
+    cp -r $REPO_DIR/dake.xml /usr/share/gtksourceview-4/styles/
+    cp -r $REPO_DIR/keyboard /etc/default/
+    cp -r $REPO_DIR/.config $USER_HOME/
+    cp -r $REPO_DIR/Lavender-Breeze-GTK $THEMES_DIR/
+    cp -r $REPO_DIR/Infinity-Lavender-Dark-Icons $ICONS_DIR/
+    cp -r $REPO_DIR/iconwall.png $WALL_DIR
+    cp -r $REPO_DIR/fonts $FONT_DIR/
+    cp -r $REPO_DIR/.gtk-bookmarks $USER_HOME/
+    cp -r $REPO_DIR/appdesk/. $APPLICATIONS_DIR/
+    cp -r $REPO_DIR/fstab $FSTAB_FILE/
+    #cp -r  $REPO_DIR/tilix $FONT_DIR/
+    #cp -r  $REPO_DIR/.xinitrc $USER_HOME/
     sleep 2
     clear
 }
@@ -127,9 +127,9 @@ pass_root_file() {
     # Creando Una Carpeta .config en root   
     mkdir -pv /root/.config/
     # Copia archivos "bashc,nano,nvim,ranger,zshc," a .config del usuario root
-    cp -ru $REPO_DIR/.config/{bashc,nano,nvim,ranger,zshc,xres} /root/.config/
+    cp -r $REPO_DIR/.config/{bashc,nano,nvim,ranger,zshc,xres} /root/.config/
     # Copia los archivos ".bashrc" y ".zshenv" a la carpeta raíz del usuario "root"
-    cp -ru $REPO_DIR/usuario/{.bashrc,.zshenv} /root/
+    cp -r $REPO_DIR/usuario/{.bashrc,.zshenv} /root/
     sleep 2
     clear
 }
