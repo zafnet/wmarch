@@ -40,39 +40,3 @@ case "$selected" in
        xterm -e nvim ~/.config/sxhkd/sxhkdrc
         ;;
 esac
-
-
-
-
-# case $selected in
-#   "polybar")
-#       xterm -e nvim ~/.config/Polybar/config.ini
-#       ;;
-#   "nvim")
-#       xterm -e nvim ~/.config/nvim/init.vim 
-#       ;;
-#   "i3")
-#       xterm -e nvim ~/.config/i3/config
-#       ;;
-#   "zshrc")
-#       xterm -e nvim ~/.config/zshc/.zshrc
-#       ;;
-#   "bashrc")
-#       xterm -e nvim ~/.bashrc 
-#       ;;
-#   "picom")
-#       xterm -e nvim ~/.config/picom/picom.conf 
-#       ;;
-#   "rofi")
-#       xterm -e nvim ~/.config/rofi/config.rasi 
-#       ;;
-#   "tmux")
-#       xterm -e nvim ~/.config/tmux/tmux.conf 
-#       ;;
-#   "Xresources")
-#       xterm -e nvim ~/.config/xres/Xresources
-#       ;;
-#   "sxhkdrc")
-#       xterm -e nvim ~/.config/sxhkd/sxhkdrc
-#       ;;
-#esac
