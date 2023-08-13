@@ -41,7 +41,8 @@ set noshowmode
 "set signcolumn=yes
 "set buftype=
 "set viewoptions=cursor,folds,curdir
-"set listchars=space:.,tab:→\ 
+"set listchars+=space:.,tab:▸\ ,eol:↲,trail:· 
+"set list
 "set ignorelist+=<palabra1|palabra2>
 "set cursorline
 "set ruler
