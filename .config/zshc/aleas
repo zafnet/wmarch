@@ -1,32 +1,7 @@
 #-- Sistema
-
-alias to='touch'
-alias ins='sudo pacman -S'
-alias ac='sudo pacman -Syu && dunstify -t 4000 -i "$HOME/.config/dunst/icons/actuale.png" "Sistema Actualizado" && exit'
-alias acn='sudo pacman -Syu --noconfirm && dunstify -t 4000 -i "$HOME/.config/dunst/icons/actuale.png" "Sistema Actualizado" && exit'
-alias acm='sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist && sudo pacman -Syu --noconfirm && notify-send "Mirrorlist y Sistema Actualizados" && exit'
-alias al='pacman -Qs'
-alias rem='sudo pacman -Rs'
-alias rep='pacman -Ss'
-alias cp='cp -ur $(notify-send "Copia Terminada")'
-alias ct='cp -urv $(notify-send "Copia Terminada")'
-alias rm='rm -r'
-alias rt='rm -rv'
-alias mv='mv -u'
-alias mt='mv -uv'
-alias mk='mkdir -pv'
-alias smk='sudo mkdir'
-alias grep='grep --color=auto'
-alias xd='xrdb merge ~/.config/xres/Xresources && notify-send "Xresources Actualizado"'
-alias ch='checkupdates'
-alias sz='source ~/.config/zshc/.zshrc && notify-send "zshrc Actualizado"'
-alias cm='chmod 744 $(notify-send "Permiso 744 Otorgado")'
-alias ca='rt .cache/*'
-alias zh='echo " " > $HOME/.config/zshc/.zsh_history && notify-send "Borrado De zsh_history Terminado"'
-alias bh='echo " " > $HOME/.config/bashc/.bash_history && notify-send "Borrado De bash_history Terminado"'
-alias bu='sudo find / 2>/dev/null -iname $1'
-
-#-- Lsd Bat y Reflector
+DUNS='dunstify -t 4000 -i "$HOME/.config/dunst/icons/actuale.png"'
+REFLE='sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist'
+BORR='dunstify -t 4000 -i "$HOME/.config/dunst/icons/borrado.png"'
 
 alias ll='lsd -lha --group-dirs=first'
 alias l='lsd -lda --group-dirs=first */'
@@ -34,18 +9,41 @@ alias lo='lsd -lda --group-dirs=first .*/'
 alias ls='lsd -ha --group-dirs=first'
 alias tree='lsd --tree'
 alias ba='bat'
-alias mir='sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist && notify-send "Mirrorlist Actualizado"'
 alias ra='ranger'
+alias to='touch'
+alias ins='sudo pacman -S'
+alias ac="sudo pacman -Syu && $DUNS 'Sistema Actualizado' && exit"
+alias acn="sudo pacman -Syu --noconfirm && $DUNS 'Sistema Actualizado' && exit"
+alias acm="$REFLE && sudo pacman -Syu --noconfirm && $DUNS 'Mirrors y Sistema Actualizados' && exit"
+alias mir="$REFLE && $DUNS 'Mirrorlist Actualizado'"
+alias al='pacman -Qs'
+alias rem='sudo pacman -Rs'
+alias rm='rm -r'
+alias rv='rm -rv'
+alias rep='pacman -Ss'
+alias cp='cp -ur $(notify-send -i "$HOME/.config/dunst/icons/copia.png" "Copia Terminada")'
+alias cv='cp -urv $(notify-send -i "$HOME/.config/dunst/icons/copia.png" "Copia Terminada")'
+alias mv='mv -u'
+alias mvv='mv -uv'
+alias mk='mkdir -pv'
+alias smk='sudo mkdir -pv'
+alias grep='grep --color=auto'
+alias xd="xrdb merge ~/.config/xres/Xresources && $DUNS 'Xresources Actualizado'"
+alias ch='checkupdates'
+alias sz="source ~/.config/zshc/.zshrc && $DUNS 'zshrc Actualizado'"
+alias cm='chmod 744 $(notify-send "Permiso 744 Otorgado")'
+alias ca='rt .cache/*'
+alias zh="echo ' ' > $HOME/.config/zshc/.zsh_history && $BORR 'zsh_history Borrado'"
+alias bh="echo " " > $HOME/.config/bashc/.bash_history && $BORR 'bash_history Borrado'"
+alias bu='sudo find / 2>/dev/null -iname $1'
 
 #-- Tmux
 
-alias ts='bash -c $HOME/.config/tmux/tmxs.sh'
+alias ts='~/.config/tmux/tmxs.sh'
 alias tl='tmux ls'
 alias ta='tmux a -t'
 alias tk='tmux kill-session -t'
-alias tv='tmux neww -n'
-alias tmx='~/.config/tmux/tmxs.sh'
-alias tms='tmux new -s 0'
+alias tp='tmux neww -n'
 
 #-- Editor
 

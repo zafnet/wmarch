@@ -1,46 +1,40 @@
-sz= Actualiza archivo .zshrc
-bs= Actualiza archivo .bashrc
-bh= Borra Historial De BASH
-zh= Borra Historial De ZSH
-cm= Permiso Propietario 744
-ca= Borra Carpeta De .cache
-ll= Lista Todos Los Archivos y Carpetas Con Sus Permisos
+ll= Lista Archivos y Carpetas Con Sus Permisos
 l=  Lista Directorios Comunes
 lo= Lista Directorio De Punto
+ls= Lista Archivos y Carpetas En Horizontal Sin Permisos
 tree= Lista En Forma De La Herramienta Tree
+ba= Comando bat
+ra= Lanza ranger
 to= Crea Archivo touch
 ins= Instala Un Programa
+ac= Actualiza El Sistema
 acn= Actualiza El Sistema sin Confirmar
 acm= Actualiza La Lista de Mirror y El Sistema
-ac= Actualiza El Sistema
+mir= Usa Reflector
 al= Lista Paquetes Instalados En El Sistema
 rem= Elimina Paquetes Instalados En El Sistema
+rv= Elimina Archivo o Carpeta y Verbose
 rep= Lista Paquetes En Los Repositorios De Arch
-cp= Copia Actualiza Cada Archivo o Carpeta
-ct= Copia Actualiza y Verbose Cada Archivo o Carpeta
-rm= Elimina Archivo o Carpeta
-rt= Elimina Archivo o Carpeta y Verbose
-mv= Mueve o Renombra Archivo o Carpeta Actualizando
-mt= Mueve o Renombra Archivo o Carpeta Actualizando y Verbose
-mk= Crea Carpeta y Verbose
-smk= Crea Carpeta Como Root
-pe= Muestra Peso De Las Carpetas --> Cancelada
-ic= Muestra Las Fotos En La Terminal
-ba= Comando bat
-his= Muestra El Historial Comun
-mir= Usa Reflector
+cv= Copia Actualiza y Verbose Cada Archivo o Carpeta
+mvv= Mueve o Renombra Archivo o Carpeta Actualizando y Verbose
+mk= Crea Carpeta Recursiva y Verbose
+smk= Crea Carpeta Como Root y Verbose
 grep= Usa grep Color Auto
 xd= Recarga .Xresource
 ch= Nombre De Las Actualizaciones Que Se Van A Descargar
+sz= Actualiza archivo .zshrc
+cm= Permiso Propietario 744
+ca= Borra Carpeta De .cache
+zh= Borra Historial De ZSH
+bh= Borra Historial De BASH
 bu= Busca Con Find En La Carpeta Raiz Pasando Un Argumento
 
 Tmux
-ts= Lanza TMUX Con Nombre Si Se Escribe Si No Solo Lanza TMUX
+ts= Sesion Tmux Nombre Custom "ts namesesion" Si No "ts ENTER" Lanza Sesion En 0
 tl= Hace Un LS En TMUX
 ta= Tmux Se Une A Una Session Con El Target
 tk= Tmux Elimina Una Session con El Target
-tms= Sesion Tmux Con Numero De Inicio En 0
-tmx= Sesion Tmux Con Nombre Custom
+tp= Nueva Pestaña En Tmux Cuando Estamos Dentro De Una Sesion
 
 Nvim
 nv= Lanza nvim
@@ -63,28 +57,27 @@ gt= git tag -a
 gf= git fetch
 gl= git log
 
-Funciones
 
-Alt + u -> Entra En La Carpeta Dada Y Lista El Contenido Sin Tecla Funcion
+Funcion Alt + u -> Entra En La Carpeta Dada Y Lista El Contenido Sin Tecla 
 
-Alt + i -> Entra En La Carpeta Dada Funcion
+Funcion Alt + i -> Entra En La Carpeta Dada 
 
-Alt + o -> Abre Aplicacion o Archivo Funcion
+Funcion Alt + o -> Abre Aplicacion o Archivo 
 
-Alt + r -> Borra Archivo Y Directorio Funcion
+Funcion Alt + r -> Borra Archivo Y Directorio 
 
-Alt + t -> Borra Directorio Funcion Cancelada
+Funcion Alt + t -> Borra Directorio Cancelada
 
-Ctrl + f -> Edita Archivo Con Nvim Funcion
+Funcion Ctrl + f -> Edita Archivo Con Nvim 
 
-Alt + v -> Muestra El Archivo En Forma BAT Funcion
+Funcion Alt + v -> Muestra El Archivo En Forma BAT 
 
-Alt + l -> Lista Contenido De Carpeta Dada Funcion
+Funcion Alt + l -> Lista Contenido De Carpeta Dada 
 
-Ctrl + y -> Copia Ruta De Un Archivo o Directorio Funcion
+Funcion Ctrl + y -> Copia Ruta De Un Archivo o Directorio 
 
-Alt + c -> Copia Contenido De Un Archivo De Texto Funcion
+Funcion Alt + c -> Copia Contenido De Un Archivo De Texto 
 
-Ctrl + r -> Pega Historial en la terminal Funcion
+Funcion Ctrl + r -> Pega Historial en la terminal 
 
-Alt + k -> Mata Procesos Con FZF Funcion
+Funcion Alt + k -> Mata Procesos Con FZF 
