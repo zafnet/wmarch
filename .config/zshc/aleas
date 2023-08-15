@@ -2,8 +2,8 @@
 
 alias to='touch'
 alias ins='sudo pacman -S'
-alias ac='sudo pacman -Syu && notify-send "Sistema Actualizado" && exit'
-alias acn='sudo pacman -Syu --noconfirm && notify-send "Sistema Actualizado" && exit'
+alias ac='sudo pacman -Syu && dunstify -t 4000 -i "$HOME/.config/dunst/icons/actuale.png" "Sistema Actualizado" && exit'
+alias acn='sudo pacman -Syu --noconfirm && dunstify -t 4000 -i "$HOME/.config/dunst/icons/actuale.png" "Sistema Actualizado" && exit'
 alias acm='sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist && sudo pacman -Syu --noconfirm && notify-send "Mirrorlist y Sistema Actualizados" && exit'
 alias al='pacman -Qs'
 alias rem='sudo pacman -Rs'
