@@ -28,6 +28,7 @@ ca= Borra Carpeta De .cache
 zh= Borra Historial De ZSH
 bh= Borra Historial De BASH
 bu= Busca Con Find En La Carpeta Raiz Pasando Un Argumento
+ssk= Crea Una Key SSH Con Cifrado ed25519 En ~/.ssh/
 
 Tmux
 ts= Sesion Tmux Nombre Custom "ts namesesion" Si No "ts ENTER" Lanza Sesion En 0

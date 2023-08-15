@@ -2,6 +2,7 @@
 DUNS='dunstify -t 4000 -i "$HOME/.config/dunst/icons/actuale.png"'
 REFLE='sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist'
 BORR='dunstify -t 4000 -i "$HOME/.config/dunst/icons/borrado.png"'
+PACM='sudo pacman'
 
 alias ll='lsd -lha --group-dirs=first'
 alias l='lsd -lda --group-dirs=first */'
@@ -11,13 +12,13 @@ alias tree='lsd --tree'
 alias ba='bat'
 alias ra='ranger'
 alias to='touch'
-alias ins='sudo pacman -S'
-alias ac="sudo pacman -Syu && $DUNS 'Sistema Actualizado' && exit"
-alias acn="sudo pacman -Syu --noconfirm && $DUNS 'Sistema Actualizado' && exit"
-alias acm="$REFLE && sudo pacman -Syu --noconfirm && $DUNS 'Mirrors y Sistema Actualizados' && exit"
+alias ins="$PACM -S"
+alias ac="$PACM -Syu && $DUNS 'Sistema Actualizado' && exit"
+alias acn="$PACM -Syu --noconfirm && $DUNS 'Sistema Actualizado' && exit"
+alias acm="$REFLE && $PACM -Syu --noconfirm && $DUNS 'Mirrors y Sistema Actualizados' && exit"
 alias mir="$REFLE && $DUNS 'Mirrorlist Actualizado'"
 alias al='pacman -Qs'
-alias rem='sudo pacman -Rs'
+alias rem="$PACM -Rs"
 alias rm='rm -r'
 alias rv='rm -rv'
 alias rep='pacman -Ss'
@@ -36,6 +37,7 @@ alias ca='rt .cache/*'
 alias zh="echo ' ' > $HOME/.config/zshc/.zsh_history && $BORR 'zsh_history Borrado'"
 alias bh="echo " " > $HOME/.config/bashc/.bash_history && $BORR 'bash_history Borrado'"
 alias bu='sudo find / 2>/dev/null -iname $1'
+alias ssk='ssh-keygen -t ed25519 -f ~/.ssh/git-key'
 
 #-- Tmux
 
