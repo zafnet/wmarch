@@ -100,6 +100,7 @@ add_dotfiles() {
     cp -r $REPO_DIR/.gtk-bookmarks $USER_HOME/
     cp -r $REPO_DIR/appdesk/. $APPLICATIONS_DIR/
     cp -r $REPO_DIR/fstab $FSTAB_FILE/
+    cp -r $REPO_DIR/restorconf.sh $USER_HOME/.local/
     #cp -r  $REPO_DIR/tilix $FONT_DIR/
     #cp -r  $REPO_DIR/.xinitrc $USER_HOME/
     sleep 2
