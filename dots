@@ -252,22 +252,17 @@ poly_ins
 #- PAQUETES PARA INSTALAR QEMU -#
 #################################
 
-#print_status "\n\t\t\t\t  INSTALANDO QEMU BASE"
-# pacman -S qemu-base edk2-ovmf ebtables dmidecode libvirt dnsmasq bridge-utils openbsd-netcat virt-viewer vde2 virt-manager --noconfirm
-
 #print_status "\n\t\t\t\t INSTALANDO QEMU-DESKTOP"
-# pacman -S qemu-desktop edk2-ovmf ebtables dmidecode libvirt dnsmasq bridge-utils openbsd-netcat virt-viewer vde2 virt-manager --noconfirm
+# pacman --needed -S qemu-desktop edk2-ovmf dmidecode libvirt dnsmasq bridge-utils openbsd-netcat virt-viewer vde2 virt-manager --noconfirm
 
-#print_status "\n\t\t\t\t INSTALANDO QEMU-FULL"
-# pacman -S qemu-full edk2-ovmf ebtables dmidecode libvirt  dnsmasq bridge-utils openbsd-netcat virt-viewer vde2 virt-manager --noconfirm
+############################################################
+#- AÑADIR USUARIOS A LOS GRUPOS "KVM" Y "LIBVIRT" EN QEMU -#
+############################################################
 
-########################################################
-#- AÑADIR USUARIOS A LOS GRUPOS kvm Y libvirt EN QEMU -#
-########################################################
-
-#print_status "\n\t\t\t\t AÑADIR USUARIO A GRUPOS KVM Y LIBVIRT"
+#print_status "\n\t\t\t\t AÑADIENDO USUARIO A GRUPOS KVM Y LIBVIRT"
 
 # usermod -a -G kvm $USER
+#sleep 3
 # usermod -a -G libvirt $USER
 #sleep 2
 #clear
