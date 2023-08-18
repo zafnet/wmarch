@@ -15,8 +15,8 @@ Xft.hintstyle: hintfull
 Xft.lcdfilter: lcdfilter
 
 !-- Color Del Primer Plano Fondo y El Cursor
-! XTerm*Foreground: #bbc5ff
-! XTerm*Background: #080505
+!XTerm*Foreground: #bbc5ff
+!XTerm*Background: #080505
 XTerm*cursorColor: #73c6b6 
 
 !-- Nombre De Fuente y Terminal
@@ -37,11 +37,9 @@ XTerm*geometry: +50+100
 
 !-- Agregar una barra de desplazamiento en el lado derecho
 !-- Con La Opcion RightScroll
-Xterm*scrollBar: True
+!xterm*scrollBar: true
 !xterm*rightScrollBar:true
-! XTerm.vt100.scrollbar.width: 8
-! xterm*scrollBar: true
-! xterm*rightScrollBar: true
+!XTerm.vt100.scrollbar.width: 8
 
 !-- Permitirá El Desplazamiento De La Salida De La Terminal
 !-- Utilizando La Barra De Desplazamiento O La Rueda Del Mouse
@@ -114,18 +112,18 @@ XTerm*metaSendsEscape : true
 *.color15:    #E6E6E6
 
 !-- Seleccionar Solo Texto
-! XTerm*highlightSelection: true
+!XTerm*highlightSelection: true
 
 !-- Eliminar Espacios Finales
-! XTerm*trimSelection: true
+!XTerm*trimSelection: true
 
 !-- Desplazarse
 !-- Use: Shift-Pageup / Shift-Pagedown Para Desplazarse O La Rueda Del Mouse
 !-- Líneas De Salida Sobre Las Que Puede Desplazarse Hacia Atrás
-! XTerm*saveLines: 16384
+!XTerm*saveLines: 16384
 
 !-- No Se Desplace Cuando Haya Una Nueva Entrada, EJ. tail -f /var/syslog
-! XTerm*scrollTtyOutput: false
+!XTerm*scrollTtyOutput: false
 
 !-- Combinacion De Teclas
 !-- Cambiar El Tamaño De Fuente Sobre La Marcha (ctrl+plus = increase

@@ -13,7 +13,7 @@ export RANGER_CONFIG_DIR="$HOME/.config/ranger/rc.conf"
 
 export BROWSER=firefox
 
-export XCOMPOSEFILE="$HOME/.config/.XCompose"
+# export XCOMPOSEFILE="$HOME/.config/.XCompose"
 
 export LC_ALL=es_AR.UTF8
 
