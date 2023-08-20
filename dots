@@ -93,16 +93,18 @@ add_dotfiles() {
     cp -r $REPO_DIR/dake.xml /usr/share/gtksourceview-4/styles/
     cp -r $REPO_DIR/keyboard /etc/default/
     cp -r $REPO_DIR/.config $USER_HOME/
+    cp -r $REPO_DIR/gtk-3.0 $USER_HOME/.config/
     cp -r $REPO_DIR/Lavender-Breeze-GTK $THEMES_DIR/
     cp -r $REPO_DIR/Infinity-Lavender-Dark-Icons $ICONS_DIR/
     cp -r $REPO_DIR/iconwall.png $WALL_DIR
     cp -r $REPO_DIR/fonts $FONT_DIR/
-    cp -r $REPO_DIR/.gtk-bookmarks $USER_HOME/
+    cp -r $REPO_DIR/bookmarks $USER_HOME/
     cp -r $REPO_DIR/appdesk/. $APPLICATIONS_DIR/
     cp -r $REPO_DIR/fstab $FSTAB_FILE/
     cp -r $REPO_DIR/restorconf.sh $USER_HOME/.local/
-    #cp -r  $REPO_DIR/tilix $FONT_DIR/
-    #cp -r  $REPO_DIR/.xinitrc $USER_HOME/
+   #cp -r $REPO_DIR/.gtk-bookmarks $USER_HOME/    
+   #cp -r  $REPO_DIR/tilix $FONT_DIR/
+   #cp -r  $REPO_DIR/.xinitrc $USER_HOME/
     sleep 2
     clear
 }
@@ -127,9 +129,9 @@ pass_root_file() {
     print_status "\n\t\t\t\t PASANDO ARCHIVOS A ROOT"
     # Creando Una Carpeta .config en root   
     mkdir -pv /root/.config/
-    # Copia archivos "bashc,nano,nvim,ranger,zshc," a .config del usuario root
-    cp -r $REPO_DIR/.config/{bashc,nano,nvim,ranger,zshc,xres} /root/.config/
-    # Copia los archivos ".bashrc" y ".zshenv" a la carpeta raíz del usuario "root"
+    # Copia archivos y carpetas de $HOME/.config a /root/.config
+    cp -r $REPO_DIR/.config/{bashc,nano,nvim,ranger,zshc,tmux,xres} /root/.config/
+    # Copia los archivos ".bashrc" y ".zshenv" a $HOME/root/
     cp -r $REPO_DIR/usuario/{.bashrc,.zshenv} /root/
     sleep 2
     clear
@@ -138,10 +140,10 @@ pass_root_file() {
 poly_ins() {
 
     print_status "\n\t\t\t\t INSTALANDO POLYBAR"
-    #cd $REPO_DIR/polybar/
-    # Instala el paquete "polybar" desde pacman"
+    # Instala "polybar" desde pacman"
     pacman -S --needed polybar --noconfirm
-    # Instala el paquete "polybar-git" desde un archivo ".pkg.tar.zst"
+    # Instala "polybar-git" desde archivo ".pkg.tar.zst"
+    # cd $REPO_DIR/polybar/    
     # pacman -U $POLYBAR_PKG --noconfirm
     sleep 2
     clear
@@ -178,25 +180,25 @@ poly_ins
 #- CARGAR LOS MÓDULOS DEL KERNEL DE VIRTUALBOX MANUALMENTE -#
 #############################################################
 
-#-Ya Sea Que Utilices El Módulo virtualbox-host-modules-arch O virtualbox-host-dkms
-#-El Kernel Usa systemd-modules-load.service Para Cargar Los Módulos De virtualbox En El Momento Del Arranque
+#-YA SEA QUE UTILICES EL MÓDULO virtualbox-host-modules-arch O virtualbox-host-dkms
+#-EL KERNEL USA systemd-modules-load.service PARA CARGAR LOS MÓDULOS DE VIRTUALBOX EN EL MOMENTO DEL ARRANQUE
 
-#-Para Cargarlos De Forma Manual Utilizamos El Comando modprobe y El Modulo vboxdrv
-#-La Ejecución De Esta Linea Requiere De Privilegios De Administrador
+#-PARA CARGARLOS DE FORMA MANUAL UTILIZAMOS EL COMANDO modprobe Y EL MODULO vboxdrv
+#-LA EJECUCIÓN DE ESTA LINEA REQUIERE DE PRIVILEGIOS DE ADMINISTRADOR
 
 #print_status "\n\t\t\t\t CARGANDO MODULOS"
 #modprobe vboxdrv
 #sleep 2
 #clear
 
-#-Este Modulo vboxdrv Es Obligatorio,Aunque Para Un Uso Avanzado De virtualbox
-#-Puede Que Los Siguientes Módulos Te Sean De Utilidad También:
+#-ESTE MODULO vboxdrv ES OBLIGATORIO,AUNQUE PARA UN USO AVANZADO DE VIRTUALBOX
+#-PUEDE QUE LOS SIGUIENTES MÓDULOS TE SEAN DE UTILIDAD TAMBIÉN
 
 # 1 vboxnetadp y vboxnetflt: Son Necesarios Si Usas La Característica BRIDGED o CONEXIÓN DE RED Solo Para El Sistema Anfitrión
 
 # 2 vboxpci: Es Necesario Cuando Su Máquina Virtual Necesita Pasar a Través De Un Dispositivo PCI Del Sistema Anfitrión
 
-#- Si Deseamos,Es Posible Cargar Todos En Una Sola Linea De Comando Así:
+#- SI DESEAMOS,ES POSIBLE CARGAR TODOS EN UNA SOLA LINEA DE COMANDO ASÍ
 
 # print_status "\n\t\t\t\t\t CARGANDO MODULOS VBOXDRV VBOXNETADP VBOXNETFLT VBOXPCI"
 # modprobe vboxdrv vboxnetadp vboxnetflt vboxpci
@@ -208,7 +210,7 @@ poly_ins
 ########################################
 
 #-Para Usar Los Puertos USB Del Equipo Anfitrión En Las Máquinas Virtuales,Es Necesario Agregar a
-#-El o Los Usuarios Del Sistema Al Grupo vboxusers Bastara Con Ejecutar La Siguiente Linea De Comando
+#-EL O LOS USUARIOS DEL SISTEMA AL GRUPO vboxusers BASTARA CON EJECUTAR LA SIGUIENTE LINEA DE COMANDO
 
 #print_status "\n\t\t\t\t AÑADIR USUARIO AL GRUPO VBOXUSERS"
 #gpasswd -a $USER vboxusers
@@ -219,8 +221,8 @@ poly_ins
 #- DESCARGANDO DISCO DE GUEST ADDITIONS -#
 ##########################################
 
-#-También Se Recomienda Instalar El Paquete virtualbox-guest-iso En El Equipo Que Ejecuta Virtualbox
-#-Este Paquete Actuará Como Una Imagen De Disco Que Se Puede Usar Para Instalar Los Complementos («Guest Additions»)
+#-TAMBIÉN SE RECOMIENDA INSTALAR EL PAQUETE virtualbox-guest-iso EN EL EQUIPO QUE EJECUTA VIRTUALBOX
+#-ESTE PAQUETE ACTUARÁ COMO UNA IMAGEN DE DISCO QUE SE PUEDE USAR PARA INSTALAR LOS COMPLEMENTOS («Guest Additions»)
 
 #print_status "\n\t\t\t\t DESCARGANDO DISCO DE GUEST ADDITIONS"
 #pacman -S virtualbox-guest-iso --noconfirm
@@ -231,9 +233,9 @@ poly_ins
 #- SI NO ME DEJA INICIAR UNA MAQUINA VIRTUAL DE VIRTUALBOX -#
 #############################################################
 
-#-Decia En El Cuadro De Error Que Tenia Que Poner El Comando /sbin/vboxconfig Con sudo o Siendo root
-#-Pero Es Porque No Estaban Firmados o Cargados Los Modulos Para Virtualbox
-#-Entonces Antes Tuve Que Escribir Esto "sudo rcvboxdrv setup" y Me Dejo
+#-DECIA EN EL CUADRO DE ERROR QUE TENIA QUE PONER EL COMANDO /sbin/vboxconfig CON sudo O SIENDO root
+#-PERO ES PORQUE NO ESTABAN FIRMADOS O CARGADOS LOS MODULOS PARA VIRTUALBOX
+#-ENTONCES ANTES TUVE QUE ESCRIBIR ESTO "sudo rcvboxdrv setup" Y ME DEJO
 
 #print_status "\n\t\t\t\t FIRMANDO O CARGANDO MODULOS PARA VIRTUALBOX AUTOMATICAMENTE"
 #rcvboxdrv setup
@@ -265,7 +267,7 @@ poly_ins
 # usermod -a -G kvm $USER
 #sleep 3
 # usermod -a -G libvirt $USER
-#sleep 2
+#sleep 3
 #clear
 
 #########################################
@@ -274,8 +276,9 @@ poly_ins
 
 #print_status "\n\t\t\t\t HABILITANDO E INICIANDO SERVICIO LIBVIRTD"
 # systemctl enable libvirtd
+#sleep 3
 # systemctl start libvirtd
-#sleep 2
+#sleep 3
 #clear
 
 #print_status "*************************"
