@@ -5,39 +5,25 @@
 #  ███████╗██████╔╝██║░░██║██║░░██║╚█████╔╝
 #  ╚══════╝╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░
 
-#-- Cargando Plugins Zsh
-
+#-- CARGANDO PLUGINS ZSH
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-#-- Cargando Alias Funciones y exports De Zsh
-
+#-- CARGANDO ALIAS FUNCIONES Y EXPORTS DE ZSH
 source ~/.config/zshc/aleas
 source ~/.config/zshc/funciones
-#source ~/.config/zshc/exports
-
-#-- Prompt Custom Con PROMPT_SUBST Opcion De Zsh
-
-git_b() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ *\1/' }
 
 setopt PROMPT_SUBST
 
+#-- VERIFICANDO Y CARGANDO PROMPT SEGUN EL USUARIO
 if [[ "$(id -u)" -eq "0" ]]; then
-PROMPT='%F{#f41818}%n%f%F{#ffffff}%f%F{red}%m%f %F{#f4d618}en -> %f%F{#f41897}%~%f%F{#18b1f4}$(git_b)%f %F{#f41818}#%f '
+PROMPT='%F{#f41818}%n%f%F{#ffffff} %f%F{red}%m%f %F{#f4d618}en -> %f%F{#f41897}%~%f%F{#18b1f4}$(git_b)%f %F{#f41818}#%f '
 
 elif [[ "$(id -u)" -eq "1000" ]]; then
-PROMPT='%F{#91fe36}%n%f%F{#ffe647}%f%F{#58d68d}%m%f %F{#ff03f0}en -> %f%F{#fe820e}%~%f%F{#18b1f4}$(git_b)%f %F{#039915}$%f '
+PROMPT='%F{#91fe36}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %F{#ff03f0}en -> %f%F{#fe820e}%~%f%F{#18b1f4}$(git_b)%f %F{#039915}$%f '
 fi
 
-#if [[ "$(id -u)" -eq "0" ]]; then
-#PROMPT='%F{red} %F{red}%n%f%F{#ffe647}%f%F{#ffffff}%m%f%F{#0087ff}:%f %F{#fe820e}%~%f%F{#ffe647}$(git_b)%f %F{green}%f '
-
-#elif [[ "$(id -u)" -eq "1000" ]]; then
-#PROMPT='%F{#054dff}%F{#91fe36} %n%f%F{#ffe647}%f%F{#58d68d}%m%f%F{#0087ff}:%f %F{#fe820e}%~%f%F{#ffe647}$(git_b)%f %F{green}%f '
-#fi
-
-#-- Autocompletado Moderno De ZSH
-
+#-- AUTOCOMPLETADO MODERNO DE ZSH
 autoload -Uz compinit
 compinit
 
@@ -45,7 +31,7 @@ zstyle ':completion:*' format 'autocompletado %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
 
-#-- Opciones De ZSH
+#-- OPCIONES DE ZSH
 setopt rm_star_silent
 unsetopt MENU_COMPLETE
 unsetopt FLOW_CONTROL
@@ -71,6 +57,14 @@ setopt dotglob
 #setopt INC_APPEND_HISTORY
 #setopt HIST_EXPIRE_DUPS_FIRST
 
-#-- Terminal XTERM Cursor Forma De Barra Vertical
+#-- CTRL + FLECHAS Y SUPRIMIR EN ZSH
+bindkey ";5D" backward-word
+bindkey ";5C" forward-word
+bindkey ";5"  delete-word
+bindkey "\e[3~"   delete-char
 
+#-- A+S+P SCRIPT TMXS.SH SESION DE TMUX PIDIENDO UN NOMBRE
+bindkey -s '^[P' 'ts^M'
+
+#-- CURSOR FORMA DE BARRA VERTICAL EN XTERM 
 printf '\033[6 q'

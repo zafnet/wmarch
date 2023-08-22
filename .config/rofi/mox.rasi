@@ -1,9 +1,9 @@
-//███╗   ███╗ ██████╗ ██╗  ██╗   ██████╗  █████╗ ███████╗██╗
-//████╗ ████║██╔═══██╗╚██╗██╔╝   ██╔══██╗██╔══██╗██╔════╝██║
-//██╔████╔██║██║   ██║ ╚███╔╝    ██████╔╝███████║███████╗██║
-//██║╚██╔╝██║██║   ██║ ██╔██╗    ██╔══██╗██╔══██║╚════██║██║
-//██║ ╚═╝ ██║╚██████╔╝██╔╝ ██╗██╗██║  ██║██║  ██║███████║██║
-//╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝
+/*███╗   ███╗ ██████╗ ██╗  ██╗   ██████╗  █████╗ ███████╗██╗
+  ████╗ ████║██╔═══██╗╚██╗██╔╝   ██╔══██╗██╔══██╗██╔════╝██║
+  ██╔████╔██║██║   ██║ ╚███╔╝    ██████╔╝███████║███████╗██║
+  ██║╚██╔╝██║██║   ██║ ██╔██╗    ██╔══██╗██╔══██║╚════██║██║ 
+  ██║ ╚═╝ ██║╚██████╔╝██╔╝ ██╗██╗██║  ██║██║  ██║███████║██║
+  ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝*/
 
 configuration {
 modi: "window,run,ssh,filebrowser,keys,drun,windowcd,combi";
@@ -25,14 +25,19 @@ display-drun: " Aplicaciones";
 display-keys:"  Atajos";
 display-ssh:"  ssh";
 display-filebrowser:"  Archivos";
+
+// ATAJOS DE TECLADO EN ROFI
 kb-move-front: "Control+a";
 kb-move-end: "Control+e";
 kb-move-word-back: "Alt+b";
 kb-move-word-forward: "Alt+f";
-kb-remove-to-eol: "Control+k";
-kb-remove-to-sol: "Control+K";
-kb-accept-entry: "Control+j";
+kb-remove-word-forward: "Alt+d";
+kb-remove-to-eol: "Control+o";
+kb-remove-char-back: "BackSpace";
+kb-accept-entry: "Control+h,Return";
 kb-delete-entry: "Shift+Delete";
+kb-page-prev: "Control+k";
+kb-page-next: "Control+j";
 }
 
 * {
@@ -47,8 +52,10 @@ kb-delete-entry: "Shift+Delete";
 }
 
 filebrowser {
+//    directory: "/home/user/";
       directories-first: true;
-      sorting-method:    "name";
+      sorting-method: "name";
+      show-hidden: false;
 }
 
 window {
@@ -59,8 +66,8 @@ window {
     padding: 1%;
     x-offset: 0;
     y-offset: -10%;
-    width:      45%;
-    height:     375;
+    width: 45%;
+    height: 375;
     separator-style: "none";
 }
 
@@ -71,12 +78,12 @@ prompt normal.normal {
 }
 
 textbox-prompt-colon {
-	padding: 						1px 1px 1px 5px;
-	//font:							"IBM 3270 Bold 13";
-	//background-color: 				@al;
+	padding: 1px 1px 1px 5px;
+	//font: "IBM 3270 Bold 13";
+	//background-color:	@al;
 	//expand: false;
     str: ">";
-    text-color: 					#ff2100;	
+    text-color:	#ff2100;	
 }
 
 inputbar {
@@ -91,6 +98,7 @@ entry normal.normal {
     background-color:#412307;
     color: #904000;
     padding: 0px;
+    placeholder: "";
 }
 
 listview {

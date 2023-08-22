@@ -1,5 +1,23 @@
-#-- Funciones FZF
+#-- FUNCION PARA PROMPT CUSTOM CON PROMPT_SUBST OPCION DE ZSH
+git_b() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ *\1/' }
 
+#-- FUNCION PARA COLORES DE 'MAN'
+function man() {
+    env \
+    LESS_TERMCAP_mb=$'\e[01;31m' \
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    man "$@"
+}
+
+#-- FUNCION PARA VER LOS MANUALES DE MAN EN NVIM
+man() { /usr/bin/man $* | nvim -c "set ft=man" -R -}
+
+#-- FUNCIONES FZF
 dl() {cd $(find / -type d 2> /dev/null | fzf -e --border --cycle --prompt="Ir a La Carpeta y Listarla: ") | xargs -r && lsd -la && zle reset-prompt} ;zle -N dl;bindkey "^[u" dl
 
 ir() {cd $(find / -type d 2> /dev/null | fzf -e --border --cycle --prompt="Ir a La Carpeta: ") && zle reset-prompt} ;zle -N ir;bindkey "^[i" ir
@@ -28,7 +46,3 @@ fk() { pid=$(ps -ef | sed 1d | fzf -m --color --height 60%  --prompt="Eliminar p
 if [ "x$pid" != "x" ]; then 
 kill -${1:-9} $pid 
 fi && zle reset-prompt} ;zle -N fk; bindkey "^[k" fk
-
-#-- Funcion Para Ver Los Manuales De Man En Nvim
-
-man() { /usr/bin/man $* | nvim -c "set ft=man" -R -}
