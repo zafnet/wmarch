@@ -11,7 +11,7 @@
 
 #- Recargar Configuración Del Archivo sxhkdrc
 super + Escape
-        notify-send  "SXHKDRC ACTUALIZADO" "$(pkill -USR1 -x sxhkd)"
+        dunstify -t 3000 -i "$HOME/.config/dunst/icons/actuale.png"  'SXHKDRC ACTUALIZADO' "$(pkill -USR1 -x sxhkd)"
      
 #- Sale o Restaura Bspwm
 super + alt + {q,r}
@@ -20,10 +20,6 @@ super + alt + {q,r}
 #- Cerrar Aplicacion o Matar Aplicacion
 super + {_,shift + }q
 	bspc node -{c,k}
-
-#- Polybar Oculta
-#super +  p
-#	polybar-msg cmd toggle
 
 #--------------#
 # APLICACIONES #
@@ -46,9 +42,9 @@ super + {a,v,b,m,t,d}
 #---------------#
 
 #- Ver Atajos De Archivos Con Rofi
-alt + {w,m,e,a,s,t,n,p}
+ctrl + shift {1,2,3,4,5,6,7,8}
 
-         {exec  ~/.config/rofi/{menuweb/web-search.sh,/marcadores/marcadores.sh,/emojis/emojis.sh,/ralias/ralias.sh,/atajos/sxcut/sxcut.sh,/atajos/tmcut/tmcut.sh,/atajos/nvcut/nvcut.sh,/walle/wallp.sh}
+         {exec  ~/.config/rofi/{ralias/ralias.sh,/marcadores/marcadores.sh,/atajos/sxcut/sxcut.sh,/atajos/tmcut/tmcut.sh,/atajos/nvcut/nvcut.sh,/walle/wallp.sh,menuweb/web-search.sh,/emojis/emojis.sh,}
 
 #- Menu Para Cargar Nueva Polybar
 ctrl + shift + p

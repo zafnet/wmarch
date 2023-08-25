@@ -273,16 +273,16 @@ set multibuffer
 ## Pinta los elementos de la interfaz de nano. Estos son ejemplos;
 ## por defecto no hay colores, excepto el color de error.
 
-set titlecolor yellow,magenta
+set titlecolor bold,white,grey
 # set promptcolor yellow
- set statuscolor green
-set errorcolor red
+set statuscolor bold,green,grey
+set errorcolor bold,red,black
 # set selectedcolor lightwhite,magenta
 # set stripecolor ,yellow
 # set scrollercolor cyan
- set numbercolor green
- set keycolor magenta
- set functioncolor lightmagenta
+set numbercolor green
+set keycolor bold,lightgreen
+set functioncolor bold,lightyellow
 
 ## En el .nanorc de root es posible que desee utilizar: 
 

@@ -109,6 +109,7 @@ listview {
     reverse: false;
     color:#955f20;
     spacing: 0.3em;
+    require-input: false;
 }
 
 element {

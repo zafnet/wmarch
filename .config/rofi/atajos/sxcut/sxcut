@@ -28,7 +28,7 @@ ctrl + p|Menú de apagado, reinicio y suspensión con Rofi
 
 ctrl + shift + w|Ventanas Abiertas Con Rofi
 
-alt + w,m,e,a,s,t,n,p web,marc,emo,alias,sxhkd,tmux,nvim,wall|Muestra Atajos
+ctrl + shift + 1,2,3,4,5,6,7,8 alias,books,sxhkdrc,tmux,nvim,wall,web,emoji|Muestra Atajos
 
 shift + alt + r|Lanza retroarch [Desactivado]
 
@@ -115,8 +115,8 @@ ctrl + shift + d|Lanza La Fecha Y Hora Con Rofi
 #---------#
 # VOLUMEN #
 #---------#
-alt + @F12|Subir Volumen
+Control_R + @F12|Subir Volumen
 
-alt + @F11|Bajar Volumen
+Control_R + @F11|Bajar Volumen
 
-alt + @F10|Mudo Volumen
+Control_R + @F10|Mudo Volumen
