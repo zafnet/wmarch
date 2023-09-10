@@ -1,12 +1,12 @@
-Tecla Maestra -> Ctrl-a
+Tecla Maestra -> Alt-a
 
-Editar tmux.conf -> Ctrl-a e
+Editar tmux.conf -> Alt-a e
 
-Recargar Configuration -> Ctrl-a r
+Recargar Configuration -> Alt-a r
 
-Borrar Tanto La Pantalla Como El Historial -> Ctrl-a Ctrl-l
+Borrar Tanto La Pantalla Como El Historial -> Alt-a Ctrl-l
 
-Crear Pestaña -> Ctrl-a Ctrl-c
+Crear Pestaña -> Alt-a Ctrl-c
 
 Abrir POPUP Nvim -> Ctrl-Alt-n 
 
@@ -16,54 +16,54 @@ Abrir POPUP Kitty -> Ctrl-Alt-k
 
 Abrir POPUP Tmux -> Ctrl-Alt-t 
 
-Dividir Panel Horizontal -> Ctrl-a o
+Dividir Panel Horizontal -> Alt-a o
 
-Dividir Panel Vertical -> Ctrl-a v
+Dividir Panel Vertical -> Alt-a v
 
-Dividir Panel Actual Horizontal -> Ctrl-a O
+Dividir Panel Actual Horizontal -> Alt-a O
 
-Dividir Panel Actual Vertical -> Ctrl-a V
+Dividir Panel Actual Vertical -> Alt-a V
 
-Cerrar Ventana O Pestaña -> Ctrl-a x
+Cerrar Ventana O Pestaña -> Alt-a x
 
-Mover Foco Al Panel Izquierda -> Ctrl-a h
+Mover Foco Al Panel Izquierda -> Alt-a h
 
-Mover Foco Al Panel Abajo -> Ctrl-a j
+Mover Foco Al Panel Abajo -> Alt-a j
 
-Mover Foco Al Panel Arriba -> Ctrl-a k
+Mover Foco Al Panel Arriba -> Alt-a k
 
-Mover Foco Al Panel Derecha -> Ctrl-a l
+Mover Foco Al Panel Derecha -> Alt-a l
 
-Mover Panel Actual Con El Siguiente -> Ctrl-a >
+Mover Panel Actual Con El Siguiente -> Alt-a >
 
-Mover Panel Actual Con El Anterior -> Ctrl-a  <
+Mover Panel Actual Con El Anterior -> Alt-a  <
 
-Maximizar El Panel Actual -> Ctrl-a z
+Maximizar El Panel Actual -> Alt-a z
 
-Redimencionar El Tamaño Del Panel ->  Ctrl-a-r H J K L
+Redimencionar El Tamaño Del Panel ->  Alt-a H J K L
 
-Ir Pestaña Anterior -> Ctrl-a Ctrl-h
+Ir Pestaña Anterior -> Alt-a Ctrl-h
 
-Ir Pestaña Siguiente -> Ctrl-a Ctrl-l
+Ir Pestaña Siguiente -> Alt-a Ctrl-l
 
-Ir a La Última Pestaña Activa -> Ctrl-a Tab
+Ir a La Última Pestaña Activa -> Alt-a Tab
 
-Cambiar Nombre De La Pestaña -> Ctrl-a ,
+Cambiar Nombre De La Pestaña -> Alt-a ,
 
-Entrar En Modo Copia -> Ctrl-a Enter
+Entrar En Modo Copia -> Alt-a Enter
 
-Enumerar Los Búferes De Pegado -> Ctrl-a b
+Enumerar Los Búferes De Pegado -> Alt-a b
 
-Pegar Desde El Búfer De Pegado Superior -> Ctrl-a p
+Pegar Desde El Búfer De Pegado Superior -> Alt-a p
 
-Elegir Desde Qué Búfer Pegar -> Ctrl-a P
+Elegir Desde Qué Búfer Pegar -> Alt-a P
 
 #- Teclas Nativas
 
-Elija la ventana actual de forma interactiva -> Ctrl-a w
+Elija la ventana actual de forma interactiva -> Alt-a w
 
-Enumere todas las combinaciones de teclas -> Ctrl-a ?
+Enumere todas las combinaciones de teclas -> Alt-a ?
 
-Mostrar brevemente los índices de los paneles -> Ctrl-a q
+Mostrar brevemente los índices de los paneles -> Alt-a q
 
-Muestra la hora  -> Ctrl-a t
+Muestra la hora  -> Alt-a t

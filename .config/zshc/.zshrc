@@ -10,8 +10,8 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #-- CARGANDO ALIAS FUNCIONES Y EXPORTS DE ZSH
-source ~/.config/zshc/aleas
-source ~/.config/zshc/funciones
+source ~/.config/zshc/zalias
+source ~/.config/zshc/zfunc
 
 setopt PROMPT_SUBST
 
@@ -64,7 +64,7 @@ bindkey ";5"  delete-word
 bindkey "\e[3~"   delete-char
 
 #-- A+S+P SCRIPT TMXS.SH SESION DE TMUX PIDIENDO UN NOMBRE
-bindkey -s '^[P' 'ts^M'
+bindkey -s '^[t' 'ts^M'
 
-#-- CURSOR FORMA DE BARRA VERTICAL EN XTERM 
-printf '\033[6 q'
+#-- C+A+T SCRIPT TMXS.SH SESION DE TMUX PIDIENDO UN NOMBRE
+bindkey -s '^[^T' 'tm^M'

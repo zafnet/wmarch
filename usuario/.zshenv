@@ -24,7 +24,7 @@ SAVEHIST=1000
 
 #-- VERIFICA QUE ESTE EN UN TERMINAL XTERM
 #-- E INICIA XTERM CON SESION DE TMUX CON NOMBRE 0
-#[[ $TERM == "xterm-256color" ]] && tmux new -s 0
+#[[ $TERM == "xterm-256color" ]] && tmux new -s
 
 #-- EXPORTS
 export GTK2_RC_FILES="$HOME/.config/pcmanfm/.gtkrc-2.0"

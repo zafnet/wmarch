@@ -6,6 +6,8 @@ super + q|Cerrar Vent Actual
 
 super + Scroll_Lock|Restaura Carpeta Config Desde Repo
 
+Alt + Scroll_Lock|Actualiza Xresources
+
 super + shift + q|Cerrar Vent De Mismo Nombre (ej Pcmanfm1 Pcmanfm2)
 
 super + Delete|Bloquear Pantalla
@@ -28,7 +30,11 @@ ctrl + p|Menú de apagado, reinicio y suspensión con Rofi
 
 ctrl + shift + w|Ventanas Abiertas Con Rofi
 
-ctrl + shift + 1,2,3,4,5,6,7,8 alias,books,sxhkdrc,tmux,nvim,wall,web,emoji|Muestra Atajos
+super + alt + m|alias,books,sxhkdrc,tmux,nvim,nvnat Lanza Rofi Con Atajos A Ver
+
+super + alt + a|Lanza Rofi Con Atajos Actuales De SXHKDRC
+
+ctrl + shift + m,x,z,e|marcadores,wall,web,emoji Muestra En Rofi
 
 shift + alt + r|Lanza retroarch [Desactivado]
 
@@ -45,7 +51,9 @@ super + alt + n|Intercambiar Vent Actual y Vent Más Grande
 #---------------------------#
 # ATAJO PARA TERMINAL XTERM #
 #---------------------------#
-alt + shift + p|Elegir Nombre En La Terminal Para Sesion Tmux
+alt + t|Elegir Nombre En La Terminal Para Sesion Tmux
+
+ctrl + alt + t|Lanza Sesion Tmux Automaticamente Para Terminal
 
 #-------------------#
 # MANEJO DE VENTANA #
@@ -115,8 +123,8 @@ ctrl + shift + d|Lanza La Fecha Y Hora Con Rofi
 #---------#
 # VOLUMEN #
 #---------#
-Control_R + @F12|Subir Volumen
+alt + @F12|Subir Volumen
 
-Control_R + @F11|Bajar Volumen
+alt + @F11|Bajar Volumen
 
-Control_R + @F10|Mudo Volumen
+alt + @F10|Mudo Volumen

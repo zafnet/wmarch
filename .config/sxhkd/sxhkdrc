@@ -21,6 +21,10 @@ super + alt + {q,r}
 super + {_,shift + }q
 	bspc node -{c,k}
 
+#- Actualiza Xresources
+alt + Scroll_Lock
+      dunstify -t 4000 -i "$HOME/.config/dunst/icons/actuale.png" 'Xresources Actualizado' "$(xrdb merge ~/.config/xres/Xresources)"
+
 #--------------#
 # APLICACIONES #
 #--------------#
@@ -34,17 +38,24 @@ alt + {1,2,3,4}
      {firefox -private-window,firefox,google-chrome-stable,google-chrome-stable --incognito}
 
 #- Otras Aplicaciones
-super + {a,v,b,m,t,d}
-      {pcmanfm,rofi -show drun,xterm -e ranger,xterm -e cmus,telegram-desktop,discord}
+super + {a,v,b,m,t,d,x}
+      {pcmanfm,rofi -show drun,xterm -e ranger,xterm -e cmus,telegram-desktop,discord,xed}
 
 #---------------#
 # ATAJOS CUSTOM #
 #---------------#
 
-#- Ver Atajos De Archivos Con Rofi
-ctrl + shift {1,2,3,4,5,6,7,8}
+#- Ver marcadores,wallpaper,menuweb,emojis Con Rofi
+ctrl + shift + {m,x,z,e}
+          {exec  ~/.config/rofi/{marcadores/marcadores.sh,/walle/wallp.sh,menuweb/web-search.sh,/emojis/emojis.sh,}
 
-         {exec  ~/.config/rofi/{ralias/ralias.sh,/marcadores/marcadores.sh,/atajos/sxcut/sxcut.sh,/atajos/tmcut/tmcut.sh,/atajos/nvcut/nvcut.sh,/walle/wallp.sh,menuweb/web-search.sh,/emojis/emojis.sh,}
+#- Atajos De Aplicaciones Con Rofi
+super + alt + m
+       exec  ~/.config/rofi/atajos/menuatajos/menuatajos.sh
+
+#- Atajos Actuales De SXHKDRC
+super + alt + a
+       exec  ~/.config/rofi/atajos/atajactual.sh
 
 #- Menu Para Cargar Nueva Polybar
 ctrl + shift + p

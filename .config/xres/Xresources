@@ -15,81 +15,12 @@ Xft.hintstyle: hintfull
 Xft.lcdfilter: lcdfilter
 
 !-- Color Del Primer Plano Fondo y El Cursor
-!XTerm*Foreground: #bbc5ff
-!XTerm*Background: #080505
+!XTerm*Foreground: #e76cf5
 XTerm*cursorColor: #73c6b6 
 
-!-- Nombre De Fuente y Terminal
-XTerm.termName: xterm-256color
-!XTerm*font: 9X15 Hack Nerd Fonts
-XTerm*font: 9X15 agave Nerd Font
-
-!-- Cuantas Lineas Guarda Para Retroceder Con El Mouse
-XTerm*saveLines: 3000
-
-!-- Establecer Los Colores De Primer Plano Y Fondo De La
-!-- Selección Resaltada En La Terminal
+!-- Colores Primer Plano y Fondo De La Selección Resaltada En La Terminal
 XTerm*HiForeColor: #1e35c9
 XTerm*HiBackColor: #e76cf5
-
-!-- Tamaño y Ubicacion De La Terminal
-XTerm*geometry: +50+100
-
-!-- Agregar una barra de desplazamiento en el lado derecho
-!-- Con La Opcion RightScroll
-!xterm*scrollBar: true
-!xterm*rightScrollBar:true
-!XTerm.vt100.scrollbar.width: 8
-
-!-- Permitirá El Desplazamiento De La Salida De La Terminal
-!-- Utilizando La Barra De Desplazamiento O La Rueda Del Mouse
-xterm*scrollTtyOutput: true
-
-XTerm*renderFont: true
-
-!-- Haga Doble Clic Para Seleccionar URL Completas
-XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
-
-!-- Establecer El Nombre De La Fuente Que Se Utiliza Para Mostrar
-!-- El Texto En La Terminal
-!XTerm.vt100.faceName: Hack Nerd Fonts: size = 14: antialias = false
-XTerm.vt100.faceName: agave Nerd Font: size = 14: antialias = false
-
-!-- Se Utiliza Para Establecer La Fuente Que Se Utiliza Para Mostrar
-!-- El Texto En La Terminal Ver Si Es Necesario
-!XTerm.vt100.font: 7x19
-XTerm*utf8: 2
-XTerm*locale: true
-
-!-- se utiliza para establecer el tamaño de la fuente que se utiliza
-!-- en la terminal
-XTerm.vt100.faceSize: 13
-
-!-- Establecer El Cursor En Un Guion Bajo 2) Para Que Parpadee 
-!-- 3) Controlar El Comportamiento De La Tecla Alt  
-XTerm*cursorUnderLine: false
-XTerm*cursorBlink: true
-XTerm*metaSendsEscape : true
-
-! Dracula Xresources palette
-!*.foreground: #CAA9FA
-!*.background: #282A36
-!*.color0:     #000000
-!*.color8:     #4D4D4D
-!*.color1:     #FF5555
-!*.color9:     #FF6E67
-!*.color2:     #50FA7B
-!*.color10:    #5AF78E
-!*.color3:     #F1FA8C
-!*.color11:    #F4F99D
-!*.color4:     #BD93F9
-!*.color12:    #CAA9FA
-!*.color5:     #FF79C6
-!*.color13:    #FF92D0
-!*.color6:     #8BE9FD
-!*.color14:    #9AEDFE
-!*.color7:     #BFBFBF
-!*.color15:    #E6E6E6
 
 ! Mi Tema
 *.foreground: #FFFFFF
@@ -111,36 +42,67 @@ XTerm*metaSendsEscape : true
 *.color7:     #FFFFFF
 *.color15:    #E6E6E6
 
-!-- Seleccionar Solo Texto
-!XTerm*highlightSelection: true
+!-- Color Y Geometria De Los Menus VT100
+XTerm*mainMenu*background: #2c2c2c
+XTerm*mainMenu*foreground: #19b603 
+XTerm*mainMenu*borderColor: #fef000
+!XTerm*mainMenu*geometry: 200x300+700+300
 
-!-- Eliminar Espacios Finales
-!XTerm*trimSelection: true
+XTerm*vtMenu*background: #2c2c2c
+XTerm*vtMenu*foreground: #19b603 
+XTerm*vtMenu*borderColor: #fef000
 
-!-- Desplazarse
-!-- Use: Shift-Pageup / Shift-Pagedown Para Desplazarse O La Rueda Del Mouse
-!-- Líneas De Salida Sobre Las Que Puede Desplazarse Hacia Atrás
-!XTerm*saveLines: 16384
+XTerm*fontMenu*background: #2c2c2c
+XTerm*fontMenu*foreground: #19b603 
+XTerm*fontMenu*borderColor: #fef000
 
-!-- No Se Desplace Cuando Haya Una Nueva Entrada, EJ. tail -f /var/syslog
-!XTerm*scrollTtyOutput: false
+XTerm*tekMenu*background: #2c2c2c
+XTerm*tekMenu*foreground: #19b603 
+XTerm*tekMenu*borderColor: #fef000
+
+!-- Nombre De Terminal
+XTerm.termName: xterm-256color
+
+!-- 1.Establecer Nombre De Fuente Que Se Utiliza Para Mostrar El Texto En Terminal
+!-- 2.Establecer el tamaño de la fuente que se utiliza En la terminal
+XTerm.vt100.faceName: agave Nerd Font
+XTerm.vt100.faceSize: 13
+
+!-- Cuantas Lineas Guarda Para Retroceder Con El Mouse
+XTerm*saveLines: 3000
+
+!-- Permite Desplazamiento De La Salida De La Terminal Utilizando
+!-- La Barra De Desplazamiento o La Rueda Del Mouse
+xterm*scrollTtyOutput: true
+
+!-- utilizará fuentes de renderizado (como fuentes TrueType o OpenType) en lugar de fuentes bitmap
+XTerm*renderFont: true
+
+!-- Haga Doble Clic Para Seleccionar URL Completas
+XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+
+!-- Habilita el soporte UTF-8 y asume que la terminal es compatible con UTF-8
+XTerm*utf8: 2
+
+!-- Habilitar la compatibilidad regional y de lenguaje (locales) 
+XTerm*locale: true
+
+!-- 1.Establecer Varios Cursores 2.Para Que Parpadee 3.Controlar El Comportamiento De La Tecla Alt  
+XTerm*cursorBar: true
+!XTerm*cursorUnderLine: true
+!XTerm*cursorBlock: true
+XTerm*cursorBlink: true
+XTerm*metaSendsEscape : true
 
 !-- Combinacion De Teclas
-!-- Cambiar El Tamaño De Fuente Sobre La Marcha (ctrl+plus = increase
-!-- ctrl+minus = decrease, ctrl+0 = default)
-!-- Copiar/Pegar Tecla De Acceso Rápido (ctrl+shift+c = COPIAR ; ctrl+shift+v = PEGAR)
-!-- Abrir URL (Enlaces En Los Que Se Puede Hacer Clic)
-!-- 1) Haga Doble Clic Para Resaltar La URL Completa
-!-- 2) Shift + click ES PARA ABRIRLO
-
 XTerm.vt100.translations: #override \n\
-      Ctrl <Key> minus: smaller-vt-font() \n\
-      Ctrl <Key> plus: larger-vt-font() \n\
-      Ctrl <Key> 0: set-vt-font(d) \n\
-      Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
-      Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
-      Ctrl Shift <Key>k: scroll-back(1,pixel) \n\
-      Ctrl Shift <Key>j: scroll-forw(1,pixel) \n\
-      Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY) \n\
-      !<Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\
-      !<Btn2Up>: insert-selection(PRIMARY)
+   Ctrl <Key> minus: smaller-vt-font() \n\
+   Ctrl <Key> plus: larger-vt-font() \n\
+   Ctrl <Key> 0: set-vt-font(d) \n\
+   Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+   Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+   Ctrl Shift <Key>k: scroll-back(1,pixel) \n\
+   Ctrl Shift <Key>j: scroll-forw(1,pixel) \n\
+   Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY) \n\
+   !<Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\
+   !<Btn2Up>: insert-selection(PRIMARY)

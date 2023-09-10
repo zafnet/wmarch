@@ -1,18 +1,9 @@
 #-- FUNCION PARA PROMPT CUSTOM CON PROMPT_SUBST OPCION DE ZSH
 git_b() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ *\1/' }
 
-#-- FUNCION PARA COLORES DE 'MAN'
-function man() {
-    env \
-    LESS_TERMCAP_mb=$'\e[01;31m' \
-    LESS_TERMCAP_md=$'\e[01;31m' \
-    LESS_TERMCAP_me=$'\e[0m' \
-    LESS_TERMCAP_se=$'\e[0m' \
-    LESS_TERMCAP_so=$'\e[01;44;33m' \
-    LESS_TERMCAP_ue=$'\e[0m' \
-    LESS_TERMCAP_us=$'\e[01;32m' \
-    man "$@"
-}
+#-- COLORES PARA 'MAN'
+export MANPAGER="less -R --use-color -Dd+g -Du+b"
+export MANROFFOPT="-P -c"
 
 #-- FUNCION PARA VER LOS MANUALES DE MAN EN NVIM
 man() { /usr/bin/man $* | nvim -c "set ft=man" -R -}
