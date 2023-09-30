@@ -63,8 +63,8 @@ bindkey ";5C" forward-word
 bindkey ";5"  delete-word
 bindkey "\e[3~"   delete-char
 
-#-- A+S+P SCRIPT TMXS.SH SESION DE TMUX PIDIENDO UN NOMBRE
+#-- A+t LLAMA AL ALIAS TS SESION DE TMUX SIN PEDIR UN NOMBRE
 bindkey -s '^[t' 'ts^M'
 
-#-- C+A+T SCRIPT TMXS.SH SESION DE TMUX PIDIENDO UN NOMBRE
-bindkey -s '^[^T' 'tm^M'
+#-- C+A+T LLAMA AL ALIAS TS SESION DE TMUX PIDIENDO UN NOMBRE
+bindkey -s '^[^T' 'ts '

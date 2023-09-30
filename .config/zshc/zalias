@@ -42,9 +42,8 @@ alias ssk='ssh-keygen -t ed25519 -f ~/.ssh/git-key'
 #-- Tmux
 
 alias ts='tmux new -s'
-alias tm='tmux new'
 alias tl='tmux ls'
-alias tav='tmux a -t'
+alias ta='tmux a -t'
 alias tk='tmux kill-session -t'
 alias tp='tmux neww -n'
 

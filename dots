@@ -80,7 +80,7 @@ check_plugins() {
 
 create_common_dirs() {
     print_status "\n\t\t\t\t CREANDO CARPETAS COMUNES"
-    mkdir -pv $USER_HOME/{desc,plant,ima,mus,captura,doc}
+    mkdir -pv $USER_HOME/{desc,plant,mus,captura}
     sleep 2
     clear
 }

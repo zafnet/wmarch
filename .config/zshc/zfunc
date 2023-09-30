@@ -6,7 +6,7 @@ export MANPAGER="less -R --use-color -Dd+g -Du+b"
 export MANROFFOPT="-P -c"
 
 #-- FUNCION PARA VER LOS MANUALES DE MAN EN NVIM
-man() { /usr/bin/man $* | nvim -c "set ft=man" -R -}
+# man() { /usr/bin/man $* | nvim -c "set ft=man" -R -}
 
 #-- FUNCIONES FZF
 dl() {cd $(find / -type d 2> /dev/null | fzf -e --border --cycle --prompt="Ir a La Carpeta y Listarla: ") | xargs -r && lsd -la && zle reset-prompt} ;zle -N dl;bindkey "^[u" dl
@@ -17,13 +17,13 @@ op() {xdg-open $(find / -type f 2> /dev/null | fzf -e --border --cycle --prompt=
 
 rf() {rm -rf $(find / -type f,d 2> /dev/null | fzf -m -e --border --cycle --prompt="Borrar Archivo o Directorio: ") && zle reset-prompt} ;zle -N rf;bindkey  "^[r" rf
 
-nf() {sh -c 'find / -type f 2> /dev/null | fzf -m -e --border --cycle --prompt="Abrir Con Nvim: "| xargs -r nvim' && zle reset-prompt} ;zle -N nf;bindkey '^f' nf
+nf() {sh -c 'find / -type f 2> /dev/null | fzf -m -e --border --cycle --prompt="Abrir Con Nvim: "| xargs -r nvim' && zle reset-prompt} ;zle -N nf;bindkey 'đ' nf
 
 ve() {find / -type f 2> /dev/null | fzf -m -e --border --cycle --prompt="Vista Previa De: "| xargs -r bat && zle reset-prompt} ;zle -N ve;bindkey "^[v" ve
 
 li() {find / -type d 2> /dev/null | fzf -m -e --border --cycle --prompt="Listar Una Carpeta: "| xargs -r lsd -la && zle reset-prompt} ;zle -N li;bindkey "^[l" li
 
-cr() {find / -type f,d 2>/dev/null | fzf -e --border --cycle --prompt="Copiar Ruta: " | tr -d '\n' | xclip -selection c && zle reset-prompt} ;zle -N cr;bindkey  "^y" cr
+cr() {find / -type f,d 2>/dev/null | fzf -e --border --cycle --prompt="Copiar Ruta: " | tr -d '\n' | xclip -selection c && zle reset-prompt} ;zle -N cr;bindkey  "¢" cr
 
 cl() {find / -type f 2>/dev/null | fzf -e --border --cycle --prompt="Copiar en clipboard: " |tr -d '\n' | xargs xclip -sel clipboard && zle reset-prompt} ;zle -N cl ;bindkey "^[c" cl
 
