@@ -1,52 +1,48 @@
 super + Escape|Recargar sxhkdrc
 
-super + alt + q(quit),r(reload)|Logout y Reload Bspwm
+super + alt + q,r|Cerrar Sesion,Recargar Bspwm
 
 super + q|Cerrar Vent Actual 
 
 super + Scroll_Lock|Restaura Carpeta Config Desde Repo
 
-Alt + Scroll_Lock|Actualiza Xresources
-
 super + shift + q|Cerrar Vent De Mismo Nombre (ej Pcmanfm1 Pcmanfm2)
 
 super + Delete|Bloquear Pantalla
 
-super + c(xterm)|Terminales 
+super + c|Terminal 
+
+super + a,v,m,t,d,x|pcmanfm,rofi,cmus,telegram-desktop,discord,xed
+
+super + alt + m|Lanza Menu Rofi Con Atajos A Ver
+
+super + Print|Captura de Pantalla Directa En Carpeta
+
+super + minus|Ocultar o Mostrar Vent Actual
+
+super + alt + Up,Down|Cambia Tamaño De Los Huecos De Los Nodos
+
+super + alt + n|Intercambiar Vent Actual y Vent Más Grande
+
+alt + Scroll_Lock|Actualiza Xresources
 
 alt + shift + e|Menu Para Editar Configuraciones Con Rofi
 
+super + f,alt + f,g,alt + g|fire-priv,fire,google,google --inc
+
+alt + Print|Captura de Pantalla Con (gui)
+
 ctrl + alt + a|Ver Actualizaciones Pendientes Con Rofi
 
-alt + 1,2,3,4|fire-priv,fire,google,google --inc
-
-super + a,v,b,m,t,d|pcmanfm,rofi,ranger,cmus,telegram-desktop,discord
-
-ctrl + alt + p|Power-Menu
+alt_GR + p|Power-Menu
 
 ctrl + m|Menu Para elegir y Abrir Una VM
 
-ctrl + p|Menú de apagado, reinicio y suspensión con Rofi
+alt + w|Ventanas Abiertas Con Rofi
 
-ctrl + shift + w|Ventanas Abiertas Con Rofi
+ctrl + shift + m,w,b,e|marcadores,wall,web,emoji En Rofi
 
-super + alt + m|alias,books,sxhkdrc,tmux,nvim,nvnat Lanza Rofi Con Atajos A Ver
-
-super + alt + a|Lanza Rofi Con Atajos Actuales De SXHKDRC
-
-ctrl + shift + m,x,z,e|marcadores,wall,web,emoji Muestra En Rofi
-
-shift + alt + r|Lanza retroarch [Desactivado]
-
-super + p|Polybar Oculta [Desactivado]
-
-super + Print(gui) O Print{~/screenshoot}|Captura de Pantalla
-
-super + minus|Ocultar o Restaurar Vent Actual
-
-super + alt + Up,Down|Altura Vent Enfocada
-
-super + alt + n|Intercambiar Vent Actual y Vent Más Grande
+ctrl + shift + a|Rofi Con Atajos Actuales De SXHKDRC
 
 #---------------------------#
 # ATAJO PARA TERMINAL XTERM #
@@ -68,63 +64,57 @@ super + e (floating,tiled)|Vent flotante o tiled
 
 super + w|Vent Monoculo
 
-super + f|Vent FullScreen
+super + alt + f|Vent FullScreen
 
 super + shift + s|Vent Pseudo Tiled y Tiled Mode
 
-super + s|Vent todos Los Escritorios
-
-alt + shift + m(mark),x(lock),z(priv),s(stic)|Banderas Para La Vent
+alt + shift + m(mark),x(lock),z(priv),s(stic)|Banderas Para La Ventana
 
 #------------------------#
 # MANEJO DE RECEPTACULOS #
 #------------------------#
 super + y; {h,j,k,l}|Insertar Un Receptaculo En La Direccion Dada
 
-alt + y; t|Cerrar Todos Los Receptaculos
-
 super + g|Enviar El Nodo AL Receptaculo Creado
 
-shift + alt + b|Que Todos Los Nodos Tengan El Mismo Tamaño [Desactivado]
+alt + y; t|Cerrar Todos Los Receptaculos
 
 #-----------------------#
 # ENFOQUE E INTERCAMBIO #
 #-----------------------#
 super + shift + h,j,k,l|Mover La Vent En La Dirección
 
-alt + shift + Tab o alt + Tab|Marca Las Vent Una Por Una
-
 super + alt + Left,Right|Ir A Los Escrit Con Las Flechas
 
 super + alt + 1-9,0|Mover Vent Al Escrit Sin Ir Al Escritorio
 
-super + ctrl + h,j,k,l|Mover Vent Al Escrit Con Las Flechas E Ir A El
+super + shift + 1-9-0|Arrastrar Vent Al Escrit y Cambiar A El Con Numeros
 
-super + shift + 1-9,0|Mover Vent Al Escrit y Cambiar A El
-
-super + grave,Tab|Vamos Al Escrit Visitado Anterior
+super + Tab|Vamos Al Escrit Visitado Anterior
 
 super + ctrl + h,j,k,l|Preselec Dirección De La Nueva Ventana
 
 super + ctrl + 1-9|Preselec Proporción De La Nueva Ventana
 
-ctrl + space|Cancelar Preselec Del Nodo Enfocado
-
-super + ctrl + shift + space|Cancelar Preselec Para Escrit Enfocado
-
 super + alt + h,j,k,l|Expan Vent Uno De Sus Lados Hacia Afuera
 
-super + alt + shift + h,j,k,l|Contraer Vent Uno De Sus Lados Hacia Adentro
+super + alt + ctrl + h,j,k,l|Contraer Vent Uno De Sus Lados Hacia Adentro
 
-shift + alt + {h,j,k,l}|Mover Una Vent Flotante
+alt + shift + Tab o alt + Tab|Enfoca Las Ventnas 
+
+ctrl  + shift + h,l|Arrastrar Vent Al Escrit E Ir A El Con H y L[DESACTIVADO]
+
+ctrl + space|Cancelar Preseleccion Del Nodo 
 
 ctrl + shift + d|Lanza La Fecha Y Hora Con Rofi
+
+shift + alt + {h,j,k,l}|Mover Una Vent Flotante
 
 #---------#
 # VOLUMEN #
 #---------#
-alt + @F12|Subir Volumen
+Pause|Subir Volumen
 
-alt + @F11|Bajar Volumen
+Scroll_Lock|Bajar Volumen
 
-alt + @F10|Mudo Volumen
+Print|Volumen Mudo 

@@ -6,56 +6,27 @@
 //╚══════╝╚══════╝╚══════╝╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
     
 * {
-//    spacing:    9px;
     border-color: #4e4743;
     background-color: transparent;
     color:#e3b268;
 }
 
-
 window {
-    width:      19%;
+    width:      18%;
     height:     165;
-//    border:     2px;
-//    border-color: #000000;
     padding:    1%;
     background-color: #4e4743;
-//    background-image: url("~/.config/rofi/izuku.jpg", width);
 }
 
-listview {
-    fixed-height: 0;
-//  border: 2px dash 0px 0px ;
-    padding: 2px 0px 0px ;
-    border-color: #ff4743;
-//  separator-color: #000000;
+element-text {
+    margin: 5px 0px 0px;
+    text-color:#23b268;
 }
 
-element normal.normal {
-    text-color: #ff4743;
-    background-color:#4e4743;
-}
-
-element selected.normal {
+element selected normal {
     background-color: #1b1a1a;
 }
 
-element alternate.normal {
-    text-color: #ff4743;
-   background-color: #4e4743;
-}
-
-inputbar {
-//    background-color:#ff4743;
-    text-color:#ff4743;
-//    spacing: 2%;
-    border: 0px 0px 0px 0px;
-    border-radius: 0px;
-    padding: 5px 10px 5px 5px;
-}
-
-prompt normal.normal {
-//    background-color:#8fbcbb;
+prompt normal normal {
     text-color:#ff5ff0;
-    padding: 0px 0px 0px ;
 }

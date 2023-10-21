@@ -3,7 +3,7 @@
 options="polybar\ni3\nzshrc\nbashrc\npicom\nnvim\nrofi\ntmux\nbspwmrc\nxresources\nsxhkdrc"
 # options="poly i3 zshrc bashrc pick rof tmx bspwmrc Xresources sxhkdrc"
 
-selected=$(echo -e "$options" | rofi -dmenu -i -theme ~/.config/rofi/confiles/confiles.rasi -p "Configuracion a Editar:")
+selected=$(echo -e "$options" | rofi -dmenu -i -theme ~/.config/rofi/confiles/confiles.rasi -p "Editar Archivo De:")
 
 case "$selected" in
      "polybar")

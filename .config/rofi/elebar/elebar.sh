@@ -4,7 +4,7 @@
 poly_dir="$HOME/.config/polybar/"
 
 # Usamos Rofi para mostrar un menú con las opciones disponibles (solo archivos .ini)
-poly_elegida=$(ls "$poly_dir" | grep '\.ini$' | rofi -dmenu -i -theme ~/.config/rofi/elebar/elebar.rasi -p "Selecciona una barra:")
+poly_elegida=$(ls "$poly_dir" | grep '\.ini$' | rofi -dmenu -i -theme ~/.config/rofi/elebar/elebar.rasi -p "Elegi una barra:")
 
 # Verificar que se haya seleccionado una opción válida
 if [ -n "$poly_elegida" ]; then

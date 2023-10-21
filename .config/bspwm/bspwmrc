@@ -30,15 +30,15 @@ feh --bg-fill --randomize --no-fehbg /home/$USER/.wall/*
 
 #-- 5 Iconos En El Monitor
 
-#bspc monitor -d  1 2 3 4 5 
 bspc monitor  -d          
+#bspc monitor -d  1 2 3 4 5 
 #bspc monitor -d  I II III IV V
 
 #-- Configuracion Bspwm
 
 bspc config border_width                  3
 bspc config window_gap                    10
-bspc config top_padding                   39
+bspc config top_padding                   29
 bspc config bottom_padding                1
 bspc config left_padding                  0
 bspc config right_padding                 0
@@ -47,7 +47,7 @@ bspc config click_to_focus                none
 bspc config split_ratio                   0.52
 bspc config borderless_monocle            true
 bspc config gapless_monocle               false
-bspc config focus_follows_pointer         true
+bspc config focus_follows_pointer         false
 bspc config remove_disabled_monitors      true
 bspc config merge_overlapping_monitors    true
 bspc config pointer_modifier mod4
@@ -73,4 +73,3 @@ bspc rule -a Lxappearance state=floating center=true
 bspc rule -a Galculator state=floating
 bspc rule -a polybar manage=off
 #bspc rule -a mpv state=floating sticky=on rectangle=300x180+1060+475 center=on
-# bspc rule -a discord desktop='^5' follow=on

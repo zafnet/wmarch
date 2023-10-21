@@ -6,68 +6,51 @@
 //╚═╝  ╚═╝ ╚═════╝    ╚═╝    ╚═════╝   ╚═══╝  ╚═╝     ╚═╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝
 
 * {
-   // Colores
-   amarcl:#e3b268;
-   gris1:#585554;
-   gris2:#4e4743;
-   gris3:#534c48;
+   fondosel: #1b1a1a;
    rojo:#FF0000;
-   naranja:#f15d22;
-   amar:#faa41a;
-   azul:#48b9c7;
    verde:#2da30b;
    verdef:#06e22e;
    verdec:#2ef99c;
-   azulos:#1c2833;
-   blanco:#FFFFFF;
-   negro:#000000;
    oscuro:#494948;   
-   rosa:#ff0268;
-   griscl:#b9b9b7;
    font: "CaskaydiaCove Nerd Font 12";
    padding: 3;
    sort: true;
-   hide-scrollbar: true;
    fullscreen: false;
-   background-color: @oscuro;
+   background-color: transparent;
    color: @verdec;
-   border-color: @griscl;
 }
 
 window {
+    background-color: @oscuro;
     border: 2;
-    padding: 0.5%;
     x-offset: -15%;
     y-offset: -8%;
     width: 15%;
     height: 22%;
-    separator-style: "none";
+    border-color: @verdef;
 }
 
-inputbar {
-    spacing: 5px;
-//  background-color: @negro;
-    border: 0px 0px 0px 0px;
-    border-radius: 0px;
-    padding: 0px 0px 0px 0px;
+entry normal normal {
+     color: @verde;
 }
 
-entry normal.normal {
-//  background-color:@negro;
-    color: @rosa;
-    padding: 0px;
-}
-
-listview {
-    fixed-height: 0;
-    border:       0px 0px 0px 0px;
-    padding:      0px 0px 0px 0px;
-}
-
-prompt normal.normal {
-//  background-color: @rojo;
+prompt normal normal {
     color: @verdef;
-    padding: 0px;
 }
 
-/* vim:ft=css
+element-text {
+    margin: 0px 4px 4px 0px;
+}
+
+element {
+    padding: 6px 6px 6px 6px;
+    border-radius: 8px;
+}
+
+element-icon {
+    enabled: false;
+}
+
+element selected normal {
+     background-color: @fondosel;
+}
