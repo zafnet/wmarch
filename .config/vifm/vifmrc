@@ -30,17 +30,18 @@ set dotfiles= true
 set vifminfo=dhistory,chistory,state,tui,shistory,phistory,fhistory,dirstack,registers,bookmarks,bmarks
 set viewcolumns=-80%{name}
 set timefmt=%m/%d/%Y\ %H:%M
-set rulerformat="%l/%S%[ +%x%]"
+set rulerformat="%l/%S"
 set grepprg='grep -n -H -I -r %i %a %s'
 set statusline="%5* %-1t %5* %1* %4u:%4g %1* %= %5* %A %5* %4* size:%s %4* %2* %d"
-"set fillchars=vborder:".",hborder:"-"
 set rnu
 set nu
+only
 "set numberwidth=3
+"set fillchars=vborder:".",hborder:"-"
 
 " Colores De VIFM
 
-"colorscheme gruvbox
+"colorscheme juef-zenburn
 
 " highlight group cterm=attrs ctermfg=foreground_color ctermbg=background_color
 
@@ -106,44 +107,6 @@ highlight {*.conf,*.config,.*config} cterm=bold ctermbg=none ctermfg=216
 highlight {*.txt,*.text} cterm=bold ctermbg=none ctermfg=white
 
 highlight {*.iso} cterm=bold ctermbg=none ctermfg=197 
-
-" Definición de Comandos
-
-" Alternar información detallada/breve sobre los archivos
-command! togglefilesinfo
-            \ : if &viewcolumns == '*{name}..,6{}.'
-            \ |   set viewcolumns=*{name}.,10{size}.,12{perms},10{uname},-7{gname},18{mtime}
-            \ |   echo 'Files information: detailed'
-            \ | else
-            \ |   set viewcolumns=*{name}..,6{}.
-            \ |   echo 'Files information: brief'
-            \ | endif
-
-" Diff  Para Selecciones En El Panel Actual Si Contiene Más De Un Archivo De Lo Contrario
-" Diff  El Archivo En El Panel Izquierdo (Superior) Con El Archivo En El Panel Derecho (Inferior)
-command! diff : if expand('%%c') == expand('%%f')
-            \ |   if paneisat('right') && paneisat('bottom')
-            \ |     execute '!$EDITOR -d %%C %%c'
-            \ |   else
-            \ |     execute '!$EDITOR -d %%c %%C'
-            \ |   endif
-            \ | else
-            \ |   execute '!$EDITOR -d %%f'
-            \ | endif
-
-" Restablecer Ordenamiento
-command! resetsort
-            \ : if &sort != '+name'
-            \ |   set sort=+name
-            \ |   echo 'Reset sort to +name'
-            \ | endif
-
-" Integracion FZF
-command! FZFfind :set noquickview | :execute 'goto' fnameescape(term('fd -H | fzf --height 10 2>/dev/tty'))
-
-" Iconos Para vifm
-
-" NOTA: Combiné Varios Comandos `set classify` Para Evitar Un Inicio Lento
 
 " Filetypes(Tipos de archivo)
 set classify=' :dir:/, :exe:, :reg:, :link:,? :?:, ::../::'

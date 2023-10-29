@@ -142,7 +142,7 @@ super + e
     bspc node -t "~"{floating,tiled}
 
 #- Fullscreen y tiled
-super + alt + f
+ctrl + shift + f
     bspc node -t "~"fullscreen
 
 #- Pseudo Tiled y Tiled 

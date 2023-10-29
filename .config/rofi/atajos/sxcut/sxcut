@@ -64,7 +64,7 @@ super + e (floating,tiled)|Vent flotante o tiled
 
 super + w|Vent Monoculo
 
-super + alt + f|Vent FullScreen
+ctrl + shift + f|Vent FullScreen
 
 super + shift + s|Vent Pseudo Tiled y Tiled Mode
 
