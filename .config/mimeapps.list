@@ -1,5 +1,4 @@
 [Default Applications]
-
 application/json=nvim.desktop;
 application/pdf=org.pwmt.zathura-pdf-poppler.desktop;
 application/pkcs10=gcr-viewer.desktop;
@@ -33,7 +32,7 @@ application/xhtml+xml=firefox.desktop;google-chrome.desktop;
 application/xhtml_xml=google-chrome.desktop;
 application/xml=google-chrome.desktop;
 image/bmp=feh.desktop;
-image/gif=feh.desktop;google-chrome.desktop;
+image/gif=mpv.desktop;google-chrome.desktop;
 image/heic=feh.desktop;
 image/jpeg=feh.desktop;google-chrome.desktop;
 image/jpg=feh.desktop;
@@ -74,3 +73,7 @@ x-scheme-handler/https=firefox.desktop;google-chrome.desktop;
 x-scheme-handler/spice=remote-viewer.desktop;
 x-scheme-handler/spice+tls=remote-viewer.desktop;
 x-scheme-handler/spice+unix=remote-viewer.desktop;
+
+[Added Associations]
+text/x-csrc=libreoffice-draw.desktop;
+image/gif=mpv.desktop;
