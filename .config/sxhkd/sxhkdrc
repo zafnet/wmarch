@@ -38,8 +38,8 @@ super + {f,alt + f,g,alt + g}
      {firefox -private-window,firefox,google-chrome-stable,google-chrome-stable --incognito}
 
 #- Otras Aplicaciones
-super + {a,v,m,t,d,x}
-      {pcmanfm,rofi -show drun,xterm -e cmus,telegram-desktop,discord,xed}
+super + {a,v,m,t,d,x,b}
+      {pcmanfm,rofi -show drun,xterm -e cmus,telegram-desktop,discord,xed,xterm -e vifm}
 
 #---------------#
 # ATAJOS CUSTOM #

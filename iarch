@@ -90,20 +90,22 @@ echo ""
 read -s -p "Introduce la clave de Root/Administrador: " rootpasswd
 echo ""
 
-echo -e '\033[1;95m' "\n\t\t\t\t  ESCRITORIOS"
-printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+#echo -e '\033[1;95m' "\n\t\t\t\t  ESCRITORIOS"
+#printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+#echo ""
+#echo "Ingresa una opción marcando el numero correcto:"
 echo ""
-echo "Ingresa una opción marcando el numero correcto:"
+#echo "1. Terminal Virtual (TTY)"
+#echo "2. bspwm"
+#echo "4. Xfce4"
+#echo "4. Kde Plasma"
+#echo "5. Gnome 40"
+#echo "6. I3"
+#echo ""
+#read -p "Introduce la opción de Escritorio: " escritorio
 echo ""
-echo "1. Terminal Virtual (TTY)"
-echo "2. bspwm"
-echo "4. Xfce4"
-echo "4. Kde Plasma"
-echo "5. Gnome 40"
-echo "6. I3"
-echo ""
-read -p "Introduce la opción de Escritorio: " escritorio
-echo ""
+
+escritorio=bspwm
 
 echo -e '\033[1;95m' "\n\t\t\t\t MOSTRAR DATOS GUARDADOS "
 clear
@@ -118,14 +120,14 @@ echo ''
 # echo "Clave de Administrador: $rootpasswd"
 # echo ''
 
-echo ""
-printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
-echo ""
-echo ""
-echo "Para confirmar e instalar Arch Linux"
-echo ""
-echo "Presione ENTER o para salir presione CTRL + C"
-read line
+#echo ""
+#printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+#echo ""
+#echo ""
+#echo "Para confirmar e instalar Arch Linux"
+#echo ""
+#echo "Presione ENTER o para salir presione CTRL + C"
+#read line
 
 echo -e '\033[1;95m' "\n\t\t\t\t -- DETECTANDO SI TENEMOS UEFI O BIOS LEGACY --"
 
@@ -197,11 +199,11 @@ then
 	rm root-efi
 
 	clear
-	echo ""
-	echo "Revise en punto de montaje en MOUNTPOINT - PRESIONE ENTER"
-	echo ""
+	#echo ""
+	#echo "Revise en punto de montaje en MOUNTPOINT - PRESIONE ENTER"
+	#echo ""
 	lsblk -l
-	read line
+	#read line
 
 else
 	clear
@@ -318,7 +320,8 @@ clear
 
 #Hosts y Nombre de computador
 echo -e '\033[1;92m' "\n\t\t\t  HOSTS Y NOMBRE DE COMPUTADOR"
-read -p "Elija El Nombre De Hostname: " hos
+#read -p "Elija El Nombre De Hostname: " hos
+hos=lenox
 echo "$hos" > /mnt/etc/hostname
 echo "127.0.1.1 $hos.localdomain $hos" > /mnt/etc/hosts
 clear
@@ -584,8 +587,10 @@ case $escritorio in
     arch-chroot /mnt /bin/bash -c "pacman -S --needed dunst --noconfirm"
     echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO PULSEAUDIO"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed pulseaudio --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO GALCULATOR"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed galculator --noconfirm"
+#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO PAVUCONTROL"
+#    arch-chroot /mnt /bin/bash -c "pacman -S --needed pavucontrol --noconfirm"
+#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO GALCULATOR"
+#    arch-chroot /mnt /bin/bash -c "pacman -S --needed galculator --noconfirm"
 #    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO DISCORD"
 #    arch-chroot /mnt /bin/bash -c "pacman -S --needed discord --noconfirm"
 #    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO ARC-GTK-THEME ARC-DARK"

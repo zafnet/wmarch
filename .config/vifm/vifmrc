@@ -32,7 +32,7 @@ set viewcolumns=-80%{name}
 set timefmt=%m/%d/%Y\ %H:%M
 set rulerformat="%l/%S"
 set grepprg='grep -n -H -I -r %i %a %s'
-set statusline="%5* %-1t %5* %1* %4u:%4g %1* %= %5* %A %5* %4* size:%s %4* %2* %d"
+set statusline="%5* %-1t %5* %1* %4u:%g %1* %= %5* %A %5* %4* size:%s %4* %2* %d"
 set rnu
 set nu
 only
