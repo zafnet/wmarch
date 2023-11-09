@@ -90,22 +90,20 @@ echo ""
 read -s -p "Introduce la clave de Root/Administrador: " rootpasswd
 echo ""
 
-#echo -e '\033[1;95m' "\n\t\t\t\t  ESCRITORIOS"
-#printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
-#echo ""
-#echo "Ingresa una opción marcando el numero correcto:"
+echo -e '\033[1;95m' "\n\t\t\t\t  ESCRITORIOS"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
 echo ""
-#echo "1. Terminal Virtual (TTY)"
-#echo "2. bspwm"
-#echo "4. Xfce4"
-#echo "4. Kde Plasma"
-#echo "5. Gnome 40"
-#echo "6. I3"
-#echo ""
-#read -p "Introduce la opción de Escritorio: " escritorio
+echo "Ingresa una opción marcando el numero correcto:"
 echo ""
-
-escritorio="bspwm"
+echo "1. Terminal Virtual (TTY)"
+echo "2. bspwm"
+echo "4. Xfce4"
+echo "4. Kde Plasma"
+echo "5. Gnome 40"
+echo "6. I3"
+echo ""
+read -p "Introduce la opción de Escritorio: " escritorio
+echo ""
 
 echo -e '\033[1;95m' "\n\t\t\t\t MOSTRAR DATOS GUARDADOS "
 clear
@@ -121,13 +119,13 @@ echo ''
 # echo ''
 
 #echo ""
-#printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
 #echo ""
-#echo ""
-#echo "Para confirmar e instalar Arch Linux"
-#echo ""
-#echo "Presione ENTER o para salir presione CTRL + C"
-#read line
+echo ""
+echo "Para confirmar e instalar Arch Linux"
+echo ""
+echo "Presione ENTER o para salir presione CTRL + C"
+read line
 
 echo -e '\033[1;95m' "\n\t\t\t\t -- DETECTANDO SI TENEMOS UEFI O BIOS LEGACY --"
 
@@ -272,9 +270,8 @@ fi
 echo -e '\033[0;33m' "\n\t\t\t  ACTUALIZACION DE LLAVES DEL LIVE CD"
 clear
 pacman -Syy
-pacman -Sy archlinux-keyring --noconfirm 
+pacman -Sy archlinux-keyring reflector python rsync glibc curl --noconfirm 
 clear
-pacman -Sy reflector python rsync curl --noconfirm 
 sleep 3
 clear
 echo ""
@@ -291,7 +288,7 @@ clear
 echo ""
 echo -e '\033[1;92m' "\n\t\t\t INSTALANDO SISTEMA BASE EN NUESTRO DISCO"
 echo ""
-pacstrap /mnt sed nano reflector python rsync curl zsh neovim git neofetch
+pacstrap /mnt base base-devel nano reflector python rsync curl wget zsh neovim git neofetch
 clear
 
 
@@ -377,8 +374,8 @@ clear
 
 # Establecer un mapa de teclado para la terminal virtual
 echo -e '\033[1;92m' "\n\t\t\t MAPA DE TECLADO PARA LA TERMINAL VIRTUAL"
-echo "KEYMAP=es" > /mnt/etc/vconsole.conf
-echo "XKBLAYOUT=es" > /mnt/etc/vconsole.conf
+keymap="es"
+echo "KEYMAP=$keymap" > /mnt/etc/vconsole.conf
 cat /mnt/etc/vconsole.conf
 sleep 2
 clear
@@ -465,6 +462,7 @@ clear
 # Shell del sistema
 echo -e '\033[1;92m' "\n\t\t\t SHELL ZSH PARA USUARIO Y ROOT"
 SH=zsh
+arch-chroot /mnt /bin/bash -c "chsh -s /bin/$SH"
 arch-chroot /mnt /bin/bash -c "chsh -s /usr/bin/$SH $user"
 arch-chroot /mnt /bin/bash -c "chsh -s /bin/$SH $user"
 clear
@@ -510,6 +508,8 @@ case $escritorio in
     arch-chroot /mnt /bin/bash -c "pacman -S --needed lsd --noconfirm"
     echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO XORG"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock --noconfirm"
+    echo -e '\033[1;97m' "\n\t\t\t INSTALANDO ZSH"
+    arch-chroot /mnt /bin/bash -c "pacman -S --needed zsh --noconfirm"   
     echo -e '\033[1;97m' "\n\t\t\t INSTALANDO COMPLEMENTO DE ZSH"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed zsh-completions zsh-syntax-highlighting zsh-autosuggestions --noconfirm"   
     echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO BAT"
@@ -532,12 +532,12 @@ case $escritorio in
     arch-chroot /mnt /bin/bash -c "pacman -S --needed flameshot --noconfirm"
     echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO XORG"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO NTFS-3G"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed ntfs-3g --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO MURRINE"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed gtk-engine-murrine --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO GNOME-THEMES-EXTRA"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed gnome-themes-extra --noconfirm"
+#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO NTFS-3G"
+#    arch-chroot /mnt /bin/bash -c "pacman -S --needed ntfs-3g --noconfirm"
+#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO MURRINE"
+#    arch-chroot /mnt /bin/bash -c "pacman -S --needed gtk-engine-murrine --noconfirm"
+#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO GNOME-THEMES-EXTRA"
+#    arch-chroot /mnt /bin/bash -c "pacman -S --needed gnome-themes-extra --noconfirm"
     echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO BAT"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed bat --noconfirm"
     echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO FZF"
