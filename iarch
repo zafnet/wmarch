@@ -17,7 +17,7 @@ echo "██╔══╝   ██╔██╗ ██║   ██║   ██║ 
 echo "███████╗██╔╝ ██╗██║   ██║   ╚██████╔╝███████║██║  ██║";
 echo "╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝ ╚══════╝╚═╝  ╚═╝";
 
-echo -e '\033[1;95m' "\n\t\t\t\t -- ACTUALIZANDO SISTEMADE ISO --"
+echo -e '\033[1;95m' "\n\t\t\t\t -- ACTUALIZANDO SISTEMA DE ISO --"
 sleep 2
 clear
 
@@ -105,7 +105,7 @@ echo ""
 #read -p "Introduce la opción de Escritorio: " escritorio
 echo ""
 
-escritorio=bspwm
+escritorio="bspwm"
 
 echo -e '\033[1;95m' "\n\t\t\t\t MOSTRAR DATOS GUARDADOS "
 clear
@@ -274,7 +274,7 @@ clear
 pacman -Syy
 pacman -Sy archlinux-keyring --noconfirm 
 clear
-pacman -Sy reflector python rsync glibc curl --noconfirm 
+pacman -Sy reflector python rsync curl --noconfirm 
 sleep 3
 clear
 echo ""
@@ -291,7 +291,7 @@ clear
 echo ""
 echo -e '\033[1;92m' "\n\t\t\t INSTALANDO SISTEMA BASE EN NUESTRO DISCO"
 echo ""
-pacstrap /mnt base base-devel nano reflector python rsync curl wget zsh neovim git neofetch
+pacstrap /mnt sed nano reflector python rsync curl zsh neovim git neofetch
 clear
 
 
@@ -377,16 +377,14 @@ clear
 
 # Establecer un mapa de teclado para la terminal virtual
 echo -e '\033[1;92m' "\n\t\t\t MAPA DE TECLADO PARA LA TERMINAL VIRTUAL"
-keymap="es"
-echo "KEYMAP=$keymap" > /mnt/etc/vconsole.conf
+echo "KEYMAP=es" > /mnt/etc/vconsole.conf
+echo "XKBLAYOUT=es" > /mnt/etc/vconsole.conf
 cat /mnt/etc/vconsole.conf
 sleep 2
 clear
 
 # Actualiza lista de mirrors en tu disco
 echo -e '\033[1;92m' "\n\t\t\t ACTUALIZANDO LISTA DE MIRRORS EN TU DISCO"
-echo ""
-echo "Actualizando lista de MirrorList"
 echo ""
 arch-chroot /mnt /bin/bash -c "reflector --verbose --latest 5 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
 clear
@@ -407,7 +405,8 @@ if [ $uefi == 1 ]
 then
 
 clear
-arch-chroot /mnt /bin/bash -c "pacman -S grub efibootmgr os-prober dosfstools --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -S grub efibootmgr dosfstools --noconfirm"
+#arch-chroot /mnt /bin/bash -c "pacman -S grub efibootmgr os-prober dosfstools --noconfirm"
 echo '' 
 echo 'Instalando EFI System >> bootx64.efi' 
 arch-chroot /mnt /bin/bash -c 'grub-install --target=x86_64-efi --efi-directory=/efi --removable' 
@@ -428,7 +427,8 @@ sleep 4
 else
 
 clear
-arch-chroot /mnt /bin/bash -c "pacman -S grub os-prober --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -S grub --noconfirm"
+#arch-chroot /mnt /bin/bash -c "pacman -S grub os-prober --noconfirm"
 echo '' 
 arch-chroot /mnt /bin/bash -c "grub-install --target=i386-pc $disco"
 
@@ -447,7 +447,8 @@ clear
 
 # Ethernet
 echo -e '\033[1;92m' "\n\t\t\t INSTALANDO PROGRAMAS PARA ETHERNET"
-arch-chroot /mnt /bin/bash -c "pacman -S dhcpcd networkmanager iwd net-tools ifplugd --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -S dhcpcd networkmanager net-tools ifplugd --noconfirm"
+#arch-chroot /mnt /bin/bash -c "pacman -S dhcpcd networkmanager iwd net-tools ifplugd --noconfirm"
 arch-chroot /mnt /bin/bash -c "systemctl enable dhcpcd NetworkManager"
 echo "noipv6rs" >> /mnt/etc/dhcpcd.conf
 echo "noipv6" >> /mnt/etc/dhcpcd.conf
@@ -464,7 +465,6 @@ clear
 # Shell del sistema
 echo -e '\033[1;92m' "\n\t\t\t SHELL ZSH PARA USUARIO Y ROOT"
 SH=zsh
-arch-chroot /mnt /bin/bash -c "chsh -s /bin/$SH"
 arch-chroot /mnt /bin/bash -c "chsh -s /usr/bin/$SH $user"
 arch-chroot /mnt /bin/bash -c "chsh -s /bin/$SH $user"
 clear
