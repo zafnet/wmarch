@@ -205,6 +205,17 @@ set classify+=' ::*.7z,,*.apk,,*.bz2,,*.cpio,,*.deb,,*.gz,,*.gzip,,*.gem,,*.l
              \  ::*.vim,,*.vimrc::,
              \  ::*.xul::'
 
+" Marcadores Se Activan Presionando Primero La '
+mark h ~/
+mark r /run/media/
+mark l ~/.local/share/
+mark c ~/.config/
+mark z ~/.config/zshc/
+mark u /usr/share/
+mark k ~/.config/sxhkd/
+mark b ~/.config/bspwm/
+mark p ~/.config/polybar/
+
 " Mapeo De Teclas
 
 " Cambiar Wallpaper 
@@ -220,7 +231,7 @@ nnoremap s :restart<cr>
 nnoremap m :write | edit $MYVIFMRC | restart<cr>
 
 " Crear Directorio
-nnoremap D :execute "mkdir " . input("Crea Directorio: ")<CR>
+nnoremap M :execute "mkdir " . input("Crea Directorio: ")<CR>
 
 " Crear Archivo
 nnoremap f :execute "touch " . input("Crea Archivo: ")<CR>
@@ -248,14 +259,6 @@ nnoremap tn :tabnew<CR>
 map <C-s> :w<CR>
 map <A-x> :q!<CR>
 map <A-q> :q<CR>
-
-" Marcadores Se Activan Presionando Primero La '
-mark h ~/
-mark r /run/media/
-mark l ~/.local/share/
-mark c ~/.config/
-mark z ~/.config/zshc/
-mark u /usr/share/
 
 " Previsualizacion En Otro Panel
 nnoremap w :view<cr>

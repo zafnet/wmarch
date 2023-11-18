@@ -75,7 +75,7 @@ alt + shift + m(mark),x(lock),z(priv),s(stic)|Banderas Para La Ventana
 #------------------------#
 super + y; {h,j,k,l}|Insertar Un Receptaculo En La Direccion Dada
 
-super + g|Enviar El Nodo AL Receptaculo Creado
+super + i|Enviar El Nodo AL Receptaculo Creado
 
 alt + y; t|Cerrar Todos Los Receptaculos
 

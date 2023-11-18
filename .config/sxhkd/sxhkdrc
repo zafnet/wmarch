@@ -41,6 +41,10 @@ super + {f,alt + f,g,alt + g}
 super + {a,v,m,t,d,x,b}
       {pcmanfm,rofi -show drun,xterm -e cmus,telegram-desktop,discord,xed,xterm -e vifm}
 
+#- Grabacion De Pantalla Con Script y ffmpeg
+super + p
+	exec  ~/.config/rofi/grabacion
+
 #---------------#
 # ATAJOS CUSTOM #
 #---------------#
@@ -242,7 +246,7 @@ alt + y; t
    for win in `bspc query -N -n .leaf.\!window`; do bspc node $win -k; done; 
 
 #- Enviar El Nodo AL Receptaculo Creado
-super + g
+super + i
     bspc node $(bspc query -N -n focused) -n $(bspc query -N -n .leaf.\!window)
 
 #-------------------#

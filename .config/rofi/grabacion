@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Verificar si ya hay una grabación en curso
+check="$(pgrep -fl ffmpeg)"
+if [ -n "$check" ]; then
+  dunstify -t 3000 -i "$HOME/.config/dunst/icons/nograbando.png" "grabación de pantalla detenida"
+  killall --user $USER --ignore-case --signal INT ffmpeg
+else
+    dunstify -t 3000 -i "$HOME/.config/dunst/icons/grabando.png"  "grabación de pantalla iniciada"
+    ffmpeg -y -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 -c:v libx264 -preset ultrafast -qp 0 "$HOME/captura/$(date +%d-%m-%Y-%H:%M)".mp4 &
+fi
