@@ -36,6 +36,7 @@ bspc monitor  -d          
 
 #-- Configuracion Bspwm
 
+bspc config ignore_ewmh_focus true
 bspc config border_width                  3
 bspc config window_gap                    10
 bspc config top_padding                   29
