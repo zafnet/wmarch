@@ -53,6 +53,9 @@ super + p
 ctrl + shift + {m,w,b,e}
           {exec  ~/.config/rofi/{marcadores/marcadores.sh,/walle/wallp.sh,menuweb/web-search.sh,/emojis/emojis.sh,}
 
+ctrl + alt + m
+       exec  ~/.config/rofi/marcadores/marktik.sh
+
 #- Atajos De Aplicaciones Con Rofi
 super + alt + m
        exec  ~/.config/rofi/atajos/menuatajos/menuatajos.sh
@@ -64,10 +67,6 @@ ctrl + shift + a
 #- Menu Para Elegir Nueva Polybar
 ctrl + shift + p
        exec  ~/.config/rofi/elebar/elebar.sh
-
-#- Menu Para Editar Configuraciones Con Rofi
-alt + shift + e
-       exec  ~/.config/rofi/confiles/confiles.sh
 
 #- Ver Actualizaciones Pendientes Con Rofi
 ctrl + alt + a

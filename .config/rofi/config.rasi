@@ -34,7 +34,7 @@ kb-move-front: "Control+a";
 kb-move-end: "Control+e";
 kb-remove-word-forward: "Alt+d";
 kb-remove-to-eol: "Control+o";
-kb-remove-char-back: "Control+y";
+kb-remove-char-back: "Control+y,BackSpace";
 kb-accept-entry: "Control+h,Return";
 kb-page-prev: "Control+k";
 kb-page-next: "Control+j";
