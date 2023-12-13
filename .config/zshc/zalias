@@ -1,6 +1,6 @@
 #-- Sistema
 DUNS='dunstify -t 4000 -i "$HOME/.config/dunst/icons/actuale.png"'
-REFLE='sudo reflector --latest 5  --sort rate --save /etc/pacman.d/mirrorlist'
+REFLE='sudo reflector -l 5 -p http,https --sort rate --save /etc/pacman.d/mirrorlist'
 BORR='dunstify -t 4000 -i "$HOME/.config/dunst/icons/borrado.png"'
 PACM='sudo pacman'
 
@@ -11,6 +11,7 @@ alias ls='ls --group-directories-first --color=always -lhFaH'
 alias tree='lsd --tree'
 alias ba='bat'
 alias ra='ranger'
+alias vf='vifm'
 alias to='touch'
 alias ins="$PACM -S"
 alias ac="$PACM -Syu && $DUNS 'Sistema Actualizado' && exit"
@@ -69,3 +70,4 @@ alias gu='git pull origin'
 alias gt='git tag -a'
 alias gf='git fetch'
 alias gl='git log'
+alias gd='git diff'

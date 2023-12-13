@@ -15,6 +15,9 @@ nnoremap <leader>" i"<space>
 nnoremap <leader>y i#<space><Esc>
 nnoremap <leader>m i"<space><Esc>
 
+" Usar FZF En NVIM Con La Tecla altgr + f
+nnoremap đ :FZF!<CR>
+
 " Agrega Un Espacio En Blanco y Pasas Al Modo Insertar
 nnoremap <leader>o o<Esc>
 nnoremap <leader>p O<Esc>
