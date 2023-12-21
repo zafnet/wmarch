@@ -212,13 +212,9 @@ ctrl + space
 # EXPANSION O CONTRACCION DE NODOS #
 #----------------------------------#
 
-#- Expanda Un Nodo Moviendo Uno De Sus Lados Hacia Afuera
+#- Expanda o Contraer Un Nodo Moviendo Uno De Sus Lados Hacia Afuera 
 super + alt + {h,j,k,l}
-	bspc node -z {left -100 0,bottom 0 100,top 0 -100,right 100 0}
-
-#- Contraer Un Nodo Moviendo Uno De Sus Lados Hacia Adentro
-super + alt + ctrl + {h,j,k,l}
-	bspc node -z {right -100 0,top 0 100,bottom 0 -100,left 100 0}
+	     $HOME/.config/bspwm/bspwm_resize {west,south,north,east}
 
 #------------------------------------#
 # DESPLAZAMIENTO POR LOS ESCRITORIOS #

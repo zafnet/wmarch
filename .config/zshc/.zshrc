@@ -30,6 +30,7 @@ compinit
 zstyle ':completion:*' format 'autocompletado %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
+zstyle ':completion:*' completer _expand _complete _correct _approximate
 
 #-- OPCIONES DE ZSH
 setopt rm_star_silent

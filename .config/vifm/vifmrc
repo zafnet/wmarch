@@ -240,10 +240,10 @@ nnoremap f :execute "touch " . input("Crea Archivo: ")<CR>
 nnoremap r :delete<CR>
 vnoremap r :delete<CR>
 
-" Lanzar Shell Volver a vifm Con C-d
+" Lanzar Shell Sin Dir Actual Ocultando Vifm Volver a Vifm Con C-d
 nnoremap <C-t> :shell<cr>
 
-" Abrir consola en el directorio actual
+" Abrir Consola En El Directorio Actual En Otra Ventana
 nnoremap <A-t> :!xterm -e "cd %f; zsh" &<CR>
 
 " Marcar Varios Archivos o Carpetas
@@ -283,6 +283,9 @@ nnoremap _ <C-w>5>
 " Mover Cursor a Otro Panel
 nnoremap <silent> J <tab>j<tab>
 nnoremap <silent> K <tab>k<tab>
+
+" Abre Archivo txt text 
+filextype *.txt,*text nvim %"f
 
 " Pdf
 filetype *.pdf zathura %f %i &,

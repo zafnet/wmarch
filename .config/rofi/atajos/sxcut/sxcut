@@ -96,9 +96,7 @@ super + ctrl + h,j,k,l|Preselec Dirección De La Nueva Ventana
 
 super + ctrl + 1-9|Preselec Proporción De La Nueva Ventana
 
-super + alt + h,j,k,l|Expan Vent Uno De Sus Lados Hacia Afuera
-
-super + alt + ctrl + h,j,k,l|Contraer Vent Uno De Sus Lados Hacia Adentro
+super + alt + h,j,k,l|Expan y Contraer Vent Uno De Sus Lados Hacia Afuera
 
 alt + shift + Tab o alt + Tab|Enfoca Las Ventnas 
 
