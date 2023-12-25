@@ -12,8 +12,10 @@
     blue: #48b9c7;
     font: "agave Nerd Font 16";
     sort: true;
+    width: 59%;
+    height: 65%;
     hide-scrollbar: true;
-    fullscreen: true;
+    fullscreen: false;
     color: #f15d22;
 }
 

@@ -1,15 +1,12 @@
 #!/usr/bin/env bash
 
-options="ALIAS  \nSXHKDRC  \nNVIM  \nNVNAT  \nTMUX  \nPOLYBAR \nI3 \nZSHRC \nBASHRC \nPICOM \nNVIM \nROFI \nTMUX \nBSPWMRC \nXRESOURCES \nSXHKDRC "
+options="ALIAS  \nNVIM  \nNVNAT  \nTMUX  \nPOLYBAR \nI3 \nZSHRC \nBASHRC \nPICOM \nNVIM \nROFI \nTMUX \nBSPWMRC \nXRESOURCES \nSXHKDRC "
 
 selected=$(echo -e "$options" | rofi -dmenu -i -theme ~/.config/rofi/atajos/menuatajos/menuatajos.rasi -p "Ver Atajos o Editar Archivos De:")
 
 case "$selected" in
  "ALIAS  ")
    exec ~/.config/rofi/atajos/ralias/ralias.sh
-    ;;
-   "SXHKDRC  ")
-   exec ~/.config/rofi/atajos/sxcut/sxcut.sh
     ;;
    "NVIM  ")
    exec ~/.config/rofi/atajos/nvcut/nvcut.sh

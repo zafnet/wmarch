@@ -60,9 +60,9 @@ ctrl + alt + m
 super + alt + m
        exec  ~/.config/rofi/atajos/menuatajos/menuatajos.sh
 
-#- Atajos Actuales De SXHKDRC
+#- Atajos De SXHKDRC
 ctrl + shift + a
-       exec  ~/.config/rofi/atajos/atajactual.sh
+       exec  ~/.config/rofi/atajos/sxcut/sxcut.sh
 
 #- Menu Para Elegir Nueva Polybar
 ctrl + shift + p
