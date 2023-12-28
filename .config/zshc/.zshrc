@@ -6,8 +6,8 @@
 #  ╚══════╝╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░
 
 #-- CARGANDO PLUGINS ZSH
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #-- CARGANDO ALIAS FUNCIONES Y EXPORTS DE ZSH
 source ~/.config/zshc/zalias

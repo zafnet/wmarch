@@ -38,7 +38,7 @@ LOCKER_DIR="$LOCAL_DIR/i3lock"
 APPLICATIONS_DIR="$FOLD_SHARE/applications"
 FSTAB_FILE="/etc/"
 WALL_DIR="$FOLD_SHARE/icons/hicolor/16x16/apps/"
-FONT_DIR="$FOLD_SHARE"
+FONT_DIR="$FOLD_SHARE/fonts"
 POLYBAR_PKG="polybar-git-3.6.3.r45.g1ee11f7c-1-x86_64.pkg.tar.zst"
 BROWSE="FIREFOX"
 LOG_MANA="LIGHTDM"
@@ -73,6 +73,10 @@ check_plugins() {
     sleep 2
     clear    
     print_status "\n\t\t\t\t NO EXISTE LA CARPETA DE ZSH"
+    sleep 2
+    clear    
+    print_status "\n\t\t\t INSTALANDO ZSH Y COMPLEMENTOS DE ZSH"
+    pacman -S --needed zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions --noconfirm   
     fi
     sleep 2
     clear
@@ -89,7 +93,6 @@ add_dotfiles() {
     print_status "\n\t\t\t\t AGREGANDO DOTFILES"
     mkdir -pv $WALL_DIR
     cp -r $REPO_DIR/usuario/. $USER_HOME/
-    #cp -r $REPO_DIR/.ratpoisonrc $USER_HOME/
     cp -r $REPO_DIR/00-keyboard.conf /etc/X11/xorg.conf.d/
     cp -r $REPO_DIR/dake.xml /usr/share/gtksourceview-4/styles/
     cp -r $REPO_DIR/keyboard /etc/default/
@@ -100,9 +103,10 @@ add_dotfiles() {
     cp -r $REPO_DIR/appdesk/. $APPLICATIONS_DIR/
     cp -r $REPO_DIR/fonts/. $FONT_DIR/
     cp -r $REPO_DIR/gtk-3.0 $USER_HOME/.config/
-    cp -r $REPO_DIR/bookmarks $USER_HOME/
     cp -r $REPO_DIR/fstab $FSTAB_FILE/
     cp -r $REPO_DIR/restorconf.sh $USER_HOME/.local/
+   #cp -r $REPO_DIR/.ratpoisonrc $USER_HOME/
+   #cp -r $REPO_DIR/bookmarks $USER_HOME/
    #cp -r $REPO_DIR/.gtk-bookmarks $USER_HOME/    
    #cp -r  $REPO_DIR/tilix $FONT_DIR/
    #cp -r  $REPO_DIR/.xinitrc $USER_HOME/

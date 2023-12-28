@@ -310,8 +310,9 @@ sed -i 's/#Color/Color/g' /mnt/etc/pacman.conf
 sed -i 's/#TotalDownload/TotalDownload/g' /mnt/etc/pacman.conf
 sed -i 's/#VerbosePkgLists/VerbosePkgLists/g' /mnt/etc/pacman.conf
 sed -i "37i ILoveCandy" /mnt/etc/pacman.conf
-sed -i 's/#\[multilib\]/\[multilib\]/g' /mnt/etc/pacman.conf
-sed -i "s/#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/g" /mnt/etc/pacman.conf
+sed -i 's/#ParallelDownloads =/ParallelDownloads = 5/g' /mnt/etc/pacman.conf
+#sed -i "s/#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/g" /mnt/etc/pacman.conf
+#sed -i 's/#\[multilib\]/\[multilib\]/g' /mnt/etc/pacman.conf
 clear
 
 
@@ -540,6 +541,8 @@ case $escritorio in
 #    arch-chroot /mnt /bin/bash -c "pacman -S --needed gnome-themes-extra --noconfirm"
     echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO BAT"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed bat --noconfirm"
+    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO VIFM"
+    arch-chroot /mnt /bin/bash -c "pacman -S --needed vifm --noconfirm"
     echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO FZF"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed fzf --noconfirm"
     echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO TMUX"
@@ -570,9 +573,8 @@ case $escritorio in
     arch-chroot /mnt /bin/bash -c "pacman -S --needed bash-completion  --noconfirm"
     echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO LXAPPEARANCE"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed lxappearance --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO ZATHURA"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed zathura --noconfirm"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed zathura-pdf-poppler  --noconfirm"
+    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO ZATHURA Y ZATHURA-PDF-POPPLER "
+    arch-chroot /mnt /bin/bash -c "pacman -S --needed zathura zathura-pdf-poppler --noconfirm"
     echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO I3LOCK"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed  i3lock  --noconfirm"
     echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO XED"
