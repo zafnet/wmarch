@@ -23,8 +23,7 @@ alias rem="$PACM -Rs"
 alias rm='rm -r'
 alias rv='rm -rv'
 alias rep='pacman -Ss'
-alias cp='cp -ur $(notify-send -i "$HOME/.config/dunst/icons/copia.png" "Copia Terminada")'
-alias cv='cp -urv $(notify-send -i "$HOME/.config/dunst/icons/copia.png" "Copia Terminada")'
+alias cp='rsync -ah --info=progress2'
 alias mv='mv -u'
 alias mvv='mv -uv'
 alias mk='mkdir -pv'
@@ -39,6 +38,9 @@ alias zh="echo ' ' > $HOME/.config/zshc/.zsh_history && $BORR 'zsh_history Borra
 alias bh="echo " " > $HOME/.config/bashc/.bash_history && $BORR 'bash_history Borrado'"
 alias bu='sudo find / 2>/dev/null -iname $1'
 alias ssk='ssh-keygen -t ed25519 -f ~/.ssh/git-key'
+alias ip='ip -c'
+# alias cp='cp -ur $(notify-send -i "$HOME/.config/dunst/icons/copia.png" "Copia Terminada")'
+# alias cv='cp -urv $(notify-send -i "$HOME/.config/dunst/icons/copia.png" "Copia Terminada")'
 
 #-- Tmux
 

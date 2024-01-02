@@ -17,30 +17,24 @@ dunst &
 
 #-- 1.Picom Con Ruta Custom y En El Background 2.Lanzando Polybars 3.Lanzando Wallpaper
 picom -b --config $HOME/.config/picom/picom.conf
-
 exec /home/$USER/.config/polybar/launch.sh  &
-
 feh --bg-fill --randomize --no-fehbg /home/$USER/.wall/*
 
-#-- Polybar En Varios Monitores Con Salida DisplayPort o HDMI
+#-- 5 Escritorios En Varios Monitores
 
-#bspc monitor DisplayPort-0 -d 1 2 3 4 5 6 7 8 9
-#bspc monitor DisplayPort-1 -d 1 2 3 4 5 6 7 8 9
-#bspc monitor HDMI-A-0 -d 1 2 3 4 5 6 7 8 9
-
-#-- 5 Iconos En El Monitor
-
-bspc monitor  -d          
-#bspc monitor -d  1 2 3 4 5 
-#bspc monitor -d  I II III IV V
+bspc monitor  HDMI-1 -d       
+#bspc monitor DVI-1 -d         
+#bspc monitor DVI-D-1 -d I II III IV V
+#bspc monitor DP-1 -d 1 2 3 4 5
+#bspc monitor DP-2 -d            
 
 #-- Configuracion Bspwm
 
 bspc config ignore_ewmh_focus true
-bspc config border_width                  3
-bspc config window_gap                    10
-bspc config top_padding                   29
-bspc config bottom_padding                1
+bspc config border_width                  1
+bspc config window_gap                    7
+bspc config top_padding                   23
+bspc config bottom_padding                -4
 bspc config left_padding                  0
 bspc config right_padding                 0
 bspc config single_monocle                false
@@ -58,16 +52,17 @@ bspc config pointer_action3 resize_corner
 
 #-- Color De Borde De Ventana
 
-bspc config normal_border_color		      "#ff0000"
-bspc config active_border_color	          "#fafb4e"
+#bspc config normal_border_color		  "#ff0000"
+#bspc config active_border_color	      "#fafb4e"
 bspc config focused_border_color	      "#77f28b"
 bspc config presel_feedback_color	      "#ffe6a7"
 #bspc config urgent_border_color          "#ff0000"
 
-#-- Reglas Modo En Que Van a Aparecer Las Ventanas En El Escritorio
+#-- Reglas Bspwm
 
-bspc rule -a TelegramDesktop desktop='^5' follow=on
-bspc rule -a discord desktop='^5'
+#bspc rule -a firefox desktop='^1' follow=off
+bspc rule -a TelegramDesktop desktop='^5' follow=off
+bspc rule -a discord desktop='^5' follow=off
 bspc rule -a Steam desktop='^5' state=floating
 bspc rule -a Zathura state=tiled
 bspc rule -a Lxappearance state=floating center=true
