@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-options="ALIAS  \nNVIM  \nNVNAT  \nTMUX  \nPOLYBAR \nI3 \nZSHRC \nBASHRC \nPICOM \nNVIM \nROFI \nTMUX \nBSPWMRC \nXRESOURCES \nSXHKDRC "
+options="ALIAS  \nNVIM  \nTMUX  \nPOLYBAR \nI3 \nZSHRC \nBASHRC \nPICOM \nNVIME \nROFI \nTMUXE \nBSPWMRC \nXRESOURCES \nSXHKDRC "
 
 selected=$(echo -e "$options" | rofi -dmenu -i -theme ~/.config/rofi/atajos/menuatajos/menuatajos.rasi -p "Ver Atajos o Editar Archivos De:")
 
@@ -10,9 +10,6 @@ case "$selected" in
     ;;
    "NVIM  ")
    exec ~/.config/rofi/atajos/nvcut/nvcut.sh
-    ;;
-   "NVNAT  ")
-   exec ~/.config/rofi/atajos/nvcut/nvnat.sh
     ;;
    "TMUX  ")
    exec ~/.config/rofi/atajos/tmcut/tmcut.sh
@@ -32,13 +29,13 @@ case "$selected" in
     "PICOM ")
     xterm -e  nvim ~/.config/picom/picom.conf
       ;;
-     "NVIM ")
+     "NVIME ")
      xterm -e nvim ~/.config/nvim/init.vim
       ;;
      "ROFI ")
      xterm -e nvim ~/.config/rofi/config.rasi
       ;;
-     "TMUX ")
+     "TMUXE ")
      xterm -e nvim ~/.config/tmux/tmux.conf
       ;;
    "BSPWMRC ")

@@ -29,25 +29,20 @@ alt + Scroll_Lock
 # APLICACIONES #
 #--------------#
 
-#- Terminal
-super + c
-        xterm
+super + {c,a,v,m,t,d,x,b}
+      {xterm,pcmanfm,rofi -show drun,xterm -e cmus,telegram-desktop,discord,xed,xterm -e vifm}
 
 #- Navegadores
 super + {f,alt + f,g,alt + g}
      {firefox -private-window,firefox,google-chrome-stable,google-chrome-stable --incognito}
 
-#- Otras Aplicaciones
-super + {a,v,m,t,d,x,b}
-      {pcmanfm,rofi -show drun,xterm -e cmus,telegram-desktop,discord,xed,xterm -e vifm}
+#---------------#
+# ATAJOS CUSTOM #
+#---------------#
 
 #- Grabacion De Pantalla Con Script y ffmpeg
 super + p
 	exec  ~/.config/rofi/grabacion
-
-#---------------#
-# ATAJOS CUSTOM #
-#---------------#
 
 #- Ver marcadores,wallpaper,menuweb,emojis Con Rofi
 ctrl + shift + {m,w,b,e}
@@ -56,19 +51,23 @@ ctrl + shift + {m,w,b,e}
 ctrl + alt + m
        exec  ~/.config/rofi/marcadores/marktik.sh
 
-#- Atajos De Aplicaciones Con Rofi
+#- Menu Que Muestra Atajos De Archivos o Para Editar El Archivo Con Rofi
 super + alt + m
        exec  ~/.config/rofi/atajos/menuatajos/menuatajos.sh
 
-#- Atajos De SXHKDRC
+#- Muestra Atajos De SXHKDRC Con Rofi
 ctrl + shift + a
        exec  ~/.config/rofi/atajos/sxcut/sxcut.sh
+
+#- Muestra Atajos De Zalias Con Rofi
+super + shift + a
+    exec ~/.config/rofi/atajos/ralias/ralias.sh
 
 #- Menu Para Elegir Nueva Polybar
 ctrl + shift + p
        exec  ~/.config/rofi/elebar/elebar.sh
 
-#- Ver Actualizaciones Pendientes Con Rofi
+#- Ver Actualizaciones Pendientes Con Dunst
 ctrl + alt + a
         dunstify -t 3000 -i "$HOME/.config/dunst/icons/actuale.png" 'Actualizaciones Pendientes' "$(checkupdates)" 
 
@@ -76,7 +75,7 @@ ctrl + alt + a
 alt + w
      rofi -show window
 
-#- Ver Fecha y Hora Con Rofi
+#- Ver Fecha y Hora Con Dunst
 ctrl + shift + d
           dunstify -t 4000 -i "$HOME/.config/dunst/icons/calendar.png" "$(date "+%a %b %d %Y %H:%M%p")" 
 
@@ -108,6 +107,10 @@ super + Delete
 # MANEJO DE NODOS #
 #-----------------#
 
+# Mover la ventana actual a un espacio preseleccionado
+super + shift + m
+    bspc node -n last.!automatic
+
 #- Oculta o Restaura El Nodo Actual
 super + minus
 	bspc node {,$(bspc query -N -d -n .hidden | head -n 1)} -g hidden
@@ -128,9 +131,9 @@ super + alt + n
 super + {_,shift + } r
     bspc node @/ --rotate {180,-180}
 
-#- Rotar Nodos En Horizontal 90° | Nodos Flotante | Fijar Nodo
+#- Rotar Nodos En Horizontal 90° 
 super + shift + o
-		{bspc node @focused:/ -R 90,bspc node focused -t}
+		{bspc node @focused:/ -R 90}
 
 #- Rotar Nodos En Sentido Horario y Antihorario
 super + shift + {d,i}

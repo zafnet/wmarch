@@ -9,7 +9,6 @@ export MANROFFOPT="-P -c"
 # man() { /usr/bin/man $* | nvim -c "set ft=man" -R -}
 
 #-- FUNCIONES FZF
-dl() {cd $(find / -type d 2> /dev/null | fzf -e --border --cycle --prompt="Ir a La Carpeta y Listarla: ") | xargs -r && lsd -la && zle reset-prompt} ;zle -N dl;bindkey "^[u" dl
 
 ir() {cd $(find / -type d 2> /dev/null | fzf -e --border --cycle --prompt="Ir a La Carpeta: ") && zle reset-prompt} ;zle -N ir;bindkey "^[i" ir
 
@@ -37,3 +36,27 @@ fk() { pid=$(ps -ef | sed 1d | fzf -m --color --height 60%  --prompt="Eliminar p
 if [ "x$pid" != "x" ]; then 
 kill -${1:-9} $pid 
 fi && zle reset-prompt} ;zle -N fk; bindkey "^[k" fk
+
+ex() {
+[ $# -eq 0 ] && echo "no se paso un archivo a la funcion" && return 2
+	for file in $*; do
+		if [ -f $file ] ; then
+			case $file in
+				*.tar.bz2)   tar xvjf $file    ;;
+				*.tar.gz)    tar xvzf $file    ;;
+				*.bz2)       bunzip2 $file     ;;
+				*.rar)       rar x $file       ;;
+				*.gz)        gunzip $file      ;;
+				*.tar)       tar xvf $file     ;;
+				*.tbz2)      tar xvjf $file    ;;
+				*.tgz)       tar xvzf $file    ;;
+				*.zip)       unzip $file       ;;
+				*.Z)         uncompress $file  ;;
+				*.7z)        7z x $file        ;;
+				*)           echo "NO SE COMO EXTRAER '$file'..." ;;
+			esac
+		else
+			echo "'$file' NO ES UN ARCHIVO VALIDO!"
+		fi
+	done
+}

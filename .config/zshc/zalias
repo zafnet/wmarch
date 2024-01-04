@@ -1,9 +1,9 @@
-#-- Sistema
 DUNS='dunstify -t 4000 -i "$HOME/.config/dunst/icons/actuale.png"'
 REFLE='sudo reflector -l 5 -p http,https --sort rate --save /etc/pacman.d/mirrorlist'
 BORR='dunstify -t 4000 -i "$HOME/.config/dunst/icons/borrado.png"'
 PACM='sudo pacman'
 
+#-- Sistema
 alias ll='lsd -lha --group-dirs=first'
 alias l='lsd -lda --group-dirs=first */'
 alias lo='lsd -lda --group-dirs=first .*/'
@@ -42,8 +42,17 @@ alias ip='ip -c'
 # alias cp='cp -ur $(notify-send -i "$HOME/.config/dunst/icons/copia.png" "Copia Terminada")'
 # alias cv='cp -urv $(notify-send -i "$HOME/.config/dunst/icons/copia.png" "Copia Terminada")'
 
-#-- Tmux
+#-- Systemctl
+alias sc='sudo systemctl'
+alias scs='sudo systemctl status $1'
+alias sct='sudo systemctl start $1'
+alias sce='sudo systemctl enable $1'
+alias scd='sudo systemctl disable $1'
+alias sco='sudo systemctl stop $1'
+alias scr='sudo systemctl reload $1'
+alias scre='sudo systemctl restart $1'
 
+#-- Tmux
 alias ts='tmux new -s'
 alias tl='tmux ls'
 alias ta='tmux a -t'
@@ -51,7 +60,6 @@ alias tk='tmux kill-session -t'
 alias tp='tmux neww -n'
 
 #-- Editor
-
 alias nv='nvim'
 alias nz='nvim /home/$USER/.config/zshc/.zshrc'
 alias nb='nvim /home/$USER/.bashrc'
@@ -60,7 +68,6 @@ alias nbh='nvim /home/$USER/.config/bashc/.bash_history'
 alias nzh='nvim ~/.config/zshc/.zsh_history'
 
 #-- Git
-
 alias gs='git status'
 alias ga='git add .'
 alias gc='git clone'

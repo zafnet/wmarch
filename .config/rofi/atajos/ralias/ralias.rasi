@@ -8,12 +8,12 @@
 * { 
    fondosel:  #1b1a1a;
    amar:      #faa41a;
-   azul:      #48b9c7;
-   fondo:     #1c2833;
    rosa:      #ff0268;
-
+   back-promp: #1b1a1a;
    font: "agave Nerd Font 13";
    sort: true;
+   width: 59%;
+   height: 65%;
    hide-scrollbar: true;
    fullscreen: false;
    background-color: transparent;
@@ -21,52 +21,31 @@
 }
 
 window {
-    background-color: @fondo;
-    border: 0;
-    padding: 0.5%;
-    x-offset: 3%;
-    y-offset: 3%;
-    //width: 60%;
-    width: 43%;
-    height: 72%;
+    background-color: #1c2833;
 }
 
 inputbar {
-    children: [ prompt,textbox-prompt-colon,entry,case-indicator ];
-    spacing: 0%;
+    border: 0px 0px 0px 0px;
+    margin: 4px 0px 0px 2px;
+    padding: 3px;
 }
 
-entry normal normal {
+entry {
     color: @rosa;
-    padding: 0px;
+    margin: 3px 0px 3px 0px;
+    padding: 3px;
 }
 
-prompt normal normal {
+prompt {
+    background-color: @back-promp;
+    border-color: @amar;
+    border: 2px;
+    border-radius: 9px;
     color:@amar;
-    padding: 0px;
+    margin: 3px;
+    padding: 3px;
 }
 
-textbox-prompt-colon {
-    expand:     false;
-    str:        ":";
-    margin:     0px 0.3em 0em 0em ;
-    text-color: @amar;
-}
-
-element-text {
-     text-color: @amar;
-}
-
-element {
-    padding: 8px 16px;
-    spacing: 8px;
-    border-radius: 8px;
-}
-
-element-icon {
-    enabled: false;
-}
-
-element selected.normal {
+element selected {
      background-color: @fondosel;
 }
