@@ -6,136 +6,127 @@
    ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═════╝ ╚══════╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝*/
 
 configuration {
-modi: "window,run,ssh,filebrowser,keys,drun,windowcd,combi";
+modi: "drun,window,ssh,filebrowser,run,keys,windowcd,combi";
 font: "agave Nerd Font 13";
 combi-modi: "drun,run";
 show-icons: true;
 sorting-method: "normal";
-//sorting-method: "fzf";
 case-sensitive: false;
 terminal: "xterm";
 cycle: true;
 display-combi:"練  Combinado";
 display-window:"缾 Ventanas";
-display-run: "  Binarios";
+display-run: "  Ejecutar";
 display-drun: " Aplicaciones";
-display-keys:"  Atajos";
+display-keys:"  Atajos";
 display-ssh:"  ssh";
 display-filebrowser:"  Archivos";
 window-format: "{t}";
 //window-format: "{w}    {c}   {t}";
-fake-transparency: false;
-sidebar-mode: false;
-drun-display-format:"{name}";
+//fake-transparency: true;
+//sorting-method: "fzf";
+//sidebar-mode: true;
 
 // ATAJOS DE TECLADO EN ROFI
-
 kb-move-front: "Control+a";
 kb-move-end: "Control+e";
+kb-move-word-back: "Alt+b";
+kb-move-word-forward: "Alt+f";
 kb-remove-word-forward: "Alt+d";
 kb-remove-to-eol: "Control+o";
-kb-remove-char-back: "Control+y,BackSpace";
+kb-remove-char-back: "BackSpace";
 kb-accept-entry: "Control+h,Return";
+kb-delete-entry: "Shift+Delete";
 kb-page-prev: "Control+k";
 kb-page-next: "Control+j";
 
-window {
-   close-on-delete: false;
-   hide-active-window: true;
-}
-
 filebrowser {
- //directory: "/home/user/";
- directories-first: true;
- show-hidden: true;
- sorting-method: "name";
- command: "xdg-open";
+// directory: "/home/user/";
+  directories-first: true;
+  sorting-method: "name";
+  show-hidden: true;
+  sorting-method: "name";
+  command: "xdg-open";
 }
 
 }
 
 * {
-   fondo: #212121F2;
-   elemselfg:#00FF36;
-   elemselbg:#2A2A2A;
-   elemal:#969696;
-   bordewindow: #4CAF50F2;
-   promptfg: #4CAF50F2;
-   inputborder: #4CAF50F2;
-   textboxcolor : #37bf3d;
+//background-color: transparent;
+  fondo: #212121F2;
+  elemselfg:#00FF36;
+  elemselbg:#2A2A2A;
+  elemal:#969696;
+  bordewindow: #4CAF50F2;
+  promptfg: #4CAF50F2;
+  inputborder: #4CAF50F2;
+  textboxcolor : #37bf3d;
 }
 
 mainbox {
+//  padding: 12px;
     padding: 1% 0px 0.21%;
 }
 
 window {
-    location: center;
-    border-radius: 10px;
-    background-color:@fondo;
-    border: 1;
-    border-radius: 24px;  
-    border-color: @bordewindow;
-    width: 30%;
-    height: 375;
-    margin: 12px 0px 0px 5px;
+  location: center;
+  border: 1;
+  border-radius: 24px;
+  border-color: @bordewindow;
+  background-color:@fondo;
+  width: 30%;
+  height: 375;
+  margin: 12px 0px 0px 5px;
 }
 
 prompt {
-    text-color: @promptfg;
-    background-color:@fondo;
+  text-color: @promptfg;
+  background-color:@fondo;
 }
 
 inputbar {
-    spacing: 8px;
-    border-color: @inputborder;
-    background-color:@fondo;
-    border: 2px;
-    border-radius: 16px;
-    padding: 8px 16px;
-    children: [ prompt, entry ];
+  spacing: 8px;
+  border: 2px;
+  border-radius: 16px;
+  border-color: @inputborder;
+  background-color:@fondo;
+  padding: 8px 16px;
+  children: [ prompt, entry ];
 }
 
 entry {
-    text-color: @textboxcolor;
-    background-color: @fondo;
-    placeholder: "";
-//  placeholder-color:  @fg1;
-}
-
-textbox {
-color: @textboxcolor;
+  text-color: @textboxcolor;
+  background-color:@fondo;
+  placeholder: "";
+//placeholder-color: @fg1;
 }
 
 listview {
-    border-radius: 0px;
-    lines: 10;
-    columns: 1;
-    border: 0px 0px 0px 0px;
-    padding: 0px 0px 0px 0px;
-    margin: 12px 0 0;
-    background-color:@fondo;
-    scrollbar: false;
-    fixed-height: false;
+  border-radius: 0px;
+  border: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  margin: 12px 0 0;
+  background-color:@fondo;
+  scrollbar: false;
+  fixed-height: false;
 }
 
 element {
-    border-radius: 16px;
-    spacing: 8px;
-    border: 0;
-    padding:  8px 16px;
+  border-radius: 16px;
+  spacing: 8px;
+  padding: 8px 16px;
 }
 
 /*element-text {
-    text-color: #00FF36;
+  text-color: #00FF36;
 }*/
 
 element normal normal,element alternate normal {
-    text-color: @elemal;
-    background-color: @fondo;
+  text-color: @elemal;
+  background-color: @fondo;
 }
 
 element selected normal {
-    text-color: @elemselfg;
-    background-color: @elemselbg;
+  text-color: @elemselfg;
+  background-color: @elemselbg;
 }
