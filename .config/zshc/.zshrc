@@ -31,6 +31,7 @@ zstyle ':completion:*' format 'autocompletado %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' rehash true
 
 #-- OPCIONES DE ZSH
 setopt rm_star_silent
@@ -52,6 +53,7 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 setopt SHARE_HISTORY
 setopt dotglob
+setopt completealiases
 #setopt AUTO_NAME_DIRS
 #setopt APPEND_HISTORY
 #setopt EXTENDED_HISTORY

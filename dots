@@ -130,12 +130,20 @@ perm_comun_files() {
 pass_root_file() {
 
     print_status "\n\t\t\t\t PASANDO ARCHIVOS A ROOT"
+    
     # Creando Una Carpeta .config en root   
     mkdir -pv /root/.config/
+    
     # Copia archivos y carpetas de $HOME/.config a /root/.config
     cp -r $REPO_DIR/.config/{bashc,nano,nvim,ranger,zshc,tmux,xres} /root/.config/
-    # Copia los archivos ".bashrc" y ".zshenv" a $HOME/root/
-    cp -r $REPO_DIR/usuario/{.bashrc,.zshenv} /root/
+    
+    # Copia .bashrc a $HOME/root/
+    cp -r $REPO_DIR/usuario/.bashrc /root/
+    
+    # Copia zshenv en /etc/zsh/
+    cp -r $REPO_DIR/zshenv /etc/zsh/
+    chmod 644 /etc/zsh/zshenv
+    chown root:root /etc/zsh/zshenv
     sleep 2
     clear
 }
@@ -143,8 +151,10 @@ pass_root_file() {
 poly_ins() {
 
     print_status "\n\t\t\t\t INSTALANDO POLYBAR"
+    
     # Instala "polybar" desde pacman"
     pacman -S --needed polybar --noconfirm
+    
     # Instala "polybar-git" desde archivo ".pkg.tar.zst"
     # cd $REPO_DIR/polybar/    
     # pacman -U $POLYBAR_PKG --noconfirm
