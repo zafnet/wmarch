@@ -10,7 +10,6 @@
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 #-- 1.Configurar El Idioma En Español 2.Esc Por Mayus
-setxkbmap -v es
 setxkbmap -option "caps:swapescape"
 
 dunst &
