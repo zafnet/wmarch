@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+
+# Funciones
+function print_live {
+    echo -e "\033[1;92m$1\033[0m"
+}
+
+function print_disco {
+    echo -e "\033[1;93m$1\033[0m"
+}
+
 if [ "$(id -u)" -eq  "0" ]; then
 
 if ping -c 1 www.google.com &> /dev/null; then
@@ -17,7 +27,7 @@ echo "██╔══╝   ██╔██╗ ██║   ██║   ██║ 
 echo "███████╗██╔╝ ██╗██║   ██║   ╚██████╔╝███████║██║  ██║";
 echo "╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝ ╚══════╝╚═╝  ╚═╝";
 
-echo -e '\033[1;95m' "\n\t\t\t\t -- ACTUALIZANDO SISTEMA DE ISO --"
+print_live "\n\t\t\t\t -- ACTUALIZANDO SISTEMA DE ISO --"
 sleep 2
 clear
 
@@ -52,7 +62,6 @@ exit
 
 fi
 
-
 clear
 
 idioma="es_AR.UTF8"
@@ -79,7 +88,7 @@ echo ""
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
 
 
-echo -e '\033[1;95m' "\n\t\t\t\t INGRESAR DISCO Y DATOS DE USUARIO"
+print_live "\n\t\t\t\t INGRESAR DISCO Y DATOS DE USUARIO"
 echo ""
 read -p "Introduce tu disco a instalar Arch: " disco
 echo ""
@@ -105,7 +114,7 @@ echo ""
 read -p "Introduce la opción de Escritorio: " escritorio
 echo ""
 
-echo -e '\033[1;95m' "\n\t\t\t\t MOSTRAR DATOS GUARDADOS "
+print_live "\n\t\t\t\t MOSTRAR DATOS GUARDADOS "
 clear
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
 echo ''
@@ -127,7 +136,7 @@ echo ""
 echo "Presione ENTER o para salir presione CTRL + C"
 read line
 
-echo -e '\033[1;95m' "\n\t\t\t\t -- DETECTANDO SI TENEMOS UEFI O BIOS LEGACY --"
+print_live "\n\t\t\t\t -- DETECTANDO SI TENEMOS UEFI O BIOS LEGACY --"
 
 uefi=$( ls /sys/firmware/efi/ | grep -ic efivars )
 
@@ -267,7 +276,7 @@ else
 	
 fi
 
-echo -e '\033[0;33m' "\n\t\t\t  ACTUALIZACION DE LLAVES DEL LIVE CD"
+print_live "\n\t\t\t  ACTUALIZACION DE LLAVES DEL LIVE CD"
 clear
 pacman -Syy
 pacman -Sy archlinux-keyring reflector python rsync glibc curl --noconfirm 
@@ -275,7 +284,7 @@ clear
 sleep 3
 clear
 echo ""
-echo -e '\033[0;33m' "\n\t\t\t MIRRORLIST MAS RAPIDOS PARA EL LIVE CD"
+print_live "\n\t\t\t MIRRORLIST MAS RAPIDOS PARA EL LIVE CD"
 echo ""
 reflector --verbose --latest 5 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 clear
@@ -286,7 +295,7 @@ clear
 
 # Instalando Sistema base en nuestro Disco
 echo ""
-echo -e '\033[1;92m' "\n\t\t\t INSTALANDO SISTEMA BASE EN NUESTRO DISCO"
+print_disco "\n\t\t\t INSTALANDO SISTEMA BASE EN NUESTRO DISCO"
 echo ""
 pacstrap /mnt base base-devel nano reflector python rsync curl wget zsh neovim git neofetch
 clear
@@ -294,7 +303,7 @@ clear
 
 # Creando Archiv FSTAB para detectar al iniciar el sistema
 echo ""
-echo -e '\033[1;92m' "\n\t\t\t CREANDO ARCHIVO FSTAB"
+print_disco "\n\t\t\t CREANDO ARCHIVO FSTAB"
 echo ""
 echo ""
 genfstab -p /mnt >> /mnt/etc/fstab
@@ -304,20 +313,20 @@ clear
 
 
 # Configurando pacman para que tenga colores con el repo de MultiLib
-echo -e '\033[1;92m' "\n\t\t\t ILOVECANDY Y REPO MULTILIB EN PACMAN.CONF"
+print_disco "\n\t\t\t ILOVECANDY Y REPO MULTILIB EN PACMAN.CONF"
 
 sed -i 's/#Color/Color/g' /mnt/etc/pacman.conf
 sed -i 's/#TotalDownload/TotalDownload/g' /mnt/etc/pacman.conf
 sed -i 's/#VerbosePkgLists/VerbosePkgLists/g' /mnt/etc/pacman.conf
 sed -i "37i ILoveCandy" /mnt/etc/pacman.conf
-sed -i 's/#ParallelDownloads =/ParallelDownloads = 5/g' /mnt/etc/pacman.conf
+sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 16/g' /mnt/etc/pacman.conf
 #sed -i "s/#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/g" /mnt/etc/pacman.conf
 #sed -i 's/#\[multilib\]/\[multilib\]/g' /mnt/etc/pacman.conf
 clear
 
 
 #Hosts y Nombre de computador
-echo -e '\033[1;92m' "\n\t\t\t  HOSTS Y NOMBRE DE COMPUTADOR"
+print_disco "\n\t\t\t  HOSTS Y NOMBRE DE COMPUTADOR"
 #read -p "Elija El Nombre De Hostname: " hos
 hos=lenox
 echo "$hos" > /mnt/etc/hostname
@@ -332,16 +341,16 @@ clear
 
 
 # Agregando usuario y claves con administrador
-echo -e '\033[1;92m' "\n\t\t\t CREANDO USUARIO, ROOT Y SUS PASSWORDS"
+print_disco "\n\t\t\t CREANDO USUARIO, ROOT Y SUS PASSWORDS"
 arch-chroot /mnt /bin/bash -c "(echo $rootpasswd ; echo $rootpasswd) | passwd root"
-arch-chroot /mnt /bin/bash -c "useradd -m -g users -s /bin/bash $user"
+arch-chroot /mnt /bin/bash -c "useradd -mU -s /bin/zsh $user"
 arch-chroot /mnt /bin/bash -c "(echo $userpasswd ; echo $userpasswd) | passwd $user"
 sed -i "80i $user ALL=(ALL) ALL"  /mnt/etc/sudoers
 clear
 
 
 # Idioma del sistema
-echo -e '\033[1;92m' "\n\t\t\t IDIOMA DEL SISTEMA "
+print_disco "\n\t\t\t IDIOMA DEL SISTEMA "
 
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
 echo -e ""
@@ -363,7 +372,7 @@ sleep 2
 
 
 # Zona horaria Automatica
-echo -e '\033[1;92m' "\n\t\t\t ZONA HORARIA AUTOMATICA"
+print_disco "\n\t\t\t ZONA HORARIA AUTOMATICA"
 zonahoraria="America/Argentina/Buenos_Aires"
 arch-chroot /mnt /bin/bash -c "ln -sf /usr/share/zoneinfo/$zonahoraria /etc/localtime"
 arch-chroot /mnt /bin/bash -c "timedatectl set-timezone $zonahoraria"
@@ -374,7 +383,7 @@ clear
 
 
 # Establecer un mapa de teclado para la terminal virtual
-echo -e '\033[1;92m' "\n\t\t\t MAPA DE TECLADO PARA LA TERMINAL VIRTUAL"
+print_disco "\n\t\t\t MAPA DE TECLADO PARA LA TERMINAL VIRTUAL"
 keymap="es"
 echo "KEYMAP=$keymap" > /mnt/etc/vconsole.conf
 cat /mnt/etc/vconsole.conf
@@ -382,7 +391,7 @@ sleep 2
 clear
 
 # Actualiza lista de mirrors en tu disco
-echo -e '\033[1;92m' "\n\t\t\t ACTUALIZANDO LISTA DE MIRRORS EN TU DISCO"
+print_disco "\n\t\t\t ACTUALIZANDO LISTA DE MIRRORS EN TU DISCO"
 echo ""
 arch-chroot /mnt /bin/bash -c "reflector --verbose --latest 5 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
 clear
@@ -392,16 +401,16 @@ clear
 
 
 # Instalación del kernel stable
-echo -e '\033[1;92m' "\n\t\t\t INSTALACION DEL KERNEL ESTABLE"
+print_disco "\n\t\t\t INSTALACION DEL KERNEL ESTABLE"
 arch-chroot /mnt /bin/bash -c "pacman -S linux-firmware linux linux-headers mkinitcpio --noconfirm"
 clear
 
 
 # Instalación de GRUB - Arranque
-echo -e '\033[1;92m' "\n\t\t\t INSTALACION DE ARRANQUE GRUB"
+print_disco "\n\t\t\t INSTALACION DE ARRANQUE GRUB"
 if [ $uefi == 1 ]
 then
-
+sleep 2
 clear
 arch-chroot /mnt /bin/bash -c "pacman -S grub efibootmgr dosfstools --noconfirm"
 #arch-chroot /mnt /bin/bash -c "pacman -S grub efibootmgr os-prober dosfstools --noconfirm"
@@ -444,7 +453,7 @@ fi
 clear
 
 # Ethernet
-echo -e '\033[1;92m' "\n\t\t\t INSTALANDO PROGRAMAS PARA ETHERNET"
+print_disco "\n\t\t\t INSTALANDO PROGRAMAS PARA ETHERNET"
 arch-chroot /mnt /bin/bash -c "pacman -S dhcpcd networkmanager net-tools ifplugd --noconfirm"
 #arch-chroot /mnt /bin/bash -c "pacman -S dhcpcd networkmanager iwd net-tools ifplugd --noconfirm"
 arch-chroot /mnt /bin/bash -c "systemctl enable dhcpcd NetworkManager"
@@ -461,15 +470,15 @@ clear
 #arch-chroot /mnt /bin/bash -c "pacman -S bluez bluez-utils pulseaudio-bluetooth"
 
 # Shell del sistema
-echo -e '\033[1;92m' "\n\t\t\t SHELL ZSH PARA USUARIO Y ROOT"
+print_disco "\n\t\t\t SHELL ZSH PARA USUARIO Y ROOT"
 SH=zsh
-arch-chroot /mnt /bin/bash -c "chsh -s /bin/$SH"
-arch-chroot /mnt /bin/bash -c "chsh -s /usr/bin/$SH $user"
-arch-chroot /mnt /bin/bash -c "chsh -s /bin/$SH $user"
+# arch-chroot /mnt /bin/bash -c "chsh -s /bin/$SH"
+arch-chroot /mnt /bin/bash -c "chsh -s /usr/bin/$SH root"
+# arch-chroot /mnt /bin/bash -c "chsh -s /bin/$SH $user"
 clear
 
 # Driver de Vídeo automatico solo driver Libres
-echo -e '\033[1;95m' "\n\t\t\t DRIVER DE VIDEO AUTOMATICO SOLO DRIVER LIBRES"
+print_disco "\n\t\t\t DRIVER DE VIDEO AUTOMATICO SOLO DRIVER LIBRES"
 
 echo -e '\033[0;36m' "\n\t\t\t INSTALANDO DRIVER DE VIDEO NVIDIA"
 if (lspci | grep VGA | grep "NVIDIA\|nVidia" &>/dev/null); then
@@ -499,23 +508,23 @@ arch-chroot /mnt /bin/bash -c "pacman -S xf86-video-vesa xf86-video-fbdev mesa m
 fi
 clear
 
-echo -e '\033[1;95m' "\n\t\t\t ESCRITORIO SELECCIONADO"
+print_disco "\n\t\t\t ESCRITORIO SELECCIONADO"
 
 case $escritorio in
   1)
     echo "Escritorio : Terminal Virtual (TTY)"
 
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO LSD"
+    print_disco "\n\t\t\t\t  INSTALANDO LSD"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed lsd --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO XORG"
+    print_disco "\n\t\t\t\t  INSTALANDO XORG"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t INSTALANDO ZSH"
+    print_disco "\n\t\t\t INSTALANDO ZSH"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed zsh --noconfirm"   
-    echo -e '\033[1;97m' "\n\t\t\t INSTALANDO COMPLEMENTO DE ZSH"
+    print_disco "\n\t\t\t INSTALANDO COMPLEMENTO DE ZSH"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed zsh-completions zsh-syntax-highlighting zsh-autosuggestions --noconfirm"   
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO BAT"
+    print_disco "\n\t\t\t\t  INSTALANDO BAT"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed bat --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO FZF"
+    print_disco "\n\t\t\t\t  INSTALANDO FZF"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed fzf --noconfirm"
 
     sleep 3
@@ -527,81 +536,81 @@ case $escritorio in
 
     sleep 3
     clear
-    echo -e '\033[1;97m' "\n\t\t\t INSTALANDO COMPLEMENTO DE ZSH"
+    print_disco "\n\t\t\t INSTALANDO COMPLEMENTO DE ZSH"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed zsh-completions zsh-syntax-highlighting zsh-autosuggestions --noconfirm"   
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO FLAMESHOT"
+    print_disco "\n\t\t\t\t  INSTALANDO FLAMESHOT"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed flameshot --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO XORG"
+    print_disco "\n\t\t\t\t  INSTALANDO XORG"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock --noconfirm"
-#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO NTFS-3G"
+#    print_disco "\n\t\t\t\t  INSTALANDO NTFS-3G"
 #    arch-chroot /mnt /bin/bash -c "pacman -S --needed ntfs-3g --noconfirm"
-#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO MURRINE"
+#    print_disco "\n\t\t\t\t  INSTALANDO MURRINE"
 #    arch-chroot /mnt /bin/bash -c "pacman -S --needed gtk-engine-murrine --noconfirm"
-#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO GNOME-THEMES-EXTRA"
+#    print_disco "\n\t\t\t\t  INSTALANDO GNOME-THEMES-EXTRA"
 #    arch-chroot /mnt /bin/bash -c "pacman -S --needed gnome-themes-extra --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO BAT"
+    print_disco "\n\t\t\t\t  INSTALANDO BAT"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed bat --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO VIFM"
+    print_disco "\n\t\t\t\t  INSTALANDO VIFM"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed vifm --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO FZF"
+    print_disco "\n\t\t\t\t  INSTALANDO FZF"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed fzf --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO TMUX"
+    print_disco "\n\t\t\t\t  INSTALANDO TMUX"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed tmux --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO XCLIP"
+    print_disco "\n\t\t\t\t  INSTALANDO XCLIP"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed xclip  --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO FILE-ROLLER"
+    print_disco "\n\t\t\t\t  INSTALANDO FILE-ROLLER"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed file-roller --noconfirm"
-#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO CMUS"
+#    print_disco "\n\t\t\t\t  INSTALANDO CMUS"
 #    arch-chroot /mnt /bin/bash -c "pacman -S --needed cmus --noconfirm"
-#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO MPV"
+#    print_disco "\n\t\t\t\t  INSTALANDO MPV"
 #    arch-chroot /mnt /bin/bash -c "pacman -S --needed mpv --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO LSD"
+    print_disco "\n\t\t\t\t  INSTALANDO LSD"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed lsd --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO ROFI"
+    print_disco "\n\t\t\t\t  INSTALANDO ROFI"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed rofi --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO BSPWM"
+    print_disco "\n\t\t\t\t  INSTALANDO BSPWM"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed bspwm --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO SXHKD"
+    print_disco "\n\t\t\t\t  INSTALANDO SXHKD"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed sxhkd --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO GVFS"
+    print_disco "\n\t\t\t\t  INSTALANDO GVFS"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed gvfs --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO PICOM"
+    print_disco "\n\t\t\t\t  INSTALANDO PICOM"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed picom --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO PCMANFM"
+    print_disco "\n\t\t\t\t  INSTALANDO PCMANFM"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed pcmanfm --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO BASH-COMPLETION"
+    print_disco "\n\t\t\t\t  INSTALANDO BASH-COMPLETION"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed bash-completion  --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO LXAPPEARANCE"
+    print_disco "\n\t\t\t\t  INSTALANDO LXAPPEARANCE"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed lxappearance --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO ZATHURA Y ZATHURA-PDF-POPPLER "
+    print_disco "\n\t\t\t\t  INSTALANDO ZATHURA Y ZATHURA-PDF-POPPLER "
     arch-chroot /mnt /bin/bash -c "pacman -S --needed zathura zathura-pdf-poppler --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO I3LOCK"
+    print_disco "\n\t\t\t\t  INSTALANDO I3LOCK"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed  i3lock  --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO XED"
+    print_disco "\n\t\t\t\t  INSTALANDO XED"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed xed  --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO FEH"
+    print_disco "\n\t\t\t\t  INSTALANDO FEH"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed feh  --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO PACMAN-CONTRIB"
+    print_disco "\n\t\t\t\t  INSTALANDO PACMAN-CONTRIB"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed pacman-contrib --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO IMAGEMAGICK"
+    print_disco "\n\t\t\t\t  INSTALANDO IMAGEMAGICK"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed  imagemagick --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO LIBNOTIFY"
+    print_disco "\n\t\t\t\t  INSTALANDO LIBNOTIFY"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed libnotify --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO DUNST"
+    print_disco "\n\t\t\t\t  INSTALANDO DUNST"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed dunst --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO PULSEAUDIO"
+    print_disco "\n\t\t\t\t  INSTALANDO PULSEAUDIO"
     arch-chroot /mnt /bin/bash -c "pacman -S --needed pulseaudio --noconfirm"
-#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO PAVUCONTROL"
+#    print_disco "\n\t\t\t\t  INSTALANDO PAVUCONTROL"
 #    arch-chroot /mnt /bin/bash -c "pacman -S --needed pavucontrol --noconfirm"
-#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO GALCULATOR"
+#    print_disco "\n\t\t\t\t  INSTALANDO GALCULATOR"
 #    arch-chroot /mnt /bin/bash -c "pacman -S --needed galculator --noconfirm"
-#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO DISCORD"
+#    print_disco "\n\t\t\t\t  INSTALANDO DISCORD"
 #    arch-chroot /mnt /bin/bash -c "pacman -S --needed discord --noconfirm"
-#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO ARC-GTK-THEME ARC-DARK"
+#    print_disco "\n\t\t\t\t  INSTALANDO ARC-GTK-THEME ARC-DARK"
 #    arch-chroot /mnt /bin/bash -c "pacman -S --needed arc-gtk-theme --noconfirm"
-#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO RANGER"
+#    print_disco "\n\t\t\t\t  INSTALANDO RANGER"
 #    arch-chroot /mnt /bin/bash -c "pacman -S --needed ranger --noconfirm"
-#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO ARK"
+#    print_disco "\n\t\t\t\t  INSTALANDO ARK"
 #    arch-chroot /mnt /bin/bash -c "pacman -S --needed ark --noconfirm"
 
   ;;
@@ -834,7 +843,7 @@ sleep 2
 clear
 
 echo -e '\033[1;95m' "\n\t\t\t CAMBIANDO PERMISOS PARA REPO EN HOME DEL DISCO"
-arch-chroot /mnt /bin/bash -c "chown -R $user:users /home/$user/wmarch/"
+arch-chroot /mnt /bin/bash -c "chown -R $user:$user /home/$user/wmarch/"
 sleep 2
 clear
 
@@ -848,7 +857,7 @@ clear
 #sleep 2
 #clear
 
-echo -e '\033[1;95m' "\n\t\t\t DESMONTANDO PARTICIONES"
+echo -e '\033[1;91m' "\n\t\t\t DESMONTANDO PARTICIONES"
 umount -R /mnt
 sleep 2
 clear

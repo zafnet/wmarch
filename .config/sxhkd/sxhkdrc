@@ -97,7 +97,7 @@ alt + Print
 
 #- Restaura Archivos De Carpeta Config
 super + Scroll_Lock
-	 ~/.local/restorconf.sh
+	 ~/.local/restorconf.sh ; dunstify -t 2000 -i "$HOME/.config/dunst/icons/actuale.png" "CONFIG RESTAURADA"
 
 #- Bloquear Pantalla
 super + Delete

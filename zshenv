@@ -40,7 +40,7 @@ export LC_ALL="es_AR.UTF8"
 # export LC_CTYPE=es_AR.UTF8
 
 export FZF_DEFAULT_OPTS=' --height 60% --border
- --color=fg:-1,bg:#2e2727,hl:#745ead
+ --color=fg:-1,bg:#282A36,hl:#745ead
  --color=fg+:#1bf57d,bg+:#525257,hl+:#069c42
  --color=info:#1589d6,prompt:#00d656,pointer:#af5fff
  --color=marker:#ff0000,spinner:#ffec5c,header:#87afaf'
