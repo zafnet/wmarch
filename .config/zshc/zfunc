@@ -1,15 +1,10 @@
-#-- FUNCION PARA PROMPT CUSTOM CON PROMPT_SUBST OPCION DE ZSH
+#-- PROMPT CUSTOM CON PROMPT_SUBST OPCION DE ZSH
 git_b() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ *\1/' }
 
-#-- COLORES PARA 'MAN'
-export MANPAGER="less -R --use-color -Dd+g -Du+b"
-export MANROFFOPT="-P -c"
-
-#-- FUNCION PARA VER LOS MANUALES DE MAN EN NVIM
+#-- VER LOS MANUALES DE MAN EN NVIM
 # man() { /usr/bin/man $* | nvim -c "set ft=man" -R -}
 
-#-- FUNCIONES FZF
-
+#-- FUNCIONES PARA FZF
 ir() {cd $(find / -type d 2> /dev/null | fzf -e --border --cycle --prompt="Ir a La Carpeta: ") && zle reset-prompt} ;zle -N ir;bindkey "^[i" ir
 
 op() {xdg-open $(find / -type f 2> /dev/null | fzf -e --border --cycle --prompt="Abrir: ") && zle reset-prompt} ;zle -N op;bindkey "^[o" op
@@ -37,6 +32,7 @@ if [ "x$pid" != "x" ]; then
 kill -${1:-9} $pid 
 fi && zle reset-prompt} ;zle -N fk; bindkey "^[k" fk
 
+#-- FUNCION PARA EXTRAER COMPRIMIDO
 ex() {
 [ $# -eq 0 ] && echo "no se paso un archivo a la funcion" && return 2
 	for file in $*; do

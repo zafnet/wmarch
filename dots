@@ -118,7 +118,7 @@ perm_comun_files() {
     
     # Permisos y Propiedad Para Archivos y Carpetas
     print_status "\n\t\t\t\t PERMISOS Y PROPIEDAD PARA CARPETAS COMUNES CREADAS"
-    chown -R $USER:users $USER_HOME
+    chown -R $USER:$USER $USER_HOME
     chmod -R 700 $LOCKER_DIR/locker.sh
     chmod -R 600 $LOCKER_DIR/locked.jpg
     # Permisos y Propiedad Carpeta .CONFIG
@@ -143,7 +143,6 @@ pass_root_file() {
     # Copia zshenv en /etc/zsh/
     cp -r $REPO_DIR/zshenv /etc/zsh/
     chmod 644 /etc/zsh/zshenv
-    chown root:root /etc/zsh/zshenv
     sleep 2
     clear
 }
@@ -170,129 +169,6 @@ add_dotfiles
 perm_comun_files
 pass_root_file
 poly_ins
-
-##########################################################################################
-#- INSTALO VIRTUALBOX Y ELIJO UN PAQUETE PARA PROPORCIONAR MÓDULOS AL SISTEMA ANFITRIÓN -#
-##########################################################################################
-
-#-- Este Es Para El KERNEL LINUX NORMAL e Instalo ESTE MODULO 
-
-# print_status "\n\t\t\t\t INSTALANDO VIRTUALBOX Y MODULO VIRTUALBOX-HOST-MODULES-ARCH"
-# pacman -S virtualbox virtualbox-host-modules-arch  --noconfirm
-# sleep 2
-# clear
-
-#-- Si Elejimos Este Es Para OTROS KERNELS YO USO ESTE AHORA 
-
-#print_status "\n\t\t\t\t INSTALANDO VIRTUALBOX Y VIRTUALBOX-HOST-DKMS"
-# pacman -S virtualbox virtualbox-host-dkms  --noconfirm
-#sleep 2
-#clear
-
-#############################################################
-#- CARGAR LOS MÓDULOS DEL KERNEL DE VIRTUALBOX MANUALMENTE -#
-#############################################################
-
-#-YA SEA QUE UTILICES EL MÓDULO virtualbox-host-modules-arch O virtualbox-host-dkms
-#-EL KERNEL USA systemd-modules-load.service PARA CARGAR LOS MÓDULOS DE VIRTUALBOX EN EL MOMENTO DEL ARRANQUE
-
-#-PARA CARGARLOS DE FORMA MANUAL UTILIZAMOS EL COMANDO modprobe Y EL MODULO vboxdrv
-#-LA EJECUCIÓN DE ESTA LINEA REQUIERE DE PRIVILEGIOS DE ADMINISTRADOR
-
-#print_status "\n\t\t\t\t CARGANDO MODULOS"
-#modprobe vboxdrv
-#sleep 2
-#clear
-
-#-ESTE MODULO vboxdrv ES OBLIGATORIO,AUNQUE PARA UN USO AVANZADO DE VIRTUALBOX
-#-PUEDE QUE LOS SIGUIENTES MÓDULOS TE SEAN DE UTILIDAD TAMBIÉN
-
-# 1 vboxnetadp y vboxnetflt: Son Necesarios Si Usas La Característica BRIDGED o CONEXIÓN DE RED Solo Para El Sistema Anfitrión
-
-# 2 vboxpci: Es Necesario Cuando Su Máquina Virtual Necesita Pasar a Través De Un Dispositivo PCI Del Sistema Anfitrión
-
-#- SI DESEAMOS,ES POSIBLE CARGAR TODOS EN UNA SOLA LINEA DE COMANDO ASÍ
-
-# print_status "\n\t\t\t\t\t CARGANDO MODULOS VBOXDRV VBOXNETADP VBOXNETFLT VBOXPCI"
-# modprobe vboxdrv vboxnetadp vboxnetflt vboxpci
-# sleep 2
-# clear
-
-########################################
-#- AÑADIR USUARIOS AL GRUPO vboxusers -#
-########################################
-
-#-Para Usar Los Puertos USB Del Equipo Anfitrión En Las Máquinas Virtuales,Es Necesario Agregar a
-#-EL O LOS USUARIOS DEL SISTEMA AL GRUPO vboxusers BASTARA CON EJECUTAR LA SIGUIENTE LINEA DE COMANDO
-
-#print_status "\n\t\t\t\t AÑADIR USUARIO AL GRUPO VBOXUSERS"
-#gpasswd -a $USER vboxusers
-#sleep 2
-#clear
-
-##########################################
-#- DESCARGANDO DISCO DE GUEST ADDITIONS -#
-##########################################
-
-#-TAMBIÉN SE RECOMIENDA INSTALAR EL PAQUETE virtualbox-guest-iso EN EL EQUIPO QUE EJECUTA VIRTUALBOX
-#-ESTE PAQUETE ACTUARÁ COMO UNA IMAGEN DE DISCO QUE SE PUEDE USAR PARA INSTALAR LOS COMPLEMENTOS («Guest Additions»)
-
-#print_status "\n\t\t\t\t DESCARGANDO DISCO DE GUEST ADDITIONS"
-#pacman -S virtualbox-guest-iso --noconfirm
-#sleep 2
-#clear
-
-#############################################################
-#- SI NO ME DEJA INICIAR UNA MAQUINA VIRTUAL DE VIRTUALBOX -#
-#############################################################
-
-#-DECIA EN EL CUADRO DE ERROR QUE TENIA QUE PONER EL COMANDO /sbin/vboxconfig CON sudo O SIENDO root
-#-PERO ES PORQUE NO ESTABAN FIRMADOS O CARGADOS LOS MODULOS PARA VIRTUALBOX
-#-ENTONCES ANTES TUVE QUE ESCRIBIR ESTO "sudo rcvboxdrv setup" Y ME DEJO
-
-#print_status "\n\t\t\t\t FIRMANDO O CARGANDO MODULOS PARA VIRTUALBOX AUTOMATICAMENTE"
-#rcvboxdrv setup
-#sleep 2
-
-#######################################################################################################################
-#- INSTALAR EL PAQUETE QEMU (Ó qemu-headless PARA LA VERSIÓN SIN GUI) Y LOS PAQUETES OPCIONALES PARA TUS NECESIDADES -#
-#######################################################################################################################
-
-#-1 qemu-arch-extra - SOPORTE EXTRA PARA ARQUITECTURAS
-#-2 qemu-block-gluster - SOPORTE PARA BLOQUE glusterfs
-#-3 qemu-block-iscsi - SOPORTE PARA BLOQUE iSCSI
-#-4 qemu-block-rbd - SOPORTE PARA BLOQUE RBD
-#-5 samba - SMB/ SOPORTE PARA SERVIDOR CIFS
-
-#################################
-#- PAQUETES PARA INSTALAR QEMU -#
-#################################
-
-#print_status "\n\t\t\t\t INSTALANDO QEMU-DESKTOP"
-# pacman --needed -S qemu-desktop edk2-ovmf dmidecode libvirt dnsmasq bridge-utils openbsd-netcat virt-viewer vde2 virt-manager --noconfirm
-
-############################################################
-#- AÑADIR USUARIOS A LOS GRUPOS "KVM" Y "LIBVIRT" EN QEMU -#
-############################################################
-
-#print_status "\n\t\t\t\t AÑADIENDO USUARIO A GRUPOS KVM Y LIBVIRT"
-
-# usermod -a -G kvm $USER
-#sleep 3
-# usermod -a -G libvirt $USER
-#sleep 3
-#clear
-
-#########################################
-#- PARA HABILITAR EL SERVICIO LIBVIRTD -#
-#########################################
-
-#print_status "\n\t\t\t\t HABILITANDO E INICIANDO SERVICIO LIBVIRTD"
-# systemctl enable libvirtd
-#sleep 3
-# systemctl start libvirtd
-#sleep 3
-#clear
 
 #print_status "*************************"
 #print_status "*** REINICIANDO EL PC ***"

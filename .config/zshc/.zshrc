@@ -71,3 +71,7 @@ bindkey -s '^[t' 'ts^M'
 
 #-- C+A+T LLAMA AL ALIAS TS SESION DE TMUX PIDIENDO UN NOMBRE
 bindkey -s '^[^T' 'ts '
+
+#-- VERIFICA QUE ESTE EN UN TERMINAL XTERM
+#-- E INICIA XTERM CON SESION DE TMUX CON NOMBRE 0
+#[[ $TERM == "xterm-256color" ]] && tmux new -s
