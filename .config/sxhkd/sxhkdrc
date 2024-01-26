@@ -29,8 +29,8 @@ alt + Scroll_Lock
 # APLICACIONES #
 #--------------#
 
-super + {c,a,v,m,t,d,x,b}
-      {xterm,pcmanfm,rofi -show drun,xterm -e cmus,telegram-desktop,discord,xed,xterm -e vifm}
+super + {c,a,v,d,x,b,o}
+      {xterm,pcmanfm,rofi -show drun,discord,xed,xterm -e vifm,obsidian}
 
 #- Navegadores
 super + {f,alt + f,g,alt + g}
