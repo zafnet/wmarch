@@ -27,13 +27,16 @@ fi
 autoload -Uz compinit
 compinit
 
-zstyle ':completion:*' format 'autocompletado %d'
+zstyle ':completion:*' format %F{green}autocompletado %d %f 
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' rehash true
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 #-- OPCIONES DE ZSH
+setopt interactivecomments
+setopt notify
 setopt rm_star_silent
 unsetopt MENU_COMPLETE
 unsetopt FLOW_CONTROL
