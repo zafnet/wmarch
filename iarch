@@ -27,7 +27,7 @@ echo "██╔══╝   ██╔██╗ ██║   ██║   ██║ 
 echo "███████╗██╔╝ ██╗██║   ██║   ╚██████╔╝███████║██║  ██║";
 echo "╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝ ╚══════╝╚═╝  ╚═╝";
 
-print_live "\n\t\t\t\t -- ACTUALIZANDO SISTEMA DE ISO --"
+print_live "\n\t\t\t\t ACTUALIZANDO SISTEMA DE ISO"
 sleep 2
 clear
 
@@ -99,7 +99,7 @@ echo ""
 read -s -p "Introduce la clave de Root/Administrador: " rootpasswd
 echo ""
 
-echo -e '\033[1;95m' "\n\t\t\t\t  ESCRITORIOS"
+print_live "\n\t\t\t\t  ESCRITORIOS"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
 echo ""
 echo "Ingresa una opción marcando el numero correcto:"
@@ -128,15 +128,14 @@ echo ''
 # echo ''
 
 #echo ""
-printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+#printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
 #echo ""
-echo ""
-echo "Para confirmar e instalar Arch Linux"
-echo ""
-echo "Presione ENTER o para salir presione CTRL + C"
-read line
+#echo "Para confirmar e instalar Arch Linux"
+#echo ""
+#echo "Presione ENTER o para salir presione CTRL + C"
+#read line
 
-print_live "\n\t\t\t\t -- DETECTANDO SI TENEMOS UEFI O BIOS LEGACY --"
+print_live "\n\t\t\t\t DETECTANDO SI TENEMOS UEFI O BIOS LEGACY"
 
 uefi=$( ls /sys/firmware/efi/ | grep -ic efivars )
 
@@ -279,7 +278,7 @@ fi
 print_live "\n\t\t\t  ACTUALIZACION DE LLAVES DEL LIVE CD"
 clear
 pacman -Syy
-pacman -Sy archlinux-keyring reflector python rsync glibc curl --noconfirm 
+pacman -Sy archlinux-keyring reflector python rsync glibc curl --needed --noconfirm 
 clear
 sleep 3
 clear
@@ -292,6 +291,9 @@ cat /etc/pacman.d/mirrorlist
 sleep 3
 clear
 
+print_live "\n\t\t\t DESCARGA SIMULTANEA PARA EL LIVE CD"
+
+sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 16/g' /etc/pacman.conf
 
 # Instalando Sistema base en nuestro Disco
 echo ""
@@ -301,17 +303,14 @@ pacstrap /mnt linux xz util-linux tar systemd-sysvcompat systemd shadow psmisc p
 # pacstrap /mnt base base-devel nano reflector python rsync curl wget zsh neovim git neofetch
 clear
 
-
 # Creando Archiv FSTAB para detectar al iniciar el sistema
-echo ""
 print_disco "\n\t\t\t CREANDO ARCHIVO FSTAB"
 echo ""
 echo ""
 genfstab -p /mnt >> /mnt/etc/fstab
 cat /mnt/etc/fstab
-sleep 4
+sleep 2
 clear
-
 
 # Configurando pacman para que tenga colores con el repo de MultiLib
 print_disco "\n\t\t\t ILOVECANDY Y REPO MULTILIB EN PACMAN.CONF"
@@ -325,9 +324,8 @@ sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 16/g' /mnt/etc/pacman.conf
 #sed -i 's/#\[multilib\]/\[multilib\]/g' /mnt/etc/pacman.conf
 clear
 
-
 #Hosts y Nombre de computador
-print_disco "\n\t\t\t  HOSTS Y NOMBRE DE COMPUTADOR"
+print_disco "\n\t\t\t  HOSTNAME Y HOSTS"
 #read -p "Elija El Nombre De Hostname: " hos
 hos=lenox
 echo "$hos" > /mnt/etc/hostname
@@ -340,7 +338,6 @@ echo ""
 sleep 2
 clear
 
-
 # Agregando usuario y claves con administrador
 print_disco "\n\t\t\t CREANDO USUARIO, ROOT Y SUS PASSWORDS"
 arch-chroot /mnt /bin/bash -c "(echo $rootpasswd ; echo $rootpasswd) | passwd root"
@@ -351,7 +348,7 @@ clear
 
 
 # Idioma del sistema
-print_disco "\n\t\t\t IDIOMA DEL SISTEMA "
+print_disco "\n\t\t\t IDIOMA DEL SISTEMA DEL DISCO FISICO"
 
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
 echo -e ""
@@ -371,7 +368,6 @@ arch-chroot /mnt /bin/bash -c "locale-gen"
 clear
 sleep 2
 
-
 # Zona horaria Automatica
 print_disco "\n\t\t\t ZONA HORARIA AUTOMATICA"
 zonahoraria="America/Argentina/Buenos_Aires"
@@ -382,7 +378,6 @@ arch-chroot /mnt /bin/bash -c "ntpd -qg"
 arch-chroot /mnt /bin/bash -c "hwclock --systohc"
 clear
 
-
 # Establecer un mapa de teclado para la terminal virtual
 print_disco "\n\t\t\t MAPA DE TECLADO PARA LA TERMINAL VIRTUAL"
 keymap="es"
@@ -392,7 +387,7 @@ sleep 2
 clear
 
 # Actualiza lista de mirrors en tu disco
-print_disco "\n\t\t\t ACTUALIZANDO LISTA DE MIRRORS EN TU DISCO"
+print_disco "\n\t\t\t ACTUALIZANDO LISTA DE MIRRORS EN TU DISCO FISICO"
 echo ""
 arch-chroot /mnt /bin/bash -c "reflector --verbose --latest 5 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
 clear
@@ -400,12 +395,10 @@ cat /mnt/etc/pacman.d/mirrorlist
 sleep 3
 clear
 
-
 # Instalación del kernel stable
 print_disco "\n\t\t\t INSTALACION DEL KERNEL ESTABLE"
-arch-chroot /mnt /bin/bash -c "pacman -S linux-firmware linux linux-headers mkinitcpio --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -S linux-firmware linux linux-headers mkinitcpio --needed --noconfirm"
 clear
-
 
 # Instalación de GRUB - Arranque
 print_disco "\n\t\t\t INSTALACION DE ARRANQUE GRUB"
@@ -413,7 +406,7 @@ if [ $uefi == 1 ]
 then
 sleep 2
 clear
-arch-chroot /mnt /bin/bash -c "pacman -S grub efibootmgr dosfstools --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -S grub efibootmgr dosfstools --noconfirm --needed"
 #arch-chroot /mnt /bin/bash -c "pacman -S grub efibootmgr os-prober dosfstools --noconfirm"
 echo '' 
 echo 'Instalando EFI System >> bootx64.efi' 
@@ -435,8 +428,8 @@ sleep 4
 else
 
 clear
-arch-chroot /mnt /bin/bash -c "pacman -S grub --noconfirm"
-#arch-chroot /mnt /bin/bash -c "pacman -S grub os-prober --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -S grub --noconfirm --needed"
+#arch-chroot /mnt /bin/bash -c "pacman -S grub os-prober --noconfirm --needed"
 echo '' 
 arch-chroot /mnt /bin/bash -c "grub-install --target=i386-pc $disco"
 
@@ -466,7 +459,7 @@ clear
 #echo -e '\033[1;92m' "\n\t\t\t INSTALANDO PROGRAMAS PARA WIFI"
 #arch-chroot /mnt /bin/bash -c "pacman -S iw wireless_tools wpa_supplicant dialog wireless-regdb --noconfirm"
 
-# Bluutuuu
+# bluetooth
 #echo -e '\033[1;92m' "\n\t\t\t INSTALANDO PROGRAMAS PARA BLUETOOTH"
 #arch-chroot /mnt /bin/bash -c "pacman -S bluez bluez-utils pulseaudio-bluetooth"
 
@@ -515,19 +508,26 @@ case $escritorio in
   1)
     echo "Escritorio : Terminal Virtual (TTY)"
 
-    print_disco "\n\t\t\t\t  INSTALANDO LSD"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed lsd --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO XORG"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock --noconfirm"
-    print_disco "\n\t\t\t INSTALANDO ZSH"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed zsh --noconfirm"   
-    print_disco "\n\t\t\t INSTALANDO COMPLEMENTO DE ZSH"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed zsh-completions zsh-syntax-highlighting zsh-autosuggestions --noconfirm"   
-    print_disco "\n\t\t\t\t  INSTALANDO BAT"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed bat --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO FZF"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed fzf --noconfirm"
+    sleep 3
+    clear
 
+packages=(
+    "zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions"
+    "xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock"
+    "bat"
+    "vifm"
+    "fzf"
+    "tmux"
+    "xclip"
+    "lsd"
+    "bat"
+    "pacman-contrib"
+)
+
+for package in "${packages[@]}"; do
+    print_disco "\n\t\t\t INSTALANDO $package"
+    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+done
     sleep 3
     clear
   ;;
@@ -537,82 +537,56 @@ case $escritorio in
 
     sleep 3
     clear
-    print_disco "\n\t\t\t INSTALANDO COMPLEMENTO DE ZSH"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed zsh-completions zsh-syntax-highlighting zsh-autosuggestions --noconfirm"   
-    print_disco "\n\t\t\t\t  INSTALANDO FLAMESHOT"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed flameshot --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO XORG"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO BAT"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed bat --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO VIFM"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed vifm --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO FZF"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed fzf --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO TMUX"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed tmux --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO XCLIP"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed xclip  --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO FILE-ROLLER"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed file-roller --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO LSD"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed lsd --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO ROFI"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed rofi --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO BSPWM"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed bspwm --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO SXHKD"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed sxhkd --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO GVFS"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed gvfs --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO PICOM"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed picom --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO PCMANFM"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed pcmanfm --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO LXAPPEARANCE"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed lxappearance --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO ZATHURA Y ZATHURA-PDF-POPPLER "
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed zathura zathura-pdf-poppler --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO I3LOCK"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed  i3lock  --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO XED"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed xed  --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO FEH"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed feh  --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO PACMAN-CONTRIB"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed pacman-contrib --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO IMAGEMAGICK"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed  imagemagick --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO LIBNOTIFY"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed libnotify --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO DUNST"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed dunst --noconfirm"
-    print_disco "\n\t\t\t\t  INSTALANDO PULSEAUDIO"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed pulseaudio --noconfirm"
-#    print_disco "\n\t\t\t\t  INSTALANDO NTFS-3G"
-#    arch-chroot /mnt /bin/bash -c "pacman -S --needed ntfs-3g --noconfirm"
-#    print_disco "\n\t\t\t\t  INSTALANDO BASH-COMPLETION"
-#    arch-chroot /mnt /bin/bash -c "pacman -S --needed bash-completion  --noconfirm"
-#    print_disco "\n\t\t\t\t  INSTALANDO MURRINE"
-#    arch-chroot /mnt /bin/bash -c "pacman -S --needed gtk-engine-murrine --noconfirm"
-#    print_disco "\n\t\t\t\t  INSTALANDO GNOME-THEMES-EXTRA"
-#    arch-chroot /mnt /bin/bash -c "pacman -S --needed gnome-themes-extra --noconfirm"
-#    print_disco "\n\t\t\t\t  INSTALANDO PAVUCONTROL"
-#    arch-chroot /mnt /bin/bash -c "pacman -S --needed pavucontrol --noconfirm"
-#    print_disco "\n\t\t\t\t  INSTALANDO GALCULATOR"
-#    arch-chroot /mnt /bin/bash -c "pacman -S --needed galculator --noconfirm"
-#    print_disco "\n\t\t\t\t  INSTALANDO DISCORD"
-#    arch-chroot /mnt /bin/bash -c "pacman -S --needed discord --noconfirm"
-#    print_disco "\n\t\t\t\t  INSTALANDO ARC-GTK-THEME ARC-DARK"
-#    arch-chroot /mnt /bin/bash -c "pacman -S --needed arc-gtk-theme --noconfirm"
-#    print_disco "\n\t\t\t\t  INSTALANDO RANGER"
-#    arch-chroot /mnt /bin/bash -c "pacman -S --needed ranger --noconfirm"
-#    print_disco "\n\t\t\t\t  INSTALANDO ARK"
-#    arch-chroot /mnt /bin/bash -c "pacman -S --needed ark --noconfirm"
-#    print_disco "\n\t\t\t\t  INSTALANDO CMUS"
-#    arch-chroot /mnt /bin/bash -c "pacman -S --needed cmus --noconfirm"
-#    print_disco "\n\t\t\t\t  INSTALANDO MPV"
-#    arch-chroot /mnt /bin/bash -c "pacman -S --needed mpv --noconfirm"
+
+packages=(
+    "firefox"
+    "zsh-completions zsh-syntax-highlighting zsh-autosuggestions"
+    "flameshot"
+    "xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock"
+    "bat"
+    "vifm"
+    "fzf"
+    "tmux"
+    "xclip"
+    "file-roller"
+    "lsd"
+    "rofi"
+    "bspwm"
+    "sxhkd"
+    "gvfs"
+    "picom"
+    "pcmanfm"
+    "lxappearance"
+    "zathura zathura-pdf-poppler"
+    "i3lock"
+    "xed"
+    "feh"
+    "pacman-contrib"
+    "imagemagick"
+    "libnotify"
+    "dunst"
+    "pulseaudio"
+)
+
+for package in "${packages[@]}"; do
+    print_disco "\n\t\t\t INSTALANDO $package"
+    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+done
+    clear
+
+# EXTRAS PARA AGREGAR SI QUIERO EN EL BUCLE
+# ntfs-3g 
+# bash-completion  
+# gtk-engine-murrine 
+# gnome-themes-extra 
+# pavucontrol 
+# galculator 
+# discord 
+# arc-gtk-theme 
+# ranger 
+# ark 
+# cmus 
+# mpv 
 
   ;;
 
@@ -620,214 +594,349 @@ case $escritorio in
     echo "Escritorio : Xfce4"
      sleep 3
 
+packages=(
     # INSTALA XORG
-	arch-chroot /mnt /bin/bash -c "pacman -S --needed xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock --noconfirm"
-
     # PROGRAMAS DE XFCE4
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed xfce4 xfce4-goodies network-manager-applet ffmpegthumbs ffmpegthumbnailer --noconfirm"
-	
 	# PROGRAMAS PARA LOGIN
-	arch-chroot /mnt /bin/bash -c "pacman -S --needed lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings light-locker accountsservice --noconfirm"
+
+    "firefox"
+    "xorg" 
+    "xorg-apps" 
+    "xorg-xinit" 
+    "xorg-twm"
+    "xterm" 
+    "xorg-xclock"
+    "flameshot"
+    "xorg"
+    "xorg-apps"
+    "xorg-xinit" 
+    "xorg-twm" 
+    "xterm" 
+    "xorg-xclock"
+    "xfce4" 
+    "xfce4-goodies" 
+    "network-manager-applet"
+    "ffmpegthumbs" 
+    "ffmpegthumbnailer"
+    "tmux"
+    "lightdm"
+    "lightdm-gtk-greeter" 
+    "lightdm-gtk-greeter-settings"
+    "light-locker" 
+    "accountsservice"
+)
+
+for package in "${packages[@]}"; do
+    print_disco "\n\t\t\t INSTALANDO $package"
+    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+done
 	arch-chroot /mnt /bin/bash -c "systemctl enable lightdm"
+    clear
 
 	# ESTABLECER FORMATO DE TECLADO DENTRO DE XORG
 	keymap="es"
 
-	touch /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-	echo -e 'Section "InputClass"' > /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-	echo -e 'Identifier "system-keyboard"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-	echo -e 'MatchIsKeyboard "on"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-	echo -e 'Option "XkbLayout" "latam"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-	echo -e 'EndSection' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-	echo ""
-	cat /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
+cat <<EOF > /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
+Section "InputClass"
+    Identifier "system-keyboard"
+    MatchIsKeyboard "on"
+    Option "XkbLayout" "latam"
+EndSection
+EOF
+    echo ""
+    cat /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
 	sleep 5
 	clear
 
-	# FORMATOS DE LECTURA DE TODOS LOS TIPOS DE DISCOS INCLUIDO ANDROID
-	#arch-chroot /mnt /bin/bash -c "pacman -S --needed android-file-transfer android-tools android-udev msmtp libmtp libcddb gvfs gvfs-afc gvfs-smb gvfs-gphoto2 gvfs-mtp gvfs-goa gvfs-nfs gvfs-google dosfstools jfsutils f2fs-tools btrfs-progs exfat-utils ntfs-3g reiserfsprogs udftools xfsprogs nilfs-utils polkit gpart mtools --noconfirm"
+#packages=(
+# FORMATOS DE LECTURA DE TODOS LOS TIPOS DE DISCOS INCLUIDO ANDROID
 
+#  "android-file-transfer" 
+#  "android-tools"
+#  "android-udev"
+#  "msmtp"
+#  "libmtp"
+#  "libcddb"
+#  "gvfs"
+#  "gvfs-afc"
+#  "gvfs-smb"
+#  "gvfs-gphoto2"
+#  "gvfs-mtp"
+#  "gvfs-goa"
+#  "gvfs-nfs"
+#  "gvfs-google"
+#  "dosfstools"
+#  "jfsutils"
+#  "f2fs-tools"
+#  "btrfs-progs"
+#  "exfat-utils" 
+#  "ntfs-3g"
+#  "reiserfsprogs "
+#  "udftools"
+#  "xfsprogs" 
+#  "nilfs-utils"
+#  "polkit" 
+#  "gpart"
+#   "mtools"
+#)
+
+#for package in "${packages[@]}"; do
+#    print_disco "\n\t\t\t INSTALANDO $package"
+#    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+#done
+	#clear
+
+packages=(
 	# AUDIO
-	arch-chroot /mnt /bin/bash -c "pacman -S --needed pulseaudio pavucontrol --noconfirm"
-	clear
-
+	# FIREFOX
 	# FONTS
-	arch-chroot /mnt /bin/bash -c "pacman -S --needed gnu-free-fonts ttf-hack ttf-inconsolata gnome-font-viewer --noconfirm"
+
+  "pulseaudio"
+  "pavucontrol"
+  "firefox" 
+  "gnu-free-fonts"
+  "ttf-hack"
+  "ttf-inconsolata"
+  "gnome-font-viewer"
+)
+
+for package in "${packages[@]}"; do
+    print_disco "\n\t\t\t INSTALANDO $package"
+    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+done
 	clear
 
-	# NAVEGADOR WEB
-	arch-chroot /mnt /bin/bash -c "pacman -S --needed firefox --noconfirm"
-	clear
   ;;
 
   4)
     echo "Escritorio : Kde Plasma"
     sleep 3
 
+packages=(
     # INSTALA XORG
-	arch-chroot /mnt /bin/bash -c "pacman -S --needed xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock --noconfirm"
-
     # PROGRAMAS PARA KDE PLASMA MINIMALISTA
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed plasma dolphin konsole discover sddm ffmpegthumbs ffmpegthumbnailer --noconfirm"
+
+  "xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock" 
+  "plasma dolphin konsole discover sddm ffmpegthumbs ffmpegthumbnailer"
+)
+
+for package in "${packages[@]}"; do
+    print_disco "\n\t\t\t INSTALANDO $package"
+    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+done
+
     arch-chroot /mnt /bin/bash -c "systemctl enable sddm"
 
     # ESTABLECER FORMATO DE TECLADO DENTRO DE XORG
 	keymap="es"
 
-	touch /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-	echo -e 'Section "InputClass"' > /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-	echo -e 'Identifier "system-keyboard"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-	echo -e 'MatchIsKeyboard "on"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-	echo -e 'Option "XkbLayout" "latam"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-	echo -e 'EndSection' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-	echo ""
-	cat /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
+cat <<EOF > /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
+Section "InputClass"
+    Identifier "system-keyboard"
+    MatchIsKeyboard "on"
+    Option "XkbLayout" "latam"
+EndSection
+EOF
+    echo ""
+    cat /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
 	sleep 5
 	clear
 
-	# FORMATOS DE LECTURA DE TODOS LOS TIPOS DE DISCOS INCLUIDO ANDROID
-	#arch-chroot /mnt /bin/bash -c "pacman -S --needed android-file-transfer android-tools android-udev msmtp libmtp libcddb gvfs gvfs-afc gvfs-smb gvfs-gphoto2 gvfs-mtp gvfs-goa gvfs-nfs gvfs-google dosfstools jfsutils f2fs-tools btrfs-progs exfat-utils ntfs-3g reiserfsprogs udftools xfsprogs nilfs-utils polkit gpart mtools --noconfirm"
+#packages=(
+# FORMATOS DE LECTURA DE TODOS LOS TIPOS DE DISCOS INCLUIDO ANDROID
 
+#  "android-file-transfer" 
+#  "android-tools"
+#  "android-udev"
+#  "msmtp"
+#  "libmtp"
+#  "libcddb"
+#  "gvfs"
+#  "gvfs-afc"
+#  "gvfs-smb"
+#  "gvfs-gphoto2"
+#  "gvfs-mtp"
+#  "gvfs-goa"
+#  "gvfs-nfs"
+#  "gvfs-google"
+#  "dosfstools"
+#  "jfsutils"
+#  "f2fs-tools"
+#  "btrfs-progs"
+#  "exfat-utils" 
+#  "ntfs-3g"
+#  "reiserfsprogs "
+#  "udftools"
+#  "xfsprogs" 
+#  "nilfs-utils"
+#  "polkit" 
+#  "gpart"
+#   "mtools"
+#)
+
+#for package in "${packages[@]}"; do
+#    print_disco "\n\t\t\t INSTALANDO $package"
+#    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+#done
+	#clear
+
+packages=(
 	# AUDIO
-	arch-chroot /mnt /bin/bash -c "pacman -S --needed pulseaudio pavucontrol --noconfirm"
-	clear
-
+	# FIREFOX
 	# FONTS
-	arch-chroot /mnt /bin/bash -c "pacman -S --needed gnu-free-fonts ttf-hack ttf-inconsolata gnome-font-viewer --noconfirm"
+
+  "pulseaudio"
+  "pavucontrol"
+  "firefox" 
+  "gnu-free-fonts"
+  "ttf-hack"
+  "ttf-inconsolata"
+  "gnome-font-viewer"
+)
+
+for package in "${packages[@]}"; do
+    print_disco "\n\t\t\t INSTALANDO $package"
+    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+done
 	clear
 
-
-	# NAVEGADOR WEB
-	arch-chroot /mnt /bin/bash -c "pacman -S --needed firefox --noconfirm"
-	clear
   ;;
 
   5)
     echo "Escritorio : Gnome 40"
     sleep 3
 
+packages=(
     # INSTALA XORG
-	arch-chroot /mnt /bin/bash -c "pacman -S --needed xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock --noconfirm"
-
     # PROGRAMAS PARA GNOME MINIMALISTA
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed gnome-shell gdm gnome-control-center gnome-tweaks gnome-terminal nautilus --noconfirm"
+
+  "xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock"
+  "pavucontrol"
+  "firefox" 
+  "gnome-shell gdm gnome-control-center gnome-tweaks gnome-terminal nautilus"
+  "ttf-hack"
+  "ttf-inconsolata"
+  "gnome-font-viewer"
+)
+
+for package in "${packages[@]}"; do
+    print_disco "\n\t\t\t INSTALANDO $package"
+    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+done
     arch-chroot /mnt /bin/bash -c "systemctl enable gdm"
 
     # ESTABLECER FORMATO DE TECLADO DENTRO DE XORG
 	keymap="es"
 
-	touch /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-	echo -e 'Section "InputClass"' > /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-	echo -e 'Identifier "system-keyboard"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-	echo -e 'MatchIsKeyboard "on"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-	echo -e 'Option "XkbLayout" "latam"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-	echo -e 'EndSection' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-	echo ""
-	cat /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
+cat <<EOF > /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
+Section "InputClass"
+    Identifier "system-keyboard"
+    MatchIsKeyboard "on"
+    Option "XkbLayout" "latam"
+EndSection
+EOF
+    echo ""
+    cat /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
 	sleep 5
 	clear
 
-	# FORMATOS DE LECTURA DE TODOS LOS TIPOS DE DISCOS INCLUIDO ANDROID
-	#arch-chroot /mnt /bin/bash -c "pacman -S --needed android-file-transfer android-tools android-udev msmtp libmtp libcddb gvfs gvfs-afc gvfs-smb gvfs-gphoto2 gvfs-mtp gvfs-goa gvfs-nfs gvfs-google dosfstools jfsutils f2fs-tools btrfs-progs exfat-utils ntfs-3g reiserfsprogs udftools xfsprogs nilfs-utils polkit gpart mtools --noconfirm"
+#packages=(
+# FORMATOS DE LECTURA DE TODOS LOS TIPOS DE DISCOS INCLUIDO ANDROID
 
+#  "android-file-transfer" 
+#  "android-tools"
+#  "android-udev"
+#  "msmtp"
+#  "libmtp"
+#  "libcddb"
+#  "gvfs"
+#  "gvfs-afc"
+#  "gvfs-smb"
+#  "gvfs-gphoto2"
+#  "gvfs-mtp"
+#  "gvfs-goa"
+#  "gvfs-nfs"
+#  "gvfs-google"
+#  "dosfstools"
+#  "jfsutils"
+#  "f2fs-tools"
+#  "btrfs-progs"
+#  "exfat-utils" 
+#  "ntfs-3g"
+#  "reiserfsprogs "
+#  "udftools"
+#  "xfsprogs" 
+#  "nilfs-utils"
+#  "polkit" 
+#  "gpart"
+#   "mtools"
+#)
+
+#for package in "${packages[@]}"; do
+#    print_disco "\n\t\t\t INSTALANDO $package"
+#    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+#done
+	#clear
+
+packages=(
 	# AUDIO
-	arch-chroot /mnt /bin/bash -c "pacman -S --needed pulseaudio pavucontrol --noconfirm"
-	clear
-
+	# FIREFOX
 	# FONTS
-	arch-chroot /mnt /bin/bash -c "pacman -S --needed gnu-free-fonts ttf-hack ttf-inconsolata gnome-font-viewer --noconfirm"
-	clear
 
-	# NAVEGADOR WEB
-	arch-chroot /mnt /bin/bash -c "pacman -S --needed firefox --noconfirm"
+  "pulseaudio"
+  "pavucontrol"
+  "firefox" 
+  "gnu-free-fonts"
+  "ttf-hack"
+  "ttf-inconsolata"
+  "gnome-font-viewer"
+)
+
+for package in "${packages[@]}"; do
+    print_disco "\n\t\t\t INSTALANDO $package"
+    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+done
 	clear
   ;;
  
   6)
     echo -e '\033[0;34m' "Escritorio : I3"
     sleep 3
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO i3-WM I3GAPS I3BLOCKS"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed i3-gaps i3-wm i3blocks i3lock --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t INSTALANDO COMPLEMENTO DE ZSH"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed zsh-completions zsh-syntax-highlighting zsh-autosuggestions --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO FLAMESHOT"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed flameshot --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO XORG"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO NTFS-3G"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed ntfs-3g --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO MURRINE"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed gtk-engine-murrine --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO GNOME-THEMES-EXTRA"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed gnome-themes-extra --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO BAT"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed bat --noconfirm"
-    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO FILE-ROLLER"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed file-roller --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO FZF"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed fzf --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO TMUX"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed tmux --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO XCLIP"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed xclip  --noconfirm"
-#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO CMUS"
-#    arch-chroot /mnt /bin/bash -c "pacman -S --needed cmus --noconfirm"
-#    echo -e '\033[1;97m' "\n\t\t\t\t  INSTALANDO MPV"
-#    arch-chroot /mnt /bin/bash -c "pacman -S --needed mpv --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO LSD"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed lsd --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO ROFI"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed rofi --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO BSPWM"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed bspwm --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO SXHKD"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed sxhkd --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO GVFS"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed gvfs --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO PICOM"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed picom --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO PCMANFM"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed pcmanfm --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO BASH-COMPLETION"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed bash-completion  --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO LXAPPEARANCE"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed lxappearance --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO ZATHURA"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed zathura --noconfirm"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed zathura-pdf-poppler  --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO I3LOCK"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed  i3lock  --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO XED"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed xed  --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO FEH"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed feh  --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO PACMAN-CONTRIB"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed pacman-contrib --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO IMAGEMAGICK"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed  imagemagick --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO LIBNOTIFY"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed libnotify --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO DUNST"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed dunst --noconfirm"
-    echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO PULSEAUDIO"
-    arch-chroot /mnt /bin/bash -c "pacman -S --needed pulseaudio --noconfirm"
-#   echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO ARK"
-#   arch-chroot /mnt /bin/bash -c "pacman -S --needed ark --noconfirm"
-#   echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO KITTY"
-#   arch-chroot /mnt /bin/bash -c "pacman -S --needed kitty --noconfirm"
-#   echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO RANGER"
-#   arch-chroot /mnt /bin/bash -c "pacman -S --needed ranger --noconfirm"
-#   echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO DISCORD"
-#   arch-chroot /mnt /bin/bash -c "pacman -S --needed discord --noconfirm"
-#   echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO ARC-GTK-THEME(ARC-DARK)"
-#   arch-chroot /mnt /bin/bash -c "pacman -S --needed arc-gtk-theme --noconfirm"
-#   echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO TELEGRAM"
-#   arch-chroot /mnt /bin/bash -c "pacman -S --needed telegram-desktop -y --noconfirm
-#   echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO TILIX"
-#   arch-chroot /mnt /bin/bash -c "pacman -S --needed tilix --noconfirm"
-#   echo -e '\033[0;34m' "\n\t\t\t\t  INSTALANDO XDG-USER-DIRS"
-#   arch-chroot /mnt /bin/bash -c "pacman -S --needed xdg-user-dirs --noconfirm"
-#   arch-chroot /mnt /bin/bash -c  "xdg-user-dirs-update"
+packages=(
+    "firefox"
+    "i3-gaps i3-wm i3blocks i3lock"
+    "zsh-completions zsh-syntax-highlighting zsh-autosuggestions"
+    "flameshot"
+    "xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock"
+    "bat"
+    "vifm"
+    "fzf"
+    "tmux"
+    "xclip"
+    "file-roller"
+    "lsd"
+    "rofi"
+    "bspwm"
+    "sxhkd"
+    "gvfs"
+    "picom"
+    "pcmanfm"
+    "lxappearance"
+    "zathura zathura-pdf-poppler"
+    "i3lock"
+    "xed"
+    "feh"
+    "pacman-contrib"
+    "imagemagick"
+    "libnotify"
+    "dunst"
+    "pulseaudio"
+)
+
+for package in "${packages[@]}"; do
+    print_disco "\n\t\t\t INSTALANDO $package"
+    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+done
     clear
 
   ;;
@@ -852,11 +961,6 @@ echo -e '\033[1;95m' "\n\t\t\t CAMBIANDO PERMISOS PARA DOTS EN DISCO"
 arch-chroot /mnt /bin/bash -c "chmod 744 /home/$user/wmarch/dots"
 sleep 2
 clear
-
-#echo -e '\033[1;95m' "\n\t\t\t LANZANDO DOTS EN DISCO"
-#arch-chroot /mnt /bin/bash -c "bash -c /home/$user/wmarch/dots"
-#sleep 2
-#clear
 
 echo -e '\033[1;91m' "\n\t\t\t DESMONTANDO PARTICIONES"
 umount -R /mnt

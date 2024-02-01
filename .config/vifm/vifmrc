@@ -5,7 +5,7 @@
 "  ╚████╔╝ ██║██║     ██║ ╚═╝ ██║
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝     ╚═╝
 
-" Configuracion General
+"-- CONFIGURACION GENERAL --"
 
 set vicmd=nvim
 set syscalls
@@ -39,51 +39,32 @@ only
 "set numberwidth=3
 "set fillchars=vborder:".",hborder:"-"
 
-" Colores De VIFM
+"-- COLORSCHEME --"
 
-"colorscheme juef-zenburn
+highlight Border cterm=none ctermfg=default ctermbg=235
 
-" highlight group cterm=attrs ctermfg=foreground_color ctermbg=background_color
+highlight Win cterm=none ctermfg=188 ctermbg=237
+highlight Directory cterm=none ctermfg=108 ctermbg=default
+highlight CurrLine cterm=none ctermfg=223 ctermbg=235
+highlight Selected cterm=none ctermfg=116 ctermbg=238
 
-highlight clear
+highlight StatusLine cterm=bold ctermfg=144 ctermbg=235
+highlight ErrorMsg cterm=bold ctermfg=115 ctermbg=default
+highlight WildMenu cterm=bold,reverse ctermfg=144 ctermbg=235
+highlight CmdLine cterm=none ctermfg=188 ctermbg=237
 
-highlight OtherWin  cterm=none ctermfg=default ctermbg=237
-highlight Win cterm=none ctermfg=default ctermbg=235
+highlight TopLine cterm=none ctermfg=108 ctermbg=235
+highlight TopLineSel cterm=bold ctermfg=186 ctermbg=236
 
-highlight Directory cterm=bold ctermfg=21 ctermbg=default
-highlight Link cterm=bold ctermfg=default ctermbg=default
-highlight BrokenLink cterm=bold ctermfg=red ctermbg=default
-highlight Socket cterm=bold ctermfg=magenta ctermbg=default
-highlight Device cterm=bold ctermfg=red ctermbg=default
-highlight Fifo cterm=bold ctermfg=cyan ctermbg=default
-highlight Executable cterm=bold ctermfg=40 ctermbg=default
+highlight Executable cterm=none ctermfg=172 ctermbg=default
+highlight Link cterm=none ctermfg=142 ctermbg=default
+highlight BrokenLink cterm=none ctermfg=174 ctermbg=default
 
-highlight Selected cterm=bold ctermfg=magenta ctermbg=default
-highlight CurrLine cterm=bold,reverse ctermfg=232 ctermbg=34
+highlight Device cterm=none ctermfg=228 ctermbg=default
+highlight Fifo cterm=none ctermfg=109 ctermbg=default
+highlight Socket cterm=none ctermfg=13 ctermbg=default
 
-highlight TopLine cterm=bold cterm=none ctermfg=red ctermbg=234
-highlight TopLineSel cterm=bold ctermfg=green ctermbg=default
-
-highlight StatusLine cterm=bold ctermfg=214 ctermbg=233
-highlight WildMenu cterm=bold ctermfg=232 ctermbg=35
-highlight CmdLine cterm=none ctermfg=green ctermbg=black
-
-"highlight OddLine cterm=bold ctermfg=red ctermbg=black
-
-highlight LineNr cterm=bold ctermfg=219 ctermbg=none
- 
-highlight OtherLine cterm=bold ctermfg=green ctermbg=233
-
-highlight ErrorMsg cterm=none ctermfg=red ctermbg=black
-highlight Border cterm=none ctermfg=black ctermbg=235
-highlight JobLine cterm=bold,reverse ctermfg=black ctermbg=white
-highlight SuggestBox cterm=bold ctermfg=default ctermbg=default
-highlight CmpMismatch cterm=bold ctermfg=white ctermbg=red
-
-highlight AuxWin cterm=bold,reverse,standout,italic ctermfg=9 ctermbg=default
-highlight TabLine cterm=none ctermfg=217 ctermbg=238
-highlight TabLineSel cterm=bold,reverse ctermfg=238 ctermbg=34
-
+"-- COLORES PARA STATUSBAR --"
 highlight User1 cterm=bold,reverse,standout,italic ctermfg=234 ctermbg=217
 highlight User2 cterm=bold,reverse,standout,italic ctermfg=234 ctermbg=219
 highlight User3 cterm=bold,reverse,standout,italic ctermfg=222 ctermbg=34
@@ -94,7 +75,7 @@ highlight User7 cterm=bold,underline,reverse,standout,italic ctermfg=default cte
 highlight User8 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
 highlight User9 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
 
-" Colores Para Extensiones
+"-- COLORES PARA EXTENSIONES --"
 
 highlight {.*rc,.zshenv} cterm=bold ctermbg=none ctermfg=204
 
@@ -107,6 +88,8 @@ highlight {*.conf,*.config,.*config} cterm=bold ctermbg=none ctermfg=216
 highlight {*.txt,*.text} cterm=bold ctermbg=none ctermfg=white
 
 highlight {*.iso} cterm=bold ctermbg=none ctermfg=197 
+
+"-- ICONOS PARAARHCIVOS O DIRECTORIO --"
 
 " Filetypes(Tipos de archivo)
 set classify=' :dir:/, :exe:, :reg:, :link:,? :?:, ::../::'
@@ -205,7 +188,7 @@ set classify+=' ::*.7z,,*.apk,,*.bz2,,*.cpio,,*.deb,,*.gz,,*.gzip,,*.gem,,*.l
              \  ::*.vim,,*.vimrc::,
              \  ::*.xul::'
 
-" Marcadores Se Activan Presionando Primero La '
+"-- MARCADORES SE ACTIVAN PRESIONANDO PRIMERO ' --"
 mark h ~/
 mark r /run/media/
 mark l ~/.local/share/
@@ -216,105 +199,111 @@ mark k ~/.config/sxhkd/
 mark b ~/.config/bspwm/
 mark p ~/.config/polybar/
 
-" Mapeo De Teclas
+"-- MAPEO DE TECLAS --"
 
-" Cambiar Wallpaper 
-nnoremap bg :!feh --bg-fill --randomize --no-fehbg %f<cr>
-
-" Editar Archivo
-nnoremap <C-e> :edit %f<cr>
-
-" Recargar vifm
-nnoremap s :restart<cr>
-
-" Edit vifmrc
-nnoremap m :write | edit $MYVIFMRC | restart<cr>
-
-" Crear Directorio
-nnoremap M :execute "mkdir " . input("Crea Directorio: ")<CR>
-
-" Crear Archivo
-nnoremap f :execute "touch " . input("Crea Archivo: ")<CR>
-
-" Remueve archivo o directorio
-nnoremap r :delete<CR>
-vnoremap r :delete<CR>
-
-" Lanzar Shell Sin Dir Actual Ocultando Vifm Volver a Vifm Con C-d
-nnoremap <C-t> :shell<cr>
-
-" Abrir Consola En El Directorio Actual En Otra Ventana
-nnoremap <A-t> :!xterm -e "cd %f; zsh" &<CR>
-
-" Marcar Varios Archivos o Carpetas
-nnoremap <space> t
-
-" Cerrar Pestaña
-nnoremap tx :tabclose<CR>
-
-" Abrir Pestaña
-nnoremap tn :tabnew<CR>
-
-" Guardar y Salir
+" GUARDAR Y SALIR
 map <C-s> :w<CR>
 map <A-x> :q!<CR>
 map <A-q> :q<CR>
 
-" Previsualizacion En Otro Panel
-nnoremap w :view<cr>
-vnoremap w :view<cr>gv
+" EDITAR ARCHIVO
+nnoremap <C-e> :edit %f<cr>
 
-" Renombrado Rapido de Archivo o Directorio
+" RENOMBRADO RAPIDO DE ARCHIVO O DIRECTORIO
 nnoremap R cw
 
-" Mover El Foco Entre Paneles
+" RECARGAR VIFM
+nnoremap s :restart<cr>
+
+" EDIT VIFMRC
+nnoremap m :write | edit $MYVIFMRC | restart<cr>
+
+" CREAR ARCHIVO
+nnoremap f :execute "touch " . input("Crea Archivo: ")<CR>
+
+" CREAR DIRECTORIO
+nnoremap M :execute "mkdir " . input("Crea Directorio: ")<CR>
+
+" REMUEVE ARCHIVO O DIRECTORIO
+nnoremap r :delete<CR>
+vnoremap r :delete<CR>
+
+" MOVER EL FOCO ENTRE PANELES
 noremap <C-k> <C-w>k
 noremap <C-j> <C-w>j
 noremap <C-h> <C-w>h
 noremap <C-l> <C-w>l
 
-" Mover Paneles De Lugar
+" MOVER PANELES DE LUGAR
 nnoremap <A-h> <C-w>x
 
-" Ajustar El Tamaño Del Panel De Izquierda a Derecha Verticalmente
+" MARCAR VARIOS ARCHIVOS O CARPETAS
+nnoremap <space> t
+
+" AJUSTAR EL TAMAÑO DEL PANEL DE IZQUIERDA A DERECHA VERTICALMENTE
 nnoremap - <C-w>5<
 nnoremap _ <C-w>5>
 
-" Mover Cursor a Otro Panel
+" MOVER CURSOR A OTRO PANEL
 nnoremap <silent> J <tab>j<tab>
 nnoremap <silent> K <tab>k<tab>
 
-" Abre Archivo txt text 
+" CERRAR PESTAÑA
+nnoremap tx :tabclose<CR>
+
+" ABRIR PESTAÑA
+nnoremap tn :tabnew<CR>
+
+" PREVISUALIZACION EN OTRO PANEL
+nnoremap w :view<cr>
+vnoremap w :view<cr>gv
+
+" CAMBIAR WALLPAPER 
+nnoremap bg :!feh --bg-fill --randomize --no-fehbg %f<cr>
+
+" LANZAR SHELL SIN DIR ACTUAL OCULTANDO VIFM VOLVER A VIFM CON C-D
+nnoremap <C-t> :shell<cr>
+
+" ABRIR CONSOLA EN EL DIRECTORIO ACTUAL EN OTRA VENTANA
+nnoremap <A-t> :!xterm -e "cd %f; zsh" &<CR>
+
+"-- COMANDOS PARA VIFM  --"
+
+command! diff nvim -d %f %F
+
+"-- ABRE TIPO DE ARCHIVO  --"
+
+" ABRE ARCHIVO TXT TEXT 
 filextype *.txt,*text nvim %"f
 
-" Pdf
+" PDF
 filetype *.pdf zathura %f %i &,
 fileviewer *.pdf zathura %f %i &,
 
-" Audio
+" AUDIO
 filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus mpv %f %i &,
 fileviewer *.mp3 mpv %f %i &,
 
-" Video
+" VIDEO
 filetype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,*.as[fx] mpv %f %i &,
 fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,*.as[fx] mpv %f %i &,
 
-" Web
+" WEB
 filetype *.html,*.htm open -a Google\ Chrome.app,
 fileviewer *.html,*.htm firefox
 
-" Object
+" OBJECT
 filetype *.o nm %f | less
 
-" Man page
+" MAN PAGE
 filetype *.[1-8] man ./%c
 fileviewer *.[1-8] man ./%c | col -b
 
-" Gifts
+" GIFTS
 filetype *.gif mpv %f %i &,
 fileviewer *.gif mpv %f %i &,
 
-" Imagen
+" IMAGEN
 filetype *.bmp,*.jpg,*.jpeg,*.png,*,*.xpm feh %f %i &
 fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm feh %f %i &,
 
@@ -330,33 +319,33 @@ filetype *.sha256 sha256sum -c %f %S
 " SHA512
 filetype *.sha512 sha512sum -c %f %S
 
-" Torrent
+" TORRENT
 filetype *.torrent open -a Transmission.app
 
-" Extract zip files
+" EXTRACT ZIP FILES
 filetype *.zip unzip -d extraido %f
 fileviewer *.zip,*.jar,*.war,*.ear zip -sf %c
 
-" Extract tar archives
+" EXTRACT TAR ARCHIVES
 filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz tar -xf %f
 fileviewer *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz tar -tf %f
 
-" Extract .bz2 archives
+" EXTRACT .BZ2 ARCHIVES
 filetype *.bz2 bzip2 -d %f
 
-" Extract .gz files
+" EXTRACT .GZ FILES
 filetype *.gz gunzip %f
 
-" Mount .dmg archives
+" MOUNT .DMG ARCHIVES
 filetype *.dmg open
 
-" Mount disk .img
-"filetype *.img :execute "mount -o loop %f /imagenmontada" | redraw!
+" MOUNT DISK .IMG
+"filetype *.img :execute "mount -o loop %f /montado" | redraw!
 
-" Open .pkg binaries
+" OPEN .PKG BINARIES
 filetype *.pkg open
 
-" Archivos De Oficina
+" ARCHIVOS DE OFICINA
 filetype *.odt,*.doc,*.docx libreoffice %f &,
 filetype *.ods,*.xls,*.xlsx libreoffice %f &,
 filextype *.odp,*.pptx,*.ppt,*.odg libreoffice %f &,
@@ -364,6 +353,6 @@ filextype *.odp,*.pptx,*.ppt,*.odg libreoffice %f &,
 "CSV
 filetype *.csv open -a Numbers.app
 
-" Codigo Fuente (with highlighting)
+" CODIGO FUENTE (WITH HIGHLIGHTING)
 fileviewer *.[ch],*.[ch]pp,*.html,*.css,*.less,*.js,*.java,*.go,*.py,*.coffee,*.dart,*.lua,*.md,*.rb,*.ts,*.php,*.cs,*.vim,*.conf,*.swift,*.json,*.xml highlight -O xterm256 -s dante %c --force
 fileviewer Makefile,Makefile.* highlight -O xterm256 -s dante --syntax make %cf
