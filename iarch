@@ -64,7 +64,8 @@ fi
 
 clear
 
-idioma="es_AR.UTF8"
+idioma="es_AR.UTF-8"
+# idioma="es_AR.UTF8"
 clear
 echo "$idioma UTF-8" > /etc/locale.gen
 locale-gen
@@ -526,7 +527,7 @@ packages=(
 
 for package in "${packages[@]}"; do
     print_disco "\n\t\t\t INSTALANDO $package"
-    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+    arch-chroot /mnt /bin/bash -c "pacman -S --needed --noconfirm $package"
 done
     sleep 3
     clear
@@ -570,7 +571,7 @@ packages=(
 
 for package in "${packages[@]}"; do
     print_disco "\n\t\t\t INSTALANDO $package"
-    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+    arch-chroot /mnt /bin/bash -c "pacman -S --needed --noconfirm $package"
 done
     clear
 
@@ -628,7 +629,7 @@ packages=(
 
 for package in "${packages[@]}"; do
     print_disco "\n\t\t\t INSTALANDO $package"
-    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+    arch-chroot /mnt /bin/bash -c "pacman -S --needed --noconfirm $package"
 done
 	arch-chroot /mnt /bin/bash -c "systemctl enable lightdm"
     clear
@@ -682,7 +683,7 @@ EOF
 
 #for package in "${packages[@]}"; do
 #    print_disco "\n\t\t\t INSTALANDO $package"
-#    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+#    arch-chroot /mnt /bin/bash -c "pacman -S --needed --noconfirm $package"
 #done
 	#clear
 
@@ -702,7 +703,7 @@ packages=(
 
 for package in "${packages[@]}"; do
     print_disco "\n\t\t\t INSTALANDO $package"
-    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+    arch-chroot /mnt /bin/bash -c "pacman -S --needed --noconfirm $package"
 done
 	clear
 
@@ -722,7 +723,7 @@ packages=(
 
 for package in "${packages[@]}"; do
     print_disco "\n\t\t\t INSTALANDO $package"
-    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+    arch-chroot /mnt /bin/bash -c "pacman -S --needed --noconfirm $package"
 done
 
     arch-chroot /mnt /bin/bash -c "systemctl enable sddm"
@@ -776,7 +777,7 @@ EOF
 
 #for package in "${packages[@]}"; do
 #    print_disco "\n\t\t\t INSTALANDO $package"
-#    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+#    arch-chroot /mnt /bin/bash -c "pacman -S --needed --noconfirm $package"
 #done
 	#clear
 
@@ -796,7 +797,7 @@ packages=(
 
 for package in "${packages[@]}"; do
     print_disco "\n\t\t\t INSTALANDO $package"
-    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+    arch-chroot /mnt /bin/bash -c "pacman -S --needed --noconfirm $package"
 done
 	clear
 
@@ -821,7 +822,7 @@ packages=(
 
 for package in "${packages[@]}"; do
     print_disco "\n\t\t\t INSTALANDO $package"
-    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+    arch-chroot /mnt /bin/bash -c "pacman -S --needed --noconfirm $package"
 done
     arch-chroot /mnt /bin/bash -c "systemctl enable gdm"
 
@@ -874,7 +875,7 @@ EOF
 
 #for package in "${packages[@]}"; do
 #    print_disco "\n\t\t\t INSTALANDO $package"
-#    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+#    arch-chroot /mnt /bin/bash -c "pacman -S --needed --noconfirm $package"
 #done
 	#clear
 
@@ -894,7 +895,7 @@ packages=(
 
 for package in "${packages[@]}"; do
     print_disco "\n\t\t\t INSTALANDO $package"
-    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+    arch-chroot /mnt /bin/bash -c "pacman -S --needed --noconfirm $package"
 done
 	clear
   ;;
@@ -935,7 +936,7 @@ packages=(
 
 for package in "${packages[@]}"; do
     print_disco "\n\t\t\t INSTALANDO $package"
-    arch-chroot /mnt /bin/bash -c "pacman -Sy --needed --noconfirm $package"
+    arch-chroot /mnt /bin/bash -c "pacman -S --needed --noconfirm $package"
 done
     clear
 

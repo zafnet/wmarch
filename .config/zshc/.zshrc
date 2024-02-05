@@ -17,10 +17,10 @@ setopt PROMPT_SUBST
 
 #-- VERIFICANDO Y CARGANDO PROMPT SEGUN EL USUARIO
 if [[ "$(id -u)" -eq "0" ]]; then
-PROMPT='%F{#f41818}%n%f%F{#ffffff} %f%F{red}%m%f %F{#f4d618}en -> %f%F{#f41897}%~%f%F{#18b1f4}$(git_b)%f %F{#f41818}#%f '
+PROMPT='%B%F{#f41818}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#ffffff}%~%f%F{#18b1f4}$(git_b)%f %F{#f41818}#%f%b '
 
 elif [[ "$(id -u)" -eq "1000" ]]; then
-PROMPT='%F{#91fe36}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %F{#ff03f0}en -> %f%F{#fe820e}%~%f%F{#18b1f4}$(git_b)%f %F{#039915}$%f '
+PROMPT='%B%F{#91fe36}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#fe820e}%~%f%F{#18b1f4}$(git_b)%f %F{#039915}$%f%b '
 fi
 
 #-- AUTOCOMPLETADO MODERNO DE ZSH
