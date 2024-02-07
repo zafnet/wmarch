@@ -48,12 +48,6 @@ function print_status {
     echo -e "\033[1;92m$1\033[0m"
 }
 
-#ins_browser() {
-#    print_status "\n\t\t\t\t INSTALANDO $BROWSE"
-#    pacman -S --needed firefox --noconfirm
-#    sleep 2
-#    clear
-#}
 
 ins_logman() {
     print_status "\n\t\t\t\t INSTALANDO $LOG_MANA"
@@ -166,7 +160,6 @@ add_dotfiles
 perm_comun_files
 pass_root_file
 poly_ins
-#ins_browser
 
 #print_status "*************************"
 #print_status "*** REINICIANDO EL PC ***"
