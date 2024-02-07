@@ -917,8 +917,6 @@ packages=(
     "file-roller"
     "lsd"
     "rofi"
-    "bspwm"
-    "sxhkd"
     "gvfs"
     "picom"
     "pcmanfm"
