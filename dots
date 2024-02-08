@@ -97,6 +97,7 @@ add_dotfiles() {
     cp -r $REPO_DIR/appdesk/. $APPLICATIONS_DIR/
     cp -r $REPO_DIR/fonts/. $FONT_DIR/
     cp -r $REPO_DIR/gtk-3.0 $USER_HOME/.config/
+    cp -r $REPO_DIR/xed $USER_HOME/.config/
     cp -r $REPO_DIR/fstab $FSTAB_FILE/
     cp -r $REPO_DIR/restorconf.sh $USER_HOME/.local/
    #cp -r $REPO_DIR/.ratpoisonrc $USER_HOME/
