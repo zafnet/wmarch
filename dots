@@ -87,6 +87,8 @@ add_dotfiles() {
     print_status "\n\t\t\t\t AGREGANDO DOTFILES"
     mkdir -pv $WALL_DIR
     cp -r $REPO_DIR/usuario/. $USER_HOME/
+    cp -r $REPO_DIR/.ssh $USER_HOME/
+    cp -r $REPO_DIR/.gitconfig $USER_HOME/
     cp -r $REPO_DIR/00-keyboard.conf /etc/X11/xorg.conf.d/
     cp -r $REPO_DIR/dake.xml /usr/share/gtksourceview-4/styles/
     cp -r $REPO_DIR/keyboard /etc/default/
