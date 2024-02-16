@@ -544,6 +544,8 @@ packages=(
     "zsh-completions zsh-syntax-highlighting zsh-autosuggestions"
     "flameshot"
     "xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock"
+    "android-file-transfer android-tools android-udev" 
+    "gvfs-gphoto2 gvfs-mtp mtpfs"
     "bat"
     "vifm"
     "fzf"
@@ -585,6 +587,7 @@ done
 # discord 
 # arc-gtk-theme 
 # ranger 
+# libreoffice-fresh libreoffice-fresh-es
 # ark 
 # cmus 
 # mpv 
