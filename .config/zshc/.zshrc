@@ -5,6 +5,9 @@
 #  ███████╗██████╔╝██║░░██║██║░░██║╚█████╔╝
 #  ╚══════╝╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░
 
+#-- EXPORTANDO DIR AL PATH
+export PATH="$PATH:$HOME/.local/bin/"
+
 #-- CARGANDO PLUGINS ZSH
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
