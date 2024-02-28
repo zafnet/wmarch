@@ -53,7 +53,7 @@ alias scr='sudo systemctl reload $1'
 alias scre='sudo systemctl restart $1'
 
 #-- Tmux
-alias ts='tmux new -s'
+alias ts='tmux new -s 0'
 alias tl='tmux ls'
 alias ta='tmux a -t'
 alias tk='tmux kill-session -t'

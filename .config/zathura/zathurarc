@@ -51,7 +51,7 @@ set incremental-search
 map i toggle_index
 map u scroll half-up
 map d scroll half-down
-map D toggle_page_mode
+map D set "first-page-column 1:1"
 map r reload
 map R rotate
 map K zoom in
