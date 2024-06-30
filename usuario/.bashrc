@@ -54,27 +54,41 @@ fi
 
 #-- Funciones
 
-extra () {
-	for archive in $*; do
-		if [ -f $archive ] ; then
-			case $archive in
-				*.tar.bz2)   tar xvjf $archive    ;;
-				*.tar.gz)    tar xvzf $archive    ;;
-				*.bz2)       bunzip2 $archive     ;;
-				*.rar)       rar x $archive       ;;
-				*.gz)        gunzip $archive      ;;
-				*.tar)       tar xvf $archive     ;;
-				*.tbz2)      tar xvjf $archive    ;;
-				*.tgz)       tar xvzf $archive    ;;
-				*.zip)       unzip $archive       ;;
-				*.Z)         uncompress $archive  ;;
-				*.7z)        7z x $archive        ;;
-				*)           echo "NO SE COMO EXTRAER '$archive'..." ;;
-			esac
-		else
-			echo "'$archive' NO ES UN ARCHIVO VALIDO!"
-		fi
-	done
+function des () {
+ if [ -z "$1" ]; then
+    # Muestra uso si no se les proporciona parametros
+    echo "Uso: des <ruta/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+    echo "       extract <path/file_name_1.ext> [ruta/file_name_2.ext] [ruta/file_name_3.ext]"
+ else
+    for n in "$@"
+    do
+      if [ -f "$n" ] ; then
+          case "${n%,}" in
+            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
+                         tar xvf "$n"       ;;
+            *.lzma)      unlzma ./"$n"      ;;
+            *.bz2)       bunzip2 ./"$n"     ;;
+            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
+            *.gz)        gunzip ./"$n"      ;;
+            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
+            *.z)         uncompress ./"$n"  ;;
+            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
+                         7z x ./"$n"        ;;
+            *.xz)        unxz ./"$n"        ;;
+            *.exe)       cabextract ./"$n"  ;;
+            *.cpio)      cpio -id < ./"$n"  ;;
+            *.cba|*.ace)      unace x ./"$n"      ;;
+            *)
+                         echo "des: '$n' - metodo desconocido para archivo"
+                         return 1
+                         ;;
+          esac
+      else
+          echo "'$n' -  archivo no existe"
+          return 1
+      fi
+    done
+fi
 }
 
 #-- Colores De 'MAN'

@@ -5,7 +5,7 @@
 # ███████╗███████║██║  ██║███████╗██║ ╚████║ ╚████╔╝ 
 # ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝  ╚═══╝  
 
-#-- CARGAR .ZSHRC DESDE DESDE OTRO DIRECTORIO 
+#-- CARGAR .ZSHRC DESDE OTRO DIRECTORIO 
 ZDOTDIR="$HOME/.config/zshc/"
 
 . $ZDOTDIR

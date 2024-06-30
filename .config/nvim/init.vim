@@ -36,21 +36,21 @@ let g:currentmode={
        \}
  
 " Resaltado De Colores Para Los Modos En La Linea De Estado 
-hi NormalColor   ctermbg=16   ctermfg=34     cterm=bold
-hi InsertColor   ctermbg=16   ctermfg=11     cterm=bold
-hi VisualColor   ctermbg=16   ctermfg=208    cterm=bold
-hi VlColor       ctermbg=202  ctermfg=16     cterm=bold
-hi VbColor       ctermbg=197  ctermfg=16     cterm=bold
-hi ReplaceColor  ctermbg=16   ctermfg=201    cterm=bold
-hi TerminalColor ctermbg=16   ctermfg=197    cterm=bold
-hi CommandColor  ctermbg=16   ctermfg=70     cterm=bold
+hi NormalColor   guibg=#000000   guifg=#00af00     cterm=bold
+hi InsertColor   guibg=#000000   guifg=#ffff00     cterm=bold
+hi VisualColor   guibg=#000000   guifg=#ff8700    cterm=bold
+hi VlColor       guibg=#ff5f00  guifg=#000000     cterm=bold
+hi VbColor       guibg=#ff005f  guifg=#000000     cterm=bold
+hi ReplaceColor  guibg=#000000   guifg=#ff00ff    cterm=bold
+hi TerminalColor guibg=#000000   guifg=#ff005f    cterm=bold
+hi CommandColor  guibg=#000000   guifg=#5faf00     cterm=bold
 
 " Resaltado De Colores Para La Linea De Estado Derecha
-"highlight WinSeparator ctermbg=none ctermfg=240
-hi rutadarch    ctermbg=8  ctermfg=41
-hi ln           ctermbg=8  ctermfg=34
-hi co           ctermbg=8  ctermfg=15
-hi buf          ctermbg=8  ctermfg=214
+"highlight WinSeparator guibg=none guifg=240
+hi rutadarch    guibg=#626262  guifg=#00d75f
+hi ln           guibg=#626262  guifg=#00af00
+hi co           guibg=#626262  guifg=#ffffff
+hi buf          guibg=#626262  guifg=#ffaf00
 
 set statusline=
 set statusline+=%#NormalColor#%{(g:currentmode[mode()]=='N')?'\ \ NORMAL\ ':''}
