@@ -10,7 +10,6 @@ alias lo='lsd -lda --group-dirs=first .*/'
 alias ls='ls --group-directories-first --color=always -lhFaH'
 alias tree='lsd --tree'
 alias ba='bat'
-alias ra='ranger'
 alias vf='vifm'
 alias to='touch'
 alias ins="$PACM -S"
@@ -39,8 +38,6 @@ alias bh="echo " " > $HOME/.config/bashc/.bash_history && $BORR 'bash_history Bo
 alias bu='sudo find / 2>/dev/null -iname $1'
 alias ssk='ssh-keygen -t ed25519 -f ~/.ssh/git-key'
 alias ip='ip -c'
-# alias cp='cp -ur $(notify-send -i "$HOME/.config/dunst/icons/copia.png" "Copia Terminada")'
-# alias cv='cp -urv $(notify-send -i "$HOME/.config/dunst/icons/copia.png" "Copia Terminada")'
 
 #-- Systemctl
 alias sc='sudo systemctl'
@@ -64,7 +61,6 @@ alias tp='tmux neww -n'
 alias nv='nvim'
 alias nz='nvim /home/$USER/.config/zshc/.zshrc'
 alias nb='nvim /home/$USER/.bashrc'
-alias ns='nvim /home/$USER/.config/sxhkd/sxhkdrc'
 alias nbh='nvim /home/$USER/.config/bashc/.bash_history'
 alias nzh='nvim ~/.config/zshc/.zsh_history'
 

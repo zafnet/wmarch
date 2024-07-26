@@ -1,6 +1,3 @@
-#-- PROMPT CUSTOM CON PROMPT_SUBST OPCION DE ZSH
-git_b() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ *\1/' }
-
 #-- VER LOS MANUALES DE MAN EN NVIM
 # man() { /usr/bin/man $* | nvim -c "set ft=man" -R -}
 

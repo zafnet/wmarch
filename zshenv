@@ -18,8 +18,8 @@ fi
 
 #-- TAMAÑO UBICACION Y GUARDADO DEL HISTORIAL
 HISTFILE="$HOME/.config/zshc/.zsh_history"
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=5000
+SAVEHIST=5000
 
 export BROWSER=firefox
 
@@ -27,10 +27,6 @@ export LC_ALL="es_AR.UTF8"
 
 #-- OPCIONES PARA PCMANFM
 export GTK2_RC_FILES="$HOME/.config/pcmanfm/.gtkrc-2.0"
-
-#-- OPCIONES PARA RANGER
-export RANGER_LOAD_DEFAULT_RC= false
-export RANGER_CONFIG_DIR="$HOME/.config/ranger/rc.conf"
 
 #-- COLORES PARA 'MAN'
 export MANPAGER="less -R --use-color -Dd+g -Du+b"

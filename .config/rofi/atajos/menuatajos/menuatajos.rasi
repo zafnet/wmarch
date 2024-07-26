@@ -13,7 +13,7 @@
 
 window {
     width:21%;
-    height:64%;
+    height:42%;
     padding:1%;
     border:2px;
     border-color: #fa771c;

@@ -18,6 +18,6 @@ case $selected in
         bspc quit
         ;;
     "  Lock Screen")
-       ~/.local/share/i3lock/locker.sh
+       swaylock -i ~/.wall/chica-katana.jpg
         ;;
 esac
