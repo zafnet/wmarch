@@ -15,9 +15,9 @@ case $selected in
         systemctl suspend
         ;;
     "  Cerrar sesión")
-        bspc quit
+        hyprctl dispatch exit 1
         ;;
     "  Lock Screen")
-       swaylock -i ~/.wall/chica-katana.jpg
+       hyprlock
         ;;
 esac

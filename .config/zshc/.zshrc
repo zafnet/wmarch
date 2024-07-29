@@ -5,39 +5,19 @@
 #  ███████╗██████╔╝██║░░██║██║░░██║╚█████╔╝
 #  ╚══════╝╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░
 
-#-- EXPORTANDO DIR AL PATH
+#-- Exportando dir al path
 export PATH="$PATH:$HOME/.local/bin/"
 
-#-- CARGANDO PLUGINS ZSH
+#-- Cargando plugins zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-#-- CARGANDO ALIAS FUNCIONES Y EXPORTS DE ZSH
+#-- Cargando alias funciones y exports de zsh
 source ~/.config/zshc/zalias
 source ~/.config/zshc/zfunc
 
+#-- Opciones de zsh
 setopt PROMPT_SUBST
-
-#-- VERIFICANDO Y CARGANDO PROMPT SEGUN EL USUARIO
-if [[ "$(id -u)" -eq "0" ]]; then
-PROMPT='%B%F{#f41818}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#ffffff}%~%f%F{#18b1f4}$(git_b)%f %F{#f41818}#%f%b '
-
-elif [[ "$(id -u)" -eq "1000" ]]; then
-PROMPT='%B%F{#91fe36}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#fe820e}%~%f%F{#18b1f4}$(git_b)%f %F{#039915}$%f%b '
-fi
-
-#-- AUTOCOMPLETADO MODERNO DE ZSH
-autoload -Uz compinit
-compinit
-
-zstyle ':completion:*' format %F{green}autocompletado %d %f 
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' rehash true
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-#-- OPCIONES DE ZSH
 setopt interactivecomments
 setopt notify
 setopt rm_star_silent
@@ -66,18 +46,34 @@ setopt completealiases
 #setopt INC_APPEND_HISTORY
 #setopt HIST_EXPIRE_DUPS_FIRST
 
-#-- CTRL + FLECHAS Y SUPRIMIR EN ZSH
+#-- Func custom git para prompt prompt_subst zsh
+git_b() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ *\1/' }
+
+#-- Cargando prompt segun el usuario
+if [[ "$(id -u)" -eq "0" ]]; then
+PROMPT='%B%F{#f41818}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#ffffff}%~%f%F{#18b1f4}$(git_b)%f %F{#f41818}#%f%b '
+
+elif [[ "$(id -u)" -eq "1000" ]]; then
+PROMPT='%B%F{#91fe36}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#fe820e}%~%f%F{#18b1f4}$(git_b)%f %F{#039915}$%f%b '
+fi
+
+#-- Autocompletado moderno de zsh
+autoload -Uz compinit
+compinit
+
+zstyle ':completion:*' format %F{green}autocompletado %d %f 
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' rehash true
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+#-- Ctrl + Flechas y supr en zsh
 bindkey ";5D" backward-word
 bindkey ";5C" forward-word
 bindkey ";5"  delete-word
 bindkey "\e[3~"   delete-char
 
-#-- A+t LLAMA AL ALIAS TS SESION DE TMUX SIN PEDIR UN NOMBRE
-bindkey -s '^[t' 'ts^M'
-
-#-- C+A+T LLAMA AL ALIAS TNS SESION DE TMUX PIDIENDO UN NOMBRE
-bindkey -s '^[^T' 'tns '
-
-#-- VERIFICA QUE ESTE EN UN TERMINAL XTERM
-#-- E INICIA XTERM CON SESION DE TMUX CON NOMBRE 0
-#[[ $TERM == "xterm-256color" ]] && tmux new -s
+bindkey -s '^[t' 'ts^M' #-- A+t LLama al alias ts sesion de tmux sin pedir un nombre
+                         
+bindkey -s '^[^T' 'tns ' #-- C+A+T LLama al alias tns sesion de tmux pidiendo un nombre
