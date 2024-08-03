@@ -262,7 +262,7 @@ sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 16/g' /etc/pacman.conf
 echo ""
 print_disco "\n\t\t\t INSTALANDO SISTEMA BASE EN NUESTRO DISCO"
 echo ""
-pacstrap /mnt base base-devel xz linux-lts linux-firmware linux-headers util-linux tar systemd-sysvcompat systemd shadow psmisc procps-ng pciutils licenses iputils iproute2 glibc gcc-libs filesystem coreutils bzip2 bash reflector python rsync  
+pacstrap /mnt base man-db base-devel xz linux-lts linux-firmware linux-headers util-linux tar systemd-sysvcompat systemd shadow psmisc procps-ng pciutils licenses iputils iproute2 glibc gcc-libs filesystem coreutils bzip2 bash reflector python rsync  
 clear
 print_disco "\n\t\t\t CREANDO ARCHIVO FSTAB"
 echo ""
