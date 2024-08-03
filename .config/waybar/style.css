@@ -6,8 +6,6 @@
 	min-height: 10px;
 }
 
-window {}
-
 window#waybar {
 	background-color: #1A1B26;
     border-radius: 15px;
@@ -23,7 +21,7 @@ window#waybar.hidden {
 	padding-right: 10px;
 	border-radius: 10px;
 	transition: none;
-    color: transparent;
+    color: #ffffff;
 	background: transparent;
 }
 
@@ -62,20 +60,6 @@ window#waybar.hidden {
 	color: #e0af68;
 	background: transparent;
 	font-size: 4px;
-}
-
-#network {
-	margin-top: 6px;
-	margin-left: 8px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 6px;
-	border-radius: 18px;
-    font-size: 14px;
-    font-weight:bold;
-	transition: none;
-	color: #e0af68;
-	background: #222330;
 }
 
 #pulseaudio {
@@ -166,21 +150,6 @@ window#waybar.hidden {
 	background: #222330;
 }
 
-#disk {	
-    margin-top: 6px;
-	margin-left: 8px;
-	padding-left: 10px;
-	margin-bottom: 6px;
-	padding-right: 10px;
-	border-radius: 18px;
-    font-size: 14px;
-    font-weight: bold;
-	transition: none;
-	color: #F1F1F1;
-	background: #222330;
-
-}
-
 #cpu {
 	margin-top: 6px;
 	margin-left: 8px;
@@ -205,17 +174,6 @@ window#waybar.hidden {
 	transition: none;
 	color: #B5E8E0;
 	background: #161320;
-}
-
-#custom-launcher {
-	font-size: 18px;
-	margin-left: 8px;
-	padding-left: 10px;
-	padding-right: 5px;
-	border-radius: 10px;
-	transition: none;
-    color: #7dcfff;
-    background: transparent;
 }
 
 #custom-power {
@@ -243,16 +201,4 @@ window#waybar.hidden {
 	transition: none;
 	color: #f7768e;
 	background: #222330;
-}
-
-#custom-media {
-	margin-top: 6px;
-	margin-left: 8px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 0px;
-	border-radius: 10px;
-	transition: none;
-	color: #161320;
-	background: #F2CDCD;
 }

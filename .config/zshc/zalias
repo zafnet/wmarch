@@ -69,7 +69,7 @@ alias gs='git status'
 alias ga='git add .'
 alias gc='git clone'
 gm() {git commit -m "$*"}
-alias gp='git push origin main'
+alias gp='git push origin $1'
 alias gb='git branch'
 alias gk='git checkout'
 alias gu='git pull origin'

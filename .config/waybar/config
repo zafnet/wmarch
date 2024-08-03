@@ -51,39 +51,24 @@
         },
     },
 
-	"backlight": {
-		"tooltip": false,
-		"format": " {}%",
-		"interval":1,
-        "on-scroll-up": "light -A 5",
-		"on-scroll-down": "light -U 5"
-	},
+     "hyprland/window": {
+         "format": "{initialClass}",
+         "rewrite": {
+           "Firefox": "<span color='#ffac33'>Firefox  </span>",
+           "org.gnome.FileRoller":"FileRoller",
+           "XTerm": "XTerm"
+      },
 
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 10
-        },
-        "format": "{icon}  <span color='#F1F1F1'>{capacity}%</span>",
-        "format-charging": "<span color='#9ece6a'></span> <span color='#F1F1F1'>{capacity}%</span>",
-        "format-plugged": " <span color='#F1F1F1'>{capacity}</span>%",
-        "format-alt": "<span color='#F1F1F1'>{time}</span> {icon}",
-        "format-icons": [
-            "<span color='#f7768e'></span>", 
-            "<span color='#e0af68'></span>", 
-            "<span color='#e0af68'></span>", 
-            "<span color='#9ece6a'></span>", 
-            "<span color='#9ece6a'></span>"
-        ]
+      "separate-outputs": true
     },
 
 	"clock": {
         "tooltip": true,
         "interval": 1,
         "format": "{:%H:%M %p}",
-        "tooltip-format": "{:%Y-%m-%d}",
-        "timezone": "America/Argentina/Buenos_Aires"
+        "tooltip-format": "{:L%a-%d-%m-%Y}",
+        "timezone": "America/Argentina/Buenos_Aires",
+        "locale": "es_AR.UTF-8",
     },
 
     "cpu": {
@@ -118,3 +103,30 @@
     },
     
 }
+
+	"backlight": {
+		"tooltip": false,
+		"format": " {}%",
+		"interval":1,
+        "on-scroll-up": "light -A 5",
+		"on-scroll-down": "light -U 5"
+	},
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 10
+        },
+        "format": "{icon}  <span color='#F1F1F1'>{capacity}%</span>",
+        "format-charging": "<span color='#9ece6a'></span> <span color='#F1F1F1'>{capacity}%</span>",
+        "format-plugged": " <span color='#F1F1F1'>{capacity}</span>%",
+        "format-alt": "<span color='#F1F1F1'>{time}</span> {icon}",
+        "format-icons": [
+            "<span color='#f7768e'></span>", 
+            "<span color='#e0af68'></span>", 
+            "<span color='#e0af68'></span>", 
+            "<span color='#9ece6a'></span>", 
+            "<span color='#9ece6a'></span>"
+        ]
+    },
