@@ -438,11 +438,13 @@ done
     clear
 packages=(
     "firefox zsh-completions zsh-syntax-highlighting zsh-autosuggestions"
-    "flameshot bat vifm fzf tmux xclip file-roller lsd rofi bspwm sxhkd gvfs picom"
+    "flameshot obsidian neovim bat vifm fzf tmux xclip file-roller lsd rofi bspwm sxhkd gvfs picom"
     "xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock i3lock xed"
     "android-file-transfer android-tools android-udev feh pacman-contrib" 
     "gvfs-gphoto2 gvfs-mtp mtpfs libnotify dunst pulseaudio"
     "pcmanfm lxappearance zathura zathura-pdf-poppler imagemagick"
+    # "discord"
+    # "telegram"
 )
 
 for package in "${packages[@]}"; do
@@ -642,9 +644,11 @@ done
     echo -e '\033[0;34m' "Escritorio : wayland"
     sleep 3
 packages=(
-"firefox slurp hyprland hyprpaper zsh-completions zsh-syntax-highlighting zsh-autosuggestions pulseaudio"
+"firefox slurp obsidian neovim git hyprland hyprpaper zsh-completions zsh-syntax-highlighting zsh-autosuggestions pulseaudio"
 "nwg-look wayland wlroots xorg-xrdb xorg-xwayland xterm bat vifm rofi fzf tmux xclip file-roller"
 "lsd gvfs pcmanfm zathura zathura-pdf-poppler xed feh pacman-contrib imagemagick libnotify dunst "
+# "discord"
+# "telegram"
 )
 
 for package in "${packages[@]}"; do
