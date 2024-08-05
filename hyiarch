@@ -672,7 +672,7 @@ arch-chroot /mnt /bin/bash -c "chown -R $user:$user /home/$user/wmarch/"
 sleep 2
 clear
 echo -e '\033[1;95m' "\n\t\t\t CAMBIANDO PERMISOS PARA DOTS EN DISCO"
-arch-chroot /mnt /bin/bash -c "chmod 744 /home/$user/wmarch/dots"
+arch-chroot /mnt /bin/bash -c "chmod 744 /home/$user/wmarch/hydots"
 sleep 2
 clear
 echo -e '\033[1;91m' "\n\t\t\t DESMONTANDO PARTICIONES"

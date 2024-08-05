@@ -74,6 +74,12 @@ bindkey ";5C" forward-word
 bindkey ";5"  delete-word
 bindkey "\e[3~"   delete-char
 
+#-- Alt + letras para menu autocompletado
+bindkey '^[h' backward-char
+bindkey '^[l' forward-char
+bindkey '^[k' up-history
+bindkey '^[j' down-history
+
 bindkey -s '^[t' 'ts^M' #-- A+t LLama al alias ts sesion de tmux sin pedir un nombre
                          
 bindkey -s '^[^T' 'tns ' #-- C+A+T LLama al alias tns sesion de tmux pidiendo un nombre
