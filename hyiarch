@@ -644,7 +644,7 @@ done
     echo -e '\033[0;34m' "Escritorio : wayland"
     sleep 3
 packages=(
-"firefox slurp obsidian neovim git hyprland hyprpaper zsh-completions zsh-syntax-highlighting zsh-autosuggestions pulseaudio"
+"firefox slurp waybar obsidian neovim git hyprland hyprpaper zsh-completions zsh-syntax-highlighting zsh-autosuggestions pulseaudio"
 "nwg-look wayland wlroots xorg-xrdb xorg-xwayland xterm bat vifm rofi fzf tmux xclip file-roller"
 "lsd gvfs pcmanfm zathura zathura-pdf-poppler xed feh pacman-contrib imagemagick libnotify dunst "
 # "discord"

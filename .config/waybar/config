@@ -6,7 +6,7 @@
 
     //Modules layout
 
-	"modules-left": ["custom/launcher","cpu","memory","custom/updates"],
+	"modules-left": ["tray","custom/launcher","cpu","memory","custom/updates"],
 	"modules-center": ["hyprland/workspaces"],
 	"modules-right": ["pulseaudio", "clock","custom/power"],
 	
@@ -81,6 +81,11 @@
         "interval": 30,
         "format": "<span color='#7dcfff'> </span> {used}GiB",
         "max-length": 10
+    },
+
+    "tray": {
+        "icon-size": 19,
+        "spacing": 10
     },
 
     "custom/power":{
