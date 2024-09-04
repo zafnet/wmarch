@@ -2,7 +2,7 @@
 
 options="  Apagar\n  Reiniciar\n  Suspender\n  Cerrar sesión\n  Lock Screen"
 
-selected=$(echo -e "$options" | rofi -dmenu -i -theme ~/.config/rofi/power/power-menu.rasi -p " opción:")
+selected=$(echo -e "$options" | rofi -dmenu -i -theme ~/.config/rofi/power/powm.rasi -p " opción:")
 
 case $selected in
     "  Apagar")

@@ -1,14 +1,14 @@
 {
 	"layer": "top",
     "width": 1728,
-    "margin-top": 10,
+    "margin-top": 1,
     "margin-bottom": 0,
 
     //Modules layout
 
 	"modules-left": ["tray","custom/launcher","cpu","memory","custom/updates"],
 	"modules-center": ["hyprland/workspaces"],
-	"modules-right": ["pulseaudio", "clock","custom/power"],
+	"modules-right": ["custom/special","pulseaudio", "clock","custom/power"],
 	
 
     // Sourced modules
@@ -88,6 +88,12 @@
         "spacing": 10
     },
 
+    "custom/special": {
+        "exec": "~/.config/waybar/scripts/workspace-especial",
+        "interval": 5,
+        "tooltip": false
+    },
+
     "custom/power":{
         "format": "<span color='#f7768e'>⏻</span>",
         "on-click": "~/.config/rofi/power/power-menu.sh"
@@ -106,8 +112,6 @@
         "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
         "interval": 5,
     },
-    
-}
 
 	"backlight": {
 		"tooltip": false,
@@ -135,3 +139,5 @@
             "<span color='#9ece6a'></span>"
         ]
     },
+    
+}

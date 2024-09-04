@@ -9,7 +9,7 @@ alias l='lsd -lda --group-dirs=first */'
 alias lo='lsd -lda --group-dirs=first .*/'
 alias ls='ls --group-directories-first --color=always -lhFaH'
 alias tree='lsd --tree'
-alias ba='bat'
+alias ba='bat -l java'
 alias vf='vifm'
 alias to='touch'
 alias ins="$PACM -S"
@@ -18,13 +18,14 @@ alias acn="$PACM -Syu --noconfirm && $DUNS 'Sistema Actualizado' && exit"
 alias acm="$REFLE && $PACM -Syu --noconfirm && $DUNS 'Mirrors y Sistema Actualizados' && exit"
 alias mir="$REFLE && $DUNS 'Mirrorlist Actualizado'"
 alias al='pacman -Qs'
+alias rep='pacman -Ss'
 alias rem="$PACM -Rs"
 alias rm='rm -r'
 alias rv='rm -rv'
-alias rep='pacman -Ss'
-alias cp='rsync -ah --info=progress2'
+alias ca='rv .cache/*'
+alias cpr='rsync -ah --info=progress2'
+alias cp='cp -r'
 alias mv='mv -u'
-alias mvv='mv -uv'
 alias mk='mkdir -pv'
 alias smk='sudo mkdir -pv'
 alias grep='grep --color=auto'
@@ -32,7 +33,6 @@ alias xd="xrdb merge ~/.config/xres/Xresources && $DUNS 'Xresources Actualizado'
 alias ch='checkupdates'
 alias sz="source ~/.config/zshc/.zshrc && $DUNS 'zshrc Actualizado'"
 cm() {chmod "$@"} 
-alias ca='rv .cache/*'
 alias zh="echo ' ' > $HOME/.config/zshc/.zsh_history && $BORR 'zsh_history Borrado'"
 alias bh="echo " " > $HOME/.config/bashc/.bash_history && $BORR 'bash_history Borrado'"
 alias bu='sudo find / 2>/dev/null -iname $1'

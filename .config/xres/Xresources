@@ -14,33 +14,47 @@ Xft.autohint: true
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcdfilter
 
-!-- Color Del Primer Plano Fondo y El Cursor
 !XTerm*Foreground: #e76cf5
-XTerm*cursorColor: #73c6b6 
+XTerm*cursorColor: #73c6b6
 
-!-- Colores Primer Plano y Fondo De La Selección Resaltada En La Terminal
 XTerm*HiForeColor: #1e35c9
 XTerm*HiBackColor: #e76cf5
 
+XTerm.termName: xterm-256color
+XTerm.vt100.faceName: JetbrainsMono Nerd Font 
+XTerm.vt100.faceSize: 12
+XTerm*saveLines: 3000
+xterm*scrollTtyOutput: true
+XTerm*renderFont: true
+XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+XTerm*utf8: 2
+XTerm*locale: true
+XTerm*cursorBar: true
+XTerm*cursorBlink: true
+XTerm*metaSendsEscape : true
+!XTerm*cursorUnderLine: true
+!XTerm*cursorBlock: true
+
 ! Mi Tema
 *.foreground: #FFFFFF
-*.background: #282A36
-*.color0:     #000000
-*.color8:     #4D4D4D
-*.color1:     #d700af
+*.background: #262626
+!*.background: #282A36
+!*.color0:     #000000
+!*.color8:     #4D4D4D
+!*.color1:     #d700af
 !*.color9:     #ff0000
-*.color2:     #5fff87
-*.color10:    #00ff5f
-*.color3:     #ffd700
-*.color11:    #F4F99D
-*.color4:     #0087ff
-*.color12:    #CAA9FA
-*.color5:     #FFF000
-*.color13:    #FF0000
-*.color6:     #d787ff
-*.color14:    #F4F99D
-*.color7:     #FFFFFF
-*.color15:    #E6E6E6
+!*.color2:     #5fff87
+!*.color10:    #00ff5f
+!*.color3:     #ffd700
+!*.color11:    #F4F99D
+!*.color4:     #0087ff
+!*.color12:    #CAA9FA
+!*.color5:     #FFF000
+!*.color13:    #FF0000
+!*.color6:     #d787ff
+!*.color14:    #F4F99D
+!*.color7:     #FFFFFF
+!*.color15:    #E6E6E6
 
 !-- Color Y Geometria De Los Menus VT100
 XTerm*mainMenu*background: #2c2c2c
@@ -60,40 +74,6 @@ XTerm*tekMenu*background: #2c2c2c
 XTerm*tekMenu*foreground: #19b603 
 XTerm*tekMenu*borderColor: #fef000
 
-!-- Nombre De Terminal
-XTerm.termName: xterm-256color
-
-!-- 1.Establecer Nombre De Fuente Que Se Utiliza Para Mostrar El Texto En Terminal
-!-- 2.Establecer el tamaño de la fuente que se utiliza En la terminal
-XTerm.vt100.faceName: agave Nerd Font
-XTerm.vt100.faceSize: 13
-
-!-- Cuantas Lineas Guarda Para Retroceder Con El Mouse
-XTerm*saveLines: 3000
-
-!-- Permite Desplazamiento De La Salida De La Terminal Utilizando
-!-- La Barra De Desplazamiento o La Rueda Del Mouse
-xterm*scrollTtyOutput: true
-
-!-- utilizará fuentes de renderizado (como fuentes TrueType o OpenType) en lugar de fuentes bitmap
-XTerm*renderFont: true
-
-!-- Haga Doble Clic Para Seleccionar URL Completas
-XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
-
-!-- Habilita el soporte UTF-8 y asume que la terminal es compatible con UTF-8
-XTerm*utf8: 2
-
-!-- Habilitar la compatibilidad regional y de lenguaje (locales) 
-XTerm*locale: true
-
-!-- 1.Establecer Varios Cursores 2.Para Que Parpadee 3.Controlar El Comportamiento De La Tecla Alt  
-XTerm*cursorBar: true
-!XTerm*cursorUnderLine: true
-!XTerm*cursorBlock: true
-XTerm*cursorBlink: true
-XTerm*metaSendsEscape : true
-
 !-- Combinacion De Teclas
 XTerm.vt100.translations: #override \n\
    Ctrl <Key> minus: smaller-vt-font() \n\
@@ -101,8 +81,8 @@ XTerm.vt100.translations: #override \n\
    Ctrl <Key> 0: set-vt-font(d) \n\
    Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
    Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
-   Ctrl Shift <Key>k: scroll-back(1,pixel) \n\
-   Ctrl Shift <Key>j: scroll-forw(1,pixel) \n\
+   Ctrl <Key>y: scroll-back(1,pixel) \n\
+   Ctrl <Key>o: scroll-forw(1,pixel) \n\
    Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY) \n\
    !<Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\
-   !<Btn2Up>: insert-selection(PRIMARY)
+   !<Btn2Up>: insert-selection(PRIMARY) 

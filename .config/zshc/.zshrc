@@ -5,81 +5,64 @@
 #  ███████╗██████╔╝██║░░██║██║░░██║╚█████╔╝
 #  ╚══════╝╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░
 
-#-- Exportando dir al path
-export PATH="$PATH:$HOME/.local/bin/"
+HISTFILE="$HOME/.config/zshc/.zsh_history" # ubicacion de guardado de historial 
+HISTSIZE=5000                              # tamaño del historial cuantas lineas puedo subir con scroll 
+SAVEHIST=5000                              # cuantas lineas se almacenan en el historial
+HISTDUP=erase                              # Borrar duplicados en el archivo del historial
 
-#-- Cargando plugins zsh
+#export HISTORY_IGNORE="(ls|ll|pwd|exit|sudo reboot|history|cd|cd *|cd -|cd ..)" # No guardar el hist al lanzar otra term
+
+export FZF_DEFAULT_OPTS="--height 80% -e --cycle --border --multi --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} es un archivo binario || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='right:hidden' --bind='alt-e:execute(bat --style=numbers {} || less -f {}),alt-w:toggle-preview,ctrl-p:preview-half-page-down,ctrl-u:preview-half-page-up,ctrl-g:accept'
+--color=fg:#97e297,fg+:#dd8d50,bg:#262626,bg+:#262626
+--color=hl:#ff759c,hl+:#dfbe17,info:#46e438,marker:#87ff00
+--color=prompt:#d7005f,spinner:#40caa0,pointer:#ff0000,header:#f7f6f8
+--color=border:#e55454,separator:#94a940,scrollbar:#f44d4d,preview-fg:#48b227
+--color=label:#aeaeae,query:#c2b73e
+--preview-window="border-rounded" --prompt="" --marker="󰄬" --pointer=""
+--separator="" --scrollbar="│" --layout="reverse" --info="right""
+
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-#-- Cargando alias funciones y exports de zsh
 source ~/.config/zshc/zalias
 source ~/.config/zshc/zfunc
 
-#-- Opciones de zsh
-setopt PROMPT_SUBST
-setopt interactivecomments
-setopt notify
-setopt rm_star_silent
-unsetopt MENU_COMPLETE
-unsetopt FLOW_CONTROL
-unsetopt NO_BEEP
-setopt COMPLETE_ALIASES
-setopt AUTO_CD
-setopt ALWAYS_TO_END
-setopt AUTO_LIST
-setopt AUTO_PARAM_SLASH
-setopt COMPLETE_IN_WORD
-setopt CORRECT
-setopt PATH_DIRS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_FIND_NO_DUPS
-setopt HIST_REDUCE_BLANKS
-setopt HIST_VERIFY
-setopt SHARE_HISTORY
-setopt dotglob
-setopt completealiases
-#setopt AUTO_NAME_DIRS
-#setopt APPEND_HISTORY
-#setopt EXTENDED_HISTORY
-#setopt INC_APPEND_HISTORY
-#setopt HIST_EXPIRE_DUPS_FIRST
+# Opciones de zsh
+setopt PROMPT_SUBST interactivecomments notify rm_star_silent COMPLETE_ALIASES AUTO_CD ALWAYS_TO_END AUTO_LIST 
+setopt AUTO_PARAM_SLASH COMPLETE_IN_WORD CORRECT PATH_DIRS HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE HIST_FIND_NO_DUPS
+setopt HIST_REDUCE_BLANKS HIST_VERIFY SHARE_HISTORY dotglob completealiases
+unsetopt MENU_COMPLETE FLOW_CONTROL NO_BEEP
+#setopt AUTO_NAME_DIRSA PPEND_HISTORY EXTENDED_HISTORY INC_APPEND_HISTORY HIST_EXPIRE_DUPS_FIRST
 
-#-- Func custom git para prompt prompt_subst zsh
-git_b() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ *\1/' }
+git_b() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/  \1/' } # Func custom git para prompt zsh
 
-#-- Cargando prompt segun el usuario
 if [[ "$(id -u)" -eq "0" ]]; then
-PROMPT='%B%F{#f41818}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#ffffff}%~%f%F{#18b1f4}$(git_b)%f %F{#f41818}#%f%b '
+PROMPT='%B%F{#f41818}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#ffffff}%~%f%F{#18b1f4}$(git_b)%f %F{#f41818}#%f%b ' # Cargando prompt usuario root
 
 elif [[ "$(id -u)" -eq "1000" ]]; then
-PROMPT='%B%F{#91fe36}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#fe820e}%~%f%F{#18b1f4}$(git_b)%f %F{#039915}$%f%b '
+PROMPT='%B%F{#91fe36}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#fe820e}%~%f%F{#18b1f4}$(git_b)%f %F{#039915}$%f%b ' # Cargando prompt usuario 
 fi
 
-#-- Autocompletado moderno de zsh
-autoload -Uz compinit
+autoload -Uz compinit # Autocompletado moderno de zsh
 compinit
 
-zstyle ':completion:*' format %F{green}autocompletado %d %f 
+zstyle ':completion:*:descriptions' format %F{green}autocompletado %d %f 
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*:warnings' format "%B%F{197}No hay coincidencias para:%f %F{202}%d%b"
 
-#-- Ctrl + Flechas y supr en zsh
-bindkey ";5D" backward-word
-bindkey ";5C" forward-word
-bindkey ";5"  delete-word
-bindkey "\e[3~"   delete-char
+bindkey ";5D" backward-word # Ctrl + Flechas <- en zsh
+bindkey ";5C" forward-word  # Ctrl + Flechas -> en zsh
+bindkey ";5"  delete-word   # Tecla backspace en zsh
+bindkey "\e[3~" delete-char # Tecla Supr en zsh
 
-#-- Alt + letras para menu autocompletado
-bindkey '^[h' backward-char
-bindkey '^[l' forward-char
-bindkey '^[k' up-history
-bindkey '^[j' down-history
+bindkey '^[h' backward-char # Alt + h para menu autocompletado izquierda
+bindkey '^[l' forward-char  # Alt + l para menu autocompletado derecha
+bindkey '^[m' up-history    # Alt + m para menu autocompletado arriba
+bindkey '^[n' down-history  # Alt + n para menu autocompletado abajo
 
-bindkey -s '^[t' 'ts^M' #-- A+t LLama al alias ts sesion de tmux sin pedir un nombre
+bindkey -s '^[t' 'ts^M' # A+t LLama alias ts sesion tmux sin pedir un nombre
                          
-bindkey -s '^[^T' 'tns ' #-- C+A+T LLama al alias tns sesion de tmux pidiendo un nombre
+bindkey -s '^[^T' 'tns ' # C+A+T LLama alias tns sesion tmux pidiendo un nombre

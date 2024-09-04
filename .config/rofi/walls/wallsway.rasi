@@ -1,0 +1,68 @@
+//██╗    ██╗ █████╗ ██╗     ██╗     ██████╗ ██████╗  █████╗ ███████╗██╗
+//██║    ██║██╔══██╗██║     ██║     ██╔══██╗██╔══██╗██╔══██╗██╔════╝██║
+//██║ █╗ ██║███████║██║     ██║     ██████╔╝██████╔╝███████║███████╗██║
+//██║███╗██║██╔══██║██║     ██║     ██╔═══╝ ██╔══██╗██╔══██║╚════██║██║
+//╚███╔███╔╝██║  ██║███████╗███████╗██║██╗  ██║  ██║██║  ██║███████║██║
+// ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝
+                                                                       
+ * {                                                                    
+  font: "agave Nerd Font 13";
+
+  background-color: transparent;
+  yellow:#ffd966;
+  blue:#48b9c7;
+  fondo:#412307;
+  fondosel: #1b1a1a;
+ }
+ 
+ window {
+     border-radius: 10px;
+     background-color:@fondo;
+     padding: 1%;
+     x-offset: -20%;
+     y-offset: -10%;
+     width:      30%;
+     height:     39%;
+}
+
+case-indicator {
+    enabled: false;
+}
+
+element-text {
+    text-color: @blue;
+}
+
+element {
+    padding: 8px 16px;
+    border-radius: 8px;
+    margin: 2px 0px 0px 0px;
+}
+
+element-icon {
+    enabled: false;
+}
+
+element selected normal {
+     background-color: @fondosel;
+}
+
+inputbar {
+     children: [ prompt, textbox-prompt-colon, entry ];
+     spacing: 0px;
+} 
+
+textbox-prompt-colon {                                                
+     color: @yellow;                                              
+     expand: false;                                                    
+     margin: 0 0.3em 0em 0em;                                          
+     str: ":";
+}
+
+prompt normal normal {
+     color: @yellow;
+}
+ 
+entry {
+     color: @yellow;
+}

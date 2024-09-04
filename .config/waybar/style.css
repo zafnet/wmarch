@@ -202,3 +202,17 @@ window#waybar.hidden {
 	color: #f7768e;
 	background: #222330;
 }
+
+#custom-special {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 6px;
+	border-radius: 18px;
+    font-size: 14px;
+    font-weight: bold;
+	transition: none;
+	color: #fffb4e;
+	background: #222330;
+}

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Nombre del espacio de trabajo especial
+SPECIAL_WS="special:magic"
+
+# Verifica si el espacio de trabajo especial tiene ventanas
+windows_in_special_ws=$(hyprctl clients | grep "$SPECIAL_WS" | wc -l)
+
+# Si hay ventanas en el espacio de trabajo especial, muestra un mensaje
+if [ "$windows_in_special_ws" -gt 0 ]; then
+    echo "  $windows_in_special_ws"
+else
+    echo ""
+fi
