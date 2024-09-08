@@ -33,7 +33,7 @@ case "$selected" in
      xterm -e  nvim ~/.config/hypr/hyprland.conf
       ;;
    "NVIME ")
-     xterm -e nvim ~/.config/nvim/init.vim
+     xterm -e nvim ~/.config/nvim/init.lua
       ;;
    "ROFI ")
      xterm -e nvim ~/.config/rofi/config.rasi

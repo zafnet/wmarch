@@ -36,7 +36,7 @@ vim.opt.undodir = vim.fn.expand("~/.config/nvim/undodir")
 vim.opt.title = true
 vim.opt.signcolumn = "number"
 vim.opt.showmode = false
---vim.opt.guicursor = "n-i:ver100"
+vim.cmd [[ autocmd VimLeave * set guicursor=a:hor25 ]]
 
 -- Opciones Comentadas
 -- vim.opt.signcolumn = "yes"

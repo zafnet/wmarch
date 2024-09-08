@@ -1,0 +1,19 @@
+[Desktop Entry]
+Name=qemu-vms
+Comment=Manage virtual machines
+Icon=virt-manager
+Exec=virt-manager
+Type=Application
+Terminal=false
+Keywords[cs]=vmm;
+Keywords[fi]=vmm;
+Keywords[hr]=uvr;
+Keywords[ko]=vmm;
+Keywords[pl]=vmm;
+Keywords[pt_BR]=vmm;
+Keywords[sv]=vmm;
+Keywords[tr]=vmm;
+Keywords[uk]=vmm;
+Keywords[ka]=vmm;
+Keywords=vmm;
+Categories=System;

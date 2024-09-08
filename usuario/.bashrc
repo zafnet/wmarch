@@ -5,32 +5,47 @@
 # ██████╔╝██║  ██║███████║██║  ██║██║  ██║╚██████╗
 # ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
 
-#-- Si No Es Interactiva, No Hacer Nada
-
+# SI NO ES INTERACTIVA, NO HACER NADA
 [[ $- != *i* ]] && return
 
-source ~/.config/bashc/aleasb
-source ~/.config/bashc/funfzfb
-source ~/.config/bashc/exportsb
+export RANGER_LOAD_DEFAULT_RC= false
+export BROWSER=firefox
+export LC_ALL=es_AR.UTF8
+export FZF_DEFAULT_OPTS="--height 80% -e --cycle --border --multi --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} es un archivo binario || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='right:hidden' --bind='alt-e:execute(bat --style=numbers {} || less -f {}),alt-w:toggle-preview,ctrl-p:preview-half-page-down,ctrl-u:preview-half-page-up,ctrl-g:accept'
+--color=fg:#97e297,fg+:#dd8d50,bg:#262626,bg+:#262626
+--color=hl:#ff759c,hl+:#dfbe17,info:#46e438,marker:#87ff00
+--color=prompt:#d7005f,spinner:#40caa0,pointer:#ff0000,header:#f7f6f8
+--color=border:#e55454,separator:#94a940,scrollbar:#f44d4d,preview-fg:#48b227
+--color=label:#aeaeae,query:#c2b73e
+--preview-window="border-rounded" --prompt="" --marker="󰄬" --pointer=""
+--separator="" --scrollbar="│" --layout="reverse" --info="right""
 
-#-- Tamaño Guardado Y Ubicacion Del Historial
+LS_COLORS='di=34:fi=37:ow=34:ln=35:pi=4;33:so=1;34;41:bd=31:cd=1:or=31:mi=31:ex=32:*.pdf=36:*conf=35:*rc=93'
+export LS_COLORS
 
+source ~/.config/bashc/balias
+source ~/.config/bashc/bfunc
+
+# TAMAÑO GUARDADO Y UBICACION DEL HISTORIAL
 HISTFILE="$HOME/.config/bashc/.bash_history"
 HISTSIZE=1000
 SAVEHIST=1000
 
-#-- Prompt Personalizado Para Root Y Usuario
+# PROMPT PERSONALIZADO PARA ROOT Y USUARIO
+RED='\[\e[0;1;38;5;196m\]'
+GREEN='\e[0;32m'
+YELLOW='\e[0;33m'
+CYAN='\e[0;36m'
+RESET='\e[0m'
+WHITE='\e[0;37m'
 
 if [[ "$(id -u)" -eq "0" ]]; then
-export PS1='\[\e[0;1;38;5;196m\]\u\[\e[0;1;38;5;35m\]@\[\e[0;1;38;5;202m\]\H\[\e[0m\]: \[\e[0;31m\]\w \[\e[0;1;38;5;40m\]\[\e[0;3;38;5;78m\]\[\e[0;1;38;5;40m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2) \[\e[0;38;5;196m\]\[\e[0;38;5;196m\] \[\e[0m\]'
-
+    export PS1="${RED}\u${WHITE}@${CYAN}\H${RESET} ${WHITE}\w ${GREEN}\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)${GREEN}➜ "
 elif [[ "$(id -u)" -eq "1000" ]]; then
-export PS1='\[\e[0;1;38;5;40m\]\u\[\e[0;1;38;5;35m\]@\[\e[0;1;38;5;70m\]\H\[\e[0m\]: \[\e[0;1;38;5;33m\]\w \[\e[0;1;38;5;40m\]\[\e[0;3;38;5;79m\]\[\e[0;31m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2) \[\e[0;38;5;40m\]\[\e[0;38;5;41m\] \[\e[0m\]'
-
+    export PS1="${GREEN}\u${WHITE}@${CYAN}\H${RESET} ${YELLOW}\w ${GREEN}\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)"
 fi
 
-#-- Opciones De Configuracion De Bash
-
+# OPCIONES DE CONFIGURACION DE BASH
 shopt -s nocaseglob
 shopt -s autocd
 shopt -s dotglob
@@ -38,12 +53,10 @@ shopt -s extglob
 shopt -s histverify
 shopt -s xpg_echo
 
-#-- Ignorar Mayúsculas Y Minúsculas Al Completar Con Tab
-
+# IGNORAR MAYÚSCULAS Y MINÚSCULAS AL COMPLETAR CON TAB
 bind "set completion-ignore-case on"
 
-#-- Verificar Si El  Autocompletado De BASH Esta Activado
-
+# VERIFICAR SI EL  AUTOCOMPLETADO DE BASH ESTA ACTIVADO
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -52,9 +65,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#-- Funciones
-
-function des () {
+# FUNCION DESCOMPRIMIR
+function ex () {
  if [ -z "$1" ]; then
     # Muestra uso si no se les proporciona parametros
     echo "Uso: des <ruta/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
@@ -91,8 +103,7 @@ function des () {
 fi
 }
 
-#-- Colores De 'MAN'
-
+# COLORES DE 'MAN'
 function man() {
     env \
     LESS_TERMCAP_mb=$'\e[01;31m' \
@@ -105,5 +116,8 @@ function man() {
     man "$@"
 }
 
-#-- Terminal XTERM Con Cursor Forma De Haz
-printf '\033[6 q'
+# TERMINAL XTERM CON CURSOR FORMA GUION BAJO
+printf '\033[4 q'
+
+# TERMINAL XTERM CON CURSOR FORMA DE HAZ
+#printf '\033[6 q'

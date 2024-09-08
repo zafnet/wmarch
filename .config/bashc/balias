@@ -1,0 +1,90 @@
+# Notificaciones
+DUNS='dunstify -t 4000 -i "$HOME/.config/dunst/icons/actuale.png"'
+REFLE='sudo reflector -l 5 -p http,https --sort rate --save /etc/pacman.d/mirrorlist'
+BORR='dunstify -t 4000 -i "$HOME/.config/dunst/icons/borrado.png"'
+PACM='sudo pacman'
+
+# Sistema
+alias ll='lsd -lha --group-dirs=first'
+alias l='lsd -lda --group-dirs=first */'
+alias lo='lsd -lda --group-dirs=first .*/'
+alias ls='ls --group-directories-first --color=always -lhFaH'
+alias tree='lsd --tree'
+alias ba='bat -l java'
+alias vf='vifm'
+alias to='touch'
+alias ins="$PACM -S"
+alias ac="$PACM -Syu && $DUNS 'Sistema Actualizado' && exit"
+alias acn="$PACM -Syu --noconfirm && $DUNS 'Sistema Actualizado' && exit"
+alias acm="$REFLE && $PACM -Syu --noconfirm && $DUNS 'Mirrors y Sistema Actualizados' && exit"
+alias mir="$REFLE && $DUNS 'Mirrorlist Actualizado'"
+alias al='pacman -Qs'
+alias rep='pacman -Ss'
+alias rem="$PACM -Rs"
+alias rm='rm -r'
+alias rv='rm -rv'
+alias ca='rv .cache/*'
+alias cpr='rsync -ah --info=progress2'
+alias cp='cp -r'
+alias mv='mv -u'
+alias mk='mkdir -pv'
+alias smk='sudo mkdir -pv'
+alias grep='grep --color=auto'
+alias xd="xrdb merge ~/.config/xres/Xresources && $DUNS 'Xresources Actualizado'"
+alias ch='checkupdates'
+alias sz="source ~/.config/zshc/.zshrc && $DUNS 'zshrc Actualizado'"
+cm() { chmod "$@"; }
+alias zh='echo " " > $HOME/.config/zshc/.zsh_history && $BORR "zsh_history Borrado"'
+alias bh='echo " " > $HOME/.config/bashc/.bash_history && $BORR "bash_history Borrado"'
+alias bu='sudo find / 2>/dev/null -iname $1'
+alias ssk='ssh-keygen -t ed25519 -f ~/.ssh/git-key'
+alias ip='ip -c'
+
+# Systemctl
+alias sc='sudo systemctl'
+alias scs='sudo systemctl status $1'
+alias sct='sudo systemctl start $1'
+alias sce='sudo systemctl enable $1'
+alias scd='sudo systemctl disable $1'
+alias sco='sudo systemctl stop $1'
+alias scr='sudo systemctl reload $1'
+alias scre='sudo systemctl restart $1'
+
+# Tmux
+alias ts='tmux new -s 0'
+alias tns='tmux new -s '
+alias tl='tmux ls'
+alias ta='tmux a -t'
+alias tk='tmux kill-session -t'
+alias tp='tmux neww -n'
+
+# Editor
+alias nv='nvim'
+alias nz='nvim /home/$USER/.config/zshc/.zshrc'
+alias nb='nvim /home/$USER/.bashrc'
+alias nbh='nvim /home/$USER/.config/bashc/.bash_history'
+alias nzh='nvim ~/.config/zshc/.zsh_history'
+
+# Git
+alias gs='git status'
+alias ga='git add .'
+alias gc='git clone'
+gm() { git commit -m "$*"; }
+alias gp='git push origin $1'
+alias gb='git branch'
+alias gk='git checkout'
+alias gu='git pull origin'
+alias gt='git tag -a'
+alias gf='git fetch'
+alias gl="git log --graph --pretty=format:'%C(yellow)%h%Creset -%Cblue%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+alias gd='git diff'
+
+# Docker
+alias dps='docker ps'
+alias dpa='docker ps -a'
+alias di='docker images'
+alias dl='docker logs'
+alias de='docker exec -it'
+alias dst='docker stop'
+alias dri='docker rmi'
+alias drm='docker rm'

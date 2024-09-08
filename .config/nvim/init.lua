@@ -4,9 +4,6 @@ require('funcions')
 
 vim.cmd.colorscheme('saxs')
 
--- Ver Paginas De Man En Nvim
---vim.cmd("runtime! ftplugin/man.vim")
-
 -- Configuración De La Línea De Estado
 vim.opt.laststatus = 2
 

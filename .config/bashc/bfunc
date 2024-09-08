@@ -1,0 +1,56 @@
+# Función para cambiar de directorio
+ir() {
+    cd "$(find / -type d 2> /dev/null | fzf --prompt="Ir a La Carpeta: ")" && clear
+}
+bind -x '"\ei": ir'  # Asigna Ctrl+e + i para ir a la carpeta
+
+# Función para eliminar archivos o directorios
+rf() {
+    rm -rf "$(find / -type f,d 2> /dev/null | fzf --prompt="Borrar Archivo o Directorio: ")" && clear
+}
+bind -x '"\er": rf'  # Asigna Ctrl+e + r para borrar archivo o directorio
+
+# Función para abrir archivos con nvim
+nf() {
+    sh -c 'find / -type f 2> /dev/null | fzf --prompt="Abrir Con Nvim: "| xargs -r nvim' && clear
+}
+bind -x '"\en": nf'  # Asigna Ctrl+e + n para abrir con nvim
+
+# Función para vista previa de archivos
+ve() {
+    find / -type f 2> /dev/null | fzf --prompt="Vista Previa De: "| xargs -r bat && clear
+}
+bind -x '"\ev": ve'  # Asigna Ctrl+e + v para vista previa
+
+# Función para copiar ruta al portapapeles
+cr() {
+    find / -type f,d 2>/dev/null | fzf --prompt="Copiar Ruta: " | tr -d '\n' | xclip -selection c && clear
+}
+bind -x '"\ec": cr'  # Asigna Ctrl+e + c para copiar ruta
+
+# Función para copiar archivo al portapapeles
+cl() {
+    find / -type f 2>/dev/null | fzf --prompt="Copiar en clipboard: " | tr -d '\n' | xclip -sel clipboard && clear
+}
+bind -x '"\eC": cl'  # Asigna Ctrl+e + Shift+c para copiar archivo
+
+# Función para buscar en el historial
+hi() {
+    local selected
+    selected=$(history | fzf --tac --prompt="Historial: ")
+    if [ -n "$selected" ]; then
+        eval "history -s ${selected#* }"  # Agrega el comando seleccionado al historial
+        eval "${selected#* }"  # Ejecuta el comando
+    fi
+}
+bind -x '"\eh": hi'  # Asigna Ctrl+e + h para buscar en el historial
+
+# Función para eliminar un proceso
+fk() {
+    local pid
+    pid=$(ps -ef | sed 1d | fzf --prompt="Eliminar proceso ➤ " --pointer="➤ " --marker="➤ " | awk '{print $2}')
+    if [ -n "$pid" ]; then 
+        kill -9 "$pid" 
+    fi && clear
+}
+bind -x '"\ek": fk'  # Asigna Ctrl+e + k para eliminar proceso
