@@ -39,6 +39,6 @@ case "$selected" in
      xterm -e nvim ~/.config/rofi/config.rasi
       ;;
    "XRESOURCES ")
-      xterm -e  nvim ~/.config/xres/Xresources
+      xterm -e  nvim ~/.config/Xresources
         ;;
 esac

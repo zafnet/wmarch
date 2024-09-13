@@ -5,8 +5,6 @@ PACM='sudo pacman'
 
 #-- Sistema
 alias ll='lsd -lha --group-dirs=first'
-alias l='lsd -lda --group-dirs=first */'
-alias lo='lsd -lda --group-dirs=first .*/'
 alias ls='ls --group-directories-first --color=always -lhFaH'
 alias tree='lsd --tree'
 alias ba='bat -l java'
@@ -21,8 +19,7 @@ alias al='pacman -Qs'
 alias rep='pacman -Ss'
 alias rem="$PACM -Rs"
 alias rm='rm -r'
-alias rv='rm -rv'
-alias ca='rv .cache/*'
+alias ca='rm -rv .cache/*'
 alias cpr='rsync -ah --info=progress2'
 alias cp='cp -r'
 alias mv='mv -u'

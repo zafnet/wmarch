@@ -14,7 +14,7 @@
   <color name="vio4"                        value="#5c3566"/>
   <color name="gree2"                       value="#888a85"/>
   <color name="gree3"                       value="#555753"/>
-  <color name="gree4"                       value="#a1a49e"/>
+  <color name="gree4"                       value="#6c6b5d"/>
   <color name="choco1"                      value="#e9b96e"/>
   <color name="choco2"                      value="#c17d11"/>
   <color name="choco3"                      value="#8f5902"/>
@@ -36,7 +36,7 @@
   <style name="selection"                   foreground="plat1"      background="gree4"/>
   <style name="cursor"                      foreground="vio1"/>
   <style name="secondary-cursor"            foreground="gree3"/>
-  <style name="current-line"                background="choco1"/>
+  <style name="current-line"                background="gree4"/>
   <style name="line-numbers"                foreground="plat1" background="obs2"/>
   <style name="draw-spaces"                 foreground="redis"/>
   <style name="background-pattern"          background="white"/>

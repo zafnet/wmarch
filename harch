@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# set +e supuestamente ayuda a mostrar los errores probar
-
 # Definición de colores
 GREEN="\033[1;92m"
 YELLOW="\033[1;93m"
@@ -426,17 +424,19 @@ EOF
 clear
 
 # Wifi
-#echo -e '\033[1;92m' "INSTALANDO PROGRAMAS PARA WIFI"
+#print_disco "INSTALANDO PROGRAMAS PARA WIFI"
 #arch-chroot /mnt /bin/bash -c "pacman -S iw wireless_tools wpa_supplicant dialog wireless-regdb --noconfirm"
 
 # bluetooth
-#echo -e '\033[1;92m' "INSTALANDO PROGRAMAS PARA BLUETOOTH"
+#print_disco "INSTALANDO PROGRAMAS PARA BLUETOOTH"
 #arch-chroot /mnt /bin/bash -c "pacman -S bluez bluez-utils pulseaudio-bluetooth"
 
 print_disco "SHELL ZSH PARA USUARIO Y ROOT"
 SH=zsh
 arch-chroot /mnt /bin/bash -c "chsh -s /usr/bin/$SH root"
+arch-chroot /mnt /bin/bash -c "chsh -s /bin/$SH root"
 arch-chroot /mnt /bin/bash -c "chsh -s /bin/$SH $user"
+arch-chroot /mnt /bin/bash -c "chsh -s /usr/bin/$SH $user"
 clear
 
 # Instalación de drivers de video
@@ -524,8 +524,9 @@ case $escritorio in
     sleep 3
     packages=(
         "firefox slurp waybar obsidian neovim git hyprland swaybg zsh-completions zsh-syntax-highlighting zsh-autosuggestions pulseaudio"
-        "nwg-look wayland wlroots xorg-xrdb xorg-xwayland xterm bat vifm rofi fzf tmux xclip file-roller"
+        "wf-recorder mpv discord wayland wlroots xorg-xrdb xorg-xwayland xterm bat vifm rofi fzf tmux xclip file-roller"
         "lsd gvfs pcmanfm zathura zathura-pdf-poppler xed feh pacman-contrib imagemagick libnotify dunst"
+# nwg-look
     )
     ;;
   *) 
@@ -556,18 +557,11 @@ arch-chroot /mnt /bin/bash -c "chown -R $user:$user /home/$user/wmarch/"
 sleep 2
 clear
 
-#echo -e '\033[1;95m' "CAMBIANDO PERMISOS PARA DOTS EN DISCO"
-#arch-chroot /mnt /bin/bash -c "chmod 744 /home/$user/wmarch/hydots"
-#sleep 2
-#clear
-
 # Desmontar particiones
 echo -e '\033[1;91m' "DESMONTANDO PARTICIONES"
 umount -R /mnt
 sleep 2
 clear
-
-# set -e supuestamente ayuda a mostrar los errores probar
 
 # Reiniciar el sistema (opcional)
 # echo -e '\033[1;95m' "REINICIANDO EL SISTEMA"
