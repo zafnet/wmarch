@@ -3,7 +3,9 @@ ir() {cd $(find / -type d 2> /dev/null | fzf  --prompt="Ir a La Carpeta: ") && z
 
 rf() {rm -rf $(find / -type f,d 2> /dev/null | fzf --prompt="Borrar Archivo o Directorio: ") && zle reset-prompt} ;zle -N rf;bindkey  "^[r" rf
 
-nf() {sh -c 'find / -type f ! -path "$HOME/.config/nvim/undodir/*" 2> /dev/null  | fzf --prompt="Abrir Con Nvim: "| xargs -r nvim' && zle reset-prompt} ;zle -N nf;bindkey '^[^i' nf
+nf() {sh -c 'find / -type f ! -path "$HOME/.config/nvim/undodir/*" 2> /dev/null  | fzf --height 80% -e --cycle --border --multi --prompt="Abrir Con Nvim: "| xargs -r nvim' && zle reset-prompt} ;zle -N nf;bindkey 'º' nf
+
+fh() {sh -c 'find $HOME -type f ! -path "$HOME/.config/nvim/undodir/*" 2> /dev/null  | fzf --height 80% -e --cycle --border --multi --prompt="Abrir Con Nvim: "| xargs -r nvim' && zle reset-prompt} ;zle -N fh;bindkey '^[^i' fh
 
 ve() {find / -type f ! -path "$HOME/.config/nvim/undodir/*" 2> /dev/null | fzf --prompt="Vista Previa De: "| xargs -r bat && zle reset-prompt} ;zle -N ve;bindkey "^[v" ve
 
