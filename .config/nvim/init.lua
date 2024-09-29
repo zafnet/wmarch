@@ -20,20 +20,20 @@ local current_mode = {
 }
 
 -- Definir colores y estilos para la línea de estado
-vim.api.nvim_set_hl(0, 'NormalColor', { ctermbg = 0, ctermfg = 34, bold = true })     -- '#000000' -> 0, '#00af00' -> 34
-vim.api.nvim_set_hl(0, 'InsertColor', { ctermbg = 0, ctermfg = 226, bold = true })    -- '#ffff00' -> 226
-vim.api.nvim_set_hl(0, 'VisualColor', { ctermbg = 0, ctermfg = 214, bold = true })    -- '#ff8700' -> 214
-vim.api.nvim_set_hl(0, 'VlColor', { ctermbg = 202, ctermfg = 0, bold = true })        -- '#ff5f00' -> 202, '#000000' -> 0
-vim.api.nvim_set_hl(0, 'VbColor', { ctermbg = 197, ctermfg = 0, bold = true })        -- '#ff005f' -> 197
-vim.api.nvim_set_hl(0, 'ReplaceColor', { ctermbg = 0, ctermfg = 201, bold = true })   -- '#ff00ff' -> 201
-vim.api.nvim_set_hl(0, 'TerminalColor', { ctermbg = 0, ctermfg = 197, bold = true })  -- '#ff005f' -> 197
-vim.api.nvim_set_hl(0, 'CommandColor', { ctermbg = 0, ctermfg = 70, bold = true })    -- '#5faf00' -> 70
+vim.api.nvim_set_hl(0, 'NormalColor', { bg = '#000000', fg = '#00af00', bold = true })     -- '#000000' -> 0, '#00af00' -> 34
+vim.api.nvim_set_hl(0, 'InsertColor', { bg = '#000000', fg = '#ffff00', bold = true })     -- '#ffff00' -> 226
+vim.api.nvim_set_hl(0, 'VisualColor', { bg = '#000000', fg = '#ff8700', bold = true })     -- '#ff8700' -> 214
+vim.api.nvim_set_hl(0, 'VlColor', { bg = '#ff5f00', fg = '#000000', bold = true })         -- '#ff5f00' -> 202, '#000000' -> 0
+vim.api.nvim_set_hl(0, 'VbColor', { bg = '#ff005f', fg = '#000000', bold = true })         -- '#ff005f' -> 197
+vim.api.nvim_set_hl(0, 'ReplaceColor', { bg = '#000000', fg = '#ff00ff', bold = true })    -- '#ff00ff' -> 201
+vim.api.nvim_set_hl(0, 'TerminalColor', { bg = '#000000', fg = '#ff005f', bold = true })   -- '#ff005f' -> 197
+vim.api.nvim_set_hl(0, 'CommandColor', { bg = '#000000', fg = '#5faf00', bold = true })    -- '#5faf00' -> 70
 
 -- Resaltado De Colores Para La Linea De Estado Derecha
-vim.api.nvim_set_hl(0, 'rutadarch', { ctermbg = 240, ctermfg = 42 })    -- '#626262' -> 240, '#00d75f' -> 42
-vim.api.nvim_set_hl(0, 'ln', { ctermbg = 240, ctermfg = 34 })           -- '#00af00' -> 34
-vim.api.nvim_set_hl(0, 'co', { ctermbg = 240, ctermfg = 15 })           -- '#ffffff' -> 15
-vim.api.nvim_set_hl(0, 'buf', { ctermbg = 240, ctermfg = 214 })         -- '#ffaf00' -> 214
+vim.api.nvim_set_hl(0, 'rutadarch', { bg = '#626262', fg = '#00d75f' })                    -- '#626262' -> 240, '#00d75f' -> 42
+vim.api.nvim_set_hl(0, 'ln', { bg = '#626262', fg = '#00af00' })                           -- '#00af00' -> 34
+vim.api.nvim_set_hl(0, 'co', { bg = '#626262', fg = '#ffffff' })                           -- '#ffffff' -> 15
+vim.api.nvim_set_hl(0, 'buf', { bg = '#626262', fg = '#ffaf00' })                          -- '#ffaf00' -> 214
 
 -- Definir la función en el entorno global de Neovim
 _G.get_statusline = function()

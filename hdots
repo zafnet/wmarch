@@ -34,7 +34,7 @@ ICON_CUR="Infinity-Lavender-Dark-Icons"
 REPO_DIR="$USER_HOME/wmarch"
 CONFIG_DIR="$USER_HOME/.config"
 FSTAB_FILE="/etc/"
-LOG_MANA="SDDM"
+LOG_MANA="sddm"
 
 install_displaym() {
     read -p "¿Deseas instalar el display manager $LOG_MANA? (s/n): " respuesta

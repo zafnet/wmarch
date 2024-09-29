@@ -34,7 +34,23 @@ unsetopt MENU_COMPLETE FLOW_CONTROL NO_BEEP
 #setopt AUTO_NAME_DIRSA PPEND_HISTORY EXTENDED_HISTORY INC_APPEND_HISTORY HIST_EXPIRE_DUPS_FIRST
 
 # Función personalizada para mostrar la rama de Git
-git_b() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/  \1/' } # Func custom git para prompt zsh
+git_b() {
+    # Verificar si estamos en un repositorio Git
+    if git rev-parse --is-inside-work-tree &> /dev/null; then
+        # Obtener el nombre de la rama actual
+        branch=$(git branch 2> /dev/null | grep '*' | sed 's/* //')
+
+        # Verificar si hay cambios en el repositorio
+        if [[ -n $(git status --porcelain 2> /dev/null) ]]; then
+            echo "  $branch %F{#f33334} %f"  # Ícono para repositorio sucio
+        else
+            echo "  $branch"
+        fi
+    else
+        # No estamos en un repositorio Git, no mostrar nada
+        echo ""
+    fi
+}
 
 # Función para establecer el prompt según si estamos en Tmux
 set_prompt() {
@@ -43,14 +59,14 @@ set_prompt() {
         if [[ "$(id -u)" -eq "0" ]]; then
             PROMPT='%B%F{#f41818}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#ffffff}%~%f%F{#18b1f4}$(git_b)%f %F{#f41818}#%f%b ' # Prompt para root fuera de Tmux
         elif [[ "$(id -u)" -eq "1000" ]]; then
-            PROMPT='%B%F{#91fe36}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#fe820e}%~%f%F{#18b1f4}$(git_b)%f %F{#039915}$%f%b ' # Prompt para usuario normal fuera de Tmux
+            PROMPT='%B%F{#91fe36}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#fe820e}%~%f%F{#18b1f4}$(git_b)%f %F{#039915}%f%b ' # Prompt para usuario normal fuera de Tmux
         fi
     else
         # Prompt normal cuando no estás en Tmux
         if [[ "$(id -u)" -eq "0" ]]; then
             PROMPT='%B%F{#f41818}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#ffffff}%~%f%F{#18b1f4}$(git_b)%f %F{#f41818}#%f%b ' # Prompt para root en Tmux
         elif [[ "$(id -u)" -eq "1000" ]]; then
-            PROMPT='%B%F{#ff0036}%n%f%F{#ffe647} %f%F{#3edfff}%m%f %f%F{#f2c2c2}%~%f%F{#f33334}$(git_b)%f %B%F{#0fff15} %f%b ' # Prompt para usuario normal en Tmux
+            PROMPT='%B%F{#ff0036}%n%f%F{#ffe647} %f%F{#3edfff}%m%f %f%F{#f2c2c2}%~%f%F{#ca50fc}$(git_b)%f %B%F{#0fff15} %f%b ' # Prompt para usuario normal en Tmux
         fi
     fi
 }

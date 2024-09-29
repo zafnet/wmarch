@@ -292,8 +292,8 @@ sed -i 's/#TotalDownload/TotalDownload/g' /mnt/etc/pacman.conf
 sed -i 's/#VerbosePkgLists/VerbosePkgLists/g' /mnt/etc/pacman.conf
 sed -i "37i ILoveCandy" /mnt/etc/pacman.conf
 sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 16/g' /mnt/etc/pacman.conf
-#sed -i 's/#\[multilib\]/\[multilib\]/g' /mnt/etc/pacman.conf
-#sed -i "s/#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/g" /mnt/etc/pacman.conf
+#sed -i '93s/#\[multilib\]/\[multilib\]/g' /mnt/etc/pacman.conf
+#sed -i "94s/#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/g" /mnt/etc/pacman.conf
 clear
 
 #Hosts y Nombre de computador
@@ -523,9 +523,8 @@ case $escritorio in
     echo -e '\033[0;34m' "Escritorio : wayland"
     sleep 3
     packages=(
-        "firefox slurp waybar obsidian neovim git hyprland swaybg zsh-completions zsh-syntax-highlighting zsh-autosuggestions pulseaudio"
-        "wf-recorder grim mpv discord wayland wlroots xorg-xrdb xorg-xwayland xterm bat vifm rofi fzf tmux xclip file-roller"
-        "lsd gvfs pcmanfm zathura zathura-pdf-poppler xed feh pacman-contrib imagemagick libnotify dunst"
+        "firefox slurp waybar obsidian neovim man-db git hyprland swaybg zsh-completions zsh-syntax-highlighting zsh-autosuggestions pulseaudio wf-recorder grim mpv discord wayland
+        wlroots xorg-xrdb xorg-xwayland xterm bat vifm rofi fzf tmux xclip file-roller lsd gvfs pcmanfm zathura zathura-pdf-poppler xed feh pacman-contrib imagemagick libnotify dunst"
 # nwg-look
     )
     ;;

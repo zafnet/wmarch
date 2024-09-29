@@ -30,7 +30,7 @@ map('n', '<leader>k', 'i<space><Esc>', { noremap = true })
 map('n', '<leader>c', ':e $MYVIMRC<CR>', { noremap = true })
 
 -- Crea Terminal En Horizontal En Modo Normal
-map('n', '<c-t>', ':split<CR>:term<CR>:resize 15<CR>', { noremap = true })
+map('n', '<c-t>', ':split<CR>:term<CR>:resize 15<CR>:startinsert<CR>', { noremap = true })
 
 -- Sale De La Terminal Para Poder Ir A La Ventana De Nvim Con A-{h,l,k,j} C-x Elimina La Terminal
 map('t', '<Esc><Esc>', '<C-\\><C-n>', { noremap = true })

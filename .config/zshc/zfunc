@@ -1,7 +1,7 @@
 # FUNCIONES PARA FZF
 ir() {cd $(find / -type d 2> /dev/null | fzf  --prompt="Ir a La Carpeta: ") && zle reset-prompt} ;zle -N ir;bindkey "^[i" ir
 
-rf() {rm -rf $(find / -type f,d 2> /dev/null | fzf --prompt="Borrar Archivo o Directorio: ") && zle reset-prompt} ;zle -N rf;bindkey  "^[r" rf
+rf() {rm -rf $(find / -type f,d ! -path "$HOME/.config/nvim/undodir/*" 2> /dev/null | fzf --prompt="Borrar Archivo o Directorio: ") && zle reset-prompt} ;zle -N rf;bindkey  "^[r" rf
 
 nf() {sh -c 'find / -type f ! -path "$HOME/.config/nvim/undodir/*" 2> /dev/null  | fzf --height 80% -e --cycle --border --multi --prompt="Abrir Con Nvim: "| xargs -r nvim' && zle reset-prompt} ;zle -N nf;bindkey 'º' nf
 
@@ -11,7 +11,7 @@ ve() {find / -type f ! -path "$HOME/.config/nvim/undodir/*" 2> /dev/null | fzf -
 
 cr() {find / -type f,d ! -path "$HOME/.config/nvim/undodir/*" 2>/dev/null | fzf  --prompt="Copiar Ruta: " | tr -d '\n' | xclip -selection c && zle reset-prompt} ;zle -N cr;bindkey "¢" cr
 
-cl() {find / -type f 2>/dev/null | fzf  --prompt="Copiar en clipboard: " |tr -d '\n' | xargs xclip -sel clipboard && zle reset-prompt} ;zle -N cl ;bindkey "^[c" cl
+cl() {find / -type f ! -path "$HOME/.config/nvim/undodir/*" 2>/dev/null | fzf  --prompt="Copiar en clipboard: " |tr -d '\n' | xargs xclip -sel clipboard && zle reset-prompt} ;zle -N cl ;bindkey "^[c" cl
 
 fm() { man -k . | fzf --prompt='Man > ' | awk '{print $1}' | xargs -r man }
 

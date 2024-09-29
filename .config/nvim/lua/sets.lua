@@ -1,7 +1,7 @@
 -- Configuraciones Base en Lua
 
 vim.cmd("syntax on")
-vim.opt.termguicolors = false
+vim.opt.termguicolors = true
 vim.opt.guifont = "Monospace:h10"
 vim.opt.autoread = true
 vim.opt.swapfile = false
