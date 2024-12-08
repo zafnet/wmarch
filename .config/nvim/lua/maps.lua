@@ -19,7 +19,10 @@ map('n', '<leader>y', 'i#<space><Esc>', { noremap = true })
 map('n', '<leader>m', 'i"<space><Esc>', { noremap = true })
 
 -- Usar FZF En NVIM Con La Tecla altgr + f
-map('n', 'đ', ':FZF!<CR>', { noremap = true })
+map('n', 'đ', ':FZF<CR>', { noremap = true })
+
+-- Ver Los Buffers Abiertos
+map('n', '<leader>bf', ':buffers<CR>', { noremap = true })
 
 -- Agrega Un Espacio En Blanco y Pasas Al Modo Insertar
 map('n', '<leader>o', 'o<Esc>', { noremap = true })
@@ -60,7 +63,7 @@ map('n', '<leader>0', '/', { noremap = true })
 -- Quita Resaltado De Busqueda
 map('n', '<C-ñ>', ':nohl<CR>', { noremap = true })
 
--- Cambia ventana En Vertical y Horizontal Del Mismo Buffer
+-- Cambia ventana En Vertical y Horizontal Del Mismo Buffer Cuando Estan Creadas
 map('n', '<leader>vv', '<C-w>t<C-w>H', { noremap = true })
 map('n', '<leader>vh', '<C-w>t<C-w>K', { noremap = true })
 
@@ -107,41 +110,3 @@ map('n', '<A-C-l>', ':vertical resize -10<CR>', { noremap = true, silent = true 
 -- Tamaño De Ventana Hacia Arriba Y Abajo De +10 y -10
 map('n', '<A-C-k>', ':resize +10<CR>', { noremap = true, silent = true })
 map('n', '<A-C-j>', ':resize -10<CR>', { noremap = true, silent = true })
-
--- Mapeos De Netrw
-
--- Mapeos y Color Para El Explorador NETRW
-map('n', '<leader>ñ', ':Vexplore<CR>', { noremap = true })
-map('n', '<leader>l', '<CR>', { noremap = true })
-
-vim.g.netrw_banner = 0
-vim.g.netrw_liststyle = 3
-vim.g.netrw_browse_split = 0
-vim.g.netrw_winsize = 20
-vim.g.netrw_keepdir = 0
-vim.g.netrw_localcopydircmd = 'cp -r'
-vim.g.netrw_preview = 1
-vim.g.netrw_special_syntax = 1
-
-vim.cmd [[
-  hi! link netrwMarkFile search
-
-  hi netrwBak       ctermfg=78   ctermbg=NONE
-  hi netrwCompress  ctermfg=135   ctermbg=NONE
-  hi netrwCoreDump  ctermfg=21   ctermbg=NONE
-  hi netrwData      ctermfg=41  ctermbg=NONE 
-  hi netrwDoc       ctermfg=15  ctermbg=NONE 
-  hi netrwHdr       ctermfg=208  ctermbg=NONE
-  hi netrwLex       ctermfg=204  ctermbg=NONE
-  hi netrwYacc      ctermfg=44  ctermbg=NONE 
-  hi netrwLib       ctermfg=124  ctermbg=NONE
-  hi netrwMakefile  ctermfg=10  ctermbg=238
-  hi netrwObj       ctermfg=210  ctermbg=NONE
-  hi netrwPix       ctermfg=11  ctermbg=NONE
-  hi netrwTags      ctermfg=82  ctermbg=NONE
-  hi netrwTilde     ctermfg=196  ctermbg=NONE
-  hi netrwTmp       ctermfg=125  ctermbg=NONE
-  hi netrwYacc      ctermfg=75  ctermbg=NONE
-  hi netrwSymLink   ctermfg=219 ctermbg=NONE
-]]
-

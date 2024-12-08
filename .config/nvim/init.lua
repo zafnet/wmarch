@@ -1,6 +1,8 @@
 require('sets')
 require('maps')
 require('funcions')
+require('netrw')
+require('abrevs')
 
 vim.cmd.colorscheme('saxs')
 

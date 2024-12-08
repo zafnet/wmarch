@@ -18,8 +18,8 @@ alias mir="$REFLE && $DUNS 'Mirrorlist Actualizado'"
 alias al='pacman -Qs'
 alias rep='pacman -Ss'
 alias rem="$PACM -Rs"
-alias rm='rm -r'
-alias ca='rm -rv .cache/*'
+alias rm='rm -rf'
+alias ca="rm -rv .cache/* && echo ' ' > $HOME/.config/zshc/.zsh_history && $BORR '.cache y zsh_history Borrados'"
 alias cpr='rsync -ah --info=progress2'
 alias cp='cp -r'
 alias mv='mv -u'
@@ -38,13 +38,13 @@ alias ip='ip -c'
 
 #-- Systemctl
 alias sc='sudo systemctl'
-alias scs='sudo systemctl status $1'
-alias sct='sudo systemctl start $1'
-alias sce='sudo systemctl enable $1'
+alias sce='sudo systemctl status $1'
+alias sci='sudo systemctl start $1'
+alias sca='sudo systemctl enable $1'
 alias scd='sudo systemctl disable $1'
-alias sco='sudo systemctl stop $1'
+alias scs='sudo systemctl stop $1'
 alias scr='sudo systemctl reload $1'
-alias scre='sudo systemctl restart $1'
+alias scR='sudo systemctl restart $1'
 
 #-- Tmux
 alias ts='tmux new -s 0'
@@ -74,6 +74,7 @@ alias gt='git tag -a'
 alias gf='git fetch'
 alias gl="git log --graph --pretty=format:'%C(yellow)%h%Creset -%Cblue%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 alias gd='git diff'
+alias gdc='git diff --cached'
 
 #-- Docker
 alias dps='docker ps'

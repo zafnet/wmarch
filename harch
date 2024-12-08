@@ -524,7 +524,7 @@ case $escritorio in
     sleep 3
     packages=(
         "firefox slurp waybar obsidian neovim man-db git hyprland swaybg zsh-completions zsh-syntax-highlighting zsh-autosuggestions pulseaudio wf-recorder grim mpv discord wayland
-        wlroots xorg-xrdb xorg-xwayland xterm bat vifm rofi fzf tmux xclip file-roller lsd gvfs pcmanfm zathura zathura-pdf-poppler xed feh pacman-contrib imagemagick libnotify dunst"
+        wlroots xorg-xrdb xorg-xwayland xterm bat vifm rofi fzf tmux xclip file-roller lsd gvfs pcmanfm zathura zathura-pdf-poppler xed feh pacman-contrib imagemagick libnotify fd dunst"
 # nwg-look
     )
     ;;
