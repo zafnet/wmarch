@@ -32,7 +32,9 @@ alias sz="source ~/.config/zshc/.zshrc && $DUNS 'zshrc Actualizado'"
 cm() {chmod "$@"} 
 alias zh="echo ' ' > $HOME/.config/zshc/.zsh_history && $BORR 'zsh_history Borrado'"
 alias bh="echo " " > $HOME/.config/bashc/.bash_history && $BORR 'bash_history Borrado'"
-alias bu='sudo find / 2>/dev/null -iname $1'
+bu() {
+     sudo fd "$1" / -E undodir -E var -H 2>/dev/null
+}
 alias ssk='ssh-keygen -t ed25519 -f ~/.ssh/git-key'
 alias ip='ip -c'
 

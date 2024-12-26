@@ -7,9 +7,6 @@ map('n', '<c-s>', ':w<CR>', { noremap = true })
 map('n', '<c-x>', ':q!<CR>', { noremap = true })
 map('n', '<A-q>', ':q<CR>', { noremap = true })
 
--- Inserta Shebang En Modo Insertar
-map('i', 'bib', '#!/usr/bin/env bash', { noremap = true })
-
 -- Crea Comentario Con Espacio Para Escribir Luego
 map('n', '<leader>·', 'i#<space>', { noremap = true })
 map('n', '<leader>"', 'i"<space>', { noremap = true })
@@ -29,7 +26,7 @@ map('n', '<leader>o', 'o<Esc>', { noremap = true })
 map('n', '<leader>p', 'O<Esc>', { noremap = true })
 map('n', '<leader>k', 'i<space><Esc>', { noremap = true })
 
--- LLama El Archivo De Configuracion De Nvim
+-- LLama Al Archivo De Configuracion De Nvim
 map('n', '<leader>c', ':e $MYVIMRC<CR>', { noremap = true })
 
 -- Crea Terminal En Horizontal En Modo Normal
@@ -57,9 +54,6 @@ map('n', '<A-k>', '<C-w>k', { noremap = true })
 -- Copia Una Linea Mostrando un Resaltado
 map('n', 'Y', 'yg$', { noremap = true })
 
--- Inserta Modo De Busqueda
-map('n', '<leader>0', '/', { noremap = true })
-
 -- Quita Resaltado De Busqueda
 map('n', '<C-ñ>', ':nohl<CR>', { noremap = true })
 
@@ -71,11 +65,8 @@ map('n', '<leader>vh', '<C-w>t<C-w>K', { noremap = true })
 map('n', '<leader>h', '<C-w>s', { noremap = true })
 map('n', '<leader>v', '<C-w>v', { noremap = true })
 
--- Abrir Ventana Lado Izquierdo En Vertical Con Nuevo Archivo
-map('n', '<leader>q', ':vs ', { noremap = true })
-
 -- Abre Ventana Con Historial De Comandos Que Se Usaron
-map('n', '<leader>º', 'q:', { noremap = true })
+map('n', '<leader>q', 'q:', { noremap = true })
 
 -- Mueve Las Ventanas C-l Derecha C-h Izquierda C-j Abajo C-k Arriba
 map('n', '<C-l>', '<C-w>L', { noremap = true })
@@ -85,12 +76,6 @@ map('n', '<C-k>', '<C-w>K', { noremap = true })
 
 -- Recargar Archivo Actual
 map('n', '<leader>r', ':so %<CR>', { noremap = true, silent = true })
-
--- Abre Archivo Con EL Nombre Que Le Pasemos En Buffer Oculto 
-map('n', '<leader>e', ':e ', { noremap = true })
-
--- Escribe El Simbolo De 2 Puntos Para Parle Un Comando
-map('n', 'º', ':', { noremap = true })
 
 -- Inserta Simbolos De  () {} [] "" '' En Modo Insertar
 map('i', '((', '()<left>', { noremap = true })

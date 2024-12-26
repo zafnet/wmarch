@@ -15,30 +15,30 @@ case "$selected" in
    exec ~/.config/rofi/atajos/tmcut/tmcut.sh
       ;;
    "TMUXE ")
-     xterm -e nvim ~/.config/tmux/tmux.conf
+     wezterm -e nvim ~/.config/tmux/tmux.conf
     ;;
    "WAYBARCSS ")
-     xterm -e nvim ~/.config/waybar/style.css
+     wezterm -e nvim ~/.config/waybar/style.css
     ;;
    "WAYBARCONF ")
-     xterm -e nvim ~/.config/waybar/config
+     wezterm -e nvim ~/.config/waybar/config
     ;;
    "ZSHRC ")
-    xterm -e  nvim ~/.config/zshc/.zshrc
+    wezterm -e  nvim ~/.config/zshc/.zshrc
       ;;
    "BASHRC ")
-     xterm -e nvim ~/.bashrc
+     wezterm -e nvim ~/.bashrc
       ;;
    "HYPRLAND ")
-     xterm -e  nvim ~/.config/hypr/hyprland.conf
+     wezterm -e  nvim ~/.config/hypr/hyprland.conf
       ;;
    "NVIME ")
-     xterm -e nvim ~/.config/nvim/init.lua
+     wezterm -e nvim ~/.config/nvim/init.lua
       ;;
    "ROFI ")
-     xterm -e nvim ~/.config/rofi/config.rasi
+     wezterm -e nvim ~/.config/rofi/config.rasi
       ;;
    "XRESOURCES ")
-      xterm -e  nvim ~/.config/Xresources
+      wezterm -e  nvim ~/.config/Xresources
         ;;
 esac

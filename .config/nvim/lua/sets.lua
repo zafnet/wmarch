@@ -1,5 +1,4 @@
 -- Configuraciones Base en Lua
-
 vim.cmd("syntax on")
 vim.opt.termguicolors = true
 vim.opt.guifont = "Monospace:h10"
@@ -37,23 +36,3 @@ vim.opt.title = true
 vim.opt.signcolumn = "number"
 vim.opt.showmode = false
 vim.cmd [[ autocmd VimLeave * set guicursor=a:hor25 ]]
-
--- Opciones Comentadas
--- vim.opt.signcolumn = "yes"
--- vim.opt.buftype = ""
--- vim.opt.viewoptions = { "cursor", "folds", "curdir" }
--- vim.opt.listchars = {space = '.', tab = '▸ ', eol = '↲', trail = '·' }
--- vim.opt.list = true
--- vim.opt.ignorelist:append({ "<palabra1>", "<palabra2>" })
--- vim.opt.cursorline = true
--- vim.opt.ruler = true
--- vim.opt.titleold = "Terminal"
--- vim.opt.titlestring = "%F"
--- vim.opt.scrolloff = 12
--- vim.opt.modeline = false
--- vim.opt.modelines = 10
--- vim.opt.smartcase = true
--- vim.opt.cursorcolumn = true
--- vim.opt.colorcolumn = "120"
--- vim.opt.wrap = false
--- vim.opt.guioptions = "egmrti"

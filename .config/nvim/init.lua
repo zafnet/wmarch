@@ -1,13 +1,13 @@
 require('sets')
 require('maps')
-require('funcions')
+require('funcs')
 require('netrw')
 require('abrevs')
 
 vim.cmd.colorscheme('saxs')
+vim.cmd("highlight Normal guibg=NONE ctermbg=NONE") -- transparencia para wezterm
 
--- Configuración De La Línea De Estado
-vim.opt.laststatus = 2
+vim.opt.laststatus = 2  -- Configuración De La Línea De Estado
 
 local current_mode = {
   n  = 'n',
