@@ -2,7 +2,7 @@
 local abreviaciones = {
     { "ab", "bib", "#!/usr/bin/env bash", desc = "Inserta Shebang en modo Insertar" },
     { "cab", "bfs", "buffers", desc = "Mostrar Buffers abiertos" },
-    { "cab", "ga", ":!git add .", desc = "Agregar Todos Los Cambios a Git" },
+    { "cab", "ga", ":!git add -A", desc = "Agregar Todos Los Cambios a Git" },
     { "cab", "gs", ":!git status", desc = "Muestra El Estado De Los Cambios De Git" },
 }
 

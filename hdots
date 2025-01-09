@@ -72,7 +72,7 @@ check_plugins() {
 
 create_common_dirs() {
     print_status "\n\t\t\t\t CREANDO CARPETAS COMUNES"
-    mkdir -pv $USER_HOME/{desc,plant,captura}
+    mkdir -pv $USER_HOME/{desc,plant}
     sleep 2
     clear
 }

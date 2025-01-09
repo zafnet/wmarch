@@ -18,6 +18,9 @@ map('n', '<leader>m', 'i"<space><Esc>', { noremap = true })
 -- Usar FZF En NVIM Con La Tecla altgr + f
 map('n', 'đ', ':FZF<CR>', { noremap = true })
 
+-- Colocar La Barra Para Buscar
+map('n', '<leader>f', '/', { noremap = true })
+
 -- Ver Los Buffers Abiertos
 map('n', '<leader>bf', ':buffers<CR>', { noremap = true })
 

@@ -1,0 +1,42 @@
+// FSEARCH.RASI
+
+* {
+    text-color:            #e3b268;
+    fondo:                 #4e4743;
+    elemensel:             #1b1a1a;
+    yellow:                #faa41a;
+
+    background-color: transparent;
+    font: "agave Nerd Font 16";
+    sort: true;
+    hide-scrollbar: true;
+    fullscreen: false;
+    case-sensitive: false;
+}
+
+window {
+    border: 0;
+    background-color: @elemensel;
+    padding: 0.4%;
+    x-offset: -1%;
+    y-offset: -9%;
+    width:    19%;
+    height:   4%;
+}
+
+case-indicator {
+    enabled: false;
+}
+
+prompt normal normal {
+     color:@yellow;
+}
+
+inputbar {
+    background-color: @elemensel;
+    padding: 6px 5px;
+ }
+
+entry {
+   padding: 0 4px;
+}

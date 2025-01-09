@@ -6,7 +6,7 @@
 
     //Modules layout
 
-	"modules-left": ["tray","custom/launcher","cpu","memory","custom/updates"],
+	"modules-left": ["tray","custom/launcher","cpu","temperature","memory","custom/updates"],
 	"modules-center": ["hyprland/workspaces"],
 	"modules-right": ["custom/special","pulseaudio", "clock","custom/power"],
 	
@@ -75,6 +75,13 @@
         "interval": 15,
         "format": "<span color='#f7768e'> </span> {}%",
         "max-length": 10
+    },
+ "temperature": {
+    	"thermal-zone": 2,
+    	"hwmon-path": ["/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input"],
+    	 "critical-threshold": 80,
+    	 "format-critical": "{temperatureC}°C ",
+    	"format": "{temperatureC}°C "
     },
 
     "memory": {

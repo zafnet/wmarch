@@ -76,53 +76,6 @@ window#waybar.hidden {
 	background: #222330;
 }
 
-#battery {
-	margin-top: 6px;
-	margin-left: 8px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 6px;
-	border-radius: 18px;
-	transition: none;
-    font-size: 14px;
-    font-weight: bold;
-	color: #161320;
-	background: #222330;
-}
-
-#battery.charging, #battery.plugged {
-	color: #161320;
-    background-color: transparent;
-}
-
-#battery.critical:not(.charging) {
-    background-color: #B5E8E0;
-    color: #161320;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-@keyframes blink {
-    to {
-        color: #B5E8E0;
-    }
-}
-
-#backlight {
-	margin-top: 6px;
-	margin-left: 8px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 0px;
-	border-radius: 10px;
-	transition: none;
-	color: #161320;
-	background: #F8BD96;
-}
-
 #clock {
 	margin-top: 6px;
 	margin-left: 8px;
@@ -163,6 +116,30 @@ window#waybar.hidden {
 	color: #F1F1F1;
 	background: #222330;
 }
+#temperature {
+	color: #54de20;
+    margin: 6px 0px 6px 8px;
+    font-size: 14px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background: #222330;
+	border-radius: 18px;
+    margin-top: 6px;
+    font-weight: bold;
+}
+#temperature.critical {
+	color: #000000;
+    margin: 6px 0px 6px 8px;
+    font-size: 14px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background: #222330;
+	border-radius: 18px;
+    margin-top: 6px;
+    font-weight: bold;
+	background-color: #ff1B26;
+    margin-top: 6px;
+}
 
 #tray {
 	margin-top: 6px;
@@ -191,6 +168,18 @@ window#waybar.hidden {
 	background: transparent;
 }
 
+#backlight {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	border-radius: 10px;
+	transition: none;
+	color: #161320;
+	background: #F8BD96;
+}
+
 #custom-updates {
     margin: 6px 0px 6px 8px;
 	padding-left: 10px;
@@ -215,4 +204,39 @@ window#waybar.hidden {
 	transition: none;
 	color: #fffb4e;
 	background: #222330;
+}
+
+@keyframes blink {
+    to {
+        color: #B5E8E0;
+    }
+}
+
+#battery {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 6px;
+	border-radius: 18px;
+	transition: none;
+    font-size: 14px;
+    font-weight: bold;
+	color: #161320;
+	background: #222330;
+}
+
+#battery.charging, #battery.plugged {
+	color: #161320;
+    background-color: transparent;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #B5E8E0;
+    color: #161320;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }

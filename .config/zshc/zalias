@@ -5,6 +5,7 @@ PACM='sudo pacman'
 
 #-- Sistema
 alias ll='lsd -lha --group-dirs=first'
+alias la='lsd -l --group-dirs=first'
 alias ls='ls --group-directories-first --color=always -lhFaH'
 alias tree='lsd --tree'
 alias ba='bat -l java'
@@ -26,7 +27,7 @@ alias mv='mv -u'
 alias mk='mkdir -pv'
 alias smk='sudo mkdir -pv'
 alias grep='grep --color=auto'
-alias xd="xrdb merge ~/.config/xres/Xresources && $DUNS 'Xresources Actualizado'"
+alias xd="xrdb merge ~/.config/Xresources && $DUNS 'Xresources Actualizado'"
 alias ch='checkupdates'
 alias sz="source ~/.config/zshc/.zshrc && $DUNS 'zshrc Actualizado'"
 cm() {chmod "$@"} 
@@ -65,7 +66,7 @@ alias nzh='nvim ~/.config/zshc/.zsh_history'
 
 #-- Git
 alias gs='git status'
-alias ga='git add .'
+alias ga='git add -A'
 alias gc='git clone'
 gm() {git commit -m "$*"}
 alias gp='git push origin $1'
