@@ -13,7 +13,7 @@ cr() {fd . /  -H -E undodir 2>/dev/null | fzf --prompt="Copiar Ruta: " | tr -d '
 
 cl() {fd . / -H -E undodir 2>/dev/null | fzf --prompt="Copiar en clipboard: " |tr -d '\n' | xargs xclip -sel clipboard && zle reset-prompt} ;zle -N cl ;bindkey "^[c" cl
 
-fm() { man -k . | fzf --prompt='Man > ' | awk '{print $1}' | xargs -r man }
+fm() { man -k . | fzf --prompt='Man > ' | awk '{print $1}' | xargs -r man && zle reset-prompt} ;zle -N fm ;bindkey "µ" fm
 
 po() { ps aux | grep --color=always "$1" | grep -v grep | fzf  --prompt="Procesos Actuales: " | xargs -r && zle reset-prompt };zle -N po ;bindkey "^[y" po
 
