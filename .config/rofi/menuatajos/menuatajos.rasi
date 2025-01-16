@@ -13,12 +13,12 @@
 
 window {
     width:21%;
-    height:48%;
+    height:49%;
     padding:1%;
     border:2px;
     border-color: #fa771c;
     background-color:#2c2c2c;
-    //background-image: url("~/.config/rofi/atajos/menuatajos/teclado.png", width);
+    //background-image: url("~/.config/rofi/menuatajos/teclado.png", width);
 }
 
 listview {

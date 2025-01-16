@@ -1,0 +1,51 @@
+// VMAUTO.RASI
+
+* {
+   fondosel: #1b1a1a;
+   rojo:#FF0000;
+   verde:#2da30b;
+   verdef:#06e22e;
+   verdec:#2ef99c;
+   oscuro:#494948;   
+   font: "CaskaydiaCove Nerd Font 12";
+   padding: 3;
+   sort: true;
+   fullscreen: false;
+   background-color: transparent;
+   color: @verdec;
+}
+
+window {
+    background-color: @oscuro;
+    border: 2;
+    x-offset: -15%;
+    y-offset: -8%;
+    width: 15%;
+    height: 22%;
+    border-color: @verdef;
+}
+
+entry normal normal {
+     color: @verde;
+}
+
+prompt normal normal {
+    color: @verdef;
+}
+
+element-text {
+    margin: 0px 4px 4px 0px;
+}
+
+element {
+    padding: 6px 6px 6px 6px;
+    border-radius: 8px;
+}
+
+element-icon {
+    enabled: false;
+}
+
+element selected normal {
+     background-color: @fondosel;
+}

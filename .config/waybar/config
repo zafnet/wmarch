@@ -6,7 +6,7 @@
 
     //Modules layout
 
-	"modules-left": ["tray","custom/launcher","cpu","temperature","memory","custom/updates"],
+	"modules-left": ["tray","cpu","temperature","memory","custom/updates"],
 	"modules-center": ["hyprland/workspaces"],
 	"modules-right": ["custom/special","pulseaudio", "clock","custom/power"],
 	
@@ -42,6 +42,7 @@
             "3": [],
             "4": [],
             "5": [],
+            "6": [],
         },
         "format": "{icon}",
         "format-icons": {
@@ -103,12 +104,15 @@
 
     "custom/power":{
         "format": "<span color='#f7768e'>⏻</span>",
-        "on-click": "~/.config/rofi/power/power-menu.sh"
+        "on-click": "~/.config/rofi/power/powm.sh"
 
     },
 
     "custom/updates":{
         "format": "{} {icon}",
+        "tooltip": true,
+        "tooltip-format": "<span color='#ffae42'> </span> actualizaciones Pendientes de sistema",
+        "on-click": "~/.config/waybar/scripts/update-click.sh",
        	"format-icons": {
 			"default": [
                 "<span color='#ffae42'> </span>", 

@@ -6,6 +6,7 @@ if [ -n "$check" ]; then
   dunstify -t 3000 -i "$HOME/.config/dunst/icons/nograbando.png" "Grabación de pantalla detenida"
   pkill --signal INT wf-recorder
 else
+    mkdir ~/captura
   dunstify -t 3000 -i "$HOME/.config/dunst/icons/grabando.png" "Grabación de pantalla iniciada"
   wf-recorder -f "$HOME/captura/$(date +%d-%m-%Y-%H:%M)".mp4 &
   #wf-recorder -g "$(slurp)" -f "$HOME/captura/$(date +%d-%m-%Y-%H:%M)".mp4 & # Para grabar cierta seccion de la pantalla

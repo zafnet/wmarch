@@ -9,9 +9,9 @@ fh() {sh -c 'fd . -t f -H -E undodir 2>/dev/null | fzf --height 80% -e --cycle -
 
 ve() {fd . / -H -t f -E undodir 2>/dev/null | fzf --prompt="Vista Previa De: "| xargs -r bat && zle reset-prompt} ;zle -N ve;bindkey "^[v" ve
 
-cr() {fd . /  -H -E undodir 2>/dev/null | fzf --prompt="Copiar Ruta: " | tr -d '\n' | xclip -selection c && zle reset-prompt} ;zle -N cr;bindkey "¢" cr
+cr() {fd . /  -H -E undodir 2>/dev/null | fzf --prompt="Copiar Ruta: " | tr -d '\n' | wl-copy && zle reset-prompt} ;zle -N cr;bindkey "¢" cr
 
-cl() {fd . / -H -E undodir 2>/dev/null | fzf --prompt="Copiar en clipboard: " |tr -d '\n' | xargs xclip -sel clipboard && zle reset-prompt} ;zle -N cl ;bindkey "^[c" cl
+cl() { fd . / -H -E undodir 2>/dev/null | fzf --prompt="Copiar en Clipboard: " | tr -d '\n' | xargs cat | wl-copy && zle reset-prompt }; zle -N cl; bindkey "^[c" cl
 
 fm() { man -k . | fzf --prompt='Man > ' | awk '{print $1}' | xargs -r man && zle reset-prompt} ;zle -N fm ;bindkey "µ" fm
 
