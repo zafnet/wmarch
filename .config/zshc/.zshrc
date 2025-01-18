@@ -32,48 +32,10 @@ setopt HIST_REDUCE_BLANKS HIST_VERIFY SHARE_HISTORY dotglob completealiases
 unsetopt MENU_COMPLETE FLOW_CONTROL NO_BEEP
 #setopt AUTO_NAME_DIRSA PPEND_HISTORY EXTENDED_HISTORY INC_APPEND_HISTORY HIST_EXPIRE_DUPS_FIRST
 
-# Función personalizada para mostrar la rama de Git
-git_b() {
-    # Verificar si estamos en un repositorio Git
-    if git rev-parse --is-inside-work-tree &> /dev/null; then
-        # Obtener el nombre de la rama actual
-        branch=$(git branch 2> /dev/null | grep '*' | sed 's/* //')
-
-        # Verificar si hay cambios en el repositorio
-        if [[ -n $(git status --porcelain 2> /dev/null) ]]; then
-            echo "  $branch %F{#f33334} %f"  # Ícono para repositorio sucio
-        else
-            echo "  $branch"
-        fi
-    else
-        # No estamos en un repositorio Git, no mostrar nada
-        echo ""
-    fi
-}
-
-# Función para establecer el prompt según si estamos en Tmux
-set_prompt() {
-    if [[ -z "$TMUX" ]]; then
-        # Cambia el prompt cuando estás en Tmux
-        if [[ "$(id -u)" -eq "0" ]]; then
-            PROMPT='%B%F{#f41818}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#ffffff}%~%f%F{#18b1f4}$(git_b)%f %F{#f41818}#%f%b ' # Prompt para root fuera de Tmux
-        elif [[ "$(id -u)" -eq "1000" ]]; then
-            PROMPT='%B%F{#91fe36}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#fe820e}%~%f%F{#18b1f4}$(git_b)%f %F{#039915}%f%b ' # Prompt para usuario normal fuera de Tmux
-        fi
-    else
-        # Prompt normal cuando no estás en Tmux
-        if [[ "$(id -u)" -eq "0" ]]; then
-            PROMPT='%B%F{#f41818}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#ffffff}%~%f%F{#18b1f4}$(git_b)%f %F{#f41818}#%f%b ' # Prompt para root en Tmux
-        elif [[ "$(id -u)" -eq "1000" ]]; then
-            PROMPT='%B%F{#ff0036}%n%f%F{#ffe647} %f%F{#3edfff}%m%f %f%F{#f2c2c2}%~%f%F{#ca50fc}$(git_b)%f %B%F{#0fff15} %f%b ' # Prompt para usuario normal en Tmux
-        fi
-    fi
-}
-set_prompt # Llama a la función para establecer el prompt
-
 autoload -Uz compinit # Autocompletado moderno de zsh
 compinit
 
+# Estilos de zsh
 zstyle ':completion:*:descriptions' format %F{green}autocompletado %d %f 
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
@@ -82,19 +44,31 @@ zstyle ':completion:*' rehash true
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*:warnings' format "%B%F{197}No hay coincidencias para:%f %F{202}%d%b"
 
-bindkey ";5D" backward-word # Ctrl + Flechas <- en zsh
-bindkey ";5C" forward-word  # Ctrl + Flechas -> en zsh
-bindkey ";5"  delete-word   # Tecla backspace en zsh
-bindkey "\e[3~" delete-char # Tecla Supr en zsh
+# Opciones De Teclas de zsh
+bindkey ";5D" backward-word       # Ctrl + Flechas <- en zsh
+bindkey ";5C" forward-word        # Ctrl + Flechas -> en zsh
+bindkey ";5"  delete-word         # Tecla backspace en zsh
+bindkey "\e[3~" delete-char       # Tecla Supr en zsh
+bindkey "^p" up-line-or-history   # Ctrl + p suba en el historial
+bindkey "^n" down-line-or-history # Ctrl + n baje en el historial
+bindkey "^a" beginning-of-line    # Ctrl + a Ir principio de la linea
+bindkey "^e" end-of-line          # Ctrl + e Ir final de la linea
+bindkey "^[d" kill-word           # Borrar palabra de izquierda a derecha (Alt + d)
+bindkey "^d" delete-char          # Borrar un carácter a la derecha (Ctrl + d)
+bindkey "^b" backward-char        # Ir un carácter hacia atrás (Ctrl + b)
+bindkey "^[b" backward-word       # Ir una palabra hacia atrás (Alt + b)
+bindkey "^[f" forward-char        # Ir un carácter hacia adelante (Alt + f)
+bindkey "^f" forward-word         # Ir a la siguiente palabra (Ctrl + f)
 
-bindkey "^p" up-line-or-history   # Para que Ctrl + p suba en el historial
-bindkey "^n" down-line-or-history # Para que Ctrl + n baje en el historial
 
-bindkey '^[h' backward-char # Alt + h para menu autocompletado izquierda
-bindkey '^[l' forward-char  # Alt + l para menu autocompletado derecha
-bindkey '^[m' up-history    # Alt + m para menu autocompletado arriba
-bindkey '^[n' down-history  # Alt + n para menu autocompletado abajo
+# Opciones De Teclas Para el menu de autocompletado de zsh
+bindkey '^[h' backward-char       # Alt + h para menu autocompletado izquierda
+bindkey '^[l' forward-char        # Alt + l para menu autocompletado derecha
+bindkey '^[m' up-history          # Alt + m para menu autocompletado arriba
+bindkey '^[n' down-history        # Alt + n para menu autocompletado abajo
 
-bindkey -s '^[t' 'ts^M' # A+t LLama alias ts sesion tmux sin pedir un nombre
-                         
+# Atajos para lanzar tmux con o sin nombre de sesion
+bindkey -s '^[t' 'ts^M'  # A+t LLama alias ts sesion tmux sin pedir un nombre
 bindkey -s '^[^T' 'tns ' # C+A+T LLama alias tns sesion tmux pidiendo un nombre
+
+bindkey -s '¶' 'fzr^M'   # AltGr + r lanza script para borrar directorio o archivos

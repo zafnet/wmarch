@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# para renombrar archivo o directorio con fzf
+# archivo=$(fd . / -t f -t d 2>/dev/null | fzf --prompt="Renombrar archivo o directorio: ")
+archivo=$(fd . / -H -E undodir 2>/dev/null | fzf --prompt="Renombrar archivo o directorio: ")
+if [ -n "$archivo" ]; then
+    clear
+    # Mostrar el mensaje en color violeta en la misma línea
+    printf $'\e[1;35mIngrese el nuevo nombre: \e[0m'
+    # Usar read -e para permitir la edición en la misma línea
+    read -e nuevo_nombre
+    # Obtener el directorio del archivo original
+    directorio=$(dirname "$archivo")
+    # Mover el archivo al nuevo nombre en el mismo directorio
+    mv "$archivo" "$directorio/$nuevo_nombre"
+    clear
+fi
