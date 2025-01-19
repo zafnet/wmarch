@@ -1,38 +1,34 @@
-#-- PROMPT CUSTOM CON PROMPT_SUBST OPCION DE ZSH
-git_b() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ *\1/' }
+# FUNCIONES PARA FZF
+ir() {cd $(fd . / -H -t d 2>/dev/null | fzf --prompt="Ir a La Carpeta: ") && zle reset-prompt} ;zle -N ir;bindkey "^[i" ir
 
-#-- VER LOS MANUALES DE MAN EN NVIM
-# man() { /usr/bin/man $* | nvim -c "set ft=man" -R -}
+rf() {rm -rf $(fd . / -H -E undodir 2>/dev/null | fzf --prompt="Borrar Archivo o Directorio: ") && zle reset-prompt} ;zle -N rf;bindkey  "^[r" rf
 
-#-- FUNCIONES PARA FZF
-ir() {cd $(find / -type d 2> /dev/null | fzf -e --border --cycle --prompt="Ir a La Carpeta: ") && zle reset-prompt} ;zle -N ir;bindkey "^[i" ir
+nf() {sh -c 'fd . / -H -t f -E undodir 2>/dev/null  | fzf --height 80% -e --cycle --border --multi --prompt="Abrir Con Nvim: "| xargs -r nvim' && zle reset-prompt} ;zle -N nf;bindkey 'º' nf
 
-op() {xdg-open $(find / -type f 2> /dev/null | fzf -e --border --cycle --prompt="Abrir: ") && zle reset-prompt} ;zle -N op;bindkey "^[o" op
+fh() {sh -c 'fd . -t f -H -E undodir 2>/dev/null | fzf --height 80% -e --cycle --border --multi --prompt="Abrir Con Nvim: "| xargs -r nvim' && zle reset-prompt} ;zle -N fh;bindkey '^[^i' fh
 
-rf() {rm -rf $(find / -type f,d 2> /dev/null | fzf -m -e --border --cycle --prompt="Borrar Archivo o Directorio: ") && zle reset-prompt} ;zle -N rf;bindkey  "^[r" rf
+ve() {fd . / -H -t f -E undodir 2>/dev/null | fzf --prompt="Vista Previa De: "| xargs -r bat && zle reset-prompt} ;zle -N ve;bindkey "^[v" ve
 
-nf() {sh -c 'find / -type f 2> /dev/null | fzf -m -e --border --cycle --prompt="Abrir Con Nvim: "| xargs -r nvim' && zle reset-prompt} ;zle -N nf;bindkey 'đ' nf
+cr() {fd . /  -H -E undodir 2>/dev/null | fzf --prompt="Copiar Ruta: " | tr -d '\n' | wl-copy && zle reset-prompt} ;zle -N cr;bindkey "¢" cr
 
-ve() {find / -type f 2> /dev/null | fzf -m -e --border --cycle --prompt="Vista Previa De: "| xargs -r bat && zle reset-prompt} ;zle -N ve;bindkey "^[v" ve
+cl() { fd . / -H -E undodir 2>/dev/null | fzf --prompt="Copiar en Clipboard: " | tr -d '\n' | xargs cat | wl-copy && zle reset-prompt }; zle -N cl; bindkey "^[c" cl
 
-li() {find / -type d 2> /dev/null | fzf -m -e --border --cycle --prompt="Listar Una Carpeta: "| xargs -r lsd -la && zle reset-prompt} ;zle -N li;bindkey "^[l" li
+fm() { man -k . | fzf --prompt='Man > ' | awk '{print $1}' | xargs -r man && zle reset-prompt} ;zle -N fm ;bindkey "µ" fm
 
-cr() {find / -type f,d 2>/dev/null | fzf -e --border --cycle --prompt="Copiar Ruta: " | tr -d '\n' | xclip -selection c && zle reset-prompt} ;zle -N cr;bindkey  "¢" cr
-
-cl() {find / -type f 2>/dev/null | fzf -e --border --cycle --prompt="Copiar en clipboard: " |tr -d '\n' | xargs xclip -sel clipboard && zle reset-prompt} ;zle -N cl ;bindkey "^[c" cl
+po() { ps aux | grep --color=always "$1" | grep -v grep | fzf  --prompt="Procesos Actuales: " | xargs -r && zle reset-prompt };zle -N po ;bindkey "^[y" po
 
 hi() {
-    local selected=$({ ([ -n "$ZSH_NAME" ] && history 0) | sed 's/^ *[0-9][0-9]*  *//g'; echo "";} | fzf +s --tac -e --border --cycle --prompt="Historial: ")
+    local selected=$({ ([ -n "$ZSH_NAME" ] && history 0) | sed 's/^ *[0-9][0-9]*  *//g'; echo "";} | fzf +s --tac --prompt="Historial: ")
     BUFFER=$selected
     zle redisplay
 } ;zle -N hi ;bindkey '^r' hi
 
-fk() { pid=$(ps -ef | sed 1d | fzf -m --color --height 60%  --prompt="Eliminar proceso ➤ " --pointer="➤ " --marker="➤ " | awk '{print $2}')
+fk() { pid=$(ps -ef | sed 1d | fzf --prompt="Eliminar proceso ➤ " --pointer="➤ " --marker="➤ " | awk '{print $2}')
 if [ "x$pid" != "x" ]; then 
 kill -${1:-9} $pid 
 fi && zle reset-prompt} ;zle -N fk; bindkey "^[k" fk
 
-#-- FUNCION PARA EXTRAER COMPRIMIDO
+# EXTRAER COMPRIMIDO CON ALIAS ex
 ex() {
 [ $# -eq 0 ] && echo "no se paso un archivo a la funcion" && return 2
 	for file in $*; do
@@ -56,3 +52,43 @@ ex() {
 		fi
 	done
 }
+
+# FUNCIONES PARA EL PROMPT
+# Función personalizada para mostrar la rama de Git con iconos en el prompt
+git_b() {
+    # Verificar si estamos en un repositorio Git
+    if git rev-parse --is-inside-work-tree &> /dev/null; then
+        # Obtener el nombre de la rama actual
+        branch=$(git branch 2> /dev/null | grep '*' | sed 's/* //')
+
+        # Verificar si hay cambios en el repositorio
+        if [[ -n $(git status --porcelain 2> /dev/null) ]]; then
+            echo "  $branch %F{#f33334} %f"  # Ícono para repositorio sucio
+        else
+            echo "  $branch"
+        fi
+    else
+        # No estamos en un repositorio Git, no mostrar nada
+        echo ""
+    fi
+}
+
+# Función para establecer el prompt según si estamos en Tmux
+set_prompt() {
+    if [[ -z "$TMUX" ]]; then
+        # Cambia el prompt cuando estás en Tmux
+        if [[ "$(id -u)" -eq "0" ]]; then
+            PROMPT='%B%F{#f41818}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#ffffff}%~%f%F{#18b1f4}$(git_b)%f %F{#f41818}#%f%b ' # Prompt root fuera de Tmux
+        elif [[ "$(id -u)" -eq "1000" ]]; then
+            PROMPT='%B%F{#91fe36}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#fe820e}%~%f%F{#18b1f4}$(git_b)%f %F{#039915}%f%b ' # Prompt usuario fuera de Tmux
+        fi
+    else
+        # Prompt normal cuando no estás en Tmux
+        if [[ "$(id -u)" -eq "0" ]]; then
+            PROMPT='%B%F{#f41818}%n%f%F{#ffe647} %f%F{#58d68d}%m%f %f%F{#ffffff}%~%f%F{#18b1f4}$(git_b)%f %F{#f41818}#%f%b %B%F{#0fff15} %f%b ' # Prompt root en Tmux
+        elif [[ "$(id -u)" -eq "1000" ]]; then
+            PROMPT='%B%F{#ff0036}%n%f%F{#ffe647} %f%F{#3edfff}%m%f %f%F{#f2c2c2}%~%f%F{#ca50fc}$(git_b)%f %B%F{#0fff15} %f%b ' # Prompt usuario en Tmux
+        fi
+    fi
+}
+set_prompt # Llama a la función para establecer el prompt

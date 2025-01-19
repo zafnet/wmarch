@@ -5,46 +5,45 @@
 # ███████╗███████║██║  ██║███████╗██║ ╚████║ ╚████╔╝ 
 # ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝  ╚═══╝  
 
-#-- CARGAR .ZSHRC DESDE OTRO DIRECTORIO 
+# CARGAR .ZSHRC DESDE OTRO DIRECTORIO 
 ZDOTDIR="$HOME/.config/zshc/"
+#. $ZDOTDIR
 
-. $ZDOTDIR
+# EXPORTS
+export GTK2_RC_FILES="$HOME/.config/pcmanfm/.gtkrc-2.0"
+export BROWSER=firefox
+export MANPAGER="nvim +Man!"
+export LC_ALL=es_AR.UTF8
+# export RANGER_LOAD_DEFAULT_RC= false
+# export RANGER_CONFIG_DIR="$HOME/.config/ranger/rc.conf"
+# export XCOMPOSEFILE="$HOME/.config/.XCompose"
 
-#-- CARGAR XRESOURCES DESDE OTRO DIRECTORIO
-#-- VERIFICANDO QUE ESTE EN UN SHELL INTERACTIVO
+# EXPORTS DE FZF
+export FZF_DEFAULT_OPTS="--height 80% -e --cycle --border --multi --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} es un archivo binario || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='30:80%:wrap,border-rounded,right:hidden' --bind='alt-e:execute(bat --style=numbers {} || less -f {}),alt-o:execute(nvim {}),alt-w:toggle-preview,ctrl-p:preview-half-page-down,ctrl-u:preview-half-page-up,ctrl-g:accept'
+--color=fg:#97e297,fg+:#dd8d50,bg:-1,bg+:-1
+--color=hl:#ff759c,hl+:#dfbe17,info:#46e438,marker:#87ff00
+--color=prompt:#d7005f,spinner:#40caa0,pointer:#ff0000,header:#f7f6f8
+--color=border:#e55454,separator:#94a940,scrollbar:,gutter:-1,preview-fg:#48b227
+--color=label:#aeaeae,query:#c2b73e
+--preview-window="border-rounded" --prompt="" --marker="󰄬" --pointer=""
+--separator="" --scrollbar="│" --layout="reverse" --info="right""
+
+export FZF_DEFAULT_COMMAND='fd . / -H -tf -td -E undodir'
+
+# CARGAR XRESOURCES DESDE OTRO DIRECTORIO
 if [[ $- != *i* ]]; then
 xrdb -I $HOME/.config/xres/Xresources
 fi
 
-#-- TAMAÑO UBICACION Y GUARDADO DEL HISTORIAL
-HISTFILE="$HOME/.config/zshc/.zsh_history"
-HISTSIZE=1000
-SAVEHIST=1000
-
-export BROWSER=firefox
-
-export LC_ALL="es_AR.UTF8"
-
-#-- OPCIONES PARA PCMANFM
-export GTK2_RC_FILES="$HOME/.config/pcmanfm/.gtkrc-2.0"
-
-#-- OPCIONES PARA RANGER
-export RANGER_LOAD_DEFAULT_RC= false
-export RANGER_CONFIG_DIR="$HOME/.config/ranger/rc.conf"
-
-#-- COLORES PARA 'MAN'
-export MANPAGER="less -R --use-color -Dd+g -Du+b"
-export MANROFFOPT="-P -c"
-
-#-- OPCIONES PARA FZF
-export FZF_DEFAULT_OPTS=' --height 60% --border
- --color=fg:-1,bg:#282A36,hl:#745ead
- --color=fg+:#1bf57d,bg+:#525257,hl+:#069c42
- --color=info:#1589d6,prompt:#00d656,pointer:#af5fff
- --color=marker:#ff0000,spinner:#ffec5c,header:#87afaf'
-
-export FZF_DEFAULT_COMMAND='find / -type f 2>/dev/null'
-
-#-- OPCIONES PARA LS_COLORS
-LS_COLORS='di=34:fi=37:ow=34:ln=35:pi=4;33:so=1;34;41:bd=31:cd=1:or=31:mi=31:ex=32:*.pdf=36:*conf=35:*rc=93'
-export LS_COLORS
+# COLORES DE 'MAN'
+function man() {
+    env \
+    LESS_TERMCAP_mb=$'\e[01;31m' \
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    man "$@"
+}
