@@ -1,23 +1,23 @@
 #!/usr/bin/env  bash
 
-options="  Apagar\n  Reiniciar\n  Suspender\n  Cerrar sesión\n  Lock Screen"
+options="\n\n\n\n"
 
-selected=$(echo -e "$options" | rofi -dmenu -i -theme ~/.config/rofi/power/powm.rasi -p " opción:")
+selected=$(echo -e "$options" | rofi -dmenu -p  "Qué quieres $USER" -i -theme ~/.config/rofi/power/powm.rasi "")
 
 case $selected in
-    "  Apagar")
-        systemctl poweroff
+    "")
+     systemctl poweroff
         ;;
-    "  Reiniciar")
-        systemctl reboot
+    "")
+     systemctl reboot
         ;;
-    "  Suspender")
-        systemctl suspend
+    "")
+     systemctl suspend
         ;;
-    "  Cerrar sesión")
-        hyprctl dispatch exit 1
+    "")
+     hyprctl dispatch exit 1
         ;;
-    "  Lock Screen")
-       hyprlock
+    "")
+     hyprlock
         ;;
 esac

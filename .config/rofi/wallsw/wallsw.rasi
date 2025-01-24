@@ -6,63 +6,76 @@
 // ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝
                                                                        
  * {                                                                    
-  font: "agave Nerd Font 13";
+  font: "JetbrainsMono Nerd Font 12";
 
   background-color: transparent;
   yellow:#ffd966;
   blue:#48b9c7;
-  fondo:#412307;
+  viol:#d700af;
+  fondo:#262626;
   fondosel: #1b1a1a;
  }
+
+configuration {
+// Atajos para moverse
+kb-row-up:"alt+k";
+kb-row-down:"alt+j";
+kb-row-right:"alt+l";
+kb-row-left:"alt+h";
+}
+
  
- window {
-     border-radius: 10px;
+window {
+     location:center;
+     border-radius:10px;
      background-color:@fondo;
-     padding: 1%;
-     x-offset: -20%;
-     y-offset: -10%;
-     width:      30%;
-     height:     39%;
+     padding:1%;
+     width:67%;
+     height:39%;
+}
+
+listview {
+     columns:5;
 }
 
 case-indicator {
-    enabled: false;
+    enabled:false;
 }
 
 element-text {
-    text-color: @blue;
+    text-color:@viol;
 }
 
 element {
-    padding: 8px 16px;
-    border-radius: 8px;
-    margin: 2px 0px 0px 0px;
+    padding:8px 16px;
+    border-radius:8px;
+    margin:2px 0px 0px 0px;
 }
 
 element-icon {
-    enabled: false;
+    enabled:false;
 }
 
 element selected normal {
-     background-color: @fondosel;
+     background-color:@fondosel;
 }
 
 inputbar {
      children: [ prompt, textbox-prompt-colon, entry ];
-     spacing: 0px;
+     spacing:0px;
 } 
 
 textbox-prompt-colon {                                                
-     color: @yellow;                                              
-     expand: false;                                                    
-     margin: 0 0.3em 0em 0em;                                          
+     color:@yellow;                                              
+     expand:false;                                                    
+     margin:0 0.3em 0em 0em;                                          
      str: ":";
 }
 
 prompt normal normal {
-     color: @yellow;
+     color:@yellow;
 }
  
 entry {
-     color: @yellow;
+     color:@yellow;
 }

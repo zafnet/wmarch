@@ -5,9 +5,9 @@ require('netrw')
 require('abrevs')
 
 vim.cmd.colorscheme('saxs')
-vim.cmd("highlight Normal guibg=NONE ctermbg=NONE") -- transparencia para wezterm
 
-vim.opt.laststatus = 2  -- Configuración De La Línea De Estado
+-- Configuración De La Barra de Modos
+vim.opt.laststatus = 2
 
 local current_mode = {
   n  = 'n',
@@ -21,7 +21,7 @@ local current_mode = {
   t  = 'T'
 }
 
--- Definir colores y estilos para la línea de estado
+-- Definir colores y estilos para la Barra de estado lado Izquierdo
 vim.api.nvim_set_hl(0, 'NormalColor', { bg = '#000000', fg = '#00af00', bold = true })     -- '#000000' -> 0, '#00af00' -> 34
 vim.api.nvim_set_hl(0, 'InsertColor', { bg = '#000000', fg = '#ffff00', bold = true })     -- '#ffff00' -> 226
 vim.api.nvim_set_hl(0, 'VisualColor', { bg = '#000000', fg = '#ff8700', bold = true })     -- '#ff8700' -> 214
@@ -31,7 +31,7 @@ vim.api.nvim_set_hl(0, 'ReplaceColor', { bg = '#000000', fg = '#ff00ff', bold = 
 vim.api.nvim_set_hl(0, 'TerminalColor', { bg = '#000000', fg = '#ff005f', bold = true })   -- '#ff005f' -> 197
 vim.api.nvim_set_hl(0, 'CommandColor', { bg = '#000000', fg = '#5faf00', bold = true })    -- '#5faf00' -> 70
 
--- Resaltado De Colores Para La Linea De Estado Derecha
+-- Colores Para La Barra De Estado lado Derecho
 vim.api.nvim_set_hl(0, 'rutadarch', { bg = '#626262', fg = '#00d75f' })                    -- '#626262' -> 240, '#00d75f' -> 42
 vim.api.nvim_set_hl(0, 'ln', { bg = '#626262', fg = '#00af00' })                           -- '#00af00' -> 34
 vim.api.nvim_set_hl(0, 'co', { bg = '#626262', fg = '#ffffff' })                           -- '#ffffff' -> 15
@@ -64,5 +64,5 @@ _G.get_statusline = function()
   return statusline
 end
 
--- Configuración de la línea de estado
+-- Configuración de la Barra de estado
 vim.opt.statusline = '%!v:lua.get_statusline()'

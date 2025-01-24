@@ -67,19 +67,20 @@ alias nbh='nvim /home/$USER/.config/bashc/.bash_history'  # Editar .bash_history
 alias nzh='nvim ~/.config/zshc/.zsh_history'              # Editar .zsh_history con Neovim Editor
 
 #-- Git
-alias gs='git status'          # Ver el estado del repositorio Git
-alias ga='git add -A'          # Añadir todos los cambios al área de preparación Git
-alias gc='git clone'           # Clonar un repositorio Git
-alias gp='git push origin $1'  # Enviar cambios al repositorio remoto Git
-alias gb='git branch'          # Listar ramas en el repositorio Git
-alias gk='git checkout'        # Cambiar a otra rama Git
-alias gu='git pull origin'     # Obtener cambios del repositorio remoto Git
-alias gt='git tag -a'          # Crear una nueva etiqueta en el repositorio Git
-alias gf='git fetch'           # Obtener cambios del repositorio remoto sin fusionar Git
-alias gl="git log $GLO"        # Mostrar el historial de commits en formato gráfico Git
-alias gd='git diff'            # Mostrar diferencias entre cambios Git
-alias gdc='git diff --cached'  # Mostrar diferencias de cambios en el área de preparación Git
-gm() {git commit -m "$*"}      # Hacer un commit con un mensaje especificado Git
+alias gs='git status'            # Ver el estado del repositorio Git
+alias ga='git add -A'            # Añadir todos los cambios al Staging Area Git
+alias gc='git clone'             # Clonar un repositorio Git
+alias gp='git push origin $1'    # Enviar cambios al repositorio remoto Git
+alias gb='git branch'            # Listar ramas en el repositorio Git
+alias gk='git checkout'          # Cambiar a otra rama Git
+alias gu='git pull origin'       # Obtener cambios del repositorio remoto Git
+alias gt='git tag -a'            # Crear una nueva etiqueta en el repositorio Git
+alias gf='git fetch'             # Obtener cambios del repositorio remoto sin fusionar Git
+alias gl="git log $GLO"          # Mostrar el historial de commits en formato gráfico Git
+alias gd='git diff'              # Mostrar diff entre cambios Git
+alias gdc='git diff --cached'    # Mostrar diff de cambios en el Staging Area Git
+alias gdw='git diff --word-diff' # Mostrar diff solo la palabra que cambio en el Staging Area de Git
+gm() {git commit -m "$*"}        # Hacer un commit con un mensaje especificado Git
 
 #-- Docker
 alias dps='docker ps'          # Listar contenedores Docker en ejecución

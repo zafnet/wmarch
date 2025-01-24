@@ -5,46 +5,117 @@
 //██║     ╚██████╔╝╚███╔███╔╝███████╗██║  ██║      ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝██╗██║  ██║██║  ██║███████║██║
 //╚═╝      ╚═════╝  ╚══╝╚══╝ ╚══════╝╚═╝  ╚═╝      ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝
 
-* {                                                                    
-    background-color: transparent;
-    color: #ff3084;
-}
-
 configuration {
     show-icons: false;
-    font: "agave Nerd Font 14";
 }
 
-mainbox {
-    padding: 1% 0px 0.21%;
+* {
+    /* Resolution 1920x1080 */
+    mainbox-spacing: 100px;
+    mainbox-margin: 100px 300px;
+    message-margin: 0px 400px;
+    message-padding: 15px;
+    message-border-radius: 100%;
+    listview-spacing: 50px;
+    element-padding: 55px 60px;
+    element-border-radius: 100%;
+
+    prompt-font:"JetBrains Mono Nerd Font Bold Italic 64";
+    textbox-font:"JetBrains Mono Nerd Font 16";
+    element-text-font:"feather 64";
+
+    background-window: black/29%;
+    background-normal: white/5%;
+    background-selected: white/25%;
+    foreground-normal: white;
+    foreground-selected: white;
 }
 
 window {
-   border-radius: 10px;
-   background-color:#474746;
-   padding: 1%  2% 1% 2%;
-   x-offset: -1%;
-   y-offset: -3%;
-   width: 14%;
-   height: 219;
-   margin: 2px;
+    transparency:"real";
+    location: center;
+    anchor: center;
+    fullscreen: true;
+    cursor:"default";
+    background-color: var(background-window);
 }
 
-element {
-    border-radius: 9px;
-    spacing: 2px;
-    border: 1;
-    padding:  7px 0px;
-}
-
-element-text {
-    margin: 0px 0px 0px 23px;
-}
-
-element selected normal {
-    background-color: #1b1a1a;
+mainbox {
+    enabled: true;
+    spacing: var(mainbox-spacing);
+    margin: var(mainbox-margin);
+    background-color: transparent;
+    children: [ "dummy", "inputbar", "listview", "message", "dummy" ];
 }
 
 inputbar {
-    enabled: false;
+    enabled: true;
+    background-color: transparent;
+    children: [ "dummy", "prompt", "dummy"];
+}
+
+dummy {
+    background-color: transparent;
+}
+
+prompt {
+    enabled: true;
+    font: var(prompt-font);
+    background-color: transparent;
+    text-color: var(foreground-normal);
+}
+
+message {
+    enabled: true;
+    margin: var(message-margin);
+    padding: var(message-padding);
+    border-radius: var(message-border-radius);
+    background-color: var(background-normal);
+    text-color: var(foreground-normal);
+}
+textbox {
+    font: var(textbox-font);
+    background-color: transparent;
+    text-color: inherit;
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+}
+
+listview {
+    enabled: true;
+    expand:  false;
+    columns: 5;
+    lines: 1;
+    cycle: true;
+    dynamic: true;
+    scrollbar: false;
+    layout: vertical;
+    reverse: false;
+    fixed-height: true;
+    fixed-columns: true;
+    
+    spacing: var(listview-spacing);
+    background-color: transparent;
+    cursor: "default";
+}
+
+element {
+    enabled: true;
+    padding: var(element-padding);
+    border-radius: var(element-border-radius);
+    background-color: var(background-normal);
+    text-color: var(foreground-normal);
+    cursor: pointer;
+}
+element-text {
+    font: var(element-text-font);
+    background-color: transparent;
+    text-color: inherit;
+    cursor: inherit;
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+}
+element selected.normal {
+    background-color: var(background-selected);
+    text-color: var(foreground-selected);
 }
