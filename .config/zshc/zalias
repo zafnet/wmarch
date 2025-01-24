@@ -2,92 +2,92 @@ DUNS='dunstify -t 4000 -i "$HOME/.config/dunst/icons/actuale.png"'
 REFLE='sudo reflector -l 5 -p http,https --sort rate --save /etc/pacman.d/mirrorlist'
 BORR='dunstify -t 4000 -i "$HOME/.config/dunst/icons/borrado.png"'
 PACM='sudo pacman'
+RCAC="echo ' ' > $HOME/.config/zshc/.zsh_history && $BORR '.cache y zsh_history Borrados'"
+GLO="--graph --pretty=format:'%C(yellow)%h%Creset -%Cblue%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 
 #-- Sistema
-alias ll='lsd -lha --group-dirs=first'
-alias l='lsd -lda --group-dirs=first */'
-alias lo='lsd -lda --group-dirs=first .*/'
-alias ls='ls --group-directories-first --color=always -lhFaH'
-alias tree='lsd --tree'
-alias ba='bat'
-alias ra='ranger'
-alias vf='vifm'
-alias to='touch'
-alias ins="$PACM -S"
-alias ac="$PACM -Syu && $DUNS 'Sistema Actualizado' && exit"
-alias acn="$PACM -Syu --noconfirm && $DUNS 'Sistema Actualizado' && exit"
-alias acm="$REFLE && $PACM -Syu --noconfirm && $DUNS 'Mirrors y Sistema Actualizados' && exit"
-alias mir="$REFLE && $DUNS 'Mirrorlist Actualizado'"
-alias al='pacman -Qs'
-alias rem="$PACM -Rs"
-alias rm='rm -r'
-alias rv='rm -rv'
-alias rep='pacman -Ss'
-alias cp='rsync -ah --info=progress2'
-alias mv='mv -u'
-alias mvv='mv -uv'
-alias mk='mkdir -pv'
-alias smk='sudo mkdir -pv'
-alias grep='grep --color=auto'
-alias xd="xrdb merge ~/.config/xres/Xresources && $DUNS 'Xresources Actualizado'"
-alias ch='checkupdates'
-alias sz="source ~/.config/zshc/.zshrc && $DUNS 'zshrc Actualizado'"
-cm() {chmod "$@"} 
-alias ca='rv .cache/*'
-alias zh="echo ' ' > $HOME/.config/zshc/.zsh_history && $BORR 'zsh_history Borrado'"
-alias bh="echo " " > $HOME/.config/bashc/.bash_history && $BORR 'bash_history Borrado'"
-alias bu='sudo find / 2>/dev/null -iname $1'
-alias ssk='ssh-keygen -t ed25519 -f ~/.ssh/git-key'
-alias ip='ip -c'
-# alias cp='cp -ur $(notify-send -i "$HOME/.config/dunst/icons/copia.png" "Copia Terminada")'
-# alias cv='cp -urv $(notify-send -i "$HOME/.config/dunst/icons/copia.png" "Copia Terminada")'
+alias ll='lsd -lha --group-dirs=first'                                                          # Listar archivos con detalles y directorios primero Sistema
+alias la='lsd -l --group-dirs=first'                                                            # Listar archivos en formato largo con directorios primero Sistema
+alias ls='ls -haFH --group-directories-first --color=always'                                    # Listar archivos con colores y directorios primero Sistema
+alias tree='lsd --tree'                                                                         # Mostrar estructura de directorios en forma de árbol Sistema
+alias ba='bat -l java'                                                                          # Ver archivos Java con resaltado de sintaxis Sistema
+alias vf='vifm'                                                                                 # Abrir el gestor de archivos Vifm Sistema
+alias to='touch'                                                                                # Crear un archivo vacío Sistema
+alias ins="$PACM -S"                                                                            # Instalar un paquete con Pacman Sistema
+alias ac="$PACM -Syu && $DUNS 'Sistema Actualizado' && exit"                                    # Actualizar el sistema y notificar Sistema
+alias acn="$PACM -Syu --noconfirm && $DUNS 'Sistema Actualizado' && exit"                       # Actualizar sin confirmación y notificar Sistema
+alias acm="$REFLE && $PACM -Syu --noconfirm && $DUNS 'Mirrors y Sistema Actualizados' && exit"  # Actualizar mirrors y sistema sin confirmación Sistema
+alias mir="$REFLE && $DUNS 'Mirrorlist Actualizado'"                                            # Actualizar la lista de mirrors y notificar Sistema
+alias al='pacman -Qs'                                                                    # Buscar paquetes instalados localmente Sistema
+alias rep='pacman -Ss'                                                                   # Buscar paquetes disponibles en los repos Sistema
+alias in='pacman -Qi'                                                                    # Mostrar información de un paquete instalado Sistema
+alias rem="$PACM -Rs"                                                                    # Desinstalar un paquete Sistema
+alias remc="$PACM -Scc"                                                                  # Limpiar caché de paquetes Sistema
+alias rm='rm -rf'                                                                        # Borrar archivos y directorios de forma recursiva y forzada Sistema
+alias ca="rm -rv .cache/* && $RCAC"                                                      # Limpiar caché y el historial de Zsh Sistema
+alias cpr='rsync -ah --info=progress2'                                                   # Copiar archivos con progreso Sistema
+alias cp='cp -r'                                                                         # Copiar archivos y directorios recursivamente Sistema
+alias mv='mv -u'                                                                         # Mover archivos, solo si son más nuevos Sistema
+alias mk='mkdir -pv'                                                                     # Crear directorios y mostrar mensajes Sistema
+alias smk='sudo mkdir -pv'                                                               # Crear directorios como superusuario y mostrar mensajes Sistema
+alias grep='grep --color=auto'                                                           # Buscar texto con resaltado Sistema
+alias xd="xrdb merge ~/.config/Xresources && $DUNS 'Xresources Actualizado'"             # Actualizar recursos X y notificar Sistema
+alias ch='checkupdates'                                                                  # Comprobar actualizaciones disponibles Sistema
+alias sz="source ~/.config/zshc/.zshrc && $DUNS 'zshrc Actualizado'"                     # Recargar configuración de Zsh y notificar Sistema
+alias zh="echo ' ' > $HOME/.config/zshc/.zsh_history && $BORR 'zsh_history Borrado'"     # Borrar historial de Zsh y notificar Sistema
+alias bh="echo ' ' > $HOME/.config/bashc/.bash_history && $BORR 'bash_history Borrado'"  # Borrar historial de Bash y notificar Sistema
+alias ssk='ssh-keygen -t ed25519 -f ~/.ssh/git-key'                                      # Generar una nueva clave SSH Sistema
+alias ip='ip -c'                                                                         # Mostrar información de red con colores Sistema
+cm() {chmod "$@"}                                                                        # Cambiar permisos de archivos Sistema
+bu() { sudo fd "$1" / -E undodir -E var -H 2>/dev/null }                                 # Buscar archivos con fd, excluyendo ciertos directorios Sistema
 
 #-- Systemctl
-alias sc='sudo systemctl'
-alias scs='sudo systemctl status $1'
-alias sct='sudo systemctl start $1'
-alias sce='sudo systemctl enable $1'
-alias scd='sudo systemctl disable $1'
-alias sco='sudo systemctl stop $1'
-alias scr='sudo systemctl reload $1'
-alias scre='sudo systemctl restart $1'
+alias sc='sudo systemctl'             # Comando principal para gestionar servicios del SO Systemctl
+alias sce='sudo systemctl status $1'  # Ver el estado de un servicio Systemctl
+alias sci='sudo systemctl start $1'   # Iniciar un servicio Systemctl
+alias sca='sudo systemctl enable $1'  # Habilitar un servicio para que inicie al arrancar Systemctl
+alias scd='sudo systemctl disable $1' # Deshabilitar un servicio para que no inicie al arrancar Systemctl
+alias scs='sudo systemctl stop $1'    # Detener un servicio Systemctl
+alias scr='sudo systemctl reload $1'  # Recargar la configuración de un servicio Systemctl
+alias scR='sudo systemctl restart $1' # Reiniciar un servicio Systemctl
 
 #-- Tmux
-alias ts='tmux new -s 0'
-alias tns='tmux new -s '
-alias tl='tmux ls'
-alias ta='tmux a -t'
-alias tk='tmux kill-session -t'
-alias tp='tmux neww -n'
+alias ts='tmux new -s 0'         # Crear una nueva sesión de Tmux con el nombre 0 Tmux
+alias tns='tmux new -s '         # Crear una nueva sesión de Tmux con un nombre especificado Tmux
+alias tl='tmux ls'               # Listar sesiones de Tmux activas Tmux
+alias ta='tmux a -t'             # Adjuntar a una sesión de Tmux existente Tmux
+alias tk='tmux kill-session -t'  # Terminar una sesión de Tmux especificada Tmux
+alias tp='tmux neww -n'          # Crear una nueva ventana en Tmux con un nombre especificado Tmux
 
 #-- Editor
-alias nv='nvim'
-alias nz='nvim /home/$USER/.config/zshc/.zshrc'
-alias nb='nvim /home/$USER/.bashrc'
-alias ns='nvim /home/$USER/.config/sxhkd/sxhkdrc'
-alias nbh='nvim /home/$USER/.config/bashc/.bash_history'
-alias nzh='nvim ~/.config/zshc/.zsh_history'
+alias nv='nvim'                                           # Abrir Neovim Editor
+alias nz='nvim /home/$USER/.config/zshc/.zshrc'           # Editar .zshrc con Neovim Editor
+alias nb='nvim /home/$USER/.bashrc'                       # Editar .bashrc con Neovim Editor
+alias nbh='nvim /home/$USER/.config/bashc/.bash_history'  # Editar .bash_history con Neovim Editor
+alias nzh='nvim ~/.config/zshc/.zsh_history'              # Editar .zsh_history con Neovim Editor
 
 #-- Git
-alias gs='git status'
-alias ga='git add .'
-alias gc='git clone'
-gm() {git commit -m "$*"}
-alias gp='git push origin main'
-alias gb='git branch'
-alias gk='git checkout'
-alias gu='git pull origin'
-alias gt='git tag -a'
-alias gf='git fetch'
-alias gl="git log --graph --pretty=format:'%C(yellow)%h%Creset -%Cblue%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
-alias gd='git diff'
+alias gs='git status'            # Ver el estado del repositorio Git
+alias ga='git add -A'            # Añadir todos los cambios al Staging Area Git
+alias gc='git clone'             # Clonar un repositorio Git
+alias gp='git push origin $1'    # Enviar cambios al repositorio remoto Git
+alias gb='git branch'            # Listar ramas en el repositorio Git
+alias gk='git checkout'          # Cambiar a otra rama Git
+alias gu='git pull origin'       # Obtener cambios del repositorio remoto Git
+alias gt='git tag -a'            # Crear una nueva etiqueta en el repositorio Git
+alias gf='git fetch'             # Obtener cambios del repositorio remoto sin fusionar Git
+alias gl="git log $GLO"          # Mostrar el historial de commits en formato gráfico Git
+alias gd='git diff'              # Mostrar diff entre cambios Git
+alias gdc='git diff --cached'    # Mostrar diff de cambios en el Staging Area Git
+alias gdw='git diff --word-diff' # Mostrar diff solo la palabra que cambio en el Staging Area de Git
+gm() {git commit -m "$*"}        # Hacer un commit con un mensaje especificado Git
 
 #-- Docker
-alias dps='docker ps'
-alias dpa='docker ps -a'
-alias di='docker images'
-alias dl='docker logs'
-alias de='docker exec -it'
-alias dst='docker stop'
-alias dri='docker rmi'
-alias drm='docker rm'
+alias dps='docker ps'          # Listar contenedores Docker en ejecución
+alias dpa='docker ps -a'       # Listar todos los contenedores Docker, incluyendo los detenidos
+alias di='docker images'       # Listar imágenes Docker disponibles
+alias dl='docker logs'         # Ver los logs de un contenedor Docker
+alias de='docker exec -it'     # Ejecutar un comando en un contenedor Docker en modo interactivo
+alias dst='docker stop'        # Detener un contenedor Docker
+alias dri='docker rmi'         # Eliminar una imagen Docker
+alias drm='docker rm'          # Eliminar un contenedor Docker

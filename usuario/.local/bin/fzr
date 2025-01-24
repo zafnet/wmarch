@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# para renombrar archivo o directorio con fzf
+
+archivo=$(find / -type f,d 2>/dev/null | fzf --prompt="Renombrar archivo o directorio: ")
+if [ -n "$archivo" ]; then
+    read -p "Ingrese el nuevo nombre: " nuevo_nombre
+    # Obtener el directorio del archivo original
+    directorio=$(dirname "$archivo")
+    # Mover el archivo al nuevo nombre en el mismo directorio
+    mv "$archivo" "$directorio/$nuevo_nombre"
+fi

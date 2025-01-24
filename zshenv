@@ -5,11 +5,10 @@
 # ███████╗███████║██║  ██║███████╗██║ ╚████║ ╚████╔╝ 
 # ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝  ╚═══╝  
 
-# CARGAR .ZSHRC DESDE OTRO DIRECTORIO 
+# cargar .zshrc desde otro directorio 
 ZDOTDIR="$HOME/.config/zshc/"
-#. $ZDOTDIR
 
-# EXPORTS
+# exports
 export GTK2_RC_FILES="$HOME/.config/pcmanfm/.gtkrc-2.0"
 export BROWSER=firefox
 export MANPAGER="nvim +Man!"
@@ -18,7 +17,7 @@ export LC_ALL=es_AR.UTF8
 # export RANGER_CONFIG_DIR="$HOME/.config/ranger/rc.conf"
 # export XCOMPOSEFILE="$HOME/.config/.XCompose"
 
-# EXPORTS DE FZF
+# exports de fzf
 export FZF_DEFAULT_OPTS="--height 80% -e --cycle --border --multi --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} es un archivo binario || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='30:80%:wrap,border-rounded,right:hidden' --bind='alt-e:execute(bat --style=numbers {} || less -f {}),alt-o:execute(nvim {}),alt-w:toggle-preview,ctrl-p:preview-half-page-down,ctrl-u:preview-half-page-up,ctrl-g:accept'
 --color=fg:#97e297,fg+:#dd8d50,bg:-1,bg+:-1
 --color=hl:#ff759c,hl+:#dfbe17,info:#46e438,marker:#87ff00
@@ -30,12 +29,12 @@ export FZF_DEFAULT_OPTS="--height 80% -e --cycle --border --multi --preview='[[ 
 
 export FZF_DEFAULT_COMMAND='fd . / -H -tf -td -E undodir'
 
-# CARGAR XRESOURCES DESDE OTRO DIRECTORIO
+# cargar Xresources desde otro directorio
 if [[ $- != *i* ]]; then
-xrdb -I $HOME/.config/xres/Xresources
+xrdb -I $HOME/.config/Xresources
 fi
 
-# COLORES DE 'MAN'
+# colores de 'man'
 function man() {
     env \
     LESS_TERMCAP_mb=$'\e[01;31m' \
@@ -47,3 +46,8 @@ function man() {
     LESS_TERMCAP_us=$'\e[01;32m' \
     man "$@"
 }
+
+# agregar para lanzar cualquier wm en la sesion actual
+#if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+#    exec startx
+#fi
