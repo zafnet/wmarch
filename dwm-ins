@@ -133,9 +133,10 @@ install_from_local() {
     cd "/home/$USER/.local/dwm" || exit
 
     # Compilar e instalar
-    sudo make clean install || { print_error "Error: Falló la instalación de DWM."; exit 1; }
+    #sudo make clean install || { print_error "Error: Falló la instalación de DWM."; exit 1; }
 
-    print_status "DWM instalado desde directorio local correctamente."
+    #print_status "DWM instalado desde directorio local correctamente."
+    print_status "usa --> sudo make clean install <-- para instalarla DWM manualmente."
 }
 
 # Función principal para mostrar el menú y manejar la elección del usuario

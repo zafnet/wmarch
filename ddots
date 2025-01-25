@@ -96,6 +96,10 @@ perm_comun_files() {
     # Permisos y Propiedad Para Archivos y Carpetas
     print_status "PERMISOS Y PROPIEDAD PARA CARPETAS COMUNES CREADAS"
     chown -R $USER:$USER $USER_HOME
+    
+    # Permisos de usuario para el directorio dwm en ~/.local/dwm
+    chown -R $USER:$USER $USER_HOME/.local/dwm
+    
     # Permisos y Propiedad Carpeta .CONFIG
     chmod -R 700 "$CONFIG_DIR/"
     sleep 2
@@ -107,7 +111,7 @@ pass_root_file() {
     # Creando Una Carpeta .config en root   
     mkdir -pv /root/.config/
     # Copia archivos y carpetas de $HOME/.config a /root/.config
-    cp -r $REPO_DIR/.config/{bashc,nano,nvim,ranger,zshc,tmux,xres} /root/.config/
+    cp -r $REPO_DIR/.config/{bashc,nano,nvim,zshc,tmux,Xresources} /root/.config/
     # Copia .bashrc a $HOME/root/
     cp -r $REPO_DIR/usuario/.bashrc /root/
     # Copia zshenv en /etc/zsh/
