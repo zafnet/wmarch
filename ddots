@@ -96,7 +96,6 @@ perm_comun_files() {
     # Permisos y Propiedad Para Archivos y Carpetas
     print_status "PERMISOS Y PROPIEDAD PARA CARPETAS COMUNES CREADAS"
     chown -R $USER:$USER $USER_HOME
-    
     # Permisos y Propiedad Carpeta .CONFIG
     chmod -R 700 "$CONFIG_DIR/"
     sleep 2

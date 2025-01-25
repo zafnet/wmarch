@@ -130,10 +130,10 @@ install_from_local() {
     cp -r "/home/$USER/dwm" "/home/$USER/.local/" || { print_error "Error: Falló la copia del directorio local de /home/$USER/dwm a /home/$USER/.local/"; exit 1; }
 
     # Permisos de usuario para el directorio dwm en ~/.local/dwm
-    chown -R $USER:$USER $USER_HOME/.local/dwm
+    chown -R $USER:$USER /home/$USER/.local/dwm
     
     # Cambiar al directorio
-    cd "/home/$USER/.local/dwm" || exit
+    cd /home/$USER/.local/dwm || exit
 
     # Compilar e instalar
     #sudo make clean install || { print_error "Error: Falló la instalación de DWM."; exit 1; }
