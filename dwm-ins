@@ -129,6 +129,9 @@ install_from_local() {
     # Copiar directorio local de dwm a /home/user/.local/
     cp -r "/home/$USER/dwm" "/home/$USER/.local/" || { print_error "Error: Falló la copia del directorio local de /home/$USER/dwm a /home/$USER/.local/"; exit 1; }
 
+    # Permisos de usuario para el directorio dwm en ~/.local/dwm
+    chown -R $USER:$USER $USER_HOME/.local/dwm
+    
     # Cambiar al directorio
     cd "/home/$USER/.local/dwm" || exit
 
