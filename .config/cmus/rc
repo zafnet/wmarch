@@ -1,0 +1,75 @@
+#  ██████╗███╗   ███╗██╗   ██╗███████╗██████╗  ██████╗
+# ██╔════╝████╗ ████║██║   ██║██╔════╝██╔══██╗██╔════╝
+# ██║     ██╔████╔██║██║   ██║███████╗██████╔╝██║     
+# ██║     ██║╚██╔╝██║██║   ██║╚════██║██╔══██╗██║     
+# ╚██████╗██║ ╚═╝ ██║╚██████╔╝███████║██║  ██║╚██████╗
+#  ╚═════╝╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝
+
+# Deshabilitando teclas nativas para usar las custom
+unbind -f common x
+unbind -f common p
+unbind -f common d
+unbind -f common n
+unbind -f common b
+unbind -f common enter 
+unbind -f common q
+unbind -f common s
+unbind -f common L
+unbind -f common <
+unbind -f common >
+unbind -f browser A
+unbind -f common tab
+
+# Reproductor
+bind -f common p win-activate 
+bind -f common P player-play
+bind -f common v player-pause 
+bind -f common x player-stop 
+bind -f common n player-next 
+bind -f common b player-prev 
+bind -f common s search-start
+bind -f common space win-next
+unbind -f common r
+
+# Comandos
+bind -f common q quit 
+#bind common quit -i
+
+# Volumen
+#bind common - vol +1% +0
+#bind common + vol +0 +1%
+
+# Adelanto
+bind common > seek -5
+bind common < seek +5
+
+# Selección
+#bind common i win-sel-cur
+#bind common mlb_click_selected win-activate
+#bind common space win-toggle
+#bind common D win-remove
+#bind common delete win-remove
+#bind common P win-mv-before
+#bind common p win-mv-after
+#bind common E win-add-Q
+#bind common a win-add-l
+#bind common y win-add-p
+#bind common e win-add-q
+#bind common U win-update-cache
+#bind common u update-cache
+
+# Explorador de archivos
+bind common tab win-toggle
+
+# Cambios de configuración
+bind browser A toggle shuffle
+bind common r toggle repeat_current
+#bind browser ^R toggle repeat
+#bind common o toggle play_sorted
+
+# Navega Con Mouse
+#bind common mouse_scroll_up_title left-view
+#bind common mouse_scroll_down_title right-view
+
+# Vista De Barra Por nombre de achivo numero de pista titulo album fecha numero de disco
+set lib_sort=tracknumber title filename albumartist date album discnumber 

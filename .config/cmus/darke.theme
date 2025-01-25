@@ -1,0 +1,51 @@
+#██████╗  █████╗ ██████╗ ██╗  ██╗███████╗
+#██╔══██╗██╔══██╗██╔══██╗██║ ██╔╝██╔════╝
+#██║  ██║███████║██████╔╝█████╔╝ █████╗  
+#██║  ██║██╔══██║██╔══██╗██╔═██╗ ██╔══╝  
+#██████╔╝██║  ██║██║  ██║██║  ██╗███████╗
+#╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
+
+#set color_cmdline_attr=default
+#set color_cmdline_bg=default
+#set color_cmdline_fg=default
+#set color_cur_sel_attr=default
+set color_error=red
+set color_info=11
+set color_separator=35
+
+#set color_statusline_attr=default
+set color_statusline_bg=240
+set color_statusline_fg=35
+
+#set color_titleline_attr=default
+set color_titleline_bg=233
+set color_titleline_fg=197
+
+#set color_win_attr=default
+set color_win_bg=234
+set color_win_fg=248
+
+#set color_win_cur_sel_attr=default
+set color_win_cur_sel_bg=197
+set color_win_cur_sel_fg=249
+set color_win_cur=14
+
+set color_win_dir=214
+
+#set color_win_inactive_cur_sel_attr=7
+set color_win_inactive_cur_sel_bg=245
+set color_win_inactive_cur_sel_fg=10
+#set color_win_inactive_sel_attr=default
+set color_win_inactive_sel_bg=7
+set color_win_inactive_sel_fg=232
+
+#set color_win_sel_attr=default
+set color_win_sel_bg=238
+set color_win_sel_fg=35
+
+#set color_win_title_attr=default
+set color_win_title_bg=240
+set color_win_title_fg=35
+
+set color_trackwin_album_fg=197
+set color_trackwin_album_bg=232

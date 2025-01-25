@@ -474,7 +474,7 @@ case $escritorio in
     sleep 3
     clear
     packages=(
-        "firefox zsh-completions zsh-syntax-highlighting zsh-autosuggestions flameshot obsidian neovim bat vifm fzf tmux xclip file-roller lsd rofi bspwm sxhkd gvfs picom xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock i3lock xed android-file-transfer android-tools android-udev feh pacman-contrib gvfs-gphoto2 gvfs-mtp mtpfs libnotify dunst pulseaudio pcmanfm lxappearance zathura zathura-pdf-poppler imagemagick"
+        "firefox zsh-completions cmus zsh-syntax-highlighting zsh-autosuggestions flameshot obsidian neovim bat vifm fzf tmux xclip file-roller lsd rofi bspwm sxhkd gvfs picom xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock i3lock xed android-file-transfer android-tools android-udev feh pacman-contrib gvfs-gphoto2 gvfs-mtp mtpfs libnotify dunst pulseaudio pcmanfm lxappearance zathura zathura-pdf-poppler imagemagick"
     )
     ;;
   3) 
@@ -505,14 +505,14 @@ case $escritorio in
     echo -e '\033[0;34m' "Escritorio : I3"
     sleep 3
     packages=(
-        "firefox i3-gaps i3-wm i3blocks i3lock zsh-completions zsh-syntax-highlighting zsh-autosuggestions imagemagick pulseaudio flameshot xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock bat vifm fzf tmux xclip file-roller dunst lsd rofi gvfs picom pcmanfm lxappearance zathura zathura-pdf-poppler i3lock xed feh pacman-contrib"
+        "firefox i3-gaps i3-wm cmus i3blocks i3lock zsh-completions zsh-syntax-highlighting zsh-autosuggestions imagemagick pulseaudio flameshot xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock bat vifm fzf tmux xclip file-roller dunst lsd rofi gvfs picom pcmanfm lxappearance zathura zathura-pdf-poppler i3lock xed feh pacman-contrib"
     )
     ;;
   7) 
     echo -e '\033[0;34m' "Escritorio : hyprland"
     sleep 3
     packages=(
-        "firefox slurp wezterm waybar obsidian neovim man-db git hyprland swaybg zsh-completions zsh-syntax-highlighting zsh-autosuggestions pulseaudio wf-recorder grim mpv discord wayland wlroots xorg-xwayland bat vifm rofi fzf tmux xclip file-roller lsd gvfs zathura zathura-pdf-poppler xed feh pacman-contrib imagemagick libnotify fd dunst"
+        "firefox slurp ghostty foot cmus waybar obsidian neovim man-db git hyprland swaybg zsh-completions zsh-syntax-highlighting zsh-autosuggestions pulseaudio wf-recorder grim mpv discord wayland wlroots xorg-xwayland bat vifm rofi fzf tmux xclip file-roller lsd gvfs zathura zathura-pdf-poppler xed feh pacman-contrib imagemagick libnotify fd dunst"
 # nwg-look
     )
     ;;
@@ -521,7 +521,7 @@ case $escritorio in
     sleep 3
     clear
     packages=(
-        "firefox zsh-completions zsh-syntax-highlighting zsh-autosuggestions flameshot obsidian neovim bat vifm fzf tmux xclip file-roller lsd rofi gvfs picom xorg xorg-apps xorg-xinit xorg-twm xorg-server libxft libxinerama libx11 xterm xorg-xclock i3lock xed android-file-transfer android-tools android-udev feh pacman-contrib gvfs-gphoto2 gvfs-mtp mtpfs libnotify dunst pulseaudio pcmanfm lxappearance zathura zathura-pdf-poppler imagemagick"
+        "firefox zsh-completions cmus zsh-syntax-highlighting zsh-autosuggestions flameshot obsidian neovim bat vifm fzf tmux xclip file-roller lsd rofi gvfs picom xorg xorg-apps xorg-xinit xorg-twm xorg-server libxft libxinerama libx11 xterm xorg-xclock i3lock xed android-file-transfer android-tools android-udev feh pacman-contrib gvfs-gphoto2 gvfs-mtp mtpfs libnotify dunst pulseaudio pcmanfm lxappearance zathura zathura-pdf-poppler imagemagick"
     )
     ;;
   *) 
@@ -541,18 +541,9 @@ for package in "${packages[@]}"; do
 done
 clear
 
-# echo -e '\033[1;95m' "COPIANDO DWM-INSTALL.SH A HOME DISCO FISICO"
-# cp dwm-install.sh /mnt/home/$user/
-# sleep 2
-# clear
-# echo -e '\033[1;95m' "CAMBIANDO PERMISOS PARA DWM-INSTALL.SH EN HOME DEL DISCO FISICO"
-# arch-chroot /mnt /bin/bash -c "chown -R $user:$user /home/$user/dwm-install.sh"
-# sleep 2
-# clear
-
 # Clonación de repositorio y configuración de permisos
 echo -e '\033[1;95m' "CLONANDO REPO EN HOME DEL DISCO"
-arch-chroot /mnt /bin/bash -c "git clone -b main https://github.com/zafnet/wmarch /home/$user/wmarch"
+arch-chroot /mnt /bin/bash -c "git clone -b dwm https://github.com/zafnet/wmarch /home/$user/wmarch"
 sleep 2
 clear
 

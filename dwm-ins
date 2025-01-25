@@ -1,0 +1,177 @@
+#!/usr/bin/env bash
+# Directorio base de instalación
+INSTALL_DIR="$HOME/.local/dwm"
+BACKUP_DIR="$HOME/.local/dwm_backup_$(date +%Y%m%d_%H%M%S)"
+BASE_GITHUB_URL="https://github.com/"
+DWM_REPO="userrepo/dwm"  # Parte dinámica por defecto
+DWM_ORIGINAL_SRC="https://dl.suckless.org/dwm/dwm-6.5.tar.gz"
+
+# Funciones para imprimir mensajes con colores
+function print_status {
+    echo -e "\033[1;92m$1\033[0m"  # Verde brillante
+}
+
+function print_error {
+    echo -e "\033[1;91m$1\033[0m"  # Rojo brillante
+}
+
+function print_warning {
+    echo -e "\033[1;93m$1\033[0m"  # Amarillo brillante
+}
+
+function print_menu {
+echo -e "\033[1;35m$1\033[0m" # Violeta oscuro
+}
+
+# Función para verificar si un comando existe
+check_command() {
+    if ! command -v "$1" &>/dev/null; then
+        print_warning "El comando '$1' no está instalado. Intentando instalar..."
+        pacman -S --noconfirm "$1" || { print_error "Error: No se pudo instalar '$1'. Por favor, instálalo manualmente."; exit 1; }
+    fi
+}
+
+# Función para respaldar el directorio actual
+backup_install_dir() {
+    if [[ -d "$INSTALL_DIR" ]]; then
+        print_warning "El directorio '$INSTALL_DIR' ya existe."
+        read -rp "¿Quieres hacer un respaldo antes de continuar? (s/n): " confirm
+        if [[ "$confirm" =~ ^[sS]$ ]]; then
+            print_status "Creando respaldo en '$BACKUP_DIR'..."
+            cp -r "$INSTALL_DIR" "$BACKUP_DIR" || { print_error "Error: Falló el respaldo."; exit 1; }
+            print_status "Respaldo creado correctamente."
+        else
+            print_warning "Saltando respaldo. Continuando..."
+        fi
+    fi
+}
+
+# Función para limpiar el directorio de instalación si existe
+clean_install_dir() {
+    if [[ -d "$INSTALL_DIR" ]]; then
+        backup_install_dir  # Llama al respaldo antes de borrar
+        print_status "Eliminando el directorio existente: $INSTALL_DIR"
+        rm -rf "$INSTALL_DIR"
+    fi
+}
+
+# Función para instalar DWM desde el repositorio personalizado
+install_from_repo() {
+    clear
+    print_status "Instalando DWM desde el repositorio personalizado..."
+
+    # Validar dependencias
+    check_command "git"
+    check_command "make"
+
+    # Pedir al usuario la parte dinámica del repositorio
+    read -rp "Ingrese el usuario y repositorio (por ejemplo, reddrag6/dwm): " user_repo
+    user_repo="${user_repo:-$DWM_REPO}"  # Si no se ingresa nada, usar el repositorio por defecto
+
+    # Construir la URL completa
+    repo_url="$BASE_GITHUB_URL$user_repo"
+
+    # Limpiar directorio de instalación
+    clean_install_dir
+
+    # Clonar el repositorio
+    git clone "$repo_url" "$INSTALL_DIR" || { print_error "Error: Falló al clonar el repositorio."; exit 1; }
+
+    # Cambiar al directorio clonado y compilar
+    cd "$INSTALL_DIR" || exit
+    sudo make && sudo make clean install || { print_error "Error: Falló la instalación de DWM."; exit 1; }
+
+    print_status "DWM instalado desde el repositorio personalizado correctamente."
+}
+
+# Función para instalar DWM desde el código fuente oficial
+install_from_source() {
+    clear
+    print_status "Instalando DWM desde el código fuente oficial..."
+
+    # Validar dependencias
+    check_command "wget"
+    check_command "make"
+
+    # Limpiar directorio de instalación
+    clean_install_dir
+
+    # Crear el directorio base
+    mkdir -p "$INSTALL_DIR"
+
+    # Descargar el archivo tar.gz
+    wget -P "$INSTALL_DIR" "$DWM_ORIGINAL_SRC" || { print_error "Error: Falló la descarga del código fuente."; exit 1; }
+
+    # Cambiar al directorio y extraer el archivo
+    cd "$INSTALL_DIR" || exit
+    tar -xzf dwm-*.tar.gz || { print_error "Error: Falló al extraer el código fuente."; exit 1; }
+
+    # Cambiar al directorio extraído
+    cd dwm-*/ || exit
+
+    # Compilar e instalar
+    sudo make && sudo make clean install || { print_error "Error: Falló la instalación de DWM."; exit 1; }
+
+    print_status "DWM instalado desde el código fuente oficial correctamente."
+}
+
+# Función para instalar DWM directorio local
+install_from_local() {
+    clear
+    print_status "Instalando DWM desde Directorio local..."
+
+    # Validar dependencias
+    check_command "make"
+
+    # Limpiar directorio de instalación
+    clean_install_dir
+
+    # Copiar directorio local de dwm a /home/user/.local/
+    cp -r "/home/$USER/dwm" "/home/$USER/.local/" || { print_error "Error: Falló la copia del directorio local de /home/$USER/dwm a /home/$USER/.local/"; exit 1; }
+
+    # Cambiar al directorio
+    cd "/home/$USER/.local/dwm" || exit
+
+    # Compilar e instalar
+    sudo make clean install || { print_error "Error: Falló la instalación de DWM."; exit 1; }
+
+    print_status "DWM instalado desde directorio local correctamente."
+}
+
+# Función principal para mostrar el menú y manejar la elección del usuario
+main_menu() {
+    while true; do
+        clear
+        print_menu "Seleccione la opción de instalación para DWM:"
+        print_menu "1) Instalar desde el repositorio personalizado"
+        print_menu "2) Instalar desde el código fuente oficial"
+        print_menu "3) Instalar desde directorio local"
+        print_menu "4) Salir"
+        read -rp "Ingrese su opción [1-3]: " choice
+
+        case "$choice" in
+            1)
+                install_from_repo
+                break
+                ;;
+            2)
+                install_from_source
+                break
+                ;;
+            3)
+                install_from_local
+                break
+                ;;
+            4)
+                print_status "Saliendo del instalador. Hasta luego."
+                exit 0
+                ;;
+            *)
+                print_error "Opción inválida. Intente nuevamente."
+                ;;
+        esac
+    done
+}
+
+# Ejecutar el menú principal
+main_menu

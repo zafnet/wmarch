@@ -1,3 +1,3 @@
-#AGREGAR ESTE ARCHIVO SOLO CON LO DE ABAJO ESCRITO EN /etc/default/
+# Agregar este archivo solo con lo de abajo escrito en /etc/default/
 
 XKBLAYOUT="es"
