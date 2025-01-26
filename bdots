@@ -1,28 +1,25 @@
 #!/usr/bin/env bash
 
+# Funciones
+function print_status {
+    echo -e "\033[1;92m$1\033[0m"
+}
+
 if [ "$(id -u)" -eq "0" ]; then
-
 pacman -Syu  --noconfirm
-
 clear
-
 else
-
-echo  ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
-echo  "> ███╗░░██╗░█████╗░  ██████╗░░█████╗░░█████╗░████████╗  < "
-echo  "> ████╗░██║██╔══██╗  ██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝  < "
-echo  "> ██╔██╗██║██║░░██║  ██████╔╝██║░░██║██║░░██║░░░██║░░░  < "
-echo  "> ██║╚████║██║░░██║  ██╔══██╗██║░░██║██║░░██║░░░██║░░░  < "
-echo  "> ██║░╚███║╚█████╔╝  ██║░░██║╚█████╔╝╚█████╔╝░░░██║░░░  < "
-echo  "> ╚═╝░░╚══╝░╚════╝░  ╚═╝░░╚═╝░╚════╝░░╚════╝░░░░╚═╝░░░  < "
-echo  ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
-
+print_status ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
+print_status "> ███╗░░██╗░█████╗░  ██████╗░░█████╗░░█████╗░████████╗  < "
+print_status "> ████╗░██║██╔══██╗  ██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝  < "
+print_status "> ██╔██╗██║██║░░██║  ██████╔╝██║░░██║██║░░██║░░░██║░░░  < "
+print_status "> ██║╚████║██║░░██║  ██╔══██╗██║░░██║██║░░██║░░░██║░░░  < "
+print_status "> ██║░╚███║╚█████╔╝  ██║░░██║╚█████╔╝╚█████╔╝░░░██║░░░  < "
+print_status "> ╚═╝░░╚══╝░╚════╝░  ╚═╝░░╚═╝░╚════╝░░╚════╝░░░░╚═╝░░░  < "
+print_status ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
 sleep 1
-
 clear
-
 exit
-
 fi
 
 # Definir variables
@@ -40,18 +37,11 @@ FSTAB_FILE="/etc/"
 WALL_DIR="$FOLD_SHARE/icons/hicolor/16x16/apps/"
 FONT_DIR="$FOLD_SHARE/fonts"
 POLYBAR_PKG="polybar-git-3.6.3.r45.g1ee11f7c-1-x86_64.pkg.tar.zst"
-BROWSE="FIREFOX"
 LOG_MANA="LIGHTDM"
-
-# Funciones
-function print_status {
-    echo -e "\033[1;92m$1\033[0m"
-}
-
 
 ins_logman() {
     print_status "\n\t\t\t\t INSTALANDO $LOG_MANA"
-    pacman -S --needed lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings accountsservice  --noconfirm
+    pacman -S --needed lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings accountsservice --noconfirm
     systemctl enable lightdm
     sleep 2
     clear
@@ -96,22 +86,16 @@ add_dotfiles() {
     cp -r $REPO_DIR/Lavender-Breeze-GTK $THEMES_DIR/
     cp -r $REPO_DIR/Infinity-Lavender-Dark-Icons $ICONS_DIR/
     cp -r $REPO_DIR/iconwall.png $WALL_DIR
-    cp -r $REPO_DIR/appdesk/. $APPLICATIONS_DIR/
+    cp -r $REPO_DIR/$APPLICATIONS_DIR/. $APPLICATIONS_DIR/
     cp -r $REPO_DIR/fonts/. $FONT_DIR/
     cp -r $REPO_DIR/fstab $FSTAB_FILE/
     cp -r $REPO_DIR/bin $USER_HOME/.local/
     cp -r $REPO_DIR/restorconf $USER_HOME/.local/bin/
-   #cp -r $REPO_DIR/xed $USER_HOME/.config/
-   #cp -r $REPO_DIR/gtk-3.0 $USER_HOME/.config/
-   #cp -r $REPO_DIR/.ratpoisonrc $USER_HOME/
-   #cp -r  $REPO_DIR/tilix $FONT_DIR/
-   #cp -r  $REPO_DIR/.xinitrc $USER_HOME/
     sleep 2
     clear
 }
 
 perm_comun_files() {
-    
     # Permisos y Propiedad Para Archivos y Carpetas
     print_status "\n\t\t\t\t PERMISOS Y PROPIEDAD PARA CARPETAS COMUNES CREADAS"
     chown -R $USER:$USER $USER_HOME
@@ -124,9 +108,7 @@ perm_comun_files() {
 }
 
 pass_root_file() {
-
     print_status "\n\t\t\t\t PASANDO ARCHIVOS A ROOT"
-    
     # Creando Una Carpeta .config en root   
     mkdir -pv /root/.config/
     
@@ -144,9 +126,7 @@ pass_root_file() {
 }
 
 poly_ins() {
-
     print_status "\n\t\t\t\t INSTALANDO POLYBAR"
-    
     # Instala "polybar" desde pacman"
     pacman -S --needed polybar --noconfirm
     

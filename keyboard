@@ -1,3 +1,4 @@
-#AGREGAR ESTE ARCHIVO SOLO CON LO DE ABAJO ESCRITO EN /etc/default/
+# Agregar este archivo con este contenido de abajo en /etc/default/ para opciones de la tty
 
-XKBLAYOUT="es"
+XKBLAYOUT="es"           # para que la tty este en español
+XKBOPTIONS="caps:escape" # para que la tty use el bloqmayus como escape
