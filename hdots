@@ -102,7 +102,7 @@ perm_comun_files() {
 pass_root_file() {
     print_status "\n\t\t\t\t PASANDO ARCHIVOS A ROOT"
     mkdir -pv /root/.config/
-    cp -r $REPO_DIR/.config/{bashc,nano,nvim,zshc,tmux,Xresources} /root/.config/
+    cp -r $REPO_DIR/.config/{nano,nvim,zshc,tmux,Xresources} /root/.config/
     cp -r $REPO_DIR/usuario/.bashrc /root/
 }
 
