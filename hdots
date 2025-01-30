@@ -38,7 +38,7 @@ LOG_MANA="sddm"
 
 install_displaym() {
     read -p "¿Deseas instalar el display manager $LOG_MANA? (s/n): " respuesta
-    if [[ "$respuesta" == "s" || "$respuesta" == "S" ]]; then
+    if [[ "$respuesta" =~ ^[sS]$ ]]; then
         print_status "\n\t\t\t\t INSTALANDO $LOG_MANA"
         pacman -S --needed $LOG_MANA --noconfirm
         systemctl enable $LOG_MANA
