@@ -4,5 +4,4 @@ require('funcs')
 require('netrw')
 require('abrevs')
 require('barlua')
-
-vim.cmd.colorscheme('saxs')
+require('themes.saxs')

@@ -72,12 +72,6 @@ x11-instance-name =
 working-directory = 
 
 # Combinaciones de teclas
-# Terminal rapida como quake funciona en mac no se si lo implementaran para linux
-quick-terminal-position = top
-quick-terminal-screen = main
-quick-terminal-animation-duration = 0.2
-quick-terminal-autohide = true
-keybind = ctrl+alt+t=toggle_quick_terminal
 
 # Desvincular combinaciones de teclas en mi caso las nativas
 keybind = ctrl+shift+e=ignore
@@ -122,7 +116,7 @@ resize-overlay = never
 keybind = ctrl+shift+w=close_window
 
 # Ispeccionar opciones
-keybind = ctrl+shift+i=inspector:toggle
+# keybind = ctrl+shift+i=inspector:toggle
 
 # Zoom a paneles
 keybind = ctrl+shift+z=toggle_split_zoom
@@ -165,15 +159,15 @@ window-theme = auto
 # Default is false.
 focus-follows-mouse = false
 
-clipboard-read = allow 
-clipboard-write = allow
-clipboard-trim-trailing-spaces = true
-clipboard-paste-protection = true
-clipboard-paste-bracketed-safe = true
+# clipboard-read = allow 
+# clipboard-write = allow
+# clipboard-trim-trailing-spaces = true
+# clipboard-paste-protection = true
+# clipboard-paste-bracketed-safe = true
 
 # Usar clipboard asi cuando selecciono ya lo envia al clipboard
-copy-on-select = clipboard
-click-repeat-interval = 0
+# copy-on-select = clipboard
+# click-repeat-interval = 0
 
 # Para no confirmar la salida del terminal
 confirm-close-surface = false

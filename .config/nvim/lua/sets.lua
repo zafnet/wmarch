@@ -1,7 +1,5 @@
 -- Configuraciones Base en Lua
 vim.cmd("syntax on")
-vim.opt.termguicolors = true
-vim.opt.guifont = "Monospace:h10"
 vim.opt.autoread = true
 vim.opt.swapfile = false
 vim.opt.fileencoding = "utf-8"
@@ -33,6 +31,6 @@ vim.opt.wildignorecase = true
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.expand("~/.config/nvim/undodir")
 vim.opt.title = true
-vim.opt.signcolumn = "number"
+vim.opt.signcolumn = "no"
 vim.opt.showmode = false
 vim.cmd [[ autocmd VimLeave * set guicursor=a:hor25 ]]

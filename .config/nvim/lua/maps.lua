@@ -25,11 +25,6 @@ map('t', '<Esc><Esc>', '<C-\\><C-n>', { noremap = true })  -- Sale De Terminal v
 map('n', '<leader>v', '<C-w>t<C-w>H', { noremap = true }) -- Cambia ventana En Vertical Del Mismo Buffer Cuando Estan Creadas
 map('n', '<leader>h', '<C-w>t<C-w>K', { noremap = true }) -- Cambia ventana En Horizontal Del Mismo Buffer Cuando Estan Creadas
 
-map('n', '<S-h>', '<C-w>h', { noremap = true }) -- Mueve El Cursor a La ventana  Derecha
-map('n', '<S-l>', '<C-w>l', { noremap = true }) -- Mueve El Cursor a La ventana Izquierda
-map('n', '<S-j>', '<C-w>j', { noremap = true }) -- Mueve El Cursor a La ventana Abajo
-map('n', '<S-k>', '<C-w>k', { noremap = true }) -- Mueve El Cursor a La ventana Arriba
-
 map('n', '<C-l>', '<C-w>L', { noremap = true }) -- Mueve Las Ventanas C-l Derecha
 map('n', '<C-h>', '<C-w>H', { noremap = true }) -- Mueve Las Ventanas C-h Izquierda
 map('n', '<C-j>', '<C-w>J', { noremap = true }) -- Mueve Las Ventanas C-j Abajo
@@ -51,7 +46,7 @@ map('n', '<leader>d', ':bd<CR>', { noremap = true })   -- Elimina El Buffer Actu
 map('n', '<leader>s', ':%s/', { noremap = true })      -- Sustituye Palabra En Todo El Buffer
 
 map('n', 'Y', 'yg$', { noremap = true })           -- Copia Una Linea Mostrando un Resaltado
-map('n', '<C-ñ>', ':nohl<CR>', { noremap = true }) -- Quita Resaltado De Busqueda
+map('n', '<Esc>', ':nohl<CR>', { noremap = true }) -- Quita Resaltado De Busqueda
 
 map('n', '<leader>r', ':so %<CR>', { noremap = true, silent = true }) -- Recargar Archivo Actual
 
