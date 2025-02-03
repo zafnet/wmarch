@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Directorio base de instalación
-INSTALL_DIR="$HOME/.local/dwm"
-BACKUP_DIR="$HOME/.local/dwm_backup_$(date +%Y%m%d_%H%M%S)"
+INSTALL_DIR="$HOME/.config/dwm"
+BACKUP_DIR="$HOME/.config/dwm_backup_$(date +%Y%m%d_%H%M%S)"
 BASE_GITHUB_URL="https://github.com/"
-DWM_REPO="userrepo/dwm"  # Parte dinámica por defecto
+DWM_REPO="gerardet46/dwm"  # Parte dinámica por defecto
 DWM_ORIGINAL_SRC="https://dl.suckless.org/dwm/dwm-6.5.tar.gz"
 
 # Funciones para imprimir mensajes con colores
@@ -28,6 +28,19 @@ check_command() {
     if ! command -v "$1" &>/dev/null; then
         print_warning "El comando '$1' no está instalado. Intentando instalar..."
         pacman -S --noconfirm "$1" || { print_error "Error: No se pudo instalar '$1'. Por favor, instálalo manualmente."; exit 1; }
+    fi
+}
+
+compila_dir() {
+    if [[ -d "$INSTALL_DIR" ]]; then
+        read -rp "¿Quiere compilar? (s/n): " confirm
+        if [[ "$confirm" =~ ^[sS]$ ]]; then
+         sudo make clean install || { print_error "Error: Falló la instalación de DWM revisar archivos e instalarla DWM manualmente."; exit 1; }
+            print_status "DWM Compilando"
+        else
+            print_warning "Saltando El Compilado de DWM usa --> sudo make clean install <-- para instalarla DWM manualmente.."
+        exit 0
+        fi
     fi
 }
 
@@ -79,9 +92,9 @@ install_from_repo() {
 
     # Cambiar al directorio clonado y compilar
     cd "$INSTALL_DIR" || exit
-    sudo make && sudo make clean install || { print_error "Error: Falló la instalación de DWM."; exit 1; }
-
-    print_status "DWM instalado desde el repositorio personalizado correctamente."
+    
+    # Compilar e instalar
+     compila_dir
 }
 
 # Función para instalar DWM desde el código fuente oficial
@@ -110,9 +123,7 @@ install_from_source() {
     cd dwm-*/ || exit
 
     # Compilar e instalar
-    sudo make && sudo make clean install || { print_error "Error: Falló la instalación de DWM."; exit 1; }
-
-    print_status "DWM instalado desde el código fuente oficial correctamente."
+     compila_dir
 }
 
 # Función para instalar DWM directorio local
@@ -126,17 +137,17 @@ install_from_local() {
     # Limpiar directorio de instalación
     clean_install_dir
 
-    # Copiar directorio local de dwm a /home/user/.local/
-    cp -r "/home/$USER/dwm" "/home/$USER/.local/" || { print_error "Error: Falló la copia del directorio local de /home/$USER/dwm a /home/$USER/.local/"; exit 1; }
+    # Copiar directorio local de dwm a /home/user/.config/
+    cp -r "/home/$USER/dwm" "/home/$USER/.config/" || { print_error "Error: Falló la copia del directorio local de /home/$USER/dwm a /home/$USER/.config/"; exit 1; }
 
-    # Permisos de usuario para el directorio dwm en ~/.local/dwm
-    chown -R $USER:$USER /home/$USER/.local/dwm
+    # Permisos de usuario para el directorio dwm en ~/.config/dwm
+    chown -R $USER:$USER /home/$USER/.config/dwm
     
     # Cambiar al directorio
-    cd /home/$USER/.local/dwm || exit
+    cd /home/$USER/.config/dwm || exit
 
     # Compilar e instalar
-    #sudo make clean install || { print_error "Error: Falló la instalación de DWM."; exit 1; }
+     compila_dir
 
     #print_status "DWM instalado desde directorio local correctamente."
     print_status "usa --> sudo make clean install <-- para instalarla DWM manualmente."
