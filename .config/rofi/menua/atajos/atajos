@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+termin=wezterm
+
+options="ALIAS  \nNVIM  \nTMUX  "
+
+selected=$(echo -e "$options" | rofi -dmenu -i -theme ~/.config/rofi/menua/atajos/atajos.rasi -p "Atajos de Apps")
+
+case "$selected" in
+   "ALIAS  ")
+   exec ~/.config/rofi/menua/rzalias/rzalias.sh
+    ;;
+   "NVIM  ")
+   exec ~/.config/rofi/menua/nvcut/nvcut.sh
+    ;;
+   "TMUX  ")
+   exec ~/.config/rofi/menua/tmcut/tmcut.sh
+    ;;
+esac

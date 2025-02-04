@@ -1,7 +1,7 @@
 #!/usr/bin/env bash    
 
 # Ruta al archivo de configuración de Hyprland
-CONFIG_FILE="$HOME/.config/hypr/hyprland.conf"
+CONFIG_FILE="$HOME/.config/hypr/wbinds.conf"
 
 # Extraer combinaciones de teclas
 grep -E 'bind' "$CONFIG_FILE" | sed 's/bind //; s/;/ /' | awk '{$1=$1};1' | rofi -theme ~/.config/rofi/hbinds/hbinds.rasi -dmenu -p "Combinaciones de Teclas"

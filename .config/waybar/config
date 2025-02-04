@@ -112,7 +112,7 @@
         "format": "{} {icon}",
         "tooltip": true,
         "tooltip-format": "<span color='#ffae42'> </span> actualizaciones Pendientes de sistema",
-        "on-click": "~/.config/waybar/scripts/update-click.sh",
+        "on-click": "~/.config/waybar/scripts/upda_term.sh",
        	"format-icons": {
 			"default": [
                 "<span color='#ffae42'> </span>", 

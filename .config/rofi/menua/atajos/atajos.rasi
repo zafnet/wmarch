@@ -1,0 +1,58 @@
+// Atajos.rasi
+
+* {
+    background-color: transparent;
+    //background-color: #4e4743;
+    back-prompt: #000000;
+    elemen-sel: #2c2c23;
+    green-input: #8fff86 ;
+    font: "jetbrainsmono nerd font 12";
+    sort: true;
+    hide-scrollbar: true;
+    fullscreen: false;
+    color: #2da30b;
+}
+prompt {
+    background-color: @back-prompt;
+    border-radius: 9px;
+    horizontal-align: 0.5;  // Centrar horizontalmente
+    vertical-align: 0.5;    // Centrar verticalmente
+    border: 2px solid;
+    margin: 10px;
+    padding: 10px;
+}
+
+listview {
+    lines: 3; // Número de elementos visibles en la lista
+    layout: vertical;
+    spacing: 29px; // Espacio entre elementos
+}
+
+window {
+    background-color: #4e4743;
+   //background-image: url("~/.config/rofi/file.jpg", width);
+    width: 10%;
+   location: center;
+}
+
+element {
+    font: "JetBrainsMono Nerd Font 18";  // Aumenta el tamaño del texto
+    padding: 9px;           // Agrega espacio alrededor del texto
+    border-radius: 16px;    
+    horizontal-align: 4px;  // Centra el texto horizontalmente
+    vertical-align: 0.2;    // Centra el texto verticalmente
+    padding: 15px;          // Espacio dentro de cada elemento
+    text-offset: 20px;      // Desplaza el texto hacia la derecha
+}
+
+element selected {
+    background-color: @elemen-sel;  // Fondo negro para el elemento seleccionado
+    border: 2px solid;  // Borde blanco para destacar
+}
+
+entry {
+    enabled: false;
+    margin: 3px 0px 3px 0px;
+    padding: 3px;
+    color: @green-input;
+}

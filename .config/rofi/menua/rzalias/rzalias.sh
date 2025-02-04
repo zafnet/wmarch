@@ -15,4 +15,4 @@ awk '
         print alias_name, description; 
     }
 ' | \
-rofi -show -dmenu -i -p "Alias" -theme ~/.config/rofi/menuatajos/rzalias/rzalias.rasi | sort
+rofi -show -dmenu -i -p "Alias" -theme ~/.config/rofi/menua/rzalias/rzalias.rasi | sort
