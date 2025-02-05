@@ -1,0 +1,51 @@
+//██████╗  █████╗ ██╗     ██╗ █████╗ ███████╗   ██████╗  █████╗ ███████╗██╗
+//██╔══██╗██╔══██╗██║     ██║██╔══██╗██╔════╝   ██╔══██╗██╔══██╗██╔════╝██║
+//██████╔╝███████║██║     ██║███████║███████╗   ██████╔╝███████║███████╗██║
+//██╔══██╗██╔══██║██║     ██║██╔══██║╚════██║   ██╔══██╗██╔══██║╚════██║██║
+//██║  ██║██║  ██║███████╗██║██║  ██║███████║██╗██║  ██║██║  ██║███████║██║
+//╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝
+
+* { 
+   fondosel:  #1b1a1a;
+   amar:      #faa41a;
+   rosa:      #ff0268;
+   back-promp: #1b1a1a;
+   font: "agave Nerd Font 13";
+   sort: true;
+   width: 59%;
+   height: 65%;
+   hide-scrollbar: true;
+   fullscreen: false;
+   background-color: transparent;
+   color: @rosa;
+}
+
+window {
+    background-color: #1c2833;
+}
+
+inputbar {
+    border: 0px 0px 0px 0px;
+    margin: 4px 0px 0px 2px;
+    padding: 3px;
+}
+
+entry {
+    color: @rosa;
+    margin: 3px 0px 3px 0px;
+    padding: 3px;
+}
+
+prompt {
+    background-color: @back-promp;
+    border-color: @amar;
+    border: 2px;
+    border-radius: 9px;
+    color:@amar;
+    margin: 3px;
+    padding: 3px;
+}
+
+element selected {
+     background-color: @fondosel;
+}

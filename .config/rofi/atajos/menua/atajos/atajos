@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+termin=wezterm
+
+options="NVIM  \nTMUX  "
+
+selected=$(echo -e "$options" | rofi -dmenu -i -theme ~/.config/rofi/menua/atajos/atajos.rasi -p "Atajos de Apps")
+
+case "$selected" in
+   "NVIM  ")
+   exec ~/.config/rofi/menua/nvcut/nvcut.sh
+    ;;
+   "TMUX  ")
+   exec ~/.config/rofi/menua/tmcut/tmcut.sh
+    ;;
+esac

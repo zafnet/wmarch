@@ -1,0 +1,86 @@
+// WALLPB.RASI
+                                                                       
+ * {                                                                    
+  //font: "JetbrainsMono Nerd Font 12";
+  background-color: transparent;
+  yellow:#ffd966;
+  blue:#48b9c7;
+  fondo:#412307;
+  fondosel: #1b1a1a;
+  back-prompt: #fca44c;
+  //back-prompt: #1f5b2e;
+ }
+
+configuration {
+// Atajos para moverse
+kb-row-up:"alt+k";
+kb-row-down:"alt+j";
+kb-row-right:"alt+l";
+kb-row-left:"alt+h";
+}
+ 
+ window {
+     border-radius: 10px;
+     background-color:@fondo;
+    //background-image: url("~/.config/rofi/teclado.png", width);
+     padding: 1%;
+     x-offset: 4%;
+     //y-offset: -10%;
+     width:      79%;
+     height:     39%;
+     //location:center;
+}
+
+listview {
+    columns:8;
+    spacing: 5px; // Espacio entre elementos
+
+}
+
+case-indicator {
+    enabled: false;
+}
+
+element-text {
+    text-color: @blue;
+}
+
+element {
+    font: "JetBrainsMono Nerd Font 7";  // Aumenta el tamaño del texto
+    padding: 9px;           // Agrega espacio alrededor del texto
+    border-radius: 10px;    
+    horizontal-align: 4px;  // Centra el texto horizontalmente
+    vertical-align: 0.2;    // Centra el texto verticalmente
+    padding: 12px;          // Espacio dentro de cada elemento
+    text-offset: 50px;      // Desplaza el texto hacia la derecha
+}
+
+element-icon {
+    enabled: false;
+}
+
+element selected normal {
+    background-color: @fondosel;
+    border: 2px solid;  // Borde blanco para destacar
+}
+
+inputbar {
+     //children: [ prompt, textbox-prompt-colon, entry ];
+     //spacing: 0px;
+    spacing: 3;
+    padding: 5px 10px 5px 5px;
+} 
+
+entry {
+     enabled: false;
+}
+
+prompt {
+    font: "JetbrainsMono Nerd Font 15";
+    background-color: @back-prompt;
+    border-radius: 10px;
+    border: 2px solid;
+    margin: 5px;
+    padding: 10px;
+}
+

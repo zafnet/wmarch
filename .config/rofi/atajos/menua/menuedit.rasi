@@ -1,0 +1,66 @@
+//Menuedit.rasi
+  
+* {
+    border-color:#2c2c2c;
+    back-prompt: #000000;
+    elemen-sel: #2c2c23;
+    background-color: transparent;
+    color:#fa771c;
+    font: "JetbrainsMono Nerd Font: 12";
+}
+
+window {
+   width: 36%;
+    padding:1%;
+    border:2px;
+    border-color:#fa771c;
+    padding:1%;
+    background-color:#2c2c2c;
+    //background-image: url("~/.config/rofi/menua/teclado.png", width);
+}
+
+listview {
+    lines: 9; // Número de elementos visibles en la lista
+    layout: vertical;
+    spacing: 9px; // Espacio entre elementos
+}
+
+
+element selected.normal {
+    background-color: #1b1a1a;
+}
+
+inputbar {
+    text-color:#ff4743;
+    spacing: 3;
+    padding: 5px 10px 5px 5px;
+}
+
+prompt {
+    background-color: @back-prompt;
+    border-radius: 9px;
+    horizontal-align: 0.5;  // Centrar horizontalmente
+    vertical-align: 0.5;    // Centrar verticalmente
+    border: 2px solid;
+    margin: 10px;
+    padding: 10px;
+}
+
+element {
+    font: "JetBrainsMono Nerd Font 18";  // Aumenta el tamaño del texto
+    padding: 9px;           // Agrega espacio alrededor del texto
+    border-radius: 16px;    
+    horizontal-align: 4px;  // Centra el texto horizontalmente
+    vertical-align: 0.2;    // Centra el texto verticalmente
+    padding: 15px;          // Espacio dentro de cada elemento
+    text-offset: 20px;      // Desplaza el texto hacia la derecha
+}
+
+element selected {
+    background-color: @elemen-sel;  // Fondo negro para el elemento seleccionado
+    border: 2px solid;  // Borde blanco para destacar
+}
+
+entry {
+    enabled: false;
+}

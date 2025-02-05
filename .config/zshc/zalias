@@ -6,10 +6,10 @@ RCAC="echo ' ' > $HOME/.config/zshc/.zsh_history && $BORR '.cache y zsh_history 
 GLO="--graph --pretty=format:'%C(yellow)%h%Creset -%Cblue%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 
 #-- Sistema
-alias ll='lsd -lha --group-dirs=first'                                                          # Listar archivos con detalles y directorios primero Sistema
-alias la='lsd -l --group-dirs=first'                                                            # Listar archivos en formato largo con directorios primero Sistema
-alias ls='ls -haFH --group-directories-first --color=always'                                    # Listar archivos con colores y directorios primero Sistema
-alias tree='lsd --tree'                                                                         # Mostrar estructura de directorios en forma de árbol Sistema
+alias ll='lsd -lha --group-dirs=first'                                                          # Listar archivos con detalles y dirs primero Sistema
+alias la='lsd -l --group-dirs=first'                                                            # Listar archivos en formato largo con dirs primero Sistema
+alias ls='ls -haFH --group-directories-first --color=always'                                    # Listar archivos con colores y dirs primero Sistema
+alias tree='lsd --tree'                                                                         # Mostrar estructura de dirs en forma de árbol Sistema
 alias ba='bat -l java'                                                                          # Ver archivos Java con resaltado de sintaxis Sistema
 alias vf='vifm'                                                                                 # Abrir el gestor de archivos Vifm Sistema
 alias to='touch'                                                                                # Crear un archivo vacío Sistema
@@ -23,13 +23,14 @@ alias rep='pacman -Ss'                                                          
 alias in='pacman -Qi'                                                                    # Mostrar información de un paquete instalado Sistema
 alias rem="$PACM -Rs"                                                                    # Desinstalar un paquete Sistema
 alias remc="$PACM -Scc"                                                                  # Limpiar caché de paquetes Sistema
-alias rm='rm -rf'                                                                        # Borrar archivos y directorios de forma recursiva y forzada Sistema
+alias rm='rm -rf'                                                                        # Borrar archivos y dirs recursiva y forzada Sistema
+alias srm='sudo rm -rf'                                                                  # Borrar archivos y dirs recursiva y forzada con sudo Sistema
 alias ca="rm -rv .cache/* && $RCAC"                                                      # Limpiar caché y el historial de Zsh Sistema
 alias cpr='rsync -ah --info=progress2'                                                   # Copiar archivos con progreso Sistema
-alias cp='cp -r'                                                                         # Copiar archivos y directorios recursivamente Sistema
+alias cp='cp -r'                                                                         # Copiar archivos y dirs recursivamente Sistema
 alias mv='mv -u'                                                                         # Mover archivos, solo si son más nuevos Sistema
-alias mk='mkdir -pv'                                                                     # Crear directorios y mostrar mensajes Sistema
-alias smk='sudo mkdir -pv'                                                               # Crear directorios como superusuario y mostrar mensajes Sistema
+alias mk='mkdir -pv'                                                                     # Crear dirs y mostrar mensajes Sistema
+alias smk='sudo mkdir -pv'                                                               # Crear dirs como superusuario y mostrar mensajes Sistema
 alias grep='grep --color=auto'                                                           # Buscar texto con resaltado Sistema
 alias xd="xrdb merge ~/.config/Xresources && $DUNS 'Xresources Actualizado'"             # Actualizar recursos X y notificar Sistema
 alias ch='checkupdates'                                                                  # Comprobar actualizaciones disponibles Sistema
@@ -39,7 +40,7 @@ alias bh="echo ' ' > $HOME/.config/bashc/.bash_history && $BORR 'bash_history Bo
 alias ssk='ssh-keygen -t ed25519 -f ~/.ssh/git-key'                                      # Generar una nueva clave SSH Sistema
 alias ip='ip -c'                                                                         # Mostrar información de red con colores Sistema
 cm() {chmod "$@"}                                                                        # Cambiar permisos de archivos Sistema
-bu() { sudo fd "$1" / -E undodir -E var -H 2>/dev/null }                                 # Buscar archivos con fd, excluyendo ciertos directorios Sistema
+bu() { sudo fd "$1" / -E undodir -E var -H 2>/dev/null }                                 # Buscar archivos con fd, excluyendo ciertos dirs Sistema
 
 #-- Systemctl
 alias sc='sudo systemctl'             # Comando principal para gestionar servicios del SO Systemctl

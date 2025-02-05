@@ -11,9 +11,14 @@ SAVEHIST=5000                              # cuantas lineas se almacenan en el h
 HISTDUP=erase                              # Borrar duplicados en el archivo del historial
 
 #export HISTORY_IGNORE="(ls|ll|pwd|exit|sudo reboot|history|cd|cd *|cd -|cd ..)" # No guardar el hist al lanzar otra term
-
-# Exportando dir ~/.local/bin al path
-export PATH="$PATH:$HOME/.local/bin/"
+export FZF_DEFAULT_OPTS="--height 80% -e --cycle --border --multi --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} es un archivo binario || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='30:80%:wrap,border-rounded,right:hidden' --bind='alt-e:execute(bat --style=numbers {} || less -f {}),alt-o:execute(nvim {}),alt-w:toggle-preview,ctrl-p:preview-half-page-down,ctrl-u:preview-half-page-up,ctrl-g:accept'
+--color=fg:#97e297,fg+:#dd8d50,bg:-1,bg+:-1
+--color=hl:#ff759c,hl+:#dfbe17,info:#46e438,marker:#87ff00
+--color=prompt:#d7005f,spinner:#40caa0,pointer:#ff0000,header:#f7f6f8
+--color=border:#e55454,separator:#94a940,scrollbar:,gutter:-1,preview-fg:#48b227
+--color=label:#aeaeae,query:#c2b73e
+--preview-window="border-rounded" --prompt="" --marker="󰄬" --pointer=""
+--separator="" --scrollbar="│" --layout="reverse" --info="right""
 
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -27,8 +32,7 @@ setopt HIST_REDUCE_BLANKS HIST_VERIFY SHARE_HISTORY dotglob completealiases
 unsetopt MENU_COMPLETE FLOW_CONTROL NO_BEEP
 #setopt AUTO_NAME_DIRSA PPEND_HISTORY EXTENDED_HISTORY INC_APPEND_HISTORY HIST_EXPIRE_DUPS_FIRST
 
-# Autocompletado moderno de zsh
-autoload -Uz compinit
+autoload -Uz compinit # Autocompletado moderno de zsh
 compinit
 
 # Estilos de zsh
@@ -40,7 +44,7 @@ zstyle ':completion:*' rehash true
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*:warnings' format "%B%F{197}No hay coincidencias para:%f %F{202}%d%b"
 
-# Opciones de teclas de zsh
+# Opciones De Teclas de zsh
 bindkey ";5D" backward-word       # Ctrl + Flechas <- en zsh
 bindkey ";5C" forward-word        # Ctrl + Flechas -> en zsh
 bindkey ";5"  delete-word         # Tecla backspace en zsh
@@ -56,7 +60,8 @@ bindkey "^[b" backward-word       # Ir una palabra hacia atrás (Alt + b)
 bindkey "^[f" forward-char        # Ir un carácter hacia adelante (Alt + f)
 bindkey "^f" forward-word         # Ir a la siguiente palabra (Ctrl + f)
 
-# Opciones de teclas para el menu de autocompletado de zsh
+
+# Opciones De Teclas Para el menu de autocompletado de zsh
 bindkey '^[h' backward-char       # Alt + h para menu autocompletado izquierda
 bindkey '^[l' forward-char        # Alt + l para menu autocompletado derecha
 bindkey '^[m' up-history          # Alt + m para menu autocompletado arriba

@@ -24,9 +24,9 @@ LS_COLORS='di=34:fi=37:ow=34:ln=35:pi=4;33:so=1;34;41:bd=31:cd=1:or=31:mi=31:ex=
 export LS_COLORS
 
 # TAMAÑO GUARDADO Y UBICACION DEL HISTORIAL
-HISTFILE="$HOME/.bash_history" # ubicacion de guardado de historial 
-HISTSIZE=5000                  # tamaño del historial cuantas lineas puedo subir con scroll
-SAVEHIST=5000                  # cuantas lineas se almacenan en el historial
+HISTFILE="$HOME/.bash_history"
+HISTSIZE=1000
+SAVEHIST=1000
 
 # PROMPT PERSONALIZADO PARA ROOT Y USUARIO
 RED='\[\e[0;1;38;5;196m\]'
