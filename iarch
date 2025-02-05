@@ -150,7 +150,7 @@ case $escritorio in
     sleep 3
     clear
     packages=(
-        "firefox zsh-completions git zsh-syntax-highlighting zsh-autosuggestions flameshot obsidian neovim bat vifm fzf tmux xclip file-roller lsd rofi gvfs picom xorg xorg-apps xorg-xinit xorg-twm xorg-server libxft libxinerama libx11 xterm xorg-xclock i3lock xed android-file-transfer android-tools android-udev feh pacman-contrib gvfs-gphoto2 gvfs-mtp mtpfs libnotify dunst pulseaudio pcmanfm lxappearance zathura zathura-pdf-poppler imagemagick"
+        "firefox zsh-completions git zsh-syntax-highlighting zsh-autosuggestions flameshot obsidian neovim bat vifm fzf tmux xclip file-roller lsd rofi gvfs picom xorg xorg-apps xorg-xinit xorg-twm xorg-server libxft libxinerama libx11 xterm xorg-xclock i3lock xed android-file-transfer android-tools android-udev feh pacman-contrib gvfs-gphoto2 gvfs-mtp mtpfs libnotify dunst pulseaudio pcmanfm scrot lxappearance zathura zathura-pdf-poppler imagemagick"
     )
     ;;
   *) 

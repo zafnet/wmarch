@@ -9,5 +9,6 @@ Profiles=profile-zero;
 [X-Action-Profile profile-zero]
 MimeTypes=inode/directory;
 #Exec=xterm -e "cd %f; zsh"
-Exec=ghostty -e "cd %f; zsh"
+#Exec=ghostty -e "cd %f; zsh"
+Exec=wezterm start --cwd %f
 

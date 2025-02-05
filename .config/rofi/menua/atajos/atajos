@@ -2,14 +2,11 @@
 
 termin=wezterm
 
-options="ALIAS  \nNVIM  \nTMUX  "
+options="NVIM  \nTMUX  "
 
 selected=$(echo -e "$options" | rofi -dmenu -i -theme ~/.config/rofi/menua/atajos/atajos.rasi -p "Atajos de Apps")
 
 case "$selected" in
-   "ALIAS  ")
-   exec ~/.config/rofi/menua/rzalias/rzalias.sh
-    ;;
    "NVIM  ")
    exec ~/.config/rofi/menua/nvcut/nvcut.sh
     ;;
