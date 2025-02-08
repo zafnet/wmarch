@@ -443,7 +443,6 @@ clear
 clone_repo() {
 print_clone "CLONANDO REPO EN HOME DE MNT"
 arch-chroot /mnt /bin/bash -c "git clone -b hypr https://github.com/zafnet/wmarch /home/$user/wmarch"
-# arch-chroot /mnt /bin/bash -c "git clone -b main https://github.com/zafnet/wmarch /home/$user/wmarch"
     separador
 print_clone "CAMBIANDO PERMISOS PARA REPO EN HOME DE MNT"
 arch-chroot /mnt /bin/bash -c "chown -R $user:$user /home/$user/wmarch/"

@@ -9,7 +9,7 @@ map('n', '<A-q>', ':q<CR>', { noremap = true }) -- Sale sin Guarda El archivo ac
 map('n', '<leader>y', 'i#<space><Esc>', { noremap = true }) -- comentario # Con Espacio Atras
 map('n', '<leader>m', 'i"<space><Esc>', { noremap = true }) -- comentario " Con Espacio Atras
 
-map('n', 'đ', ':FZF<CR>', { noremap = true })  -- Usar FZF En NVIM Con La Tecla altgr + f
+map('n', 'đ', '<cmd>FZF<CR>', { noremap = true })  -- Usar FZF En NVIM Con La Tecla altgr + f
 map('n', '<leader>f', '/', { noremap = true }) -- Colocar La Barra Para Buscar
 map('n', '<leader>bf', ':buffers<CR>', { noremap = true }) -- Ver Los Buffers Abiertos
 
