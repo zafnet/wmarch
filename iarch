@@ -221,11 +221,11 @@ mirrors_disco() {
     print_disco "ACTUALIZANDO LISTA DE MIRRORS EN MNT"
     arch-chroot /mnt /bin/bash -c "reflector --verbose --latest 5 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
     separador
-    print_disco "AGREGANDO OPCIONES COMO ILOVECANDY EN PACMAN.CONF"
+    print_disco "AGREGANDO OPCIONES EN PACMAN.CONF"
     sed -i 's/#Color/Color/g' /mnt/etc/pacman.conf
     sed -i 's/#TotalDownload/TotalDownload/g' /mnt/etc/pacman.conf
     sed -i 's/#VerbosePkgLists/VerbosePkgLists/g' /mnt/etc/pacman.conf
-    sed -i "37i ILoveCandy" /mnt/etc/pacman.conf
+    # sed -i "37i ILoveCandy" /mnt/etc/pacman.conf
     sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 16/g' /mnt/etc/pacman.conf
     #sed -i '93s/#\[multilib\]/\[multilib\]/g' /mnt/etc/pacman.conf
     #sed -i "94s/#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/g" /mnt/etc/pacman.conf
@@ -468,7 +468,7 @@ instalacion_completa() {
         driver_video_auto
         elegir_escritorio
         escritorio_elegido
-#        clone_repo
+        clone_repo
     else
         modo_bios
         instalar_base
@@ -478,7 +478,7 @@ instalacion_completa() {
         driver_video_auto
         elegir_escritorio
         escritorio_elegido
-#        clone_repo
+        clone_repo
     fi
     idioma_fisico
     configurar_hostname
