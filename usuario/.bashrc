@@ -269,3 +269,8 @@ printf '\033[4 q'
 
 # TERMINAL XTERM CON CURSOR FORMA DE HAZ
 #printf '\033[6 q'
+
+# INICIAR WM SIN DISPLAY MANAGER
+#if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+#  exec Hyprland
+#fi

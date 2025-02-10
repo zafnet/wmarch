@@ -17,8 +17,8 @@ config.enable_wayland = false
 config.default_cursor_style = "SteadyUnderline"
 config.window_close_confirmation = "NeverPrompt"
 config.inactive_pane_hsb = {  -- Color De Los Paneles Sin Usar
-      saturation = 0.20,
-      brightness = 0.5,
+      saturation = 1.0,
+      brightness = 1.0,
 }
 
 -- Mi Esquema De Colores
@@ -30,6 +30,7 @@ config.colors = {
  cursor_fg = "#262626",        
  selection_bg = "#e76cf5",     
  selection_fg = "#1e35c9",     
+ split = '#808080',-- Color de división entre paneles
  ansi = {
    "#000000", "#FF0000", "#00FF00", "#FFFF00", 
    "#0000FF", "#FF00FF", "#00FFFF", "#FFFFFF"  

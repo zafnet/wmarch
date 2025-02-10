@@ -20,7 +20,7 @@ map('n', '<leader>k', 'i<space><Esc>', { noremap = true }) -- Agrega Espacio En 
 map('n', '<leader>c', ':e $MYVIMRC<CR>', { noremap = true }) -- LLama Al Archivo De Configuracion De Nvim
 
 map('n', '<c-t>', ':split<CR>:term<CR>:resize 15<CR>:startinsert<CR>', { noremap = true }) -- Crea Terminal En Horizontal En Modo Normal
-map('t', '<Esc><Esc>', '<C-\\><C-n>', { noremap = true })  -- Sale De Terminal va a Nvim cambia de ventana Con A+h,l,k,j C-x quita ventana de Terminal
+map('t', '<Esc>', '<C-\\><C-n>', { noremap = true })  -- Sale Terminal <Esc> cambia a Nvim C+W h,l,k,j A-q quita Terminal Si estamos en nvim
 
 map('n', '<leader>v', '<C-w>t<C-w>H', { noremap = true }) -- Cambia ventana En Vertical Del Mismo Buffer Cuando Estan Creadas
 map('n', '<leader>h', '<C-w>t<C-w>K', { noremap = true }) -- Cambia ventana En Horizontal Del Mismo Buffer Cuando Estan Creadas

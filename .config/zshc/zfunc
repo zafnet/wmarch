@@ -1,32 +1,213 @@
 # FUNCIONES PARA FZF
-ir() {cd $(fd . / -H -t d 2>/dev/null | fzf --prompt="Ir a La Carpeta: ") && zle reset-prompt} ;zle -N ir;bindkey "^[i" ir
 
-rf() {rm -rf $(fd . / -H -E undodir 2>/dev/null | fzf --prompt="Borrar Archivo o Directorio: ") && zle reset-prompt} ;zle -N rf;bindkey  "^[r" rf
+# Menu de fzf con Funciones de .zshrc
+_switch_menu() {
+  case "$1" in
+    alt-i) ir ;;    # ir a un directorio
+    alt-r) rf ;;    # Borrar un directorio o archivo
+    alt-n) nf ;;    # abrir con nvim desde raiz alt-n
+    alt-h) fh ;;    # abrir con nvim desde home alt-h
+    alt-v) ve ;;    # visualizar un archivo con bat
+    alt-c) cr ;;    # para copiar ruta
+    alt-l) cl ;;    # alt-l copiar contenido de archivo
+    alt-m) fm ;;    # alt-m buscar en el manual
+    alt-p) po ;;    # listar procesos actuales
+    alt-y) hi ;;    # listar historial
+    alt-k) fk ;;    # eliminar proceso
+  esac
+}
 
-nf() {sh -c 'fd . / -H -t f -E undodir 2>/dev/null  | fzf --height 80% -e --cycle --border --multi --prompt="Abrir Con Nvim: "| xargs -r nvim' && zle reset-prompt} ;zle -N nf;bindkey 'º' nf
+# Ir a carpeta
+ir() {
+  local out key sel
+  out=$(fd . / -H -t d 2>/dev/null | \
+    fzf --expect=esc,alt-i,alt-r,alt-h,alt-n,alt-v,alt-c,alt-l,alt-m,alt-p,alt-y,alt-k --prompt="Ir a La Carpeta: ") || return
+  key=$(head -n1 <<< "$out")
+  # Si se presionó escape, salimos sin hacer nada
+  if [[ "$key" = "esc" ]]; then
+    zle reset-prompt
+    return
+  fi
+  sel=$(sed -n '2p' <<< "$out")
+  if [[ -n "$key" && "$key" != "enter" ]]; then
+    _switch_menu "$key"
+    return
+  fi
+  if [[ -n "$sel" ]]; then
+    cd "$sel" && zle reset-prompt
+  fi
+}
+zle -N ir
+bindkey "^[i" ir
 
-fh() {sh -c 'fd . -t f -H -E undodir 2>/dev/null | fzf --height 80% -e --cycle --border --multi --prompt="Abrir Con Nvim: "| xargs -r nvim' && zle reset-prompt} ;zle -N fh;bindkey '^[^i' fh
+# Borrar archivo o directorio
+rf() {
+  local out key sel
+  out=$(fd . / -H -E undodir 2>/dev/null | \
+    fzf --expect=esc,alt-i,alt-r,alt-h,alt-n,alt-v,alt-c,alt-l,alt-m,alt-p,alt-y,alt-k --prompt="Borrar Archivo o Directorio: ") || return
+  key=$(head -n1 <<< "$out")
+  if [[ "$key" = "esc" ]]; then
+    zle reset-prompt
+    return
+  fi
+  sel=$(sed -n '2p' <<< "$out")
+  if [[ -n "$key" && "$key" != "enter" ]]; then
+    _switch_menu "$key"
+    return
+  fi
+  if [[ -n "$sel" ]]; then
+    rm -rf "$sel" && zle reset-prompt
+  fi
+}
+zle -N rf
+bindkey "^[r" rf
 
-ve() {fd . / -H -t f -E undodir 2>/dev/null | fzf --prompt="Vista Previa De: "| xargs -r bat && zle reset-prompt} ;zle -N ve;bindkey "^[v" ve
+# Abrir con nvim (desde raiz)
+nf() {
+  local out key sel
+  out=$(sh -c 'fd . / -H -t f -E undodir -E "*.png" -E "*.jpg" -E "*.jpeg" -E "*.gif" -E "*.bmp" -E "*.mp3" 2>/dev/null' | \
+    fzf --height 80% -e --cycle --border --multi \
+        --expect=esc,alt-i,alt-r,alt-h,alt-n,alt-v,alt-c,alt-l,alt-m,alt-p,alt-y,alt-k \
+        --prompt="Abrir Con Nvim: ") || return
+  key=$(head -n1 <<< "$out")
+  if [[ "$key" = "esc" ]]; then
+    zle reset-prompt
+    return
+  fi
+  sel=$(sed -n '2p' <<< "$out")
+  if [[ -n "$key" && "$key" != "enter" ]]; then
+    _switch_menu "$key"
+    return
+  fi
+  if [[ -n "$sel" ]]; then
+    echo "$sel" | xargs -r nvim && zle reset-prompt
+  fi
+}
+zle -N nf
+bindkey 'º' nf
 
-cr() {fd . /  -H -E undodir 2>/dev/null | fzf --prompt="Copiar Ruta: " | tr -d '\n' | wl-copy && zle reset-prompt} ;zle -N cr;bindkey "¢" cr
+# Abrir con nvim (desde home)
+fh() {
+  local out key sel
+  out=$(sh -c 'fd . -H -t f -E undodir -E "*.png" -E "*.jpg" -E "*.jpeg" -E "*.gif" -E "*.bmp" -E "*.mp3" 2>/dev/null' | \
+    fzf --height 80% -e --cycle --border --multi \
+        --expect=esc,alt-i,alt-r,alt-h,alt-n,alt-v,alt-c,alt-l,alt-m,alt-p,alt-y,alt-k \
+        --prompt="Abrir Con Nvim: ") || return
+  key=$(head -n1 <<< "$out")
+  if [[ "$key" = "esc" ]]; then
+    zle reset-prompt
+    return
+  fi
+  sel=$(sed -n '2p' <<< "$out")
+  if [[ -n "$key" && "$key" != "enter" ]]; then
+    _switch_menu "$key"
+    return
+  fi
+  if [[ -n "$sel" ]]; then
+    echo "$sel" | xargs -r nvim && zle reset-prompt
+  fi
+}
+zle -N fh
+bindkey "^[^i" fh
 
-cl() { fd . / -H -E undodir 2>/dev/null | fzf --prompt="Copiar en Clipboard: " | tr -d '\n' | xargs cat | wl-copy && zle reset-prompt }; zle -N cl; bindkey "^[c" cl
+# Vista Previa De Archivo
+ve() {
+  local out key sel
+  out=$(fd . / -H -t f -E undodir 2>/dev/null | \
+    fzf --expect=esc,alt-i,alt-r,alt-h,alt-n,alt-v,alt-c,alt-l,alt-m,alt-p,alt-y,alt-k --prompt="Vista Previa De: ") || return
+  key=$(head -n1 <<< "$out")
+  if [[ "$key" = "esc" ]]; then
+    zle reset-prompt
+    return
+  fi
+  sel=$(sed -n '2p' <<< "$out")
+  if [[ -n "$key" && "$key" != "enter" ]]; then
+    _switch_menu "$key"
+    return
+  fi
+  if [[ -n "$sel" ]]; then
+    echo "$sel" | xargs -r bat && zle reset-prompt
+  fi
+}
+zle -N ve
+bindkey "^[v" ve
 
-fm() { man -k . | fzf --prompt='Man > ' | awk '{print $1}' | xargs -r man && zle reset-prompt} ;zle -N fm ;bindkey "µ" fm
+# Copiar Ruta
+cr() {
+  local out key sel
+  out=$(fd . / -H -E undodir 2>/dev/null | \
+    fzf --expect=esc,alt-i,alt-r,alt-h,alt-n,alt-v,alt-c,alt-l,alt-m,alt-p,alt-y,alt-k --prompt="Copiar Ruta: ") || return
+  key=$(head -n1 <<< "$out")
+  if [[ "$key" = "esc" ]]; then
+    zle reset-prompt
+    return
+  fi
+  sel=$(sed -n '2p' <<< "$out")
+  if [[ -n "$key" && "$key" != "enter" ]]; then
+    _switch_menu "$key"
+    return
+  fi
+  if [[ -n "$sel" ]]; then
+    echo -n "$sel" | tr -d '\n' | wl-copy && zle reset-prompt
+  fi
+}
+zle -N cr
+bindkey "¢" cr
 
-po() { ps aux | grep --color=always "$1" | grep -v grep | fzf  --prompt="Procesos Actuales: " | xargs -r && zle reset-prompt };zle -N po ;bindkey "^[y" po
+# Copiar en Clipboard (contenido)
+cl() {
+  local out key sel
+  out=$(fd . / -H -E undodir 2>/dev/null | \
+    fzf --expect=esc,alt-i,alt-r,alt-h,alt-n,alt-v,alt-c,alt-l,alt-m,alt-p,alt-y,alt-k --prompt="Copiar en Clipboard: ") || return
+  key=$(head -n1 <<< "$out")
+  if [[ "$key" = "esc" ]]; then
+    zle reset-prompt
+    return
+  fi
+  sel=$(sed -n '2p' <<< "$out")
+  if [[ -n "$key" && "$key" != "enter" ]]; then
+    _switch_menu "$key"
+    return
+  fi
+  if [[ -n "$sel" ]]; then
+    echo "$sel" | tr -d '\n' | xargs cat | wl-copy && zle reset-prompt
+  fi
+}
+zle -N cl
+bindkey "^[c" cl
 
+# Buscar en el historial
 hi() {
-    local selected=$({ ([ -n "$ZSH_NAME" ] && history 0) | sed 's/^ *[0-9][0-9]*  *//g'; echo "";} | fzf +s --tac --prompt="Historial: ")
-    BUFFER=$selected
-    zle redisplay
-} ;zle -N hi ;bindkey '^r' hi
+  local selected=$({ ([ -n "$ZSH_NAME" ] && history 0) | sed 's/^ *[0-9][0-9]*  *//g'; echo ""; } | fzf +s --tac --prompt="Historial: ")
+  BUFFER=$selected
+  zle redisplay
+}
+zle -N hi
+bindkey '^r' hi
 
-fk() { pid=$(ps -ef | sed 1d | fzf --prompt="Eliminar proceso ➤ " --pointer="➤ " --marker="➤ " | awk '{print $2}')
-if [ "x$pid" != "x" ]; then 
-kill -${1:-9} $pid 
-fi && zle reset-prompt} ;zle -N fk; bindkey "^[k" fk
+# Buscar en man
+fm() {
+  man -k . | fzf --prompt='Man > ' | awk '{print $1}' | xargs -r man && zle reset-prompt
+}
+zle -N fm
+bindkey "µ" fm
+
+# Mostrar procesos actuales
+po() {
+  ps aux | grep --color=always "$1" | grep -v grep | fzf --prompt="Procesos Actuales: " | xargs -r && zle reset-prompt
+}
+zle -N po
+bindkey "^[y" po
+
+# Finalizar un proceso
+fk() {
+  pid=$(ps -ef | sed 1d | fzf --prompt="Eliminar proceso ➤ " --pointer="➤ " --marker="➤ " | awk '{print $2}')
+  if [ "x$pid" != "x" ]; then 
+    kill -${1:-9} $pid 
+  fi && zle reset-prompt
+}
+zle -N fk
+bindkey "^k" fk
 
 # EXTRAER COMPRIMIDO CON ALIAS ex
 ex() {
