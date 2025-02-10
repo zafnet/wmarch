@@ -15,6 +15,11 @@ export MANPAGER="nvim +Man!"
 export LC_ALL=es_AR.UTF8
 #export XCOMPOSEFILE="$HOME/.config/.XCompose"
 
+# cargar xresources desde otro directorio
+if [[ $- != *i* ]]; then
+xrdb -I $HOME/.config/Xresources
+fi
+
 # exports de fzf
 export FZF_DEFAULT_OPTS="--height 80% -e --cycle --border --multi --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} es un archivo binario || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='30:80%:wrap,border-rounded,right:hidden' --bind='alt-e:execute(bat --style=numbers {} || less -f {}),alt-o:execute(nvim {}),alt-w:toggle-preview,ctrl-p:preview-half-page-down,ctrl-u:preview-half-page-up,ctrl-g:accept'
 --color=fg:#97e297,fg+:#dd8d50,bg:-1,bg+:-1
