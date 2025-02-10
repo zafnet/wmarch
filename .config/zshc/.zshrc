@@ -11,15 +11,19 @@ SAVEHIST=5000                              # cuantas lineas se almacenan en el h
 HISTDUP=erase                              # Borrar duplicados en el archivo del historial
 
 #export HISTORY_IGNORE="(ls|ll|pwd|exit|sudo reboot|history|cd|cd *|cd -|cd ..)" # No guardar el hist al lanzar otra term
-export FZF_DEFAULT_OPTS="--height 80% -e --cycle --border --multi --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} es un archivo binario || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='30:80%:wrap,border-rounded,right:hidden' --bind='alt-e:execute(bat --style=numbers {} || less -f {}),alt-o:execute(nvim {}),alt-w:toggle-preview,ctrl-p:preview-half-page-down,ctrl-u:preview-half-page-up,ctrl-g:accept'
---color=fg:#97e297,fg+:#dd8d50,bg:-1,bg+:-1
---color=hl:#ff759c,hl+:#dfbe17,info:#46e438,marker:#87ff00
---color=prompt:#d7005f,spinner:#40caa0,pointer:#ff0000,header:#f7f6f8
---color=border:#e55454,separator:#94a940,scrollbar:,gutter:-1,preview-fg:#48b227
---color=label:#aeaeae,query:#c2b73e
---preview-window="border-rounded" --prompt="" --marker="󰄬" --pointer=""
---separator="" --scrollbar="│" --layout="reverse" --info="right""
-
+export FZF_DEFAULT_OPTS="
+  --height 80% -e --cycle --border --multi \
+  --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} es un archivo binario || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' \
+  --preview-window='+{n}:80%:wrap,border-rounded,right:hidden' \
+  --bind='alt-e:execute(bat --style=numbers {} || less -f {}),alt-o:execute(nvim {}),alt-w:toggle-preview,ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up,ctrl-g:accept' \
+  --color=fg:#97e297,fg+:#dd8d50,bg:-1,bg+:-1 \
+  --color=hl:#ff759c,hl+:#dfbe17,info:#46e438,marker:#87ff00 \
+  --color=prompt:#d7005f,spinner:#40caa0,pointer:#ff0000,header:#f7f6f8 \
+  --color=border:#e55454,separator:#94a940,scrollbar:,gutter:-1,preview-fg:#48b227 \
+  --color=label:#aeaeae,query:#c2b73e \
+  --prompt='' --marker='󰄬' --pointer='' \
+  --separator='' --scrollbar='│' --layout='reverse' --info='right'
+"
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zshc/zalias
