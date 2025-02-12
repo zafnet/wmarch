@@ -17,6 +17,14 @@ vim.api.nvim_create_autocmd('filetype', {
     end
 })
 
+-- Abrir url con firefox incognito
+vim.keymap.set("n", "gx", function()
+    local url = vim.fn.expand("<cfile>")
+    if url ~= "" then
+        vim.fn.jobstart({"firefox", "-private-window", url}, {detach = true})
+    end
+end, { silent = true })
+
 -- Opciones Netrw
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
@@ -27,27 +35,31 @@ vim.g.netrw_localcopydircmd = 'cp -r'
 vim.g.netrw_preview = 1
 vim.g.netrw_special_syntax = 1
 
--- Funcion Para Resaltado
-local hi = function(group, properties)
+-- Configuración de colores para grupos de netrw
+local function hig(groups)
+    for group, properties in pairs(groups) do
     vim.api.nvim_set_hl(0, group, properties)
+    end
 end
 
--- Configuración de colores para grupos de netrw
-hi("netrwMarkFile", { fg = "#ff5faf", bg = "NONE", bold = true })
-hi("Directory", { fg = "#176afd", bg = "NONE", bold = true })
-hi("netrwBak", { fg = "#A6E22E", bg = "NONE" })
-hi("netrwCompress", { fg = "#ff87af", bg = "NONE" })
-hi("netrwCoreDump", { fg = "#005FFF", bg = "NONE" })
-hi("netrwData", { fg = "#005faf", bg = "NONE" })
-hi("netrwDoc", { fg = "#00af5f", bg = "NONE" })
-hi("netrwHdr", { fg = "#FF8700", bg = "NONE" })
-hi("netrwLex", { fg = "#FF5F5F", bg = "NONE" })
-hi("netrwYacc", { fg = "#5F87FF", bg = "NONE" })
-hi("netrwLib", { fg = "#FFAF00", bg = "NONE" })
-hi("netrwMakefile", { fg = "#00FF00", bg = "#5F5F5F" })
-hi("netrwObj", { fg = "#00FFFF", bg = "NONE" })
-hi("netrwPix", { fg = "#FFFF00", bg = "NONE" })
-hi("netrwTags", { fg = "#87D700", bg = "NONE" })
-hi("netrwTilde", { fg = "#FF0000", bg = "NONE" })
-hi("netrwTmp", { fg =  "#D700D7", bg = "NONE" })
-hi("netrwSymLink", { fg = "#fa6aa5", bg = "NONE" })
+local high = {
+   netrwMarkFile = { fg = "#ff5faf", bg = "NONE", bold = true },
+   Directory = { fg = "#176afd", bg = "NONE", bold = true },
+   netrwBak = { fg = "#A6E22E", bg = "NONE" },
+   netrwCompress = { fg = "#ff87af", bg = "NONE" },
+   netrwCoreDump = { fg = "#005FFF", bg = "NONE" },
+   netrwData = { fg = "#005faf", bg = "NONE" },
+   netrwDoc = { fg = "#00af5f", bg = "NONE" },
+   netrwHdr = { fg = "#FF8700", bg = "NONE" },
+   netrwLex = { fg = "#FF5F5F", bg = "NONE" },
+   netrwYacc = { fg = "#5F87FF", bg = "NONE" },
+   netrwLib = { fg = "#FFAF00", bg = "NONE" },
+   netrwMakefile = { fg = "#00FF00", bg = "#5F5F5F" },
+   netrwObj = { fg = "#00FFFF", bg = "NONE" },
+   netrwPix = { fg = "#FFFF00", bg = "NONE" },
+   netrwTags = { fg = "#87D700", bg = "NONE" },
+   netrwTilde = { fg = "#FF0000", bg = "NONE" },
+   netrwTmp = { fg =  "#D700D7", bg = "NONE" },
+   netrwSymLink = { fg = "#fa6aa5", bg = "NONE" },
+}
+hig(high)

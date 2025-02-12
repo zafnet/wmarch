@@ -14,6 +14,7 @@ config.font = wezterm.font("JetbrainsMono Nerd Font",{ weight = "Bold" })
 config.font_size = 12
 config.hide_tab_bar_if_only_one_tab = true
 config.enable_wayland = false
+config.warn_about_missing_glyphs = false
 config.default_cursor_style = "SteadyUnderline"
 config.window_close_confirmation = "NeverPrompt"
 config.inactive_pane_hsb = {  -- Color De Los Paneles Sin Usar
