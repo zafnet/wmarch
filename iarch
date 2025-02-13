@@ -237,6 +237,8 @@ instalar_base() {
     print_disco "INSTALANDO SISTEMA BASE EN MNT"
     pacstrap /mnt $PACSTRAP --needed --noconfirm
     separador
+    print_disco "CREANDO FSTAB UUID EN MNT"
+    genfstab -U /mnt >> /mnt/etc/fstab
 }
 
 # Modo EFI: Crear y montar particiones
@@ -316,7 +318,7 @@ echo ''
     print_disco "CREANDO NUEVAS CONFIGS EN ARCHIVO GRUB EN MNT"
     arch-chroot /mnt /bin/bash -c "grub-mkconfig -o /boot/grub/grub.cfg"
     separador
-    ls -l /mnt/efi 
+    ls -l /mnt/efi/EFI 
     echo '' 
     separador
 }
