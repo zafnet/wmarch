@@ -20,7 +20,7 @@ _switch_menu() {
 # Ir a carpeta
 ir() {
   local out key sel
-  out=$(fd . / -H -t d 2>/dev/null | \
+  out=$(fdfind . / -H -t d 2>/dev/null | \
     fzf --expect=esc,alt-i,alt-r,alt-h,alt-n,alt-v,alt-c,alt-l,alt-m,alt-p,alt-y,alt-k --prompt="Ir a La Carpeta: ") || return
   key=$(head -n1 <<< "$out")
   # Si se presionó escape, salimos sin hacer nada
@@ -43,7 +43,7 @@ bindkey "^[i" ir
 # Borrar archivo o directorio
 rf() {
   local out key sel
-  out=$(fd . / -H -E undodir 2>/dev/null | \
+  out=$(fdfind . / -H -E undodir 2>/dev/null | \
     fzf --expect=esc,alt-i,alt-r,alt-h,alt-n,alt-v,alt-c,alt-l,alt-m,alt-p,alt-y,alt-k --prompt="Borrar Archivo o Directorio: ") || return
   key=$(head -n1 <<< "$out")
   if [[ "$key" = "esc" ]]; then
@@ -65,7 +65,7 @@ bindkey "^[r" rf
 # Abrir con nvim (desde raiz)
 nf() {
   local out key sel
-  out=$(sh -c 'fd . / -H -tf -E run/systemd -E usr -E lib -E var -E proc -E udev -E sys -E undodir -E discord -E "*.cache" -E "*.mozilla" -E "*.png" -E "*.jpg" -E "*.jpeg" -E "*.gif" -E "*.svg" -E "*.bmp" -E "*.mp3" -E "*.iso" -E "*.db" -E "*.tdb" 2>/dev/null' | \
+  out=$(sh -c 'fdfind . / -H -tf -E run/systemd -E usr -E lib -E var -E proc -E udev -E sys -E undodir -E discord -E "*.cache" -E "*.mozilla" -E "*.png" -E "*.jpg" -E "*.jpeg" -E "*.gif" -E "*.svg" -E "*.bmp" -E "*.mp3" -E "*.iso" -E "*.db" -E "*.tdb" 2>/dev/null' | \
     fzf --height 80% -e --cycle --border --multi \
         --expect=esc,alt-i,alt-r,alt-h,alt-n,alt-v,alt-c,alt-l,alt-m,alt-p,alt-y,alt-k \
         --prompt="Abrir Con Nvim: ") || return
@@ -89,7 +89,7 @@ bindkey 'º' nf
 # Abrir con nvim (desde home)
 fh() {
   local out key sel
-  out=$(sh -c 'fd . -H -tf -E undodir -E discord -E "*.cache" -E "*.mozilla" -E "*.png" -E "*.jpg" -E "*.jpeg" -E "*.gif" -E "*.svg" -E "*.bmp" -E "*.mp3" -E "*.iso" -E "*.db" -E "*.tdb" 2>/dev/null' | \
+  out=$(sh -c 'fdfind . -H -tf -E undodir -E discord -E "*.cache" -E "*.mozilla" -E "*.png" -E "*.jpg" -E "*.jpeg" -E "*.gif" -E "*.svg" -E "*.bmp" -E "*.mp3" -E "*.iso" -E "*.db" -E "*.tdb" 2>/dev/null' | \
     fzf --height 80% -e --cycle --border --multi \
         --expect=esc,alt-i,alt-r,alt-h,alt-n,alt-v,alt-c,alt-l,alt-m,alt-p,alt-y,alt-k \
         --prompt="Abrir Con Nvim: ") || return
@@ -113,7 +113,7 @@ bindkey "^[^i" fh
 # Vista Previa De Archivo
 ve() {
   local out key sel
-  out=$(fd . / -H -t f -E undodir 2>/dev/null | \
+  out=$(fdfind . / -H -t f -E undodir 2>/dev/null | \
     fzf --expect=esc,alt-i,alt-r,alt-h,alt-n,alt-v,alt-c,alt-l,alt-m,alt-p,alt-y,alt-k --prompt="Vista Previa De: ") || return
   key=$(head -n1 <<< "$out")
   if [[ "$key" = "esc" ]]; then
@@ -135,7 +135,7 @@ bindkey "^[v" ve
 # Copiar Ruta
 cr() {
   local out key sel
-  out=$(fd . / -H -E undodir 2>/dev/null | \
+  out=$(fdfind . / -H -E undodir 2>/dev/null | \
     fzf --expect=esc,alt-i,alt-r,alt-h,alt-n,alt-v,alt-c,alt-l,alt-m,alt-p,alt-y,alt-k --prompt="Copiar Ruta: ") || return
   key=$(head -n1 <<< "$out")
   if [[ "$key" = "esc" ]]; then
@@ -157,7 +157,7 @@ bindkey "¢" cr
 # Copiar en Clipboard (contenido)
 cl() {
   local out key sel
-  out=$(fd . / -H -E undodir 2>/dev/null | \
+  out=$(fdfind . / -H -E undodir 2>/dev/null | \
     fzf --expect=esc,alt-i,alt-r,alt-h,alt-n,alt-v,alt-c,alt-l,alt-m,alt-p,alt-y,alt-k --prompt="Copiar en Clipboard: ") || return
   key=$(head -n1 <<< "$out")
   if [[ "$key" = "esc" ]]; then

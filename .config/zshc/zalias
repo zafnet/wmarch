@@ -1,28 +1,26 @@
+#-- Variables
 DUNS='dunstify -t 4000 -i "$HOME/.config/dunst/icons/actuale.png"'
-REFLE='sudo reflector -l 5 -p http,https --sort rate --save /etc/pacman.d/mirrorlist'
 BORR='dunstify -t 4000 -i "$HOME/.config/dunst/icons/borrado.png"'
-PACM='sudo pacman'
+APTI='sudo apt install'
 RCAC="echo ' ' > $HOME/.config/zshc/.zsh_history && $BORR '.cache y zsh_history Borrados'"
 GLO="--graph --pretty=format:'%C(yellow)%h%Creset -%Cblue%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 
 #-- Sistema
-alias ll='lsd -lha --group-dirs=first'                                                          # Listar archivos con detalles y dirs primero Sistema
-alias la='lsd -l --group-dirs=first'                                                            # Listar archivos en formato largo con dirs primero Sistema
-alias ls='ls -haFH --group-directories-first --color=always'                                    # Listar archivos con colores y dirs primero Sistema
-alias tree='lsd --tree'                                                                         # Mostrar estructura de dirs en forma de árbol Sistema
-alias ba='bat -l java'                                                                          # Ver archivos Java con resaltado de sintaxis Sistema
-alias vf='vifm'                                                                                 # Abrir el gestor de archivos Vifm Sistema
-alias to='touch'                                                                                # Crear un archivo vacío Sistema
-alias ins="$PACM -S"                                                                            # Instalar un paquete con Pacman Sistema
-alias ac="$PACM -Syu && $DUNS 'Sistema Actualizado' && exit"                                    # Actualizar el sistema y notificar Sistema
-alias acn="$PACM -Syu --noconfirm && $DUNS 'Sistema Actualizado' && exit"                       # Actualizar sin confirmación y notificar Sistema
-alias acm="$REFLE && $PACM -Syu --noconfirm && $DUNS 'Mirrors y Sistema Actualizados' && exit"  # Actualizar mirrors y sistema sin confirmación Sistema
-alias mir="$REFLE && $DUNS 'Mirrorlist Actualizado'"                                            # Actualizar la lista de mirrors y notificar Sistema
-alias al='pacman -Qs'                                                                    # Buscar paquetes instalados localmente Sistema
-alias rep='pacman -Ss'                                                                   # Buscar paquetes disponibles en los repos Sistema
-alias in='pacman -Qi'                                                                    # Mostrar información de un paquete instalado Sistema
-alias rem="$PACM -Rs"                                                                    # Desinstalar un paquete Sistema
-alias remc="$PACM -Scc"                                                                  # Limpiar caché de paquetes Sistema
+alias ll='lsd -lha --group-dirs=first'                                                   # Listar archivos con detalles y dirs primero Sistema
+alias la='lsd -l --group-dirs=first'                                                     # Listar archivos en formato largo con dirs primero Sistema
+alias ls='ls -haFH --group-directories-first --color=always'                             # Listar archivos con colores y dirs primero Sistema
+alias tree='lsd --tree'                                                                  # Mostrar estructura de dirs en forma de árbol Sistema
+alias ba='batcat -l java'                                                                # Ver archivos Java con resaltado de sintaxis Sistema
+alias vf='vifm'                                                                          # Abrir el gestor de archivos Vifm Sistema
+alias to='touch'                                                                         # Crear un archivo vacío Sistema
+alias ins="$APTI"                                                                        # Instalar un paquete con APT Sistema
+alias ac="sudo apt update && $DUNS 'Sistema Actualizado' && exit"                        # Actualizar el sistema y notificar Sistema
+alias acn="sudo apt upgrade -y && $DUNS 'Sistema Actualizado' && exit"                   # Actualizar sin confirmación y notificar Sistema
+alias al='apt list --installed'                                                          # Buscar paquetes instalados localmente Sistema
+alias rep='sudo apt search'                                                              # Buscar paquetes disponibles en los repos Sistema
+alias in='apt show'                                                                      # Mostrar información de un paquete instalado Sistema
+alias rem="sudo apt remove"                                                              # Desinstalar un paquete Sistema
+alias remc="sudo apt autoremove"                                                         # Limpiar caché de paquetes Sistema
 alias rm='rm -rf'                                                                        # Borrar archivos y dirs recursiva y forzada Sistema
 alias srm='sudo rm -rf'                                                                  # Borrar archivos y dirs recursiva y forzada con sudo Sistema
 alias ca="rm -rv .cache/* && $RCAC"                                                      # Limpiar caché y el historial de Zsh Sistema
@@ -40,7 +38,7 @@ alias bh="echo ' ' > $HOME/.config/bashc/.bash_history && $BORR 'bash_history Bo
 alias ssk='ssh-keygen -t ed25519 -f ~/.ssh/git-key'                                      # Generar una nueva clave SSH Sistema
 alias ip='ip -c'                                                                         # Mostrar información de red con colores Sistema
 cm() {chmod "$@"}                                                                        # Cambiar permisos de archivos Sistema
-bu() { sudo fd "$1" / -E undodir -E var -H 2>/dev/null }                                 # Buscar archivos con fd, excluyendo ciertos dirs Sistema
+bu() { sudo fdfind "$1" / -E undodir -E var -H 2>/dev/null }                             # Buscar archivos con fd, excluyendo ciertos dirs Sistema
 
 #-- Systemctl
 alias sc='sudo systemctl'             # Comando principal para gestionar servicios del SO Systemctl

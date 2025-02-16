@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+# Funciones De Colores
+print_live() {
+    echo -e "\033[1;92m$1\033[0m"
+}
+
+print_disco() {
+    echo -e "\033[1;93m$1\033[0m"
+}
+
+print_clone() {
+    echo -e "\033[1;95m$1\033[0m"
+}
+
+print_error() {
+    echo -e "\033[1;91m$1\033[0m"
+}
+
+separador() {
+sleep 3
+clear
+}
+
+sudo apt update
+sudo apt upgrade
+
+print_live "INSTALANDO DEPENDENCIAS Y PROGRAMAS NECESARIOS"
+apt install sudo build-essential curl meson git pkg-config libwayland-dev libxkbcommon-dev libx11-dev libglfw3-dev libcairo2-dev libpango1.0-dev libgdk-pixbuf2.0-dev libgtk-3-dev -y
+    separador
+
+print_live "APLICACIONES PARA INSTALAR EN HYPRLAND"
+apt install psmisc pcmanfm rsync sudo firefox-esr firefox-esr-l10n-es-ar swaybg slurp waybar man-db swaybg zsh zsh-syntax-highlighting zsh-autosuggestions pulseaudio foot wl-clipboard wf-recorder grim mpv bat vifm rofi fzf tmux file-roller lsd gvfs zathura zathura-pdf-poppler nano feh imagemagick fd-find dunst -y
+    separador
+
+print_live "CAMBIANDO BASH POR ZSH"
+SH=zsh
+chsh -s /usr/bin/$SH root
+chsh -s /usr/bin/$SH $USER
+    separador
+
+# print_live "CLONA EL REPOSITORIO DE HYPRLAND"
+# git clone --recursive https://github.com/hyprwm/Hyprland /home/$USER/Hyprland
+# cd /home/$USER/Hyprland
+# print_live "COMPILANDO E INSTALANDO HYPRLAND"
+# sudo make install
+
+print_live "INSTALANDO HYPRLAND"
+apt install hyprland
+
+print_clone "CLONANDO REPO WMARCH EN HOME"
+git clone -b debhy https://github.com/zafnet/wmarch /home/$USER/wmarch
+    separador
+print_clone "CAMBIANDO PERMISOS PARA REPO WMARCH EN HOME"
+chown -R $user:$user /home/$USER/wmarch/
+    separador
+print_clone "CAMBIANDO PERMISOS PARA HDOTS EN HOME"
+chmod 744 /home/$USER/wmarch/hdots
+    separador

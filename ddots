@@ -1,0 +1,117 @@
+#!/usr/bin/env bash
+
+# Funciones
+function print_status {
+    echo -e "\033[1;92m$1\033[0m"
+}
+
+function separador {
+    sleep 2
+    clear
+}
+
+
+if [ "$(id -u)" -eq "0" ]; then
+    apt update -y
+    apt upgrade -y
+    clear
+else
+cat << 'EOF'
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+> ███╗░░██╗░█████╗░  ██████╗░░█████╗░░█████╗░████████╗  < 
+> ████╗░██║██╔══██╗  ██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝  < 
+> ██╔██╗██║██║░░██║  ██████╔╝██║░░██║██║░░██║░░░██║░░░  < 
+> ██║╚████║██║░░██║  ██╔══██╗██║░░██║██║░░██║░░░██║░░░  < 
+> ██║░╚███║╚█████╔╝  ██║░░██║╚█████╔╝╚█████╔╝░░░██║░░░  < 
+> ╚═╝░░╚══╝░╚════╝░  ╚═╝░░╚═╝░╚════╝░░╚════╝░░░░╚═╝░░░  < 
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+EOF
+separador
+exit
+fi
+
+USER_HOME="/home/$USER"
+FOLD_SHARE="/usr/share"
+ICONS_DIR="$FOLD_SHARE/icons/"
+THEMES_DIR="$FOLD_SHARE/themes/"
+FONT_DIR="$FOLD_SHARE/fonts"
+THEME_CUR="Lavender-Breeze-GTK"
+ICON_CUR="Infinity-Lavender-Dark-Icons"
+REPO_DIR="$USER_HOME/wmarch"
+CONFIG_DIR="$USER_HOME/.config"
+FSTAB_FILE="/etc/"
+LOG_MANA="sddm"
+
+install_displaym() {
+    read -p "¿Deseas instalar el display manager $LOG_MANA? (s/n): " respuesta
+    if [[ "$respuesta" =~ ^[sS]$ ]]; then
+        print_status "\n\t\t\t\t INSTALANDO $LOG_MANA"
+        apt install $LOG_MANA
+        systemctl enable $LOG_MANA
+        separador
+    else
+        print_status "\n\t\t\t\t NO SE INSTALARÁ UN DISPLAY MANAGER"
+        separador
+    fi
+}
+
+check_plugins() {
+    print_status "\n\t\t\t\t COMPROBANDO PLUGINS DE ZSH"
+    if [[ -d $FOLD_SHARE/zsh-syntax-highlighting/ && -d $FOLD_SHARE/zsh-autosuggestions/ ]]; then
+    separador
+    print_status "\n\t\t\t\t YA EXISTEN LAS CARPETAS DE PLUGINS DE ZSH"
+    else
+    separador
+    print_status "\n\t\t\t\t NO EXISTE LA CARPETA DE ZSH"
+    separador
+    print_status "\n\t\t\t INSTALANDO ZSH Y COMPLEMENTOS DE ZSH"
+    apt install zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions   
+    fi
+    separador
+}
+
+create_common_dirs() {
+    print_status "\n\t\t\t\t CREANDO CARPETAS COMUNES"
+    mkdir -pv $USER_HOME/{desc,plant}
+    separador
+}
+
+add_dotfiles() {
+    print_status "\n\t\t\t\t AGREGANDO DOTFILES"
+    cp -r $REPO_DIR/usuario/. $USER_HOME/
+   #cp -r $REPO_DIR/{.ssh,.gitconfig} $USER_HOME/
+    cp -r $REPO_DIR/.config $USER_HOME/
+    cp -r $REPO_DIR/$THEME_CUR $THEMES_DIR/
+    cp -r $REPO_DIR/$ICON_CUR $ICONS_DIR/
+    cp -r $REPO_DIR/fonts/. $FONT_DIR/
+   #cp -r $REPO_DIR/fstab $FSTAB_FILE/
+    separador
+}
+
+perm_comun_files() {
+    print_status "\n\t\t\t\t PERMISOS Y PROPIEDAD PARA CARPETAS COMUNES CREADAS"
+    chown -R $USER:$USER $USER_HOME
+    chmod -R 700 $CONFIG_DIR/
+    separador
+}
+
+pass_root_file() {
+    print_status "\n\t\t\t\t PASANDO ARCHIVOS A ROOT"
+    mkdir -pv /root/.config/
+    cp -r $REPO_DIR/.config/{nano,nvim,zshc,tmux,Xresources} /root/.config/
+    cp -r $REPO_DIR/usuario/.bashrc /root/
+}
+
+install_displaym
+check_plugins
+create_common_dirs
+add_dotfiles
+perm_comun_files
+pass_root_file
+
+#print_status "*************************"
+#print_status "*** REINICIANDO EL PC ***"
+#print_status "*************************"
+#sleep 1
+
+#reboot

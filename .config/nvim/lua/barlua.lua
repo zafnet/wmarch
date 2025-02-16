@@ -30,14 +30,14 @@ local highlights = {
   flet  = { bg = "NONE", fg = "#e74c3c" },
 
   -- Colores Barra Lado Derecho
-  rutadarch = { bg = "NONE",    fg = "#00d75f", italic = true },
+  rutadarch = { bg = "#262626",    fg = "#00d75f", italic = true },
   ln        = { bg = "#d3538f", fg = "#000000", italic = true },
   co        = { bg = "#229954", fg = "#000000", italic = true },
   buf       = { bg = "#ff5f00", fg = "NONE",    italic = true },
   ft        = { bg = "#e74c3c", fg = "NONE", italic = true },
 
   -- Colores Flechas Barra Lado Derecho
-  fleft  = { bg = "NONE",    fg = "#e74c3c" },
+  fleft  = { bg = "#262626",    fg = "#e74c3c" },
   fleb   = { bg = "#e74c3c", fg = "#ff5f00" },
   fleln =  { bg = "#ff5f00", fg = "#d3538f" },
   fleco  = { bg = "#d3538f", fg = "#229954" } 
