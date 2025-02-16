@@ -53,7 +53,7 @@ install_displaym() {
 
 check_plugins() {
     print_status "\n\t\t\t\t COMPROBANDO PLUGINS DE ZSH"
-    if [[ -d $FOLD_SHARE/zsh/plugins/zsh-syntax-highlighting/ && -d $FOLD_SHARE/zsh/plugins/zsh-autosuggestions/ ]]; then
+    if [[ -d $FOLD_SHARE/zsh-syntax-highlighting/ && -d $FOLD_SHARE/zsh-autosuggestions/ ]]; then
     sleep 2
     clear    
     print_status "\n\t\t\t\t YA EXISTEN LAS CARPETAS DE PLUGINS DE ZSH"
@@ -86,7 +86,7 @@ add_dotfiles() {
     cp -r $REPO_DIR/$THEME_CUR $THEMES_DIR/
     cp -r $REPO_DIR/$ICON_CUR $ICONS_DIR/
     cp -r $REPO_DIR/fonts/. $FONT_DIR/
-    cp -r $REPO_DIR/fstab $FSTAB_FILE/
+   #cp -r $REPO_DIR/fstab $FSTAB_FILE/
     sleep 2
     clear
 }
