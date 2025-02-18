@@ -22,8 +22,8 @@ sleep 3
 clear
 }
 
-sudo apt update
-sudo apt upgrade
+apt update
+apt upgrade
 
 print_live "INSTALANDO DEPENDENCIAS Y PROGRAMAS NECESARIOS"
 apt install sudo build-essential curl meson git pkg-config libwayland-dev libxkbcommon-dev libx11-dev libglfw3-dev libcairo2-dev libpango1.0-dev -y
@@ -46,14 +46,14 @@ echo "$USER ALL=(ALL:ALL) ALL" >> /etc/sudoers
 # git clone --recursive https://github.com/hyprwm/Hyprland /home/$USER/Hyprland
 # cd /home/$USER/Hyprland
 # print_live "COMPILANDO E INSTALANDO HYPRLAND"
-# sudo make install
+# make install
 
 print_live "INSTALANDO HYPRLAND"
 apt install hyprland -y
     separador
 
 print_clone "CREANDO DIR ZSH-COMPLETIONS EN HOME"
-sudo mkdir -p /home/$USER/zsh-completions
+mkdir -p /home/$USER/zsh-completions
     separador
 
 print_clone "CLONANDO PLUGIN ZSH-COMPLETIONS"
@@ -61,16 +61,20 @@ git clone https://github.com/zsh-users/zsh-completions.git /home/$USER/zsh-compl
     separador
 
 print_clone "COPIANDO DIR SRC Y ZSH-COMPLETIONS.PLUGIN.ZSH EN /USR/SHARE/ZSH-COMPLETIONS"
-sudo mkdir -p /usr/share/zsh-completions/
-sudo cp -r $HOME/zsh-completions/{src,zsh-completions.plugin.zsh} /usr/share/zsh-completions/
+mkdir -p /usr/share/zsh-completions/
+cp -r /home/$USER/zsh-completions/{src,zsh-completions.plugin.zsh} /usr/share/zsh-completions/
+    separador
+
+print_clone "BORRANDO ZSH-COMPLETIONS DE HOME"
+rm -rf /home/$USER/zsh-completions
     separador
 
 print_clone "CLONANDO REPO WMARCH EN HOME"
 git clone -b debhy https://github.com/zafnet/wmarch /home/$USER/wmarch
     separador
 print_clone "CAMBIANDO PERMISOS PARA REPO WMARCH EN HOME"
-chown -R $user:$user /home/$USER/wmarch/
+chown -R $USER:$USER /home/$USER/wmarch/
     separador
-print_clone "CAMBIANDO PERMISOS PARA HDOTS EN HOME"
+print_clone "CAMBIANDO PERMISOS PARA DDOTS EN HOME"
 chmod 744 /home/$USER/wmarch/ddots
     separador
