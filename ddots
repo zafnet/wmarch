@@ -65,7 +65,7 @@ check_plugins() {
     print_status "\n\t\t\t\t NO EXISTE LA CARPETA DE ZSH"
     separador
     print_status "\n\t\t\t INSTALANDO ZSH Y COMPLEMENTOS DE ZSH"
-    apt install zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions   
+    apt install zsh zsh-syntax-highlighting zsh-autosuggestions   
     fi
     separador
 }
@@ -84,7 +84,6 @@ add_dotfiles() {
     cp -r $REPO_DIR/$THEME_CUR $THEMES_DIR/
     cp -r $REPO_DIR/$ICON_CUR $ICONS_DIR/
     cp -r $REPO_DIR/fonts/. $FONT_DIR/
-   #cp -r $REPO_DIR/fstab $FSTAB_FILE/
     separador
 }
 

@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+#set -x
+#set -eo pipefail
+
+# Funciones De Colores
+print_verd() {
+    echo -e "\033[1;92m$1\033[0m"
+}
+
+print_vio() {
+    echo -e "\033[1;95m$1\033[0m"
+}
+
+separador() {
+    sleep 3
+    clear
+}
+
+function buildnvim() {
+    dependencias=(ninja-build gettext cmake unzip curl build-essential)
+    
+    # Verificar si las dependencias están instaladas y acumular las faltantes
+    faltantes=()
+    for i in "${dependencias[@]}"; do
+        if ! dpkg -l | grep -q "$i"; then
+            faltantes+=("$i")
+        fi
+    done
+
+    # Instalar solo si hay dependencias faltantes
+    if [ ${#faltantes[@]} -gt 0 ]; then
+        print_verd "Instalando dependencias necesarias: ${faltantes[*]}"
+        sudo apt-get install -y "${faltantes[@]}"
+    else
+        print_vio "Las dependencias ya están instaladas. Continuando..."
+    fi
+    
+    # Asegurarse de que el dir nvim no exista
+    local nvim_dir="$HOME/neovim"
+    
+    if [ -d "$nvim_dir" ]; then
+        read -p "El directorio $nvim_dir ya existe. ¿Deseas borrarlo? (s/n): " borrar_dir
+        if [[ "$borrar_dir" == "s" ]]; then
+            print_verd "Borrando el directorio $nvim_dir..."
+            rm -rf "$nvim_dir"
+        else
+            print_vio "No se borrará el directorio de nvim. Saliendo..."
+            return
+        fi
+    else
+        print_verd "No hay ningún directorio nvim en home, continuando..."
+    fi
+
+    # Clonando nvim en home
+    print_verd "Clonando nvim desde código fuente en home"
+    git clone https://github.com/neovim/neovim "$nvim_dir"
+
+    # Ir al dir neovim en home.
+    cd "$nvim_dir" || { print_vio "No se pudo acceder a $nvim_dir. Saliendo..."; return; }
+
+    # Elegir la rama
+    read -p "¿Deseas construir la versión estable (s) o la versión master (m)? (s/m): " version
+    if [[ "$version" == "s" ]]; then
+        git checkout stable
+    elif [[ "$version" == "m" ]]; then
+        git checkout master
+    else
+        print_vio "Opción no válida. Saliendo..."
+        return
+    fi
+
+    # Construir e instalar Neovim
+    print_verd "Compilando e instalando Neovim..."
+    sudo make install
+
+    # Preguntar si se desea borrar el directorio construido
+    read -p "¿Deseas borrar el directorio construido $nvim_dir? (s/n): " borrar_construido
+    if [[ "$borrar_construido" == "s" ]]; then
+        print_verd "Borrando el directorio construido $nvim_dir..."
+        sudo rm -rf "$nvim_dir"
+    else
+        print_vio "El directorio construido se ha mantenido."
+    fi
+}
+
+buildnvim
