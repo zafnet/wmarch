@@ -50,6 +50,20 @@ echo "$USER ALL=(ALL:ALL) ALL" >> /etc/sudoers
 
 print_live "INSTALANDO HYPRLAND"
 apt install hyprland -y
+    separador
+
+print_clone "CREANDO DIR ZSH-COMPLETIONS EN HOME"
+sudo mkdir -p /home/$USER/zsh-completions
+    separador
+
+print_clone "CLONANDO PLUGIN ZSH-COMPLETIONS"
+git clone https://github.com/zsh-users/zsh-completions.git /home/$USER/zsh-completions
+    separador
+
+print_clone "COPIANDO DIR SRC Y ZSH-COMPLETIONS.PLUGIN.ZSH EN /USR/SHARE/ZSH-COMPLETIONS"
+sudo mkdir -p /usr/share/zsh-completions/
+sudo cp -r $HOME/zsh-completions/{src,zsh-completions.plugin.zsh} /usr/share/zsh-completions/
+    separador
 
 print_clone "CLONANDO REPO WMARCH EN HOME"
 git clone -b debhy https://github.com/zafnet/wmarch /home/$USER/wmarch
