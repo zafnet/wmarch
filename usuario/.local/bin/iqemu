@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+
+# Funciones
+function print_status {
+    echo -e "\033[1;92m$1\033[0m"
+}
+
+function read_print1 {
+    echo -e "\033[1;32m"  # Color verde
+}
+
+function read_print2 {
+    echo -e "\033[0m"  # Color reset
+}
+
+function separador {
+      sleep 3
+      clear
+}
+
+if [ "$(id -u)" -eq "0" ]; then
+  # Preguntar el nombre del usuario sin privilegios
+  read -p "$(read_print1)Ingrese el nombre del usuario sin privilegios: $(read_print2)" USUARIO
+  print_status "\t\t\t\t INSTALANDO LA VM"
+  separador
+else
+cat <<'EOF'
+">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
+"> ███╗░░██╗░█████╗░  ██████╗░░█████╗░░█████╗░████████╗  < "
+"> ████╗░██║██╔══██╗  ██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝  < "
+"> ██╔██╗██║██║░░██║  ██████╔╝██║░░██║██║░░██║░░░██║░░░  < "
+"> ██║╚████║██║░░██║  ██╔══██╗██║░░██║██║░░██║░░░██║░░░  < "
+"> ██║░╚███║╚█████╔╝  ██║░░██║╚█████╔╝╚█████╔╝░░░██║░░░  < "
+"> ╚═╝░░╚══╝░╚════╝░  ╚═╝░░╚═╝░╚════╝░░╚════╝░░░░╚═╝░░░  < "
+">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
+EOF
+sleep 1
+clear
+exit
+fi
+
+print_status "\n\t\t\t\t CARGANDO MODULOS PARA KVM AMD"
+modprobe kvm
+separador
+modprobe kvm_amd
+
+# Detectar el sistema operativo
+if [ -f /etc/debian_version ]; then
+    # Debian
+    print_status "\n\t\t\t\t INSTALANDO QEMU EN DEBIAN"
+    paque=(qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager)
+
+    for i in "${paque[@]}"; do
+        apt install -y $i
+    done
+elif [ -f /etc/arch-release ]; then
+    # Arch Linux
+    print_status "\n\t\t\t\t INSTALANDO QEMU-DESKTOP EN ARCH LINUX"
+    paque=(qemu-desktop edk2-ovmf dmidecode libvirt dnsmasq bridge-utils openbsd-netcat virt-manager)
+
+    for i in "${paque[@]}"; do
+        pacman --needed -S $i --noconfirm
+    done
+else
+    print_status "\n\t\t\t\t SISTEMA NO SOPORTADO"
+    exit 1
+fi
+
+print_status "\n\t\t\t\t HABILITANDO E INICIANDO SERVICIO LIBVIRTD"
+systemctl enable libvirtd
+separador
+systemctl start libvirtd --now
+separador
+
+print_status "\n\t\t\t\t CREANDO CARPETAS EN HOME PARA QEMU Y CAMBIANDO PERMISOS PARA QUE $USUARIO PUEDA USARLAS"
+mkdir -vp /home/$USUARIO/qemuvms/{isos,comp,discos}
+chown -R $USUARIO:$USUARIO /home/$USUARIO/qemuvms/
+
+print_status "\n\t\t\t\t AÑADIENDO USUARIO A GRUPOS KVM Y LIBVIRT"
+
+usermod -aG kvm $USUARIO
+separador
+usermod -aG libvirt $USUARIO
+separador
+
+cat <<'EOF'
+"██████╗ ███████╗██╗███╗   ██╗██╗ ██████╗██╗ █████╗ ███╗   ██╗██████╗  ██████╗ "
+"██╔══██╗██╔════╝██║████╗  ██║██║██╔════╝██║██╔══██╗████╗  ██║██╔══██╗██╔═══██╗"
+"██████╔╝█████╗  ██║██╔██╗ ██║██║██║     ██║███████║██╔██╗ ██║██║  ██║██║   ██║"
+"██╔══██╗██╔══╝  ██║██║╚██╗██║██║██║     ██║██╔══██║██║╚██╗██║██║  ██║██║   ██║"
+"██║  ██║███████╗██║██║ ╚████║██║╚██████╗██║██║  ██║██║ ╚████║██████╔╝╚██████╔╝"
+"╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═══╝╚═╝ ╚═════╝╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝"
+EOF
+
+sleep 1
+echo reboot

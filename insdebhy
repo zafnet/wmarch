@@ -35,6 +35,7 @@ apt install psmisc pcmanfm rsync sudo firefox-esr firefox-esr-l10n-es-ar swaybg 
 
 print_live "AGREGANDO USUARIO SIN PRIVILEGIOS A SUDOERS"
 echo "$USER ALL=(ALL:ALL) ALL" >> /etc/sudoers
+    separador
 
 # print_live "CAMBIANDO BASH POR ZSH"
 # SH=zsh
