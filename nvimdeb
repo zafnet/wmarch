@@ -17,7 +17,8 @@ separador() {
 }
 
 function buildnvim() {
-    dependencias=(ninja-build gettext cmake unzip curl build-essential)
+    dependencias=(ninja-build cmake unzip curl build-essential)
+    sudo apt install -y gettext 
     
     # Verificar si las dependencias están instaladas y acumular las faltantes
     faltantes=()
@@ -30,7 +31,7 @@ function buildnvim() {
     # Instalar solo si hay dependencias faltantes
     if [ ${#faltantes[@]} -gt 0 ]; then
         print_verd "Instalando dependencias necesarias: ${faltantes[*]}"
-        sudo apt-get install -y "${faltantes[@]}"
+        sudo apt install -y "${faltantes[@]}"
     else
         print_vio "Las dependencias ya están instaladas. Continuando..."
     fi
