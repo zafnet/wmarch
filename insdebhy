@@ -25,12 +25,8 @@ clear
 apt update
 apt upgrade
 
-print_live "INSTALANDO DEPENDENCIAS Y PROGRAMAS NECESARIOS"
-apt install sudo build-essential curl meson git pkg-config libwayland-dev libxkbcommon-dev libx11-dev libglfw3-dev libcairo2-dev libpango1.0-dev -y
-    separador
-
-print_live "APLICACIONES PARA INSTALAR EN HYPRLAND"
-apt install psmisc pcmanfm rsync sudo firefox-esr firefox-esr-l10n-es-ar swaybg slurp waybar man-db swaybg zsh zsh-syntax-highlighting zsh-autosuggestions pulseaudio foot wl-clipboard wf-recorder grim mpv bat vifm rofi fzf tmux file-roller lsd gvfs zathura zathura-pdf-poppler nano feh imagemagick fd-find dunst -y
+print_live "INSTALANDO DEPENDENCIAS Y PROGRAMAS EN HYPRLAND"
+apt install sudo build-essential curl meson git pkg-config libwayland-dev libxkbcommon-dev libx11-dev libglfw3-dev libcairo2-dev libpango1.0-dev psmisc pcmanfm rsync sudo firefox-esr firefox-esr-l10n-es-ar swaybg slurp waybar man-db swaybg zsh zsh-syntax-highlighting zsh-autosuggestions pulseaudio foot wl-clipboard wf-recorder grim mpv bat vifm rofi fzf tmux file-roller lsd gvfs zathura zathura-pdf-poppler nano feh imagemagick fd-find dunst -y
     separador
 
 print_live "AGREGANDO USUARIO SIN PRIVILEGIOS A SUDOERS"
@@ -61,9 +57,9 @@ print_clone "CLONANDO PLUGIN ZSH-COMPLETIONS"
 git clone https://github.com/zsh-users/zsh-completions.git /home/$USER/zsh-completions
     separador
 
-print_clone "COPIANDO DIR SRC Y ZSH-COMPLETIONS.PLUGIN.ZSH EN /USR/SHARE/ZSH-COMPLETIONS"
-mkdir -p /usr/share/zsh-completions/
-cp -r /home/$USER/zsh-completions/{src,zsh-completions.plugin.zsh} /usr/share/zsh-completions/
+print_clone "COPIANDO DIR SRC Y ZSH-COMPLETIONS.PLUGIN.ZSH EN /USR/LOCAL/SHARE/"
+mkdir -p /usr/local/share/zsh/site-functions/zsh-completions/
+cp -r /home/$USER/zsh-completions/{src,zsh-completions.plugin.zsh} /usr/local/share/zsh/site-functions/zsh-completions/
     separador
 
 print_clone "BORRANDO ZSH-COMPLETIONS DE HOME"
