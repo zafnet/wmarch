@@ -6,6 +6,7 @@ RCAC="echo ' ' > $HOME/.config/zshc/.zsh_history && $BORR '.cache y zsh_history 
 GLO="--graph --pretty=format:'%C(yellow)%h%Creset -%Cblue%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 
 #-- Sistema
+alias reboot='systemctl reboot'                                                          # Reiniciar solo con reboot
 alias ll='lsd -lha --group-dirs=first'                                                   # Listar archivos con detalles y dirs primero Sistema
 alias la='lsd -l --group-dirs=first'                                                     # Listar archivos en formato largo con dirs primero Sistema
 alias ls='ls -haFH --group-directories-first --color=always'                             # Listar archivos con colores y dirs primero Sistema

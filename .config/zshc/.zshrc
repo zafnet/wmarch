@@ -26,6 +26,7 @@ export FZF_DEFAULT_OPTS="
 "
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fpath=(/usr/share/zsh/site-functions/ $fpath)
 source /usr/local/share/zsh
 source ~/.config/zshc/zalias
 source ~/.config/zshc/zfunc

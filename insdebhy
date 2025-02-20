@@ -29,23 +29,11 @@ print_live "INSTALANDO DEPENDENCIAS Y PROGRAMAS EN HYPRLAND"
 apt install sudo build-essential curl meson git pkg-config libwayland-dev libxkbcommon-dev libx11-dev libglfw3-dev libcairo2-dev libpango1.0-dev psmisc pcmanfm rsync sudo firefox-esr firefox-esr-l10n-es-ar swaybg slurp waybar man-db swaybg zsh zsh-syntax-highlighting zsh-autosuggestions pulseaudio foot wl-clipboard wf-recorder grim mpv bat vifm rofi fzf tmux file-roller lsd gvfs zathura zathura-pdf-poppler nano feh imagemagick fd-find dunst -y
     separador
 
-print_live "AGREGANDO USUARIO SIN PRIVILEGIOS A SUDOERS"
-echo "$USER ALL=(ALL:ALL) ALL" >> /etc/sudoers
-    separador
-
-print_live "AGREGANDO HYPRLAND A ZSHENV"
-cat << 'EOF' >> /etc/zsh/zshenv
-# INICIAR WM SIN DISPLAY MANAGER
-if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-  exec Hyprland
-fi
-EOF
-
-print_live "CAMBIANDO BASH POR ZSH"
-SH=zsh
+#print_live "CAMBIANDO BASH POR ZSH"
+#SH=zsh
 # chsh -s /usr/bin/$SH root
-chsh -s /usr/bin/$SH $USER
-separador
+#chsh -s /usr/bin/$SH $USER
+#separador
 
 # print_live "CLONA EL REPOSITORIO DE HYPRLAND"
 # git clone --recursive https://github.com/hyprwm/Hyprland /home/$USER/Hyprland
@@ -83,3 +71,15 @@ chown -R $USER:$USER /home/$USER/wmarch/
 print_clone "CAMBIANDO PERMISOS PARA DDOTS EN HOME"
 chmod 744 /home/$USER/wmarch/ddots
     separador
+
+print_live "AGREGANDO USUARIO SIN PRIVILEGIOS A SUDOERS"
+echo "$USER ALL=(ALL:ALL) ALL" >> /etc/sudoers
+    separador
+
+print_live "AGREGANDO HYPRLAND A ZSHENV"
+cat << 'EOF' >> /etc/zsh/zshenv
+# INICIAR WM SIN DISPLAY MANAGER
+if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+  exec Hyprland
+fi
+EOF
