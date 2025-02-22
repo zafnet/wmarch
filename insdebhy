@@ -26,20 +26,20 @@ apt update
 apt upgrade
 
 print_live "INSTALANDO DEPENDENCIAS Y PROGRAMAS EN HYPRLAND"
-apt install sudo build-essential curl meson git pkg-config libwayland-dev libxkbcommon-dev libx11-dev libglfw3-dev libcairo2-dev libpango1.0-dev psmisc pcmanfm rsync sudo firefox-esr firefox-esr-l10n-es-ar swaybg slurp waybar man-db swaybg zsh zsh-syntax-highlighting zsh-autosuggestions pulseaudio foot wl-clipboard wf-recorder grim mpv bat vifm rofi fzf tmux file-roller lsd gvfs zathura zathura-pdf-poppler nano feh imagemagick fd-find dunst -y
+apt install build-essential curl meson git pkg-config libwayland-dev libxkbcommon-dev libx11-dev libglfw3-dev libcairo2-dev libpango1.0-dev psmisc pcmanfm rsync sudo firefox-esr firefox-esr-l10n-es-ar swaybg slurp waybar man-db swaybg zsh zsh-syntax-highlighting zsh-autosuggestions pulseaudio foot wl-clipboard wf-recorder grim mpv bat vifm rofi fzf tmux file-roller lsd gvfs zathura zathura-pdf-poppler nano feh imagemagick fd-find dunst -y
     separador
 
 #print_live "CAMBIANDO BASH POR ZSH"
 #SH=zsh
-# chsh -s /usr/bin/$SH root
+#chsh -s /usr/bin/$SH root
 #chsh -s /usr/bin/$SH $USER
 #separador
 
-# print_live "CLONA EL REPOSITORIO DE HYPRLAND"
-# git clone --recursive https://github.com/hyprwm/Hyprland /home/$USER/Hyprland
-# cd /home/$USER/Hyprland
-# print_live "COMPILANDO E INSTALANDO HYPRLAND"
-# make install
+#print_live "CLONA EL REPOSITORIO DE HYPRLAND"
+#git clone --recursive https://github.com/hyprwm/Hyprland /home/$USER/Hyprland
+#cd /home/$USER/Hyprland
+#print_live "COMPILANDO E INSTALANDO HYPRLAND"
+#make install
 
 print_live "INSTALANDO HYPRLAND"
 apt install hyprland -y
@@ -83,3 +83,11 @@ if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
   exec Hyprland
 fi
 EOF
+
+read -p "¿Desea instalar nvim? (s/n): " ins_nvim
+    if [[ "$ins_nvim" == "s" ]]; then
+        print_verd "instalando nvim..."
+        bash /home/$USER/wmarch/nvimdeb
+    else
+        print_vio "Omitiendo la instalacion de nvim..."
+    fi

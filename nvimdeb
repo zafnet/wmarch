@@ -53,11 +53,11 @@ function buildnvim() {
     fi
 
     # Clonando nvim en home
-    print_verd "Clonando nvim desde código fuente en home"
+    print_verd "Clonando nvim desde código fuente a home"
     git clone https://github.com/neovim/neovim "$nvim_dir"
 
     # Ir al dir neovim en home.
-    cd "$nvim_dir" || { print_vio "No se pudo acceder a $nvim_dir. Saliendo..."; return; }
+    cd "$nvim_dir" || { print_vio "No se pudo acceder a $nvim_dir Saliendo..."; return; }
 
     # Elegir la rama
     read -p "¿Deseas construir la versión estable (s) o la versión master (m)? (s/m): " version
