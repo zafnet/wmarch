@@ -32,7 +32,7 @@ alias mk='mkdir -pv'                                                            
 alias smk='sudo mkdir -pv'                                                               # Crear dirs como superusuario y mostrar mensajes Sistema
 alias grep='grep --color=auto'                                                           # Buscar texto con resaltado Sistema
 alias xd="xrdb merge ~/.config/Xresources && $DUNS 'Xresources Actualizado'"             # Actualizar recursos X y notificar Sistema
-alias ch='checkupdates'                                                                  # Comprobar actualizaciones disponibles Sistema
+alias ch='apt update && apt list --upgradable'                                           # Comprobar actualizaciones disponibles Sistema
 alias sz="source ~/.config/zshc/.zshrc && $DUNS 'zshrc Actualizado'"                     # Recargar configuración de Zsh y notificar Sistema
 alias zh="echo ' ' > $HOME/.config/zshc/.zsh_history && $BORR 'zsh_history Borrado'"     # Borrar historial de Zsh y notificar Sistema
 alias bh="echo ' ' > $HOME/.config/bashc/.bash_history && $BORR 'bash_history Borrado'"  # Borrar historial de Bash y notificar Sistema
