@@ -64,7 +64,7 @@ alias tp='tmux neww -n'          # Crear una nueva ventana en Tmux con un nombre
 alias nv='nvim'                                           # Abrir Neovim Editor
 alias nz='nvim /home/$USER/.config/zshc/.zshrc'           # Editar .zshrc con Neovim Editor
 alias nb='nvim /home/$USER/.bashrc'                       # Editar .bashrc con Neovim Editor
-alias nbh='nvim /home/$USER/.config/bashc/.bash_history'  # Editar .bash_history con Neovim Editor
+alias nbh='nvim /home/$USER/.bash_history'                # Editar .bash_history con Neovim Editor
 alias nzh='nvim ~/.config/zshc/.zsh_history'              # Editar .zsh_history con Neovim Editor
 
 #-- Git
