@@ -1,6 +1,6 @@
-DUNS='dunstify -t 4000 -i "$HOME/.config/dunst/icons/actuale.png"'
+DUNS='notify-send -t 4000 -i "$HOME/.config/dunst/icons/actuale.png"'
 REFLE='sudo reflector -l 5 -p http,https --sort rate --save /etc/pacman.d/mirrorlist'
-BORR='dunstify -t 4000 -i "$HOME/.config/dunst/icons/borrado.png"'
+BORR='notify-send -t 4000 -i "$HOME/.config/dunst/icons/borrado.png"'
 PACM='sudo pacman'
 RCAC="echo ' ' > $HOME/.config/zshc/.zsh_history && $BORR '.cache y zsh_history Borrados'"
 GLO="--graph --pretty=format:'%C(yellow)%h%Creset -%Cblue%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"

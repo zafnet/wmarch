@@ -61,6 +61,10 @@ elif [ -f /etc/arch-release ]; then
     for i in "${paque[@]}"; do
         pacman --needed -S $i --noconfirm
     done
+elif [ -f /etc/fedora-release ]; then
+    # fedora Linux
+    print_status "\n\t\t\t\t INSTALANDO QEMU EN FEDORA LINUX"
+        dnf install @virtualization
 else
     print_status "\n\t\t\t\t SISTEMA NO SOPORTADO"
     exit 1
@@ -77,10 +81,9 @@ mkdir -vp /home/$USUARIO/qemuvms/{isos,comp,discos}
 chown -R $USUARIO:$USUARIO /home/$USUARIO/qemuvms/
 
 print_status "\n\t\t\t\t AÑADIENDO USUARIO A GRUPOS KVM Y LIBVIRT"
-
-usermod -aG kvm $USUARIO
+/usr/sbin/usermod -aG kvm $USUARIO
 separador
-usermod -aG libvirt $USUARIO
+/usr/sbin/usermod -aG libvirt $USUARIO
 separador
 
 cat <<'EOF'

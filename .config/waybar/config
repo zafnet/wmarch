@@ -1,18 +1,97 @@
-{
-	"layer": "top",
-    "width": 1728,
-    "margin-top": 1,
+{   // Estilo Trasnparente
+
+    // General
+    "layer": "top",
+    "position": "top",
+    "height": 14,    // Waybar height (to be removed for auto height)
+    //"width": 1728,
+    "spacing": 2,    // Gaps between modules (4px)
+    "margin-top": 0, // Gap to top of screen
     "margin-bottom": 0,
 
-    //Modules layout
+    // Elegir el orden de los modulos
+    "modules-left": ["tray","cpu","temperature","memory","custom/updates"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["custom/special","pulseaudio", "clock","custom/power"],
 
-	"modules-left": ["tray","cpu","temperature","memory","custom/updates"],
-	"modules-center": ["hyprland/workspaces"],
-	"modules-right": ["custom/special","pulseaudio", "clock","custom/power"],
-	
+    // configuracion de los Modules 
+    "tray": {
+        "icon-size": 19,
+        "spacing": 10
+    },
+    "custom/special": {
+        "exec": "~/.config/waybar/scripts/workspace-especial",
+        "interval": 5,
+        "tooltip": false
+    },
+    "custom/power":{
+        "format":"<span color='#222330'> ⏻ </span>",
+        "on-click": "~/.config/rofi/power/powm.sh"
+    },
+    "custom/updates":{
+        "format": "{} {icon}",
+        "tooltip": true,
+        "tooltip-format": "<span color='#ffae42'> </span> actualizaciones Pendientes de sistema",
+        "on-click": "~/.config/waybar/scripts/upda_term.sh",
+       	"format-icons": {
+			"default": [
+                "<span color='#ffae42'> </span>", 
+            ]
+            },
 
-    // Sourced modules
-
+ "exec": "checkupdates | wc -l",
+        "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
+        "interval": 5,
+    },
+	"clock": {
+        "timezone": "America/Argentina/Buenos_Aires",
+        "tooltip": true,
+        "interval": 1,
+        "format": "{:%H:%M %p}",
+        "tooltip-format": "{:L%a-%d-%m-%Y}",
+        "locale": "es_AR.UTF-8",
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}% <span color='#9ece6a'> </span>"
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "hyprland/workspaces": {
+		"disable-scroll": true,
+        "on-click": "activate",
+        "all-outputs": true,
+        "active-only": false,
+        /*"persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+        },*/
+        "format": "<span font='12'color='#ffac33'>{icon}</span>", // Color icono cuando no tiene
+        "format-icons": {
+            "active": "<span font='12'color='#fafc33'>󰮯</span>",
+            "empty": "<span font='12'color='#fa123d'>󰊠</span>",
+            //"default": "<span font='12'color='#7dcfff'>󰊠</span>",
+            "persistent": "󰊠",
+        },
+    },
    "pulseaudio": {
     	"tooltip": false,
     	"scroll-step": 5,
@@ -30,108 +109,6 @@
              "default": ["<span color='#7aa2f7'> </span>", "<span color='#7aa2f7'> </span>", "<span color='#7aa2f7'> </span>"]
                       },
 	},
-
-    "hyprland/workspaces": {
-		"disable-scroll": true,
-        "on-click": "activate",
-        "all-outputs": true,
-        "active-only": false,
-        "persistent-workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": [],
-        },
-        "format": "{icon}",
-        "format-icons": {
-            "active": "<span font='12'>󰮯</span>",
-            "empty": "<span font='8'></span>",
-            "persistent": "󰊠",
-        },
-    },
-
-     "hyprland/window": {
-         "format": "{initialClass}",
-         "rewrite": {
-           "Firefox": "<span color='#ffac33'>Firefox  </span>",
-           "org.gnome.FileRoller":"FileRoller",
-           "XTerm": "XTerm"
-      },
-
-      "separate-outputs": true
-    },
-
-	"clock": {
-        "tooltip": true,
-        "interval": 1,
-        "format": "{:%H:%M %p}",
-        "tooltip-format": "{:L%a-%d-%m-%Y}",
-        "timezone": "America/Argentina/Buenos_Aires",
-        "locale": "es_AR.UTF-8",
-    },
-
-    "cpu": {
-        "interval": 15,
-        "format": "<span color='#f7768e'> </span> {}%",
-        "max-length": 10
-    },
- "temperature": {
-    	"thermal-zone": 2,
-    	"hwmon-path": ["/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input"],
-    	 "critical-threshold": 80,
-    	 "format-critical": "{temperatureC}°C ",
-    	"format": "{temperatureC}°C "
-    },
-
-    "memory": {
-        "interval": 30,
-        "format": "<span color='#7dcfff'> </span> {used}GiB",
-        "max-length": 10
-    },
-
-    "tray": {
-        "icon-size": 19,
-        "spacing": 10
-    },
-
-    "custom/special": {
-        "exec": "~/.config/waybar/scripts/workspace-especial",
-        "interval": 5,
-        "tooltip": false
-    },
-
-    "custom/power":{
-        "format": "<span color='#f7768e'>⏻</span>",
-        "on-click": "~/.config/rofi/power/powm.sh"
-
-    },
-
-    "custom/updates":{
-        "format": "{} {icon}",
-        "tooltip": true,
-        "tooltip-format": "<span color='#ffae42'> </span> actualizaciones Pendientes de sistema",
-        "on-click": "~/.config/waybar/scripts/upda_term.sh",
-       	"format-icons": {
-			"default": [
-                "<span color='#ffae42'> </span>", 
-            ]
-            },
-
- "exec": "checkupdates | wc -l",
-        "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
-        "interval": 5,
-    },
-
-	"backlight": {
-		"tooltip": false,
-		"format": " {}%",
-		"interval":1,
-        "on-scroll-up": "light -A 5",
-		"on-scroll-down": "light -U 5"
-	},
-
     "battery": {
         "states": {
             "good": 95,
@@ -150,5 +127,4 @@
             "<span color='#9ece6a'></span>"
         ]
     },
-    
 }
