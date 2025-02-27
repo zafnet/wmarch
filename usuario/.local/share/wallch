@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Asegurarse de que no haya instancias previas al iniciar
+pkill swaybg
+
+while true; do
+    # Matar cualquier instancia anterior de swaybg antes de cambiar el fondo
+    pkill swaybg
+    
+    # Seleccionar una imagen aleatoria con fd y establecerla como fondo
+    swaybg --image "$(fd . ~/.wall -tf | shuf -n 1)" --mode fill &
+
+    # Esperar 30 segundos antes de cambiar
+    sleep 10m
+done
