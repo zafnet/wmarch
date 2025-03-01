@@ -10,6 +10,6 @@ while true; do
     # Seleccionar una imagen aleatoria con fd y establecerla como fondo
     swaybg --image "$(fd . ~/.wall -tf | shuf -n 1)" --mode fill &
 
-    # Esperar 30 segundos antes de cambiar
+    # Esperar 10 minutos antes de cambiar
     sleep 10m
 done

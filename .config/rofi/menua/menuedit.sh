@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-termin=wezterm
+termin=foot
 
 options="HYPRLAND \nWAYCSS \nWAYCONF \nTMUX \nZSHRC \nBASHRC \nNVIM \nROFI \nXRESOURCES "
 

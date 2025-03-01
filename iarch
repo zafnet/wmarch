@@ -454,6 +454,14 @@ arch-chroot /mnt /bin/bash -c "chmod 744 /home/$USER/wmarch/hdots"
     separador
 }
 
+print_live "AGREGANDO HYPRLAND A ZSHENV"
+cat << 'EOF' >> /etc/zsh/zshenv
+# INICIAR WM SIN DISPLAY MANAGER
+if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+  exec Hyprland
+fi
+EOF
+
 # Instalación completa
 instalacion_completa() {
     comprobar_internet
