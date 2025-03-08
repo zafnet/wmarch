@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd('filetype', {
 vim.keymap.set("n", "gx", function()
     local url = vim.fn.expand("<cfile>")
     if url ~= "" then
-        vim.fn.jobstart({"firefox", "-private-window", url}, {detach = true})
+        vim.fn.jobstart({"vivaldi-stable", "--incognito", url}, {detach = true})
     end
 end, { silent = true })
 

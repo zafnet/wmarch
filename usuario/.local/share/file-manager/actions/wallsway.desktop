@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Action
+Tooltip=Cambiar Wallpaper
+Name=wallsway
+Icon=/usr/share/icons/icowall.png
+Profiles=profile-zero;
+
+[X-Action-Profile profile-zero]
+MimeTypes=image/*;
+Exec=swaybg --image %f --mode fill
+Name=Default profile
+SelectionCount==1

@@ -26,8 +26,8 @@ fi
 
 USER_HOME="/home/$USER"
 FOLD_SHARE="/usr/share"
-ICONS_DIR="$FOLD_SHARE/icons/"
-THEMES_DIR="$FOLD_SHARE/themes/"
+ICONS_DIR="$FOLD_SHARE/icons"
+THEMES_DIR="$FOLD_SHARE/themes"
 FONT_DIR="$FOLD_SHARE/fonts"
 THEME_CUR="Lavender-Breeze-GTK"
 ICON_CUR="Infinity-Lavender-Dark-Icons"
@@ -85,6 +85,7 @@ add_dotfiles() {
     cp -r $REPO_DIR/.config $USER_HOME/
     cp -r $REPO_DIR/$THEME_CUR $THEMES_DIR/
     cp -r $REPO_DIR/$ICON_CUR $ICONS_DIR/
+    cp -r $REPO_DIR/icowall.png $ICONS_DIR/
     cp -r $REPO_DIR/fonts/. $FONT_DIR/
    #cp -r $REPO_DIR/fstab $FSTAB_FILE/
     sleep 2
