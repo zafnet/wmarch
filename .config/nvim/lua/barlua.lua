@@ -20,24 +20,24 @@ local highlights = {
   CommandColor  = { bg = "#229954", fg = "#000000", italic = true },
 
   -- Colores Flechas Para Modos
-  flen  = { bg = "NONE", fg = "#8bd88b" },
-  flei  = { bg = "NONE", fg = "#3498db" },
-  flev  = { bg = "NONE", fg = "#9d65f8" },
-  flevl = { bg = "NONE", fg = "#ff5f00" },
-  flevb = { bg = "NONE", fg = "#ff005f" },
-  fler  = { bg = "NONE", fg = "#d3538f" },
-  flec  = { bg = "NONE", fg = "#229954" },
-  flet  = { bg = "NONE", fg = "#e74c3c" },
+  flen  = { bg = "#444444", fg = "#8bd88b" },
+  flei  = { bg = "#444444", fg = "#3498db" },
+  flev  = { bg = "#444444", fg = "#9d65f8" },
+  flevl = { bg = "#444444", fg = "#ff5f00" },
+  flevb = { bg = "#444444", fg = "#ff005f" },
+  fler  = { bg = "#444444", fg = "#d3538f" },
+  flec  = { bg = "#444444", fg = "#229954" },
+  flet  = { bg = "#444444", fg = "#e74c3c" },
 
   -- Colores Barra Lado Derecho
-  rutadarch = { bg = "NONE",    fg = "#00d75f", italic = true },
+  rutadarch = { bg = "#444444", fg = "#00d75f", italic = true },
   ln        = { bg = "#d3538f", fg = "#000000", italic = true },
   co        = { bg = "#229954", fg = "#000000", italic = true },
   buf       = { bg = "#ff5f00", fg = "NONE",    italic = true },
   ft        = { bg = "#e74c3c", fg = "NONE", italic = true },
 
   -- Colores Flechas Barra Lado Derecho
-  fleft  = { bg = "NONE",    fg = "#e74c3c" },
+  fleft  = { bg = "#444444", fg = "#e74c3c" },
   fleb   = { bg = "#e74c3c", fg = "#ff5f00" },
   fleln =  { bg = "#ff5f00", fg = "#d3538f" },
   fleco  = { bg = "#d3538f", fg = "#229954" } 
