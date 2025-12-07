@@ -19,7 +19,7 @@ export FZF_DEFAULT_OPTS="
   --color=fg:#97e297,fg+:#dd8d50,bg:-1,bg+:-1 \
   --color=hl:#ff759c,hl+:#dfbe17,info:#46e438,marker:#87ff00 \
   --color=prompt:#d7005f,spinner:#40caa0,pointer:#ff0000,header:#f7f6f8 \
-  --color=border:#e55454,separator:#94a940,scrollbar:,gutter:-1,preview-fg:#48b227 \
+  --color=border:#e55454,separator:#94a940,scrollbar:,gutter:-0,preview-fg:#48b227 \
   --color=label:#aeaeae,query:#c2b73e \
   --prompt='' --marker='󰄬' --pointer='' \
   --separator='' --scrollbar='│' --layout='reverse' --info='right'

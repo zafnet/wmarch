@@ -6,13 +6,17 @@
    ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═════╝ ╚══════╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝*/
 
 configuration {
-modi: "drun,window,ssh,filebrowser,run,keys,windowcd,combi";
+modi: "drun,filebrowser,run,window,combi,ssh,keys,recursivebrowser";
 font: "agave Nerd Font 13";
 combi-modi: "drun,run";
 show-icons: true;
+no-disable-history: true;
+sort: true;
 sorting-method: "normal";
+max-history-size: 10;
 case-sensitive: false;
-terminal: "xterm";
+terminal: "foot";
+//terminal: "xterm";
 cycle: true;
 display-combi:"練  Combinado";
 display-window:"缾 Ventanas";
