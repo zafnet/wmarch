@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Buscar incluyendo ocultos (-H), sin respetar .gitignore si quieres (-I opcional),
+# insensible a mayúsculas (-i), solo ficheros (-t f), y rutas absolutas.
+archivo=$(fd -H -tf -i --absolute-path . '/' | rofi -dmenu -p "Archivo para abrir" -matching fuzzy -case-smart)
+
+if [[ -z "$archivo" ]]; then
+  echo "No se ha seleccionado ningún archivo."
+  exit 1
+fi
+
+if [[ ! -e "$archivo" || ! -r "$archivo" ]]; then
+  echo "El archivo no existe o no se puede leer."
+  exit 1
+fi
+
+if [[ "$archivo" == *.* ]]; then
+  ext="${archivo##*.}"
+  ext="${ext,,}"
+else
+  ext=""
+fi
+
+if file "$archivo" | grep -q "text"; then
+  nvim "$archivo"
+else
+  case "$ext" in
+    jpg|jpeg|png|gif|bmp|tiff) feh "$archivo" ;;
+    mp4|mkv|webm|avi)         mpv "$archivo" ;;
+    mp3|wav|flac|aac)         cmus "$archivo" ;;
+    *) echo "Tipo de archivo no soportado." ; exit 1 ;;
+  esac
+fi
