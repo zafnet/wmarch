@@ -2,7 +2,7 @@
 
 options="\n\n\n\n"
 
-selected=$(echo -e "$options" | rofi -dmenu -p  "Qué quieres $USER" -i -theme ~/.config/rofi/power/powm.rasi "")
+selected=$(echo -e "$options" | rofi -dmenu -p  "Qué quieres $USER" -i -theme ~/.config/rofi/temas/powm.rasi "")
 
 case $selected in
     "")

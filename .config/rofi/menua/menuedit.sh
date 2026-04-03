@@ -4,7 +4,7 @@ termin=foot
 
 options="HYPRLAND \nWAYCSS \nWAYCONF \nTMUX \nZSHRC \nBASHRC \nNVIM \nROFI \nXRESOURCES "
 
-selected=$(echo -e "$options" | rofi -dmenu -i -theme ~/.config/rofi/menua/menuedit.rasi -p "Editar Archivos De")
+selected=$(echo -e "$options" | rofi -dmenu -i -theme ~/.config/rofi/temas/menuedit.rasi -p "Editar Archivos De")
 
 case "$selected" in
    "HYPRLAND ")

@@ -1,0 +1,63 @@
+// Emojis.rasi
+
+* {
+    fondo:#2d3335;
+    elemesel:#959392;
+    orange:  #f15d22;
+    yellow:  #faa41a;
+    yellowl: #fffec6 ;
+    columns: 5;
+    font: "JetbrainsMono Nerd Font \ 11";
+    sort: true;
+    hide-scrollbar: true;
+    fullscreen: false;
+    color: @yellow;
+    background-color: transparent;
+}
+
+window {
+    //background: rgba(0, 0, 0, 0.5);  // Color de fondo con opacidad
+    background-color: @fondo;
+    border: 0;
+    padding: 0.3%;
+    marging: 4%;
+    //x-offset:-2%;
+    y-offset: 10%;
+    width: 74%;
+    height: 20%;
+}
+
+inputbar {
+    children: [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+
+prompt {
+    text-color: @orange;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+    margin: 0px 0.3em 0em 0em ;
+    text-color: @orange;
+}
+
+element-text {
+    text-color: @orange;
+}
+
+element {
+    text-color: @orange;
+    padding: 8px 16px;
+    spacing: 8px;
+    border-radius: 8px;
+}
+
+element-icon {
+    enabled: false;
+}
+
+element selected normal {
+    text-color: @orange;
+    background-color: @yellowl;
+}

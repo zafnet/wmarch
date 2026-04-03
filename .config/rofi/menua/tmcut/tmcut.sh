@@ -19,4 +19,4 @@ awk '
             print keybinding, description;
         }
     }
-' ~/.config/tmux/tmux.conf | sort | rofi -dmenu -i -p "Atajos Tmux" -theme ~/.config/rofi/menua/tmcut/tmcut.rasi
+' ~/.config/tmux/tmux.conf | sort | rofi -dmenu -i -p "Atajos Tmux" -theme ~/.config/rofi/temas/tmcut.rasi

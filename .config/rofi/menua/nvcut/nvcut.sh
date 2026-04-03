@@ -18,4 +18,4 @@ awk '
         }
     }
 ' | \
-rofi -show -dmenu -i -p "Maps de Nvim lua" -theme ~/.config/rofi/menua/nvcut/nvcut.rasi | sort
+rofi -show -dmenu -i -p "Maps de Nvim lua" -theme ~/.config/rofi/temas/nvcut.rasi | sort

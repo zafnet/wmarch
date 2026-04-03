@@ -4,7 +4,7 @@ termin=foot
 
 options="NVIM  \nTMUX  "
 
-selected=$(echo -e "$options" | rofi -dmenu -i -theme ~/.config/rofi/menua/atajos/atajos.rasi -p "Atajos de Apps")
+selected=$(echo -e "$options" | rofi -dmenu -i -theme ~/.config/rofi/temas/atajos.rasi -p "Atajos de Apps")
 
 case "$selected" in
    "NVIM  ")

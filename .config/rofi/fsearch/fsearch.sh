@@ -8,7 +8,7 @@ URLS=(
 
 main() {
   # Solicitar la consulta inicial
-  query=$( (echo ) | rofi -dmenu -theme ~/.config/rofi/fsearch/fsearch.rasi -matching fuzzy -location 0 -p " " )
+  query=$( (echo ) | rofi -dmenu -theme ~/.config/rofi/temas/fsearch.rasi -matching fuzzy -location 0 -p " " )
 
   if [[ -n "$query" ]]; then
     # Verificar si la consulta comienza con 'y'
