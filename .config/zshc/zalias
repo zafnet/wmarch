@@ -11,7 +11,7 @@ alias la='lsd -l --group-dirs=first'                                            
 alias ls='ls -haFH --group-directories-first --color=always'                                    # Listar archivos con colores y dirs primero Sistema
 alias tree='lsd --tree'                                                                         # Mostrar estructura de dirs en forma de árbol Sistema
 alias ba='bat -l java'                                                                          # Ver archivos Java con resaltado de sintaxis Sistema
-alias vf='vifm'                                                                                 # Abrir el gestor de archivos Vifm Sistema
+alias ya='yazi'                                                                                 # Abrir el gestor de archivos yazi Sistema
 alias to='touch'                                                                                # Crear un archivo vacío Sistema
 alias ins="$PACM -S"                                                                            # Instalar un paquete con Pacman Sistema
 alias ac="$PACM -Syu && $DUNS 'Sistema Actualizado' && exit"                                    # Actualizar el sistema y notificar Sistema
@@ -20,7 +20,7 @@ alias acm="$REFLE && $PACM -Syu --noconfirm && $DUNS 'Mirrors y Sistema Actualiz
 alias mir="$REFLE && $DUNS 'Mirrorlist Actualizado'"                                            # Actualizar la lista de mirrors y notificar Sistema
 alias al='pacman -Qs'                                                                    # Buscar paquetes instalados localmente Sistema
 alias rep='pacman -Ss'                                                                   # Buscar paquetes disponibles en los repos Sistema
-alias in='pacman -Qi'                                                                    # Mostrar información de un paquete instalado Sistema
+alias inf='pacman -Qi'                                                                   # Mostrar información de un paquete instalado Sistema
 alias rem="$PACM -Rs"                                                                    # Desinstalar un paquete Sistema
 alias remc="$PACM -Scc"                                                                  # Limpiar caché de paquetes Sistema
 alias rm='rm -rf'                                                                        # Borrar archivos y dirs recursiva y forzada Sistema
@@ -83,12 +83,14 @@ alias gdc='git diff --cached'    # Mostrar diff de cambios en el Staging Area Gi
 alias gdw='git diff --word-diff' # Mostrar diff solo la palabra que cambio en el Staging Area de Git
 gm() {git commit -m "$*"}        # Hacer un commit con un mensaje especificado Git
 
-#-- Docker
-alias dps='docker ps'          # Listar contenedores Docker en ejecución
-alias dpa='docker ps -a'       # Listar todos los contenedores Docker, incluyendo los detenidos
-alias di='docker images'       # Listar imágenes Docker disponibles
-alias dl='docker logs'         # Ver los logs de un contenedor Docker
-alias de='docker exec -it'     # Ejecutar un comando en un contenedor Docker en modo interactivo
-alias dst='docker stop'        # Detener un contenedor Docker
-alias dri='docker rmi'         # Eliminar una imagen Docker
-alias drm='docker rm'          # Eliminar un contenedor Docker
+#-- podman
+alias pps='podman ps'          # Listar contenedores podman en ejecución
+alias ppa='podman ps -a'       # Listar todos los contenedores podman, incluyendo los detenidos
+alias pi='podman images'       # Listar imágenes podman disponibles
+alias pl='podman logs'         # Ver los logs de un contenedor podman
+alias pe='podman exec -it'     # Ejecutar un comando en un contenedor podman en modo interactivo
+alias pst='podman stop'        # Detener un contenedor podman
+alias pri='podman rmi'         # Eliminar una imagen podman
+alias prm='podman rm'          # Eliminar un contenedor podman
+alias pse='podman search'      # Buscar una imagen en docker.io o quay.io
+alias ppu='podman pull'        # Descargar una imagen de docker.io o quay.io
