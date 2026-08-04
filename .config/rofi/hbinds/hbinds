@@ -1,7 +1,60 @@
 #!/usr/bin/env bash    
 
-# Ruta al archivo de configuración de Hyprland
-CONFIG_FILE="$HOME/.config/hypr/hybinds.conf"
+# Script para  poder ver las combinaciones de teclas con rofi en un archivo lua de hyprland
+set -euo pipefail
 
-# Extraer combinaciones de teclas
-grep -E 'bind' "$CONFIG_FILE" | sed 's/bind //; s/;/ /' | awk '{$1=$1};1' | rofi -theme ~/.config/rofi/temas/hbinds.rasi -dmenu -p "Combinaciones de Teclas"
+CONFIG_FILE="$HOME/.config/hypr/hybinds.lua"
+THEME="$HOME/.config/rofi/temas/hbinds.rasi"
+
+gawk '
+  /hl\.bind/ && /description[[:space:]]*=/ {
+    line = $0
+
+    # description
+    if (!match(line, /description[[:space:]]*=[[:space:]]*["'\''"]([^"'\''\r\n]*)["'\''"]/ , d))
+      next
+    desc = d[1]
+
+    # primer argumento: entre "hl.bind(" y la primera coma
+    # esto funciona si hl.bind está en una sola línea como tus ejemplos
+    if (!match(line, /hl\.bind[[:space:]]*\(([^,]*)/, a))
+      next
+    expr = a[1]
+
+    # Limpieza
+    gsub(/[[:space:]]+/, " ", expr)
+    gsub(/^[[:space:]]+|[[:space:]]+$/, "", expr)
+
+    key = ""
+
+    # Caso A: VARIABLE .. " + f"
+    # Captura VARIABLE y el literal del string después de ..
+    if (match(expr, /^([A-Za-z_][A-Za-z0-9_]*)[[:space:]]*\.\.[[:space:]]*["'\''"]([^"'\''\r\n]*)["'\''"]$/, m)) {
+      # ejemplo: m[1]="Mod"  m[2]=" + q"
+      # Queremos: "Mod" + "q" según el contenido del literal.
+      lit = m[2]
+      gsub(/^[[:space:]]*\+[[:space:]]*/, " + ", lit)   # asegura formato " + x"
+      gsub(/[[:space:]]+/, " ", lit)
+
+      # Si lit empieza con "+", o trae "+ q" dentro, lo pegamos:
+      # Ej: " + q" => " + q"
+      key = m[1] lit
+    }
+
+    # Caso B: "CTRL + 1"
+    if (key == "" && match(expr, /^["'\''"]([^"'\''\r\n]*)["'\''"]$/, m2)) {
+      key = m2[1]
+    }
+
+    # Caso C: si queda vacío, intenta sacar el primer literal entre comillas (a veces cubre variantes)
+    if (key == "" && match(expr, /["'\''"]([^"'\''\r\n]*)["'\''"]/, m3)) {
+      key = m3[1]
+    }
+
+    gsub(/[[:space:]]+/, " ", key)
+    gsub(/^[[:space:]]+|[[:space:]]+$/, "", key)
+
+    if (key != "" && desc != "")
+      print key " - " desc
+  }
+' "$CONFIG_FILE" | rofi -theme "$THEME" -dmenu -p "Combinaciones de Teclas"

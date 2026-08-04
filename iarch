@@ -141,7 +141,7 @@ case $escritorio in
     echo -e '\033[0;34m' "Escritorio : hyprland"
     sleep 3
     packages=(
-        "slurp waybar obsidian neovim man-db hyprland swaybg zsh-completions zsh-syntax-highlighting zsh-autosuggestions pulseaudio foot wl-clipboard wf-recorder grim mpv wayland pcmanfm bat yazi rofi fzf tmux file-roller lsd gvfs zathura zathura-pdf-poppler feh android-file-transfer android-tools android-udev pacman-contrib gvfs-gphoto2 gvfs-mtp mtpfs imagemagick libnotify fd dunst"
+        "slurp swappy waybar obsidian neovim man-db hyprland swaybg zsh-completions zsh-syntax-highlighting zsh-autosuggestions pulseaudio foot wl-clipboard wf-recorder grim mpv wayland pcmanfm bat yazi rofi fzf tmux file-roller lsd gvfs zathura zathura-pdf-poppler feh android-file-transfer android-tools android-udev pacman-contrib gvfs-gphoto2 gvfs-mtp mtpfs imagemagick libnotify fd dunst"
 # nwg-look
     )
     ;;
